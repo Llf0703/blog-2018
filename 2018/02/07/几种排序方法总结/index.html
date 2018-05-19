@@ -43,6 +43,8 @@
     
     <title>
         
+            几种排序方法总结 | 
+        
         Llf&#39;s blog
     </title>
 
@@ -213,7 +215,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Llf&#39;s blog">
-    <meta name="msapplication-starturl" content="https://llf0703.github.io/">
+    <meta name="msapplication-starturl" content="https://llf0703.github.io/2018/02/07/几种排序方法总结/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Llf&#39;s blog">
@@ -228,13 +230,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://llf0703.github.io/">
+    <meta property="og:url" content="https://llf0703.github.io/2018/02/07/几种排序方法总结/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Llf&#39;s blog">
+    <meta property="og:title" content="几种排序方法总结 | Llf&#39;s blog">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content="">
     
 
+    
+        <meta property="article:published_time" content="Wed Feb 07 2018 22:04:00 GMT+0800">
+        <meta property="article:modified_time" content="Sat May 19 2018 17:21:54 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -242,35 +247,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://llf0703.github.io" />
+        <link rel="canonical" href="https://llf0703.github.io/2018/02/07/几种排序方法总结/index.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
+
+
 <script type="application/ld+json">
 {
-    "@context": "http://schema.org",
-    "@type": "Website",
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "https://llf0703.github.io/2018/02/07/几种排序方法总结/index.html",
+    "headline": "几种排序方法总结",
+    "datePublished": "Wed Feb 07 2018 22:04:00 GMT+0800",
+    "dateModified": "Sat May 19 2018 17:21:54 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Llf",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "Hi, nice to meet you"
+    },
     "publisher": {
         "@type": "Organization",
         "name": "Llf&#39;s blog",
-        "logo": "/img/favicon.png"
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
     },
-    "url": "https://llf0703.github.io",
-    "image": {
-        "@type": "ImageObject",
-        "url": "/img/favicon.png"
-    },
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://llf0703.github.io"
-    },
-    "description": ""
+    "keywords": "",
+    "description": "",
 }
 </script>
-
-
 
 
     
@@ -304,733 +317,322 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
+                    <!-- Post TOC -->
+
     
-        <!-- Paradox Header -->
-        <!-- Daily pic -->
-<div class="mdl-card mdl-shadow--2dp daily-pic mdl-cell mdl-cell--8-col index-top-block">
-
-    <!-- Pic & Slogan -->
-    <div class="mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/daily_pic.png)">
-        <p class="index-top-block-slogan"><a href="#">
-        
-            
-                Hi, nice to meet you
-            
-        
-        </a></p>
-    </div>
-
-    <!-- Avatar & Name -->
-    <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-        <!-- Author Avatar -->
-        <div id="author-avatar">
-            <img src="/img/avatar.png" width="32px" height="32px" alt="avatar">
-        </div>
-        <div>
-            <strong>Llf</strong>
-        </div>
-    </div>
-</div>
-
-        <!-- Blog info -->
-<div class="mdl-card mdl-shadow--2dp something-else mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop index-top-block">
-
-    <!-- Search -->
-    
-    <!-- Google -->
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable" method="post" action="">
-        <label id="search-label" class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent mdl-shadow--4dp" for="search">
-            <i class="material-icons mdl-color-text--white" role="presentation">search</i>
-        </label>
-
-        <form autocomplete="off" id="search-form" method="get" action="//google.com/search" accept-charset="UTF-8" class="mdl-textfield__expandable-holder" target="_blank">
-            <input class="mdl-textfield__input search-input" type="search" name="q" id="search" placeholder="">
-            <label id="search-form-label" class="mdl-textfield__label" for="search"></label>
-
-            <input type="hidden" name="sitesearch" value="https://llf0703.github.io">
-        </form>
-    </div>
-
-
-
-
-
-
-
-    <!-- LOGO -->
-    <div class="something-else-logo mdl-color--white mdl-color-text--grey-600">
-        <a href="#" target="_blank">
-            <img src="/img/logo.png" alt="logo" />
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
         </a>
     </div>
+    -->
 
-    <!-- Infomation -->
-    <div class="mdl-card__supporting-text meta meta--fill mdl-color-text--grey-600">
-        <!-- Blog Title -->
-        <div>
-            <strong>Llf&#39;s blog</strong>
-        </div>
-        <div class="section-spacer"></div>
 
-        <!-- Pages -->
-        <button id="show-pages-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-            <i class="material-icons" role="presentation">view_carousel</i>
-            <span class="visuallyhidden">Pages</span>
-        </button>
-        <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="show-pages-button">
-            
-        </ul>
-
-        <!-- Menu -->
-        <button id="menubtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-            <i class="material-icons" role="presentation">more_vert</i>
-            <span class="visuallyhidden">show menu</span>
-        </button>
-        <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="menubtn">
-            
-
-            
-
-            
-                <a class="index_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Llf&#39;s blog&url=https://llf0703.github.io&pic=https://llf0703.github.io/img/favicon.png&searchPic=false&style=simple" target="_blank">
-                    <li class="mdl-menu__item mdl-js-ripple-effect">
-                        分享到微博
-                    </li>
-                </a>
-            
-
-            
-                <a class="index_share-link" href="https://twitter.com/intent/tweet?text=Llf&#39;s blog&url=https://llf0703.github.io&via=Llf" target="_blank">
-                    <li class="mdl-menu__item mdl-js-ripple-effect">
-                        分享到 Twitter
-                    </li>
-                </a>
-            
-
-            
-                <a class="index_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://llf0703.github.io" target="_blank">
-                    <li class="mdl-menu__item mdl-js-ripple-effect">
-                        分享到 Facebook
-                    </li>
-                </a>
-            
-
-            
-                <a class="index_share-link" href="https://plus.google.com/share?url=https://llf0703.github.io" target="_blank">
-                    <li class="mdl-menu__item mdl-js-ripple-effect">
-                        分享到 Google+
-                    </li>
-                </a>
-            
-
-            
-
-            
-
-            
-        </ul>
-    </div>
-</div>
-
+    <!-- Left aligned menu below button -->
     
-    <div class="locate-thumbnail-symbol"></div>
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
 
-    <!-- Pin on top -->
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#冒泡排序"><span class="post-toc-number">1.</span> <span class="post-toc-text">冒泡排序</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#方法"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#代码"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">代码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#代码-1"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">代码</span></a></li></ol></li></ol>
+    </ul>
     
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/05/19/hello-world/">Hello World</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            Welcome to Hexo
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/05/19/hello-world/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Llf's avatar">
-            </div>
-            <div>
-                <strong>Llf</strong>
-                <span>5月 19, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/05/09/基础数论学习总结/">基础数论学习总结</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            原本打算先学Splay的，但想到提高组一般不考，而且我其它东西还差的多，就先把基础数论的东西复习一下，并且加深一下难度，
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/05/09/基础数论学习总结/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Llf's avatar">
-            </div>
-            <div>
-                <strong>Llf</strong>
-                <span>5月 09, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/04/26/点分治总结/">点分治总结</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            我自己感觉点分治是一种比较玄学神奇的算法，感觉...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/04/26/点分治总结/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Llf's avatar">
-            </div>
-            <div>
-                <strong>Llf</strong>
-                <span>4月 26, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/04/24/题解-洛谷P4092-HEOI2016-TJOI2016-树/">题解-洛谷P4092 [HEOI2016/TJOI2016]树</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            第一次写树剖没看题解A题，发现题解洛谷题解区大...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/04/24/题解-洛谷P4092-HEOI2016-TJOI2016-树/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Llf's avatar">
-            </div>
-            <div>
-                <strong>Llf</strong>
-                <span>4月 24, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/04/21/二分图匹配/">二分图匹配</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            我是看这篇学懂的，真的写得很好，所以我就不在这里总结了，只发个模板
-
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/04/21/二分图匹配/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Llf's avatar">
-            </div>
-            <div>
-                <strong>Llf</strong>
-                <span>4月 21, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/04/19/题解-洛谷P2486-SDOI2011-染色/">题解-洛谷P2486 [SDOI2011]染色</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            题目链接：
-
-
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/04/19/题解-洛谷P2486-SDOI2011-染色/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Llf's avatar">
-            </div>
-            <div>
-                <strong>Llf</strong>
-                <span>4月 19, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/04/16/树链剖分总结/">树链剖分总结</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            作为一个上个月刚学完线段树的蒟蒻，看Splay又看不懂，便直接跳着来学树剖了。又在一个博客上看到说学树剖之前最好还要把LCA给学了，便去花了一天学了...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/04/16/树链剖分总结/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Llf's avatar">
-            </div>
-            <div>
-                <strong>Llf</strong>
-                <span>4月 16, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/04/10/LCA问题总结/">LCA问题总结</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            概述最近公共祖先（...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/04/10/LCA问题总结/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Llf's avatar">
-            </div>
-            <div>
-                <strong>Llf</strong>
-                <span>4月 10, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/04/09/RMQ问题-ST表总结/">RMQ问题_ST表总结</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            RMQ问题
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/04/09/RMQ问题-ST表总结/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Llf's avatar">
-            </div>
-            <div>
-                <strong>Llf</strong>
-                <span>4月 09, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/02/08/题解-洛谷P1309-瑞士轮/">题解-洛谷P1309 瑞士轮</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/02/08/题解-洛谷P1309-瑞士轮/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Llf's avatar">
-            </div>
-            <div>
-                <strong>Llf</strong>
-                <span>2月 08, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-    <!-- Index nav -->
-        <nav class="material-nav mdl-cell mdl-cell--12-col">
-            <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"><i class="material-icons" role="presentation">arrow_forward</i></button></a>
-        </nav>
-    
-
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                几种排序方法总结
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Llf</strong>
+        <span>2月 07, 2018</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=几种排序方法总结&url=https://llf0703.github.io/2018/02/07/几种排序方法总结/index.html&pic=https://llf0703.github.io/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=几种排序方法总结&url=https://llf0703.github.io/2018/02/07/几种排序方法总结/index.html&via=Llf" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://llf0703.github.io/2018/02/07/几种排序方法总结/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://llf0703.github.io/2018/02/07/几种排序方法总结/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
     
 </div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p>第一次将每一个元素和它的后一个元素比较大小，如果不满足顺序则交换，这样即可确定最后一个数的位置。然后再从头开始，可以确定倒数第二个数的位置。循环n次后即可完成排序。因为每一轮排完序后都会确定一个，即“冒”出来一个，故被称作冒泡排序。</p>
+<p>时间效率：$O(n^{2})$</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>以  <a href="https://www.luogu.org/problemnew/show/P1116" target="_blank" rel="noopener">洛谷 P1116 车厢重组</a> 为例</p>
+<pre><code>#include&amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+int n,m,a,b,c,d,e,ans;
+int f[10005];
+void change(int &amp;amp;a,int &amp;amp;b)
+{
+    int c;
+    c=a;
+    a=b;
+    b=c;
+}
+int main()
+{
+    cin&amp;gt;&amp;gt;n;
+    for (a=1;a&amp;lt;=n;a++)
+    cin&amp;gt;&amp;gt;f[a];
+    for (a=1;a&amp;lt;=n;a++)
+      for (b=1;b&amp;lt;=n-a;b++)//因为每次多确定一位，固少循环一次
+      if (f[b]&amp;gt;f[b+1])
+      {
+          change(f[b],f[b+1]);
+          ans++;
+      }
+    cout&amp;lt;&amp;lt;ans;
+    return 0;
+}
+`&lt;/pre&gt;
+
+## 桶排序
+
+桶排序的原理非常简单，即将需排序的元素作为数组下标，直接输出就行了。
+
+时间效率：$$O(n)$$ 但是需要很多额外空间
+
+## 归并排序
+
+### 方法
+
+运用递归将原数据不断二分，然后在回溯过程中使用归并算法将其一步步合并，最后合成一个有序数列。
+
+时间效率：最好：$O(log n)$ 最坏：$O(n*log n)$
+
+### 代码
+
+以 [洛谷 P1177 【模板】快速排序](https://www.luogu.org/problemnew/show/P1177) 为例
+
+&lt;pre&gt;`#include&amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+int n,m,p,i,j,k;
+queue &amp;lt;int&amp;gt; q;
+int f[100005];
+void merge_sort(int a,int b)//a是起点，b是终点
+{
+    int s;
+    if (a==b) return;
+    s=(a+b)/2;
+    merge_sort(a,s);
+    merge_sort(s+1,b);//递归调用
+    i=a;
+    j=s+1;
+    while (i&amp;lt;=s&amp;amp;&amp;amp;j&amp;lt;=b)
+    {
+        if (f[i]&amp;gt;f[j]) 
+        {
+            q.push(f[j]);
+            j++;
+        }
+        else
+        {
+            q.push(f[i]);
+            i++;
+        }
+    }
+    if (i&amp;gt;s) 
+    for (int e=j;e&amp;lt;=b;e++) q.push(f[e]);
+    if (j&amp;gt;b)
+    for (int e=i;e&amp;lt;=s;e++) q.push(f[e]);
+    k=a-1;
+    while (!q.empty())
+    {
+        k++;
+        f[k]=q.front();
+        q.pop();
+    }//归并算法
+}
+int main()
+{
+    cin&amp;gt;&amp;gt;n;
+    for (int a=1;a&amp;lt;=n;a++)
+    cin&amp;gt;&amp;gt;f[a];
+    merge_sort(1,n);
+    for (int a=1;a&amp;lt;=n;a++)
+    cout&amp;lt;&amp;lt;f[a]&amp;lt;&amp;lt;&amp;quot; &amp;quot;;
+    return 0;
+}
+`&lt;/pre&gt;
+
+## 快速排序
+
+### 方法
+</code></pre><ol>
+<li>设置两个变量i、j，排序开始的时候：i=0，j=N-1；</li>
+<li>以第一个数组元素作为关键数据，赋值给key，即<code>key=A[0]</code>；</li>
+<li>从j开始向前搜索，即由后开始向前搜索(j–)，找到第一个小于key的值<code>A[j]</code>，将<code>A[j]</code>和<code>A[i]</code>互换；</li>
+<li>从i开始向后搜索，即由前开始向后搜索(i++)，找到第一个大于key的<code>A[i]</code>，将<code>A[i]</code>和<code>A[j]</code>互换；</li>
+<li>重复第3、4步，直到i=j，这样以后第i位上的数的前面比这个数小，后面比这个数大，即这个数位置已经确定；</li>
+<li><p>将i前面和i后面的部分递归调用再次排序，直到排完。</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><p><pre>`sort(A,A+N,com)//_huaji</pre></p>
+</li>
+</ol>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2018/02/08/题解-洛谷P1309-瑞士轮/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
@@ -1318,12 +920,6 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 
-
-    <!-- Swiftye -->
-    
-
-    <!-- Local Search-->
-    
 
 
 <!-- UC Browser Compatible -->

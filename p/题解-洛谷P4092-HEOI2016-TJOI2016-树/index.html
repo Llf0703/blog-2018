@@ -43,18 +43,18 @@
     
     <title>
         
-            树链剖分总结 | 
+            题解-洛谷P4092 [HEOI2016/TJOI2016]树 | 
         
         Llf&#39;s blog
     </title>
 
     <!-- Favicons -->
-    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
-    <link rel="icon" href="/img/favicon.png">
+    <link rel="icon shortcut" type="image/ico" href="https://i.loli.net/2018/05/23/5b0522df21452.png">
+    <link rel="icon" href="https://i.loli.net/2018/05/23/5b0522df21452.png">
 
     <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="">
-    <meta name="keywords" content="">
+    <meta name="keywords" content="Llf,Llf0703,blog,OI,博客,信息学竞赛,算法,数据结构">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -220,30 +220,30 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Llf&#39;s blog">
-    <meta name="msapplication-starturl" content="https://i3go.net/2018/04/16/树链剖分总结/">
+    <meta name="msapplication-starturl" content="https://i3go.net/p/题解-洛谷P4092-HEOI2016-TJOI2016-树/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Llf&#39;s blog">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon" href="/img/favicon.png">
+    <link rel="apple-touch-icon" href="https://i.loli.net/2018/05/23/5b0522df21452.png">
 
     <!-- Site Verification -->
     
-    
+    <meta name="baidu-site-verification" content="mjJO1sPYUA" />
 
     <!-- RSS -->
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://i3go.net/2018/04/16/树链剖分总结/">
+    <meta property="og:url" content="https://i3go.net/p/题解-洛谷P4092-HEOI2016-TJOI2016-树/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="树链剖分总结 | Llf&#39;s blog">
-    <meta property="og:image" content="/img/favicon.png">
+    <meta property="og:title" content="题解-洛谷P4092 [HEOI2016/TJOI2016]树 | Llf&#39;s blog">
+    <meta property="og:image" content="https://i.loli.net/2018/05/23/5b0522df21452.png">
     <meta property="og:description" content="">
     
 
     
-        <meta property="article:published_time" content="Mon Apr 16 2018 20:41:00 GMT+0800">
+        <meta property="article:published_time" content="Tue Apr 24 2018 20:06:00 GMT+0800">
         <meta property="article:modified_time" content="Sat May 19 2018 17:21:54 GMT+0800">
     
 
@@ -252,7 +252,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://i3go.net/2018/04/16/树链剖分总结/index.html" />
+        <link rel="canonical" href="https://i3go.net/p/题解-洛谷P4092-HEOI2016-TJOI2016-树/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -264,9 +264,9 @@
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "mainEntityOfPage": "https://i3go.net/2018/04/16/树链剖分总结/index.html",
-    "headline": "树链剖分总结",
-    "datePublished": "Mon Apr 16 2018 20:41:00 GMT+0800",
+    "mainEntityOfPage": "https://i3go.net/p/题解-洛谷P4092-HEOI2016-TJOI2016-树/index.html",
+    "headline": "题解-洛谷P4092 [HEOI2016/TJOI2016]树",
+    "datePublished": "Tue Apr 24 2018 20:06:00 GMT+0800",
     "dateModified": "Sat May 19 2018 17:21:54 GMT+0800",
     "author": {
         "@type": "Person",
@@ -282,10 +282,10 @@
         "name": "Llf&#39;s blog",
         "logo": {
             "@type":"ImageObject",
-            "url": "/img/favicon.png"
+            "url": "https://i.loli.net/2018/05/23/5b0522df21452.png"
         }
     },
-    "keywords": "",
+    "keywords": "Llf,Llf0703,blog,OI,博客,信息学竞赛,算法,数据结构",
     "description": "",
 }
 </script>
@@ -351,7 +351,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#准备工作"><span class="post-toc-number">1.</span> <span class="post-toc-text">准备工作</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#树剖原理"><span class="post-toc-number">2.</span> <span class="post-toc-text">树剖原理</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实现"><span class="post-toc-number">3.</span> <span class="post-toc-text">实现</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#剖分"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">剖分</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#操作3，4"><span class="post-toc-number">3.1.1.</span> <span class="post-toc-text">操作3，4</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#其它细节"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">其它细节</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#完整代码"><span class="post-toc-number">4.</span> <span class="post-toc-text">完整代码</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#相关例题"><span class="post-toc-number">5.</span> <span class="post-toc-text">相关例题</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#方法"><span class="post-toc-number">1.</span> <span class="post-toc-text">方法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#代码"><span class="post-toc-number">2.</span> <span class="post-toc-text">代码</span></a></li></ol>
     </ul>
     
 
@@ -383,7 +383,7 @@
         
     
             <p class="article-headline-p">
-                树链剖分总结
+                题解-洛谷P4092 [HEOI2016/TJOI2016]树
             </p>
         </div>
 
@@ -402,7 +402,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>Llf</strong>
-        <span>4月 16, 2018</span>
+        <span>4月 24, 2018</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -434,7 +434,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=树链剖分总结&url=https://i3go.net/2018/04/16/树链剖分总结/index.html&pic=https://i3go.net/img/favicon.png&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=题解-洛谷P4092 [HEOI2016/TJOI2016]树&url=https://i3go.net/p/题解-洛谷P4092-HEOI2016-TJOI2016-树/index.html&pic=https://i3go.nethttps://i.loli.net/2018/05/23/5b0522df21452.png&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -443,7 +443,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=树链剖分总结&url=https://i3go.net/2018/04/16/树链剖分总结/index.html&via=Llf" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=题解-洛谷P4092 [HEOI2016/TJOI2016]树&url=https://i3go.net/p/题解-洛谷P4092-HEOI2016-TJOI2016-树/index.html&via=Llf" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -452,7 +452,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://i3go.net/2018/04/16/树链剖分总结/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://i3go.net/p/题解-洛谷P4092-HEOI2016-TJOI2016-树/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -461,7 +461,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=https://i3go.net/2018/04/16/树链剖分总结/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://i3go.net/p/题解-洛谷P4092-HEOI2016-TJOI2016-树/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -486,325 +486,155 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>作为一个上个月刚学完线段树的蒟蒻，看Splay又看不懂，便直接跳着来学树剖了。又在一个博客上看到说学树剖之前最好还要把LCA给学了，便去花了一天学了一个Tarjan求LCA（然而后来发现并不怎么需要），然后是几乎照着别人的代码把树剖抄懂的。在这里我就讲一下我理解的树剖。</p>
+        <p><span style="text-decoration:line-through;">第一次写树剖没看题解A题</span>，发现题解洛谷题解区大佬里竟然没有一个做法一样的，实在是太激动了</p>
 <hr>
-<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ol>
-<li>链表/链式前向星</li>
-<li>线段树/树状数组/Splay等可以维护一段数据的数据结构</li>
-<li><a href="https://llf0703.com/p/LCA.html" target="_blank" rel="noopener">LCA</a> （其实只涉及到一些思想，而且几乎用不到，可以先不学）</li>
-</ol>
-<h2 id="树剖原理"><a href="#树剖原理" class="headerlink" title="树剖原理"></a>树剖原理</h2><p>我很早之前就听说过树剖，当时觉得实在是太高大上了，但现在发现只是名字比较高端，整个原理还是很简单的，只是码量比较大。</p>
-<p>作为蒟蒻，我在图论题中几乎都只会搜索，也靠着搜索在SCOI上拿了仅有的几十分。不过我好歹还是学过前缀和差分的，如果一个图中所有的点连成一条线，那么来找两个点之间路径长只需要维护前缀和就行了。如果一棵树中的结点都连成一条线，我们就把它称作链。如果把树上的结点分为若干条链，那么很多问题就可以变得简单多了。</p>
-<p>所谓树链剖分就是将一棵树给剖分成若干条链，再分别处理。</p>
-<p>当然，一个节点也是可以算一条链的，不过如果这样分还不如不分。树剖这个算法的目的，便是将一棵树中每一个非叶节点分到链中，并且每一个节点都只属于一条链，这样查询起来又可以快很多。</p>
-<p>在这里给出一棵树（图源百度百科）：</p>
-<p><img src="https://cdn.uniqueue.cn/shupou.jpg" alt="树剖"></p>
-<p>在这张图中，粗线即为分成的链。要让每一个非叶节点在链上，我们就需要让一条链尽可能覆盖更多节点。所以在每一个节点的子节点中，我们选<strong>以它为根的子树节点个数最多</strong>的子节点来连成链。</p>
-<p>比如在4号节点的子节点{8,9,10}中，以8和以10为根的子树的节点总个数为1，而以9为根的子树节点个数为3，所以我们就将9作为链上的一个节点继续向下连接。9就被称为是4号节点的<strong>重节点</strong>，其他的两个节点就被称作<strong>轻节点</strong></p>
-<p>继续扩展，父节点和重节点间的连线被称作<strong>重边</strong>，就是粗线；父节点和轻结点的连线被称作<strong>轻边</strong>，就是图中的细线；多条重边连接起来的路径叫<strong>重链</strong>，如路径1-&gt;4-&gt;9-&gt;13-&gt;14；多条轻边连接起来的路径叫<strong>轻链</strong>，如路径1-&gt;2-&gt;5。</p>
-<p>通过一个表格将这些定义总结一下</p>
-<table data-anchor-id="jqt2" class="table table-striped-white table-bordered"><br><thead><br><tr><br> <th style="text-align:center;">定义</th><br> <th style="text-align:center;">含义</th><br></tr><br></thead><br><tbody><tr><br> <td style="text-align:center;">重节点</td><br> <td style="text-align:center;">以它为根的子树节点个数最多的节点</td><br></tr><br><tr><br> <td style="text-align:center;">轻节点</td><br> <td style="text-align:center;">所有子节点中不是重节点的节点</td><br></tr><br><tr><br> <td style="text-align:center;">重边</td><br> <td style="text-align:center;">父节点和重节点间的连线</td><br></tr><br><tr><br> <td style="text-align:center;">轻边</td><br> <td style="text-align:center;">父节点和轻结点的连线</td><br></tr><br><tr><br> <td style="text-align:center;">重链</td><br> <td style="text-align:center;">多条重边连接起来的路径</td><br></tr><br><tr><br> <td style="text-align:center;">轻链</td><br> <td style="text-align:center;">多条轻边连接起来的路径</td><br></tr><br></tbody></table>
-
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>我们使用两次dfs就能实现剖分，但是只剖分的话是并没有什么卵用的，一般题目中还会涉及到两节点间的权值和，权值最大值等问题。这里以 <a href="https://www.luogu.org/problemnew/show/P3384" target="_blank" rel="noopener">洛谷P3384【模板】树链剖分</a> 为例。</p>
-<h3 id="剖分"><a href="#剖分" class="headerlink" title="剖分"></a>剖分</h3><p>首先先解释下我使用的变量</p>
-<table data-anchor-id="tjc5" class="table table-striped-white table-bordered"><br><thead><br><tr><br> <th style="text-align:center;">变量名</th><br> <th style="text-align:center;">意义</th><br></tr><br></thead><br><tbody><tr><br> <td style="text-align:center;">fa[x]</td><br> <td style="text-align:center;">x号节点的父亲</td><br></tr><br><tr><br> <td style="text-align:center;">son[x]</td><br> <td style="text-align:center;">x号节点的重儿子（节点）</td><br></tr><br><tr><br> <td style="text-align:center;">size[x]</td><br> <td style="text-align:center;">以x号节点为根的子树中节点个数</td><br></tr><br><tr><br> <td style="text-align:center;">deep[x]</td><br> <td style="text-align:center;">x号节点的深度</td><br></tr><br><tr><br> <td style="text-align:center;">top[x]</td><br> <td style="text-align:center;">x号节点所在的链顶的节点编号</td><br></tr><br><tr><br> <td style="text-align:center;">w[x]</td><br> <td style="text-align:center;">x号节点的原权值</td><br></tr><br><tr><br> <td style="text-align:center;">wnew[x]</td><br> <td style="text-align:center;">dfs序中第x号节点的权值</td><br></tr><br><tr><br> <td style="text-align:center;">id[x]</td><br> <td style="text-align:center;">x号节点的dfs序</td><br></tr><br><tr><br> <td style="text-align:center;">edge[]和head[]</td><br> <td style="text-align:center;">链式前向星数组</td><br></tr><br><tr><br> <td style="text-align:center;">tree[]</td><br> <td style="text-align:center;">线段树</td><br></tr><br></tbody></table>
-
-<p>先进行第一次dfs，需要完成的任务是</p>
-<ol>
-<li>确定这个点的深度</li>
-<li>确定父亲节点</li>
-<li>确定以这个节点为根的子树中节点个数</li>
-<li>确定这个点的重儿子</li>
-</ol>
-<p>具体实现方式见代码</p>
-<pre><code>void dfs1(int x,int f,int depth)
+<ul>
+<li>树剖学习：<a href="https://llf0703.com/p/shu-lian-pou-fen.html" target="_blank" rel="noopener">https://llf0703.com/p/shu-lian-pou-fen.html</a></li>
+<li>题目链接 <a href="https://www.luogu.org/problemnew/show/P4092" target="_blank" rel="noopener">洛谷 P4092</a>  <a href="https://www.lydsy.com/JudgeOnline/problem.php?id=4551" target="_blank" rel="noopener">BZOJ P4551</a></li>
+</ul>
+<hr>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p><span style="text-decoration:line-through;"> 裸树剖 </span> ，直接用线段树维护每一段区间中<strong>被标记的最深的节点</strong>就行了。先全部赋值为-1，然后向上传递时直接取两段中的最大值即可（因为越深的点dfs序越大）</p>
+<p>还有需要注意的是查询中在链上往上跳时只要找到了有标记的节点就需要输出，否则不是最深的点。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>#include&amp;lt;bits/stdc++.h&amp;gt;
+using namespace std;
+struct Edge{
+  int next,to;
+} edge[200005];
+struct Tree{
+  int left,right,deepest;
+} tree[800005];
+int head[200005],size[200005],fa[200005],son[200005],deep[200005],top[200005],id[200005],dfsid[200005];
+int cnt=1,n,m,a,b,c,dfsord;
+char x;
+inline int read()//快读
 {
-    deep[x]=depth;//深度
-    fa[x]=f;//父亲节点
-    size[x]=1;//子树节点个数至少有一个
-    int mx=-1;
-    for (int i=head[x];i!=-1;i=edge[i].next)
-    {
-        int v=edge[i].to;
-        if (v==f) continue;//不搜索父节点
-        dfs1(v,x,depth+1);
-        size[x]+=size[v];//节点个数加上子节点的
-        if (size[v]&amp;gt;mx) //更新重儿子
-        {
-            mx=size[v];
-            son[x]=v;
-        }
-    }
+  char ch=getchar();
+  int f=1,x=0;
+  while (ch&amp;lt;&apos;0&apos; || ch&amp;gt;&apos;9&apos;)
+  {
+    if (ch==&apos;-&apos;) f=-1;
+    ch=getchar();
+  }
+  while (ch&amp;gt;=&apos;0&apos; &amp;amp;&amp;amp; ch&amp;lt;=&apos;9&apos;)
+  {
+    x=x*10+ch-&apos;0&apos;;
+    ch=getchar();
+  }
+  return f*x;
 }
-`&lt;/pre&gt;
-
-然后是第二次dfs。需要完成的任务是
-</code></pre><ol>
-<li>确定新编号（dfs序）</li>
-<li>赋权值到新编号上</li>
-<li>确定这个点所在的链的顶端</li>
-<li><p>处理每一条链</p>
-<p>还是看代码吧</p>
-<pre>`void dfs2(int x,int topf)
+inline void add(int u,int v)//加边
 {
-    id[x]=++dfsord;//标记每一个节点的dfs序
-    wnew[dfsord]=w[x];//得到新编号（dfs序）
-    top[x]=topf;//得到这条链的顶端
-    if (!son[x]) return;//无儿子返回
-    dfs2(son[x],topf);//先处理重儿子
-    for (int i=head[x];i!=-1;i=edge[i].next)
-    {
-        int v=edge[i].to;
-        if (v==fa[x] || v==son[x]) continue;
-        dfs2(v,v);//如果是轻儿子，新的链一定以自己为顶端
-    }
+  edge[cnt].to=v;
+  edge[cnt].next=head[u];
+  head[u]=cnt++;
 }
-`</pre>
-> 先处理重儿子是为了保证每一条链都是被连续处理的
-
-好了，剖分就结束了，<span style="text-decoration:line-through;">是不是很简单啊</span>
-
-### 处理问题
-
-#### 操作1，2
-
-操作1： 格式： 1 x y z 表示将树从x到y结点最短路径上所有节点的值都加上z
-
-操作2： 格式： 2 x y 表示求树从x到y结点最短路径上所有节点的值之和
-
-在处理u和v号节点之间路径上所有节点时，我们一般先让u和v属于同一条链，然后因为dfs序的特点就可以直接用线段树处理了。
-
-让u和v顶端相同的方法是将u和v中较深的节点往上跳到这条链顶端的上方，跳完一个再交换跳下一个。每次更改或查询只要更改当前跳的节点到它所在链的顶端即可，最后到一条链上了以后直接处理两点之间就行了。
-
-代码如下：
-
-> 注：我的线段树是左闭右开区间，即表示[left,right)，所以处理时右边要+1
-
-操作1
-
-<pre>`void uprange(int u,int v,int delta)
+void build(int x,int l,int r)//建树
 {
-    delta%=p;//按题意取%
-    while (top[u]!=top[v])
-    {
-        if (deep[top[u]]&lt;deep[top[v]]) swap(u,v);//交换为更深的点
-        change(1,id[top[u]],id[u]+1,delta);
-        u=fa[top[u]];//向上跳
-    }
-    if (deep[u]&gt;deep[v]) swap(u,v);//交换为更深的点保证u的dfs序在前
-    change(1,id[u],id[v]+1,delta);
-}
-`</pre>
-
-<p>操作2</p>
-<pre>`int qrange(int u,int v)//求u到v节点的路径中节点之和
-{
-    int ans=0;
-    while (top[u]!=top[v])//不停将u向上跳，直到在一条链上
-    {
-        if (deep[top[u]]&lt;deep[top[v]]) swap(u,v);//交换成更深的点
-        ans+=query(1,id[top[u]],id[u]+1);
-        ans%=p;
-        u=fa[top[u]];//向上跳
-    }
-    //已经在一条链上
-    if (deep[u]&gt;deep[v]) swap(u,v);
-    ans+=query(1,id[u],id[v]+1);
-    ans%=p;
-    return ans;
-}
-`</pre>
-
-<h4 id="操作3，4"><a href="#操作3，4" class="headerlink" title="操作3，4"></a>操作3，4</h4><p>可以根据dfs序的性质直到，子树区间右端点为id[x]+siz[x]-1，直接处理即可。</p>
-<p>代码：</p>
-<p>操作3</p>
-<pre>`inline void upson(int u,int delta)
-{
-    change(1,id[u],id[u]+size[u],delta);
-}
-`</pre>
-
-<p>操作4</p>
-<pre>`inline int qson(int u)
-{
-    return query(1,id[u],id[u]+size[u]);
-}
-`</pre>
-
-<h3 id="其它细节"><a href="#其它细节" class="headerlink" title="其它细节"></a>其它细节</h3></li>
-<li><p>在一些没有指定根的问题中其实以任意节点为根都是可以的</p>
-</li>
-<li>根节点开始dfs时可以以0作为它的根，顶端就是它本身</li>
-<li><p>一定要记得<strong>先dfs在建树</strong>，因为线段树是处理dfs序的</p>
-<pre>`dfs1(root,0,1);
-dfs2(root,root);
-build(1,1,n+1);
-`</pre>
-
-<h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><p><pre>`#include&lt;bits/stdc++.h&gt;<br>using namespace std;<br>struct Edge{</pre></p>
-<pre><code>int next,to;
-</code></pre><p>} edge[200005];<br>int fa[200005],size[200005],deep[200005],w[200005],wnew[200005],head[200005],son[200005],id[200005],top[200005];<br>struct Tree{</p>
-<pre><code>int left,right,sum,delta;
-</code></pre><p>} tree[800005];<br>int cnt=1,ans,n,m,a,b,c,d,p,dfsord,root;<br>inline void add(int u,int v)<br>{</p>
-<pre><code>edge[cnt].to=v;
-edge[cnt].next=head[u];
-head[u]=cnt++;
-</code></pre><p>}<br>void build(int x,int l,int r)<br>{</p>
-<pre><code>tree[x].left=l;
-tree[x].right=r;
-if (r-l==1) tree[x].sum=wnew[l];
-else
-{
+  tree[x].left=l;
+  tree[x].right=r;
+  tree[x].deepest=-1;//注意要赋值为-1
+  if (r-l&amp;gt;1)
+  {
     build(x*2,l,(l+r)/2);
     build(x*2+1,(l+r)/2,r);
-    tree[x].sum=(tree[x*2].sum+tree[x*2+1].sum)%p;
+  }
 }
-</code></pre><p>}<br>inline void update(int x)<br>{</p>
-<pre><code>tree[x*2].sum+=tree[x].delta*(tree[x*2].right-tree[x*2].left);
-tree[x*2+1].sum+=tree[x].delta*(tree[x*2+1].right-tree[x*2+1].left);
-tree[x*2].sum%=p;
-tree[x*2+1].sum%=p;
-tree[x*2].delta+=tree[x].delta;
-tree[x*2+1].delta+=tree[x].delta;
-tree[x].delta=0;
-</code></pre><p>}<br>void change(int x,int l,int r,int delta)<br>{</p>
-<pre><code>if (l&amp;lt;=tree[x].left &amp;amp;&amp;amp; r&amp;gt;=tree[x].right) 
+void change(int x,int l,int r)
 {
-    tree[x].delta+=delta;
-    tree[x].sum+=delta*(tree[x].right-tree[x].left);
-    tree[x].sum%=p;
+  if (l&amp;lt;=tree[x].left &amp;amp;&amp;amp; r&amp;gt;=tree[x].right) tree[x].deepest=l;//只有一个元素时标记的最深的节点就是它自己
+  else
+  {
+    int mid=(tree[x].left+tree[x].right)/2;
+    if (l&amp;lt;mid) change(x*2,l,r);
+    if (r&amp;gt;mid) change(x*2+1,l,r);
+    tree[x].deepest=max(tree[x*2].deepest,tree[x*2+1].deepest);//取两段上最深的节点
+  }
 }
-else
+int query(int x,int l,int r)
 {
-    if (tree[x].delta!=0) update(x);
-    if (l&amp;lt;(tree[x].left+tree[x].right)/2) change(x*2,l,r,delta);
-    if (r&amp;gt;(tree[x].left+tree[x].right)/2) change(x*2+1,l,r,delta);
-    tree[x].sum=(tree[x*2].sum+tree[x*2+1].sum)%p;
+  if (l&amp;lt;=tree[x].left &amp;amp;&amp;amp; r&amp;gt;=tree[x].right) return tree[x].deepest;
+  else
+  {
+    int mid=(tree[x].left+tree[x].right)/2,ans=-1;//同样注意初值
+    if (l&amp;lt;mid) ans=max(ans,query(x*2,l,r));
+    if (r&amp;gt;mid) ans=max(ans,query(x*2+1,l,r));
+    return ans;
+  }
 }
-</code></pre><p>}<br>int query(int x,int l,int r)<br>{</p>
-<pre><code>if (l&amp;lt;=tree[x].left &amp;amp;&amp;amp; r&amp;gt;=tree[x].right) return tree[x].sum%p;
-else
+void dfs1(int x,int f,int dep)
 {
-    if (tree[x].delta!=0) update(x);
-    int ans=0;
-    if (l&amp;lt;(tree[x].left+tree[x].right)/2) ans+=query(x*2,l,r);
-    if (r&amp;gt;(tree[x].left+tree[x].right)/2) ans+=query(x*2+1,l,r);
-    return ans%p;
-}
-</code></pre><p>}<br>/*  dfs1</p>
-<pre><code>标记每个点的深度dep[]   
-标记每个点的父亲fa[]
-标记每个非叶子节点的子树大小(含它自己)    
-标记每个非叶子节点的重儿子编号son[]
-</code></pre><p>*/<br>void dfs1(int x,int f,int depth)<br>{</p>
-<pre><code>deep[x]=depth;
-fa[x]=f;
-size[x]=1;
-int mx=-1;
-for (int i=head[x];i!=-1;i=edge[i].next)
-{
-    int v=edge[i].to;
-    if (v==f) continue;//不搜索父节点
-    dfs1(v,x,depth+1);
-    size[x]+=size[v];
-    if (size[v]&amp;gt;mx) //更新重儿子
+  deep[x]=dep;
+  fa[x]=f;
+  size[x]=1;
+  int mx=-1;
+  for (int i=head[x];i;i=edge[i].next)
+  {
+    int y=edge[i].to;
+    if (y==f) continue;
+    dfs1(y,x,dep+1);
+    size[x]+=size[y];
+    if (size[y]&amp;gt;mx)
     {
-        mx=size[v];
-        son[x]=v;
+      mx=size[y];
+      son[x]=y;
     }
+  }
 }
-</code></pre><p>}<br>/*  dfs2</p>
-<pre><code>标记每个点的新编号
-赋值每个点的初始值到新编号上
-处理每个点所在链的顶端
-处理每条链
-</code></pre><p>*/<br>void dfs2(int x,int topf)<br>{</p>
-<pre><code>id[x]=++dfsord;//标记每一个节点的dfs序
-wnew[dfsord]=w[x];//得到新编号（dfs序）
-top[x]=topf;//得到这条链的顶端
-if (!son[x]) return;//无儿子返回
-dfs2(son[x],topf);//先处理重儿子
-for (int i=head[x];i!=-1;i=edge[i].next)
+void dfs2(int x,int topf)
 {
-    int v=edge[i].to;
-    if (v==fa[x] || v==son[x]) continue;
-    dfs2(v,v);//如果是轻儿子，新的链一定以自己为顶端
+  top[x]=topf;
+  id[x]=++dfsord;
+  dfsid[dfsord]=x;//因为是输出节点原序号，这里得到dfs序对应的节点序号
+  if (!son[x]) return;
+  dfs2(son[x],topf);
+  for (int i=head[x];i;i=edge[i].next)
+  {
+    int y=edge[i].to;
+    if (y==fa[x] || y==son[x]) continue;
+    dfs2(y,y);
+  }
 }
-</code></pre><p>}<br>int qrange(int u,int v)//求u到v节点的路径中节点之和<br>{</p>
-<pre><code>int ans=0;
-while (top[u]!=top[v])//不停将u向上跳，直到在一条链上
+inline void uprange(int u)
 {
-    if (deep[top[u]]&amp;lt;deep[top[v]]) swap(u,v);//交换成更深的点
-    ans+=query(1,id[top[u]],id[u]+1);
-    ans%=p;
-    u=fa[top[u]];//向上跳
+  change(1,id[u],id[u]+1);
 }
-//已经在一条链上
-if (deep[u]&amp;gt;deep[v]) swap(u,v);
-ans+=query(1,id[u],id[v]+1);
-ans%=p;
-return ans;
-</code></pre><p>}<br>void uprange(int u,int v,int delta)<br>{</p>
-<pre><code>delta%=p;
-while (top[u]!=top[v])
+inline int qrange(int u,int v)
 {
-    if (deep[top[u]]&amp;lt;deep[top[v]]) swap(u,v);
-    change(1,id[top[u]],id[u]+1,delta);
+  int ans=-1;
+  while (top[u]!=top[v])
+  {
+    if (deep[id[u]]&amp;lt;deep[id[v]]) swap(u,v);
+    ans=query(1,id[top[u]],id[u]+1);
+    if (ans!=-1) return dfsid[ans];//只要找到就返回
     u=fa[top[u]];
+  }
+  if (deep[u]&amp;gt;deep[v]) swap(u,v);
+  ans=query(1,id[u],id[v]+1);
+  return dfsid[ans];
 }
-if (deep[u]&amp;gt;deep[v]) swap(u,v);
-change(1,id[u],id[v]+1,delta);
-</code></pre><p>}<br>inline int qson(int u)<br>{</p>
-<pre><code>return query(1,id[u],id[u]+size[u]);//子树区间右端点为id[x]+siz[x]-1 
-</code></pre><p>}<br>inline void upson(int u,int delta)<br>{</p>
-<pre><code>change(1,id[u],id[u]+size[u],delta);
-</code></pre><p>}<br>int main()<br>{</p>
-<pre><code>memset(head,-1,sizeof(head));
-scanf(&amp;quot;%d%d%d%d&amp;quot;,&amp;amp;n,&amp;amp;m,&amp;amp;root,&amp;amp;p);
-for (int i=1;i&amp;lt;=n;i++) scanf(&amp;quot;%d&amp;quot;,&amp;amp;w[i]);
-for (int i=1;i&amp;lt;n;i++)
+int main()
 {
-    scanf(&amp;quot;%d%d&amp;quot;,&amp;amp;a,&amp;amp;b);
+  n=read();m=read();
+  for (int i=1;i&amp;lt;n;i++)
+  {
+    a=read();b=read();
     add(a,b);
     add(b,a);
+  }
+  dfs1(1,0,1);
+  dfs2(1,1);
+  build(1,1,n+1);
+  change(1,1,2);//注意先将根节点打上标记
+  for (int i=1;i&amp;lt;=m;i++)
+  {
+    cin&amp;gt;&amp;gt;x;
+    a=read();
+    if (x==&apos;C&apos;) uprange(a);
+    else printf(&amp;quot;%d\n&amp;quot;,qrange(a,1));
+  }
+  return 0;
 }
-dfs1(root,0,1);
-dfs2(root,root);
-build(1,1,n+1);
-for (int i=1;i&amp;lt;=m;i++)
-{
-    scanf(&amp;quot;%d&amp;quot;,&amp;amp;a);
-    if (a==1)
-    {
-        scanf(&amp;quot;%d%d%d&amp;quot;,&amp;amp;b,&amp;amp;c,&amp;amp;d);
-        uprange(b,c,d);
-    }
-    if (a==2)
-    {
-        scanf(&amp;quot;%d%d&amp;quot;,&amp;amp;b,&amp;amp;c);
-        //cout&amp;lt;&amp;lt;wnew[id[b]]&amp;lt;&amp;lt;&amp;quot; &amp;quot;&amp;lt;&amp;lt;wnew[id[c]]&amp;lt;&amp;lt;endl;
-        printf(&amp;quot;%d\n&amp;quot;,qrange(b,c));
-    }
-    if (a==3)
-    {
-        scanf(&amp;quot;%d%d&amp;quot;,&amp;amp;b,&amp;amp;c);
-        upson(b,c);
-    }
-    if (a==4)
-    {
-        scanf(&amp;quot;%d&amp;quot;,&amp;amp;b);
-        printf(&amp;quot;%d\n&amp;quot;,qson(b));
-    }
-}
-return 0;
-</code></pre><p>}</p>
-</li>
-</ol>
-<h2 id="相关例题"><a href="#相关例题" class="headerlink" title="相关例题"></a>相关例题</h2><ol>
-<li><a href="https://llf0703.com/p/luogu-solution-P2486.html" target="_blank" rel="noopener">题解-洛谷P2486 [SDOI2011]染色</a></li>
-<li><a href="https://llf0703.com/p/luogu-solution-p4092.html" target="_blank" rel="noopener">题解-洛谷P4092 [HEOI2016/TJOI2016]树</a></li>
-</ol>
-
+</code></pre>
         
     
 
@@ -817,6 +647,32 @@ return 0;
                 <!-- Post Comments -->
                 
                     
+    <!-- 使用 gitcoment -->
+<div id="gitment-comment">
+    <!-- Gitment 评论框 -->
+<div id="container"></div>
+</div>
+<style>
+    #gitment-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+        //id: '页面 ID', // 可选。默认为 location.href
+        owner: '',
+        repo: '',
+        oauth: {
+            client_id: '',
+            client_secret: '',
+        },
+    })
+    gitment.render('container')
+</script>
+
                 
             </div>
 
@@ -824,7 +680,7 @@ return 0;
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2018/04/19/题解-洛谷P2486-SDOI2011-染色/" id="post_nav-newer" class="prev-content">
+        <a href="/p/点分治总结/" id="post_nav-newer" class="prev-content">
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
                 <i class="material-icons">arrow_back</i>
             </button>
@@ -838,7 +694,7 @@ return 0;
 
     <!-- Next Nav -->
     
-        <a href="/2018/04/10/LCA问题总结/" id="post_nav-older" class="next-content">
+        <a href="/p/二分图匹配/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
@@ -1130,11 +986,17 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 
+    
+        <script>lsloader.load("sm_js","/js/smoothscroll.js?lOy/ACj5suSNi7ZVFVbpFQ==", true)</script>
+    
 
 
 
 
 
+
+
+   <!-- Gitment -->
 
 
 

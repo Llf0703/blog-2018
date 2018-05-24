@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html style="display: none;" lang="zh">
     <head>
-    <meta charset="utf-8">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <!--
         © Material Theme
         https://github.com/viosey/hexo-theme-material
@@ -45,7 +45,7 @@
     
     <title>
         
-            Hello World | 
+            树链剖分总结 | 
         
         Llf&#39;s blog
     </title>
@@ -222,7 +222,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Llf&#39;s blog">
-    <meta name="msapplication-starturl" content="https://i3go.net/p/hello-world/">
+    <meta name="msapplication-starturl" content="https://v2.llf0703.com/p/shu-lian-pou-fen.html">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Llf&#39;s blog">
@@ -237,16 +237,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://i3go.net/p/hello-world/">
+    <meta property="og:url" content="https://v2.llf0703.com/p/shu-lian-pou-fen.html">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Hello World | Llf&#39;s blog">
+    <meta property="og:title" content="树链剖分总结 | Llf&#39;s blog">
     <meta property="og:image" content="https://i.loli.net/2018/05/23/5b0522df21452.png">
     <meta property="og:description" content="">
     
 
     
-        <meta property="article:published_time" content="Sat May 19 2018 15:34:15 GMT+0800">
-        <meta property="article:modified_time" content="Sat May 19 2018 15:34:15 GMT+0800">
+        <meta property="article:published_time" content="Mon Apr 16 2018 20:41:00 GMT+0800">
+        <meta property="article:modified_time" content="Wed May 23 2018 21:19:28 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -254,7 +254,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://i3go.net/p/hello-world/index.html" />
+        <link rel="canonical" href="https://v2.llf0703.com/p/shu-lian-pou-fen.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -266,10 +266,10 @@
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "mainEntityOfPage": "https://i3go.net/p/hello-world/index.html",
-    "headline": "Hello World",
-    "datePublished": "Sat May 19 2018 15:34:15 GMT+0800",
-    "dateModified": "Sat May 19 2018 15:34:15 GMT+0800",
+    "mainEntityOfPage": "https://v2.llf0703.com/p/shu-lian-pou-fen.html",
+    "headline": "树链剖分总结",
+    "datePublished": "Mon Apr 16 2018 20:41:00 GMT+0800",
+    "dateModified": "Wed May 23 2018 21:19:28 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Llf",
@@ -303,12 +303,14 @@
     <!-- Custom Head -->
     
 
+    <link href="https://cdn.bootcss.com/KaTeX/0.7.1/katex.min.css" rel="stylesheet"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
 </head>
 
 
     
         <body id="scheme-Paradox" class="lazy">
-            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+            <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="material-layout  mdl-js-layout has-drawer is-upgraded">
                 
 
                 <!-- Main Container -->
@@ -353,7 +355,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Quick-Start"><span class="post-toc-number">1.</span> <span class="post-toc-text">Quick Start</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Create-a-new-post"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Create a new post</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Run-server"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Run server</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Generate-static-files"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Generate static files</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Deploy-to-remote-sites"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#准备工作"><span class="post-toc-number">1.</span> <span class="post-toc-text">准备工作</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#树剖原理"><span class="post-toc-number">2.</span> <span class="post-toc-text">树剖原理</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实现"><span class="post-toc-number">3.</span> <span class="post-toc-text">实现</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#剖分"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">剖分</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#处理问题"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">处理问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#操作1，2"><span class="post-toc-number">3.2.1.</span> <span class="post-toc-text">操作1，2</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#操作3，4"><span class="post-toc-number">3.2.2.</span> <span class="post-toc-text">操作3，4</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#其它细节"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">其它细节</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#完整代码"><span class="post-toc-number">4.</span> <span class="post-toc-text">完整代码</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#相关例题"><span class="post-toc-number">5.</span> <span class="post-toc-text">相关例题</span></a></li></ol>
     </ul>
     
 
@@ -385,7 +387,7 @@
         
     
             <p class="article-headline-p">
-                Hello World
+                树链剖分总结
             </p>
         </div>
 
@@ -404,7 +406,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>Llf</strong>
-        <span>5月 19, 2018</span>
+        <span>4月 16, 2018</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -436,7 +438,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Hello World&url=https://i3go.net/p/hello-world/index.html&pic=https://i3go.nethttps://i.loli.net/2018/05/23/5b0522df21452.png&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=树链剖分总结&url=https://v2.llf0703.com/p/shu-lian-pou-fen.html&pic=https://v2.llf0703.comhttps://i.loli.net/2018/05/23/5b0522df21452.png&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -445,7 +447,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Hello World&url=https://i3go.net/p/hello-world/index.html&via=Llf" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=树链剖分总结&url=https://v2.llf0703.com/p/shu-lian-pou-fen.html&via=Llf" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -454,7 +456,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://i3go.net/p/hello-world/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://v2.llf0703.com/p/shu-lian-pou-fen.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -463,7 +465,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=https://i3go.net/p/hello-world/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://v2.llf0703.com/p/shu-lian-pou-fen.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -475,7 +477,7 @@
 
     <!-- Share QQ -->
     
-        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Llf&#39;s blog&title=Hello World&summary=&pics=https://i3go.nethttps://i.loli.net/2018/05/23/5b0522df21452.png&url=https://i3go.net/p/hello-world/index.html" target="_blank">
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Llf&#39;s blog&title=树链剖分总结&summary=&pics=https://v2.llf0703.comhttps://i.loli.net/2018/05/23/5b0522df21452.png&url=https://v2.llf0703.com/p/shu-lian-pou-fen.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 QQ
             </li>
@@ -494,15 +496,421 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <p>作为一个上个月刚学完线段树的蒟蒻，看Splay又看不懂，便直接跳着来学树剖了。又在一个博客上看到说学树剖之前最好还要把LCA给学了，便去花了一天学了一个Tarjan求LCA（然而后来发现并不怎么需要），然后是几乎照着别人的代码把树剖抄懂的。在这里我就讲一下我理解的树剖。</p>
+<hr>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ol>
+<li>链表/链式前向星</li>
+<li>线段树/树状数组/Splay等可以维护一段数据的数据结构</li>
+<li><a href="https://llf0703.com/p/LCA.html" target="_blank" rel="noopener">LCA</a> （其实只涉及到一些思想，而且几乎用不到，可以先不学）</li>
+</ol>
+<h2 id="树剖原理"><a href="#树剖原理" class="headerlink" title="树剖原理"></a>树剖原理</h2><p>我很早之前就听说过树剖，当时觉得实在是太高大上了，但现在发现只是名字比较高端，整个原理还是很简单的，只是码量比较大。</p>
+<p>作为蒟蒻，我在图论题中几乎都只会搜索，也靠着搜索在SCOI上拿了仅有的几十分。不过我好歹还是学过前缀和差分的，如果一个图中所有的点连成一条线，那么来找两个点之间路径长只需要维护前缀和就行了。如果一棵树中的结点都连成一条线，我们就把它称作链。如果把树上的结点分为若干条链，那么很多问题就可以变得简单多了。</p>
+<p>所谓树链剖分就是将一棵树给剖分成若干条链，再分别处理。</p>
+<p>当然，一个节点也是可以算一条链的，不过如果这样分还不如不分。树剖这个算法的目的，便是将一棵树中每一个非叶节点分到链中，并且每一个节点都只属于一条链，这样查询起来又可以快很多。</p>
+<p>在这里给出一棵树（图源百度百科）：</p>
+<p><img src="https://cdn.uniqueue.cn/shupou.jpg" alt="树剖"></p>
+<p>在这张图中，粗线即为分成的链。要让每一个非叶节点在链上，我们就需要让一条链尽可能覆盖更多节点。所以在每一个节点的子节点中，我们选<strong>以它为根的子树节点个数最多</strong>的子节点来连成链。</p>
+<p>比如在4号节点的子节点{8,9,10}中，以8和以10为根的子树的节点总个数为1，而以9为根的子树节点个数为3，所以我们就将9作为链上的一个节点继续向下连接。9就被称为是4号节点的<strong>重节点</strong>，其他的两个节点就被称作<strong>轻节点</strong></p>
+<p>继续扩展，父节点和重节点间的连线被称作<strong>重边</strong>，就是粗线；父节点和轻结点的连线被称作<strong>轻边</strong>，就是图中的细线；多条重边连接起来的路径叫<strong>重链</strong>，如路径1-&gt;4-&gt;9-&gt;13-&gt;14；多条轻边连接起来的路径叫<strong>轻链</strong>，如路径1-&gt;2-&gt;5。</p>
+<p>通过一个表格将这些定义总结一下</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">定义</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">重节点</td>
+<td style="text-align:center">以它为根的子树节点个数最多的节点</td>
+</tr>
+<tr>
+<td style="text-align:center">轻节点</td>
+<td style="text-align:center">所有子节点中不是重节点的节点</td>
+</tr>
+<tr>
+<td style="text-align:center">重边</td>
+<td style="text-align:center">父节点和重节点间的连线</td>
+</tr>
+<tr>
+<td style="text-align:center">轻边</td>
+<td style="text-align:center">父节点和轻结点的连线</td>
+</tr>
+<tr>
+<td style="text-align:center">重链</td>
+<td style="text-align:center">多条重边连接起来的路径</td>
+</tr>
+<tr>
+<td style="text-align:center">轻链</td>
+<td style="text-align:center">多条轻边连接起来的路径</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>我们使用两次dfs就能实现剖分，但是只剖分的话是并没有什么卵用的，一般题目中还会涉及到两节点间的权值和，权值最大值等问题。这里以 <a href="https://www.luogu.org/problemnew/show/P3384" target="_blank" rel="noopener">洛谷P3384【模板】树链剖分</a> 为例。</p>
+<h3 id="剖分"><a href="#剖分" class="headerlink" title="剖分"></a>剖分</h3><p>首先先解释下我使用的变量</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">变量名</th>
+<th style="text-align:center">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">fa[x]</td>
+<td style="text-align:center">x号节点的父亲</td>
+</tr>
+<tr>
+<td style="text-align:center">son[x]</td>
+<td style="text-align:center">x号节点的重儿子（节点）</td>
+</tr>
+<tr>
+<td style="text-align:center">size[x]</td>
+<td style="text-align:center">以x号节点为根的子树中节点个数</td>
+</tr>
+<tr>
+<td style="text-align:center">deep[x]</td>
+<td style="text-align:center">x号节点的深度</td>
+</tr>
+<tr>
+<td style="text-align:center">top[x]</td>
+<td style="text-align:center">x号节点所在的链顶的节点编号</td>
+</tr>
+<tr>
+<td style="text-align:center">w[x]</td>
+<td style="text-align:center">x号节点的原权值</td>
+</tr>
+<tr>
+<td style="text-align:center">wnew[x]</td>
+<td style="text-align:center">dfs序中第x号节点的权值</td>
+</tr>
+<tr>
+<td style="text-align:center">id[x]</td>
+<td style="text-align:center">x号节点的dfs序</td>
+</tr>
+<tr>
+<td style="text-align:center">edge[]和head[]</td>
+<td style="text-align:center">链式前向星数组</td>
+</tr>
+<tr>
+<td style="text-align:center">tree[]</td>
+<td style="text-align:center">线段树</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>先进行第一次dfs，需要完成的任务是</p>
+<ol>
+<li>确定这个点的深度</li>
+<li>确定父亲节点</li>
+<li>确定以这个节点为根的子树中节点个数</li>
+<li>确定这个点的重儿子</li>
+</ol>
+<p>具体实现方式见代码</p>
+<pre><code class="lang-cpp">void dfs1(int x,int f,int depth)
+{
+    deep[x]=depth;//深度
+    fa[x]=f;//父亲节点
+    size[x]=1;//子树节点个数至少有一个
+    int mx=-1;
+    for (int i=head[x];i!=-1;i=edge[i].next)
+    {
+        int v=edge[i].to;
+        if (v==f) continue;//不搜索父节点
+        dfs1(v,x,depth+1);
+        size[x]+=size[v];//节点个数加上子节点的
+        if (size[v]&gt;mx) //更新重儿子
+        {
+            mx=size[v];
+            son[x]=v;
+        }
+    }
+}
+</code></pre>
+<p>然后是第二次dfs。需要完成的任务是</p>
+<ol>
+<li>确定新编号（dfs序）</li>
+<li>赋权值到新编号上</li>
+<li>确定这个点所在的链的顶端</li>
+<li>处理每一条链</li>
+</ol>
+<p>还是看代码吧</p>
+<pre><code class="lang-cpp">void dfs2(int x,int topf)
+{
+    id[x]=++dfsord;//标记每一个节点的dfs序
+    wnew[dfsord]=w[x];//得到新编号（dfs序）
+    top[x]=topf;//得到这条链的顶端
+    if (!son[x]) return;//无儿子返回
+    dfs2(son[x],topf);//先处理重儿子
+    for (int i=head[x];i!=-1;i=edge[i].next)
+    {
+        int v=edge[i].to;
+        if (v==fa[x] || v==son[x]) continue;
+        dfs2(v,v);//如果是轻儿子，新的链一定以自己为顶端
+    }
+}
+</code></pre>
+<blockquote>
+<p>先处理重儿子是为了保证每一条链都是被连续处理的</p>
+</blockquote>
+<p>好了，剖分就结束了，<span style="text-decoration:line-through;">是不是很简单啊</span></p>
+<h3 id="处理问题"><a href="#处理问题" class="headerlink" title="处理问题"></a>处理问题</h3><h4 id="操作1，2"><a href="#操作1，2" class="headerlink" title="操作1，2"></a>操作1，2</h4><p>操作1： 格式： 1 x y z 表示将树从x到y结点最短路径上所有节点的值都加上z</p>
+<p>操作2： 格式： 2 x y 表示求树从x到y结点最短路径上所有节点的值之和</p>
+<p>在处理u和v号节点之间路径上所有节点时，我们一般先让u和v属于同一条链，然后因为dfs序的特点就可以直接用线段树处理了。</p>
+<p>让u和v顶端相同的方法是将u和v中较深的节点往上跳到这条链顶端的上方，跳完一个再交换跳下一个。每次更改或查询只要更改当前跳的节点到它所在链的顶端即可，最后到一条链上了以后直接处理两点之间就行了。</p>
+<p>代码如下：</p>
+<blockquote>
+<p>注：我的线段树是左闭右开区间，即表示[left,right)，所以处理时右边要+1</p>
+</blockquote>
+<p>操作1</p>
+<pre><code class="lang-cpp">void uprange(int u,int v,int delta)
+{
+    delta%=p;//按题意取%
+    while (top[u]!=top[v])
+    {
+        if (deep[top[u]]&lt;deep[top[v]]) swap(u,v);//交换为更深的点
+        change(1,id[top[u]],id[u]+1,delta);
+        u=fa[top[u]];//向上跳
+    }
+    if (deep[u]&gt;deep[v]) swap(u,v);//交换为更深的点保证u的dfs序在前
+    change(1,id[u],id[v]+1,delta);
+}
+</code></pre>
+<p>操作2</p>
+<pre><code class="lang-cpp">int qrange(int u,int v)//求u到v节点的路径中节点之和
+{
+    int ans=0;
+    while (top[u]!=top[v])//不停将u向上跳，直到在一条链上
+    {
+        if (deep[top[u]]&lt;deep[top[v]]) swap(u,v);//交换成更深的点
+        ans+=query(1,id[top[u]],id[u]+1);
+        ans%=p;
+        u=fa[top[u]];//向上跳
+    }
+    //已经在一条链上
+    if (deep[u]&gt;deep[v]) swap(u,v);
+    ans+=query(1,id[u],id[v]+1);
+    ans%=p;
+    return ans;
+}
+</code></pre>
+<h4 id="操作3，4"><a href="#操作3，4" class="headerlink" title="操作3，4"></a>操作3，4</h4><p>可以根据dfs序的性质直到，子树区间右端点为id[x]+siz[x]-1，直接处理即可。</p>
+<p>代码：</p>
+<p>操作3</p>
+<pre><code class="lang-cpp">inline void upson(int u,int delta)
+{
+    change(1,id[u],id[u]+size[u],delta);
+}
+</code></pre>
+<p>操作4</p>
+<pre><code class="lang-cpp">inline int qson(int u)
+{
+    return query(1,id[u],id[u]+size[u]);
+}
+</code></pre>
+<h3 id="其它细节"><a href="#其它细节" class="headerlink" title="其它细节"></a>其它细节</h3><ol>
+<li>在一些没有指定根的问题中其实以任意节点为根都是可以的</li>
+<li>根节点开始dfs时可以以0作为它的根，顶端就是它本身</li>
+<li>一定要记得<strong>先dfs在建树</strong>，因为线段树是处理dfs序的</li>
+</ol>
+<pre><code class="lang-cpp">dfs1(root,0,1);
+dfs2(root,root);
+build(1,1,n+1);
+</code></pre>
+<h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+struct Edge{
+    int next,to;
+} edge[200005];
+int fa[200005],size[200005],deep[200005],w[200005],wnew[200005],head[200005],son[200005],id[200005],top[200005];
+struct Tree{
+    int left,right,sum,delta;
+} tree[800005];
+int cnt=1,ans,n,m,a,b,c,d,p,dfsord,root;
+inline void add(int u,int v)
+{
+    edge[cnt].to=v;
+    edge[cnt].next=head[u];
+    head[u]=cnt++;
+}
+void build(int x,int l,int r)
+{
+    tree[x].left=l;
+    tree[x].right=r;
+    if (r-l==1) tree[x].sum=wnew[l];
+    else
+    {
+        build(x*2,l,(l+r)/2);
+        build(x*2+1,(l+r)/2,r);
+        tree[x].sum=(tree[x*2].sum+tree[x*2+1].sum)%p;
+    }
+}
+inline void update(int x)
+{
+    tree[x*2].sum+=tree[x].delta*(tree[x*2].right-tree[x*2].left);
+    tree[x*2+1].sum+=tree[x].delta*(tree[x*2+1].right-tree[x*2+1].left);
+    tree[x*2].sum%=p;
+    tree[x*2+1].sum%=p;
+    tree[x*2].delta+=tree[x].delta;
+    tree[x*2+1].delta+=tree[x].delta;
+    tree[x].delta=0;
+}
+void change(int x,int l,int r,int delta)
+{
+    if (l&lt;=tree[x].left &amp;&amp; r&gt;=tree[x].right) 
+    {
+        tree[x].delta+=delta;
+        tree[x].sum+=delta*(tree[x].right-tree[x].left);
+        tree[x].sum%=p;
+    }
+    else
+    {
+        if (tree[x].delta!=0) update(x);
+        if (l&lt;(tree[x].left+tree[x].right)/2) change(x*2,l,r,delta);
+        if (r&gt;(tree[x].left+tree[x].right)/2) change(x*2+1,l,r,delta);
+        tree[x].sum=(tree[x*2].sum+tree[x*2+1].sum)%p;
+    }
+}
+int query(int x,int l,int r)
+{
+    if (l&lt;=tree[x].left &amp;&amp; r&gt;=tree[x].right) return tree[x].sum%p;
+    else
+    {
+        if (tree[x].delta!=0) update(x);
+        int ans=0;
+        if (l&lt;(tree[x].left+tree[x].right)/2) ans+=query(x*2,l,r);
+        if (r&gt;(tree[x].left+tree[x].right)/2) ans+=query(x*2+1,l,r);
+        return ans%p;
+    }
+}               
+/*  dfs1
+    标记每个点的深度dep[]   
+    标记每个点的父亲fa[]
+    标记每个非叶子节点的子树大小(含它自己)    
+    标记每个非叶子节点的重儿子编号son[]
+*/
+void dfs1(int x,int f,int depth)
+{
+    deep[x]=depth;
+    fa[x]=f;
+    size[x]=1;
+    int mx=-1;
+    for (int i=head[x];i!=-1;i=edge[i].next)
+    {
+        int v=edge[i].to;
+        if (v==f) continue;//不搜索父节点
+        dfs1(v,x,depth+1);
+        size[x]+=size[v];
+        if (size[v]&gt;mx) //更新重儿子
+        {
+            mx=size[v];
+            son[x]=v;
+        }
+    }
+}
+/*  dfs2
+    标记每个点的新编号
+    赋值每个点的初始值到新编号上
+    处理每个点所在链的顶端
+    处理每条链
+*/
+void dfs2(int x,int topf)
+{
+    id[x]=++dfsord;//标记每一个节点的dfs序
+    wnew[dfsord]=w[x];//得到新编号（dfs序）
+    top[x]=topf;//得到这条链的顶端
+    if (!son[x]) return;//无儿子返回
+    dfs2(son[x],topf);//先处理重儿子
+    for (int i=head[x];i!=-1;i=edge[i].next)
+    {
+        int v=edge[i].to;
+        if (v==fa[x] || v==son[x]) continue;
+        dfs2(v,v);//如果是轻儿子，新的链一定以自己为顶端
+    }
+}
+int qrange(int u,int v)//求u到v节点的路径中节点之和
+{
+    int ans=0;
+    while (top[u]!=top[v])//不停将u向上跳，直到在一条链上
+    {
+        if (deep[top[u]]&lt;deep[top[v]]) swap(u,v);//交换成更深的点
+        ans+=query(1,id[top[u]],id[u]+1);
+        ans%=p;
+        u=fa[top[u]];//向上跳
+    }
+    //已经在一条链上
+    if (deep[u]&gt;deep[v]) swap(u,v);
+    ans+=query(1,id[u],id[v]+1);
+    ans%=p;
+    return ans;
+}
+void uprange(int u,int v,int delta)
+{
+    delta%=p;
+    while (top[u]!=top[v])
+    {
+        if (deep[top[u]]&lt;deep[top[v]]) swap(u,v);
+        change(1,id[top[u]],id[u]+1,delta);
+        u=fa[top[u]];
+    }
+    if (deep[u]&gt;deep[v]) swap(u,v);
+    change(1,id[u],id[v]+1,delta);
+}
+inline int qson(int u)
+{
+    return query(1,id[u],id[u]+size[u]);//子树区间右端点为id[x]+siz[x]-1 
+}
+inline void upson(int u,int delta)
+{
+    change(1,id[u],id[u]+size[u],delta);
+}
+int main()
+{
+    memset(head,-1,sizeof(head));
+    scanf(&quot;%d%d%d%d&quot;,&amp;n,&amp;m,&amp;root,&amp;p);
+    for (int i=1;i&lt;=n;i++) scanf(&quot;%d&quot;,&amp;w[i]);
+    for (int i=1;i&lt;n;i++)
+    {
+        scanf(&quot;%d%d&quot;,&amp;a,&amp;b);
+        add(a,b);
+        add(b,a);
+    }
+    dfs1(root,0,1);
+    dfs2(root,root);
+    build(1,1,n+1);
+    for (int i=1;i&lt;=m;i++)
+    {
+        scanf(&quot;%d&quot;,&amp;a);
+        if (a==1)
+        {
+            scanf(&quot;%d%d%d&quot;,&amp;b,&amp;c,&amp;d);
+            uprange(b,c,d);
+        }
+        if (a==2)
+        {
+            scanf(&quot;%d%d&quot;,&amp;b,&amp;c);
+            //cout&lt;&lt;wnew[id[b]]&lt;&lt;&quot; &quot;&lt;&lt;wnew[id[c]]&lt;&lt;endl;
+            printf(&quot;%d\n&quot;,qrange(b,c));
+        }
+        if (a==3)
+        {
+            scanf(&quot;%d%d&quot;,&amp;b,&amp;c);
+            upson(b,c);
+        }
+        if (a==4)
+        {
+            scanf(&quot;%d&quot;,&amp;b);
+            printf(&quot;%d\n&quot;,qson(b));
+        }
+    }
+    return 0;
+}
+</code></pre>
+<h2 id="相关例题"><a href="#相关例题" class="headerlink" title="相关例题"></a>相关例题</h2><p>待更新……</p>
 
         
     
@@ -549,11 +957,27 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
+        <a href="/p/luogu-solution-p2486.html" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
+    
+        <a href="/p/lca.html" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
     
 </nav>
 
@@ -639,7 +1063,7 @@
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/02/">二月 2018<span class="sidebar_archives-count">2</span></a>
             </ul>
         </li>
         
@@ -657,7 +1081,7 @@
             </a>
             <ul class="dropdown-menu">
                 <li>
-                
+                <a class="sidebar_archives-link" href="/categories/OI笔记/">OI笔记<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/题解/">题解<span class="sidebar_archives-count">3</span></a>
             </ul>
         </li>
         
@@ -939,6 +1363,21 @@ console.log('\n %c © Material Theme | Version: 1.5.2 | https://github.com/viose
 
                 </main>
             </div>
-        </body>
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
     
 </html>

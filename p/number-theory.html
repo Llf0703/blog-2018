@@ -45,7 +45,7 @@
     
     <title>
         
-            归档 | 
+            基础数论学习总结 | 
         
         Llf&#39;s blog
     </title>
@@ -83,6 +83,9 @@
         <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","https://cdn.jsdelivr.net/gh/viosey/hexo-theme-material@latest/source//css/style.min.css",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","https://cdn.jsdelivr.net/gh/viosey/hexo-theme-material@latest/source//css/prettify.min.css",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","https://cdn.jsdelivr.net/gh/viosey/hexo-theme-material@latest/source//css/prettify/github-v2.min.css",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
             
         
 
@@ -219,7 +222,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Llf&#39;s blog">
-    <meta name="msapplication-starturl" content="https://v2.llf0703.com/archives/">
+    <meta name="msapplication-starturl" content="https://v2.llf0703.com/p/number-theory.html">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Llf&#39;s blog">
@@ -234,13 +237,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://v2.llf0703.com/archives/">
+    <meta property="og:url" content="https://v2.llf0703.com/p/number-theory.html">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="归档 | Llf&#39;s blog">
+    <meta property="og:title" content="基础数论学习总结 | Llf&#39;s blog">
     <meta property="og:image" content="https://i.loli.net/2018/05/23/5b0522df21452.png">
     <meta property="og:description" content="">
     
 
+    
+        <meta property="article:published_time" content="Wed May 09 2018 20:46:00 GMT+0800">
+        <meta property="article:modified_time" content="Thu May 24 2018 19:38:31 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -248,13 +254,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://v2.llf0703.com/archives/index.html" />
+        <link rel="canonical" href="https://v2.llf0703.com/p/number-theory.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "https://v2.llf0703.com/p/number-theory.html",
+    "headline": "基础数论学习总结",
+    "datePublished": "Wed May 09 2018 20:46:00 GMT+0800",
+    "dateModified": "Thu May 24 2018 19:38:31 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Llf",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://i.loli.net/2018/05/13/5af7d53782714.jpg"
+        },
+        "description": "蒟蒻Llf的博客"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Llf&#39;s blog",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "https://i.loli.net/2018/05/23/5b0522df21452.png"
+        }
+    },
+    "keywords": "Llf,Llf0703,blog,OI,博客,信息学竞赛,算法,数据结构",
+    "description": "",
+}
+</script>
 
 
     
@@ -290,653 +326,486 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-整除"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.整除</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-同余"><span class="post-toc-number">2.</span> <span class="post-toc-text">2.同余</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-最大公约数-gcd"><span class="post-toc-number">3.</span> <span class="post-toc-text">3.最大公约数(gcd)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#辗转相除法"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">辗转相除法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二进制算法"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">二进制算法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#扩展欧几里得算法"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">扩展欧几里得算法</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-逆元"><span class="post-toc-number">4.</span> <span class="post-toc-text">4.逆元</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-中国剩余定理"><span class="post-toc-number">5.</span> <span class="post-toc-text">5.中国剩余定理</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-素数筛"><span class="post-toc-number">6.</span> <span class="post-toc-text">6.素数筛</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#普通筛法"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">普通筛法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#高效筛法"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">高效筛法</span></a></li></ol></li></ol>
+    </ul>
     
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/p/number-theory.html">基础数论学习总结</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            原本打算先学Splay的，但想到提高组一般不考，而且我其它东西还差的多，就先把基础数论的东西复习一下，并且加深一下难度，还做了n多道水题，...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/p/number-theory.html" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="https://i.loli.net/2018/05/13/5af7d53782714.jpg" width="44px" height="44px" alt="Llf's avatar">
-            </div>
-            <div>
-                <strong>Llf</strong>
-                <span>5月 09, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/OI笔记/">OI笔记</a>
-              </span>
-            
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/p/dian-fen-zhi.html">点分治总结</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            markdown原文: 
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/p/dian-fen-zhi.html" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="https://i.loli.net/2018/05/13/5af7d53782714.jpg" width="44px" height="44px" alt="Llf's avatar">
-            </div>
-            <div>
-                <strong>Llf</strong>
-                <span>4月 26, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/OI笔记/">OI笔记</a>
-              </span>
-            
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/p/luogu-solution-p4092.html">题解-洛谷P4092 [HEOI2016/TJOI2016]树</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            第一次写树剖没看题解A题，发现题解洛谷题解区大佬里竟然没有一个做法一样的，实在是太激动了
-
-
-...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/p/luogu-solution-p4092.html" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="https://i.loli.net/2018/05/13/5af7d53782714.jpg" width="44px" height="44px" alt="Llf's avatar">
-            </div>
-            <div>
-                <strong>Llf</strong>
-                <span>4月 24, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/题解/">题解</a>
-              </span>
-            
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/p/bipartite-matching.html">二分图匹配</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            我是看这篇学懂的，真的写得很好，所以我就不在这里总结了，只发个模板
-
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/p/bipartite-matching.html" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="https://i.loli.net/2018/05/13/5af7d53782714.jpg" width="44px" height="44px" alt="Llf's avatar">
-            </div>
-            <div>
-                <strong>Llf</strong>
-                <span>4月 21, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/OI笔记/">OI笔记</a>
-              </span>
-            
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/p/luogu-solution-p2486.html">题解-洛谷P2486 [SDOI2011]染色</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            题目链接：
-
-
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/p/luogu-solution-p2486.html" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="https://i.loli.net/2018/05/13/5af7d53782714.jpg" width="44px" height="44px" alt="Llf's avatar">
-            </div>
-            <div>
-                <strong>Llf</strong>
-                <span>4月 19, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/题解/">题解</a>
-              </span>
-            
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/p/shu-lian-pou-fen.html">树链剖分总结</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            作为一个上个月刚学完线段树的蒟蒻，看Splay又看不懂，便直接跳着来学树剖了。又在一个博客上看到说学树剖之前最好还要把LCA给学了，便去花了一天学了...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/p/shu-lian-pou-fen.html" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="https://i.loli.net/2018/05/13/5af7d53782714.jpg" width="44px" height="44px" alt="Llf's avatar">
-            </div>
-            <div>
-                <strong>Llf</strong>
-                <span>4月 16, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/OI笔记/">OI笔记</a>
-              </span>
-            
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/p/lca.html">LCA问题总结</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            概述最近公共祖先（...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/p/lca.html" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="https://i.loli.net/2018/05/13/5af7d53782714.jpg" width="44px" height="44px" alt="Llf's avatar">
-            </div>
-            <div>
-                <strong>Llf</strong>
-                <span>4月 10, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/OI笔记/">OI笔记</a>
-              </span>
-            
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/p/rmq-st.html">RMQ问题_ST表总结</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            RMQ问题
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/p/rmq-st.html" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="https://i.loli.net/2018/05/13/5af7d53782714.jpg" width="44px" height="44px" alt="Llf's avatar">
-            </div>
-            <div>
-                <strong>Llf</strong>
-                <span>4月 09, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/OI笔记/">OI笔记</a>
-              </span>
-            
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/p/luogu-solution-p1309.html">题解-洛谷P1309 瑞士轮</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/p/luogu-solution-p1309.html" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="https://i.loli.net/2018/05/13/5af7d53782714.jpg" width="44px" height="44px" alt="Llf's avatar">
-            </div>
-            <div>
-                <strong>Llf</strong>
-                <span>2月 08, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/题解/">题解</a>
-              </span>
-            
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/p/sort.html">几种排序方法总结</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            冒泡排序
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/p/sort.html" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="https://i.loli.net/2018/05/13/5af7d53782714.jpg" width="44px" height="44px" alt="Llf's avatar">
-            </div>
-            <div>
-                <strong>Llf</strong>
-                <span>2月 07, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/OI笔记/">OI笔记</a>
-              </span>
-            
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                基础数论学习总结
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="https://i.loli.net/2018/05/13/5af7d53782714.jpg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Llf</strong>
+        <span>5月 09, 2018</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=基础数论学习总结&url=https://v2.llf0703.com/p/number-theory.html&pic=https://v2.llf0703.comhttps://i.loli.net/2018/05/23/5b0522df21452.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=基础数论学习总结&url=https://v2.llf0703.com/p/number-theory.html&via=Llf" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://v2.llf0703.com/p/number-theory.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://v2.llf0703.com/p/number-theory.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Llf&#39;s blog&title=基础数论学习总结&summary=&pics=https://v2.llf0703.comhttps://i.loli.net/2018/05/23/5b0522df21452.png&url=https://v2.llf0703.com/p/number-theory.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
     
 </div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>原本打算先学Splay的，但想到提高组一般不考，而且我其它东西还差的多，就先把基础数论的东西复习一下，并且加深一下难度，<del>还做了n多道水题，虽然主要是之前没过的</del>。</p>
+<hr>
+<h2 id="1-整除"><a href="#1-整除" class="headerlink" title="1.整除"></a>1.整除</h2><p>这里就把整除的性质列一下：</p>
+<ol>
+<li>如果$a \mid b$且$b \mid c$，那么$a \mid c$</li>
+<li>$a \mid b$且$a \mid c$等价于$\forall x,y$，有$a \mid (b \times x + c \times y)$</li>
+<li>设$m\neq 0$,那么$a \mid b $等价于$(m \times a) \mid (m \times b)$</li>
+<li>设$x,y$满足$a \times x+b \times y=1$且$a \mid n,b \mid n$，那么$(a \times b) \mid n$</li>
+<li>若$b=q \times d+c$,那么$d \mid b$的充要条件是$d \mid c$</li>
+</ol>
+<h2 id="2-同余"><a href="#2-同余" class="headerlink" title="2.同余"></a>2.同余</h2><p>同余性质：</p>
+<ol>
+<li>自反性 $a\equiv a(mod m) $</li>
+<li>对称性 若$a\equiv b(mod m)$则$b\equiv a(mod m)$</li>
+<li>传递性 若$a\equiv b(mod m),b\equiv c(mod m)$，则$a\equiv c(mod m)$</li>
+<li>同加性 若$a\equiv b(modm)$，则$a+c\equiv b+c(modm)$</li>
+<li>同乘性(1) 若$a\equiv b(modm)$，则$a\times c\equiv b\times c(modm)$ </li>
+<li>同乘性(2) 若$a\equiv b(modm),c\equiv d(modm)$ ，则$a\times c\equiv b\times d(modm)$</li>
+<li>同幂性 若$a\equiv b(modm)$，则$a^{n}\equiv b^{n} (modm)$</li>
+</ol>
+<h2 id="3-最大公约数-gcd"><a href="#3-最大公约数-gcd" class="headerlink" title="3.最大公约数(gcd)"></a>3.最大公约数(gcd)</h2><h3 id="辗转相除法"><a href="#辗转相除法" class="headerlink" title="辗转相除法"></a>辗转相除法</h3><p>基础方法，不再赘述</p>
+<pre><code class="lang-cpp">int gcd(int a,int b)
+{
+    if (b==0) return a;
+    return gcd(b,a%b);
+}
+</code></pre>
+<h3 id="二进制算法"><a href="#二进制算法" class="headerlink" title="二进制算法"></a>二进制算法</h3><p>不断去除因数2来提高gcd的效率</p>
+<pre><code class="lang-cpp">inline int gcd(int x,int y)
+{
+    int i,j;
+    if (x==0) return y;
+    if (y==0) return x;
+    for (i=0;0==(x&amp;1);i++) x&gt;&gt;=1;//去掉2
+    for (j=0;0==(y&amp;1);j++) y&gt;&gt;=1;
+    if (i&gt;j) i=j;
+    for (;;)
+    {
+        if (x&lt;y) x^=y,y^=x,x^=y;
+        if (0==(x-=y)) return y&lt;&lt;i;//如果x==y gcd==x==y
+        while (0==(x&amp;1)) x&gt;&gt;=1;
+    }
+}
+</code></pre>
+<h3 id="扩展欧几里得算法"><a href="#扩展欧几里得算法" class="headerlink" title="扩展欧几里得算法"></a>扩展欧几里得算法</h3><p>扩展欧几里得算法用来在已知$(a,b)$，求$(x,y)$，使$a\times x+b\times y=gcd(a,b)$</p>
+<pre><code class="lang-cpp">void exgcd(LL l,LL r,LL &amp;x,LL &amp;y)
+{
+    if (r==0) x=1,y=0;
+    else
+    {
+        exgcd(r,l%r,y,x);
+        y-=l/r*x;
+    }
+}
+</code></pre>
+<p>例题：<a href="https://www.luogu.org/problemnew/show/P1516" target="_blank" rel="noopener">洛谷P1516 青蛙的约会</a></p>
+<pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;
+#define LL long long
+using namespace std;
+LL n,m,a,b,c,x,y,l,X,Y;
+
+inline int read()
+{
+    char ch=getchar();
+    int x=0,f=1;
+    while (ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;)
+    {
+        if (ch==&#39;-&#39;) f=-1;
+        ch=getchar();
+    }
+    while (ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;)
+    {
+        x=x*10+ch-&#39;0&#39;;
+        ch=getchar();
+    }
+    return f*x;
+}
+
+inline LL exgcd(LL l,LL r,LL &amp;X,LL &amp;Y)
+{
+    if (r==0)
+    {
+        X=1; Y=0;
+        return l;
+    }
+    LL a=exgcd(r,l%r,Y,X);
+    Y-=l/r*X;
+    return a;
+}
+
+int main()
+{
+    x=read(); y=read(); m=read(); n=read(); l=read();
+    LL deltav=(m&gt;=n) ? m-n : n-m;
+    LL deltas=(m&gt;=n) ? y-x : x-y;
+    LL k=exgcd(deltav,l,X,Y);
+    if (deltas%k!=0) printf(&quot;Impossible&quot;);
+    else printf(&quot;%lld&quot;,(X*(deltas/k)%(l/k)+(l/k))%(l/k));
+    return 0;
+}
+</code></pre>
+<h2 id="4-逆元"><a href="#4-逆元" class="headerlink" title="4.逆元"></a>4.逆元</h2><p>若$a\times x\equiv 1(modb)$，就称x是a的逆元。</p>
+<p>可以将这个式子转化为$a\times x+b\times y=1$，然后用扩展欧几里得定理求解。</p>
+<p>当然也有一种线性算法，在需要求连续逆元时是最优的算法。</p>
+<blockquote>
+<p>以下内容来自<a href="https://www.luogu.org/blog/zjp-shadow/cheng-fa-ni-yuan" target="_blank" rel="noopener">https://www.luogu.org/blog/zjp-shadow/cheng-fa-ni-yuan</a></p>
+</blockquote>
+<hr>
+<p>首先我们有一个, $1^{-1}\equiv 1(\bmod p)$</p>
+<p>然后设 $p=k∗i+r,r&lt;i,1&lt;i&lt;p$ ,再将这个式子放到 $\bmod {p}$ 意义下就会得到：</p>
+<p>$k∗i+r≡0(modp)$</p>
+<p>然后乘上 $i^{-1} , r^{-1}$ 就可以得到:</p>
+<p>$k*r^{-1}+i^{-1}\equiv 0 (\bmod p)$</p>
+<p>$i^{-1}\equiv -k*r^{-1} (\bmod p)$</p>
+<p>$i^{-1}\equiv -\lfloor \frac{p}{i} \rfloor*(p \bmod i)^{-1} (\bmod p)$</p>
+<hr>
+<p>模板题：<a href="https://www.luogu.org/problemnew/show/P3811" target="_blank" rel="noopener">洛谷P3811 【模板】乘法逆元</a></p>
+<pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;
+#define LL long long
+using namespace std;
+
+LL n,p,inv[3000005];
+
+int main()
+{
+    scanf(&quot;%d%d&quot;,&amp;n,&amp;p);
+    inv[1]=1;
+    printf(&quot;%d\n&quot;,inv[1]);
+    for (int i=2;i&lt;=n;i++)
+    {
+        inv[i]=-(p/i)*inv[p%i];
+        inv[i]=(inv[i]%p+p)%p;
+        printf(&quot;%d\n&quot;,inv[i]);
+    }
+    return 0;
+}
+</code></pre>
+<h2 id="5-中国剩余定理"><a href="#5-中国剩余定理" class="headerlink" title="5.中国剩余定理"></a>5.中国剩余定理</h2><p>还是就放一个我看的吧</p>
+<p><a href="https://blog.csdn.net/acdreamers/article/details/8050018" target="_blank" rel="noopener">https://blog.csdn.net/acdreamers/article/details/8050018</a></p>
+<p>例题：<a href="https://www.luogu.org/problemnew/show/P3868" target="_blank" rel="noopener">洛谷P3868 [TJOI2009]猜数字</a></p>
+<p>可以用裸的中国剩余定理来做，但是要注意必须用快速乘，不然$10^{18}\times 10^{18}$肯定会超范围。</p>
+<pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;
+#define LL long long
+using namespace std;
+
+LL n,m,k;
+LL A[15],B[15];
+
+inline LL read()
+{
+    char ch=getchar();
+    LL f=1,x=0;
+    while (ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;)
+    {
+        if (ch==&#39;-&#39;) f=-1;
+        ch=getchar();
+    }
+    while (ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;)
+    {
+        x=x*10+ch-&#39;0&#39;;
+        ch=getchar();
+    }
+    return f*x;
+}
+
+inline void exgcd(LL l,LL r,LL &amp;x,LL &amp;y)
+{
+    if (r==0) x=1,y=0;
+    else
+    {
+        exgcd(r,l%r,y,x);
+        y-=l/r*x;
+    }
+}
+
+inline LL gcd(LL a,LL b)
+{
+    if (b==0) return a;
+    return gcd(b,a%b);
+}
+
+inline LL qmul(LL a,LL b,LL mod)
+{
+    LL ans=0,k=a,f=1;
+    if (k&lt;0) k=-k,f*=-1;
+    if (b&lt;0) b=-b,b*=-1;
+    while (b)
+    {
+        if (b&amp;1) ans=(ans+k)%mod;
+        k=(k+k)%mod;
+        b&gt;&gt;=1;
+    }
+    return ans*f;
+}
+
+inline LL crt()
+{
+    LL M=1,ans=0;
+    for (int i=1;i&lt;=k;i++) M*=B[i];
+    for (int i=1;i&lt;=k;i++)
+    {
+        LL x,y,Mi=M/B[i];
+        exgcd(Mi,B[i],x,y);
+        x=(x%B[i]+B[i])%B[i];
+        ans=(ans+qmul(qmul(Mi,x,M),A[i],M))%M;
+    }
+    return (ans&lt;0)?ans+M:ans;
+}
+
+int main()
+{
+    k=read();
+    for (int i=1;i&lt;=k;i++) A[i]=read();
+    for (int i=1;i&lt;=k;i++) B[i]=read();
+    for (int i=1;i&lt;=k;i++) A[i]=(A[i]%B[i]+B[i])%B[i];
+    printf(&quot;%lld&quot;,crt());
+    return 0;
+}
+</code></pre>
+<h2 id="6-素数筛"><a href="#6-素数筛" class="headerlink" title="6.素数筛"></a>6.素数筛</h2><h3 id="普通筛法"><a href="#普通筛法" class="headerlink" title="普通筛法"></a>普通筛法</h3><pre><code class="lang-cpp">inline void getprime()
+{
+    memset(ss,true,sizeof(ss));
+    int cnt=1;
+    ss[0]=ss[1]=false;
+    for (a=2;a&lt;=sqrt(n);a++)
+    {
+        if (ss[a]) zs[cnt++]=a;
+        for (b=2;b&lt;=n/a;b++) ss[a*b]=false;
+    }
+}
+</code></pre>
+<h3 id="高效筛法"><a href="#高效筛法" class="headerlink" title="高效筛法"></a>高效筛法</h3><p>可以很容易的想到，普通筛法中筛了很多重复的数。而高效筛法可以减少重复（其实仍然有，只是少一些）。主要思路是运用得到了的素数来标记后面的合数。</p>
+<pre><code class="lang-cpp">inline void getprime()
+{
+    memset(ss,true,sizeof(ss));
+    ss[0]=ss[1]=false;
+    for (int i=2;i&lt;=n;i++)
+    {
+        if (ss[i]) zs[cnt++]=i;
+        for (int j=1;j&lt;cnt &amp;&amp; zs[j]*i&lt;=n;j++) ss[zs[j]*i]=false;
+    }
+}
+</code></pre>
+<p>以上内容更新于2018.5.9</p>
+<hr>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 gitcoment -->
+<div id="gitment-comment">
+    <!-- Gitment 评论框 -->
+<div id="container"></div>
+</div>
+<style>
+    #gitment-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+        //id: '页面 ID', // 可选。默认为 location.href
+        owner: '',
+        repo: '',
+        oauth: {
+            client_id: '',
+            client_secret: '',
+        },
+    })
+    gitment.render('container')
+</script>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/p/dian-fen-zhi.html" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
@@ -1250,6 +1119,10 @@ It will not impact the appearance and can give developers a lot of support :)
 <!-- Import prettify js  -->
 
     
+        
+            <script>lsloader.load("prettify_js","https://cdn.bootcss.com/prettify/r298/prettify.min.js", true)</script>
+        
+    
 
 
 
@@ -1262,6 +1135,11 @@ It will not impact the appearance and can give developers a lot of support :)
     });
 
     
+        
+            $(function() {
+                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
         
     
     

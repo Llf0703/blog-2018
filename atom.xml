@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Llf&#39;s blog</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://v2.llf0703.com/"/>
+  <updated>2018-05-24T11:38:31.489Z</updated>
+  <id>https://v2.llf0703.com/</id>
+  
+  <author>
+    <name>Llf</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>基础数论学习总结</title>
+    <link href="https://v2.llf0703.com/p/number-theory.html"/>
+    <id>https://v2.llf0703.com/p/number-theory.html</id>
+    <published>2018-05-09T12:46:00.000Z</published>
+    <updated>2018-05-24T11:38:31.489Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="OI笔记" scheme="https://v2.llf0703.com/categories/OI%E7%AC%94%E8%AE%B0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>点分治总结</title>
+    <link href="https://v2.llf0703.com/p/dian-fen-zhi.html"/>
+    <id>https://v2.llf0703.com/p/dian-fen-zhi.html</id>
+    <published>2018-04-26T11:28:00.000Z</published>
+    <updated>2018-05-23T13:20:53.105Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="OI笔记" scheme="https://v2.llf0703.com/categories/OI%E7%AC%94%E8%AE%B0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>题解-洛谷P4092 [HEOI2016/TJOI2016]树</title>
+    <link href="https://v2.llf0703.com/p/luogu-solution-p4092.html"/>
+    <id>https://v2.llf0703.com/p/luogu-solution-p4092.html</id>
+    <published>2018-04-24T12:06:00.000Z</published>
+    <updated>2018-05-23T13:21:26.363Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="题解" scheme="https://v2.llf0703.com/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>二分图匹配</title>
+    <link href="https://v2.llf0703.com/p/bipartite-matching.html"/>
+    <id>https://v2.llf0703.com/p/bipartite-matching.html</id>
+    <published>2018-04-21T05:24:00.000Z</published>
+    <updated>2018-05-23T13:12:48.027Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="OI笔记" scheme="https://v2.llf0703.com/categories/OI%E7%AC%94%E8%AE%B0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>题解-洛谷P2486 [SDOI2011]染色</title>
+    <link href="https://v2.llf0703.com/p/luogu-solution-p2486.html"/>
+    <id>https://v2.llf0703.com/p/luogu-solution-p2486.html</id>
+    <published>2018-04-19T11:50:00.000Z</published>
+    <updated>2018-05-23T13:17:26.940Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="题解" scheme="https://v2.llf0703.com/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>树链剖分总结</title>
+    <link href="https://v2.llf0703.com/p/shu-lian-pou-fen.html"/>
+    <id>https://v2.llf0703.com/p/shu-lian-pou-fen.html</id>
+    <published>2018-04-16T12:41:00.000Z</published>
+    <updated>2018-05-23T13:19:28.099Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="OI笔记" scheme="https://v2.llf0703.com/categories/OI%E7%AC%94%E8%AE%B0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>LCA问题总结</title>
+    <link href="https://v2.llf0703.com/p/lca.html"/>
+    <id>https://v2.llf0703.com/p/lca.html</id>
+    <published>2018-04-10T13:07:00.000Z</published>
+    <updated>2018-05-23T13:09:47.115Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="OI笔记" scheme="https://v2.llf0703.com/categories/OI%E7%AC%94%E8%AE%B0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>RMQ问题_ST表总结</title>
+    <link href="https://v2.llf0703.com/p/rmq-st.html"/>
+    <id>https://v2.llf0703.com/p/rmq-st.html</id>
+    <published>2018-04-09T13:23:00.000Z</published>
+    <updated>2018-05-23T13:15:38.682Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="OI笔记" scheme="https://v2.llf0703.com/categories/OI%E7%AC%94%E8%AE%B0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>题解-洛谷P1309 瑞士轮</title>
+    <link href="https://v2.llf0703.com/p/luogu-solution-p1309.html"/>
+    <id>https://v2.llf0703.com/p/luogu-solution-p1309.html</id>
+    <published>2018-02-08T11:19:00.000Z</published>
+    <updated>2018-05-23T13:16:20.820Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="题解" scheme="https://v2.llf0703.com/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>几种排序方法总结</title>
+    <link href="https://v2.llf0703.com/p/sort.html"/>
+    <id>https://v2.llf0703.com/p/sort.html</id>
+    <published>2018-02-07T14:04:00.000Z</published>
+    <updated>2018-05-23T13:21:58.887Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="OI笔记" scheme="https://v2.llf0703.com/categories/OI%E7%AC%94%E8%AE%B0/"/>
+    
+    
+  </entry>
+  
+</feed>

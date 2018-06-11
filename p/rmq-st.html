@@ -56,7 +56,7 @@
 
     <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="">
-    <meta name="keywords" content="Llf,Llf0703,blog,OI,博客,信息学竞赛,算法,数据结构">
+    <meta name="keywords" content="Llf,Llf0703,blog,OI,博客,信息学竞赛,算法,数据结构,数据结构-ST表,问题-RMQ">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -246,11 +246,11 @@
     <meta property="og:title" content="RMQ问题_ST表总结 | Llf&#39;s blog">
     <meta property="og:image" content="https://i.loli.net/2018/05/23/5b0522df21452.png">
     <meta property="og:description" content="">
-    
+    <meta property="og:article:tag" content="数据结构-ST表"> <meta property="og:article:tag" content="问题-RMQ"> 
 
     
         <meta property="article:published_time" content="Mon Apr 09 2018 21:23:00 GMT+0800">
-        <meta property="article:modified_time" content="Wed May 23 2018 21:15:38 GMT+0800">
+        <meta property="article:modified_time" content="Mon Jun 11 2018 21:31:02 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -273,7 +273,7 @@
     "mainEntityOfPage": "https://v2.llf0703.com/p/rmq-st.html",
     "headline": "RMQ问题_ST表总结",
     "datePublished": "Mon Apr 09 2018 21:23:00 GMT+0800",
-    "dateModified": "Wed May 23 2018 21:15:38 GMT+0800",
+    "dateModified": "Mon Jun 11 2018 21:31:02 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Llf",
@@ -291,7 +291,7 @@
             "url": "https://i.loli.net/2018/05/23/5b0522df21452.png"
         }
     },
-    "keywords": "Llf,Llf0703,blog,OI,博客,信息学竞赛,算法,数据结构",
+    "keywords": ",数据结构-ST表,问题-RMQLlf,Llf0703,blog,OI,博客,信息学竞赛,算法,数据结构",
     "description": "",
 }
 </script>
@@ -304,11 +304,9 @@
     
     
 
-    <!-- Custom Head -->
+    <!-- Custom Head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
     
 
-    <link href="https://cdn.bootcss.com/KaTeX/0.7.1/katex.min.css" rel="stylesheet"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-    
 </head>
 
 
@@ -378,17 +376,8 @@
                 
     <!-- Paradox Post Header -->
     
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-            <script type="text/ls-javascript" id="post-thumbnail-script">
-    var randomNum = Math.floor(Math.random() * 19 + 1);
-
-    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
-    $('.post_thumbnail-random').addClass('lazy');
-</script>
-
-        
+        <!-- Custom Thumbnail -->
+        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(https://i.loli.net/2018/06/11/5b1e75855e197.png)">
     
             <p class="article-headline-p">
                 RMQ问题_ST表总结
@@ -439,6 +428,15 @@
     
 
     <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/数据结构-ST表/">数据结构-ST表</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/问题-RMQ/">问题-RMQ</a>
+    </ul>
     
 
     <!-- Share -->
@@ -743,7 +741,7 @@ int main()
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/02/">二月 2018<span class="sidebar_archives-count">2</span></a>
+                <a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/02/">二月 2018<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/12/">十二月 2017<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         
@@ -761,7 +759,7 @@ int main()
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/OI笔记/">OI笔记<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/题解/">题解<span class="sidebar_archives-count">3</span></a>
+                <a class="sidebar_archives-link" href="/categories/OI笔记/">OI笔记<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/categories/游记/">游记<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/题解/">题解<span class="sidebar_archives-count">3</span></a>
             </ul>
         </li>
         
@@ -843,11 +841,29 @@ It will not impact the appearance and can give developers a lot of support :)
         <div class="mdl-mini-footer--left-section sns-list">
     <!-- Twitter -->
     
+        <a href="https://twitter.com/Llf0703" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
 
     <!-- Facebook -->
     
+        <a href="https://www.facebook.com/profile.php?id=100013061465688" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-facebook">
+                <span class="visuallyhidden">Facebook</span>
+            </button><!--
+     --></a>
+    
 
     <!-- Google + -->
+    
+        <a href="https://plus.google.com/u/0/110635908584796948876" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-gplus">
+                <span class="visuallyhidden">Google Plus</span>
+            </button><!--
+     --></a>
     
 
     <!-- Weibo -->

@@ -15,6 +15,14 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> 数论 </tag>
+            
+            <tag> 数学 </tag>
+            
+        </tags>
+      
     </entry>
     
     <entry>
@@ -30,13 +38,19 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> 算法-点分治 </tag>
+            
+        </tags>
+      
     </entry>
     
     <entry>
       <title>题解-洛谷P4092 [HEOI2016/TJOI2016]树</title>
       <link href="/p/luogu-solution-p4092.html"/>
       <url>/p/luogu-solution-p4092.html</url>
-      <content type="html"><![CDATA[<p><del>第一次写树剖没看题解A题</del>，发现题解洛谷题解区大佬里竟然没有一个做法一样的，实在是太激动了</p><hr><ul><li>树剖学习：<a href="https://llf0703.com/p/shu-lian-pou-fen.html" target="_blank" rel="noopener">https://llf0703.com/p/shu-lian-pou-fen.html</a></li><li>题目链接 <a href="https://www.luogu.org/problemnew/show/P4092" target="_blank" rel="noopener">洛谷 P4092</a>  <a href="https://www.lydsy.com/JudgeOnline/problem.php?id=4551" target="_blank" rel="noopener">BZOJ P4551</a></li></ul><hr><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p><del>裸树剖</del>，直接用线段树维护每一段区间中<strong>被标记的最深的节点</strong>就行了。先全部赋值为-1，然后向上传递时直接取两段中的最大值即可（因为越深的点dfs序越大）</p><p>还有需要注意的是查询中在链上往上跳时只要找到了有标记的节点就需要输出，否则不是最深的点。</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;struct Edge{  int next,to;} edge[200005];struct Tree{  int left,right,deepest;} tree[800005];int head[200005],size[200005],fa[200005],son[200005],deep[200005],top[200005],id[200005],dfsid[200005];int cnt=1,n,m,a,b,c,dfsord;char x;inline int read()//快读{  char ch=getchar();  int f=1,x=0;  while (ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;)  {    if (ch==&#39;-&#39;) f=-1;    ch=getchar();  }  while (ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;)  {    x=x*10+ch-&#39;0&#39;;    ch=getchar();  }  return f*x;}inline void add(int u,int v)//加边{  edge[cnt].to=v;  edge[cnt].next=head[u];  head[u]=cnt++;}void build(int x,int l,int r)//建树{  tree[x].left=l;  tree[x].right=r;  tree[x].deepest=-1;//注意要赋值为-1  if (r-l&gt;1)  {    build(x*2,l,(l+r)/2);    build(x*2+1,(l+r)/2,r);  }}void change(int x,int l,int r){  if (l&lt;=tree[x].left &amp;&amp; r&gt;=tree[x].right) tree[x].deepest=l;//只有一个元素时标记的最深的节点就是它自己  else  {    int mid=(tree[x].left+tree[x].right)/2;    if (l&lt;mid) change(x*2,l,r);    if (r&gt;mid) change(x*2+1,l,r);    tree[x].deepest=max(tree[x*2].deepest,tree[x*2+1].deepest);//取两段上最深的节点  }}int query(int x,int l,int r){  if (l&lt;=tree[x].left &amp;&amp; r&gt;=tree[x].right) return tree[x].deepest;  else  {    int mid=(tree[x].left+tree[x].right)/2,ans=-1;//同样注意初值    if (l&lt;mid) ans=max(ans,query(x*2,l,r));    if (r&gt;mid) ans=max(ans,query(x*2+1,l,r));    return ans;  }}void dfs1(int x,int f,int dep){  deep[x]=dep;  fa[x]=f;  size[x]=1;  int mx=-1;  for (int i=head[x];i;i=edge[i].next)  {    int y=edge[i].to;    if (y==f) continue;    dfs1(y,x,dep+1);    size[x]+=size[y];    if (size[y]&gt;mx)    {      mx=size[y];      son[x]=y;    }  }}void dfs2(int x,int topf){  top[x]=topf;  id[x]=++dfsord;  dfsid[dfsord]=x;//因为是输出节点原序号，这里得到dfs序对应的节点序号  if (!son[x]) return;  dfs2(son[x],topf);  for (int i=head[x];i;i=edge[i].next)  {    int y=edge[i].to;    if (y==fa[x] || y==son[x]) continue;    dfs2(y,y);  }}inline void uprange(int u){  change(1,id[u],id[u]+1);}inline int qrange(int u,int v){  int ans=-1;  while (top[u]!=top[v])  {    if (deep[id[u]]&lt;deep[id[v]]) swap(u,v);    ans=query(1,id[top[u]],id[u]+1);    if (ans!=-1) return dfsid[ans];//只要找到就返回    u=fa[top[u]];  }  if (deep[u]&gt;deep[v]) swap(u,v);  ans=query(1,id[u],id[v]+1);  return dfsid[ans];}int main(){  n=read();m=read();  for (int i=1;i&lt;n;i++)  {    a=read();b=read();    add(a,b);    add(b,a);  }  dfs1(1,0,1);  dfs2(1,1);  build(1,1,n+1);  change(1,1,2);//注意先将根节点打上标记  for (int i=1;i&lt;=m;i++)  {    cin&gt;&gt;x;    a=read();    if (x==&#39;C&#39;) uprange(a);    else printf(&quot;%d\n&quot;,qrange(a,1));  }  return 0;}</code></pre>]]></content>
+      <content type="html"><![CDATA[<p><del>第一次写树剖没看题解A题</del>，发现题解洛谷题解区大佬里竟然没有一个做法一样的，实在是太激动了</p><hr><p>树剖学习：<a href="https://llf0703.com/p/shu-lian-pou-fen.html" target="_blank" rel="noopener">https://llf0703.com/p/shu-lian-pou-fen.html</a></p><p>题目链接:</p><ol><li><a href="https://www.luogu.org/problemnew/show/P4092" target="_blank" rel="noopener">洛谷 P4092</a>  </li><li><a href="https://www.lydsy.com/JudgeOnline/problem.php?id=4551" target="_blank" rel="noopener">BZOJ P4551</a></li></ol><hr><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p><del>裸树剖</del>，直接用线段树维护每一段区间中<strong>被标记的最深的节点</strong>就行了。先全部赋值为-1，然后向上传递时直接取两段中的最大值即可（因为越深的点dfs序越大）</p><p>还有需要注意的是查询中在链上往上跳时只要找到了有标记的节点就需要输出，否则不是最深的点。</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;struct Edge{  int next,to;} edge[200005];struct Tree{  int left,right,deepest;} tree[800005];int head[200005],size[200005],fa[200005],son[200005],deep[200005],top[200005],id[200005],dfsid[200005];int cnt=1,n,m,a,b,c,dfsord;char x;inline int read()//快读{  char ch=getchar();  int f=1,x=0;  while (ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;)  {    if (ch==&#39;-&#39;) f=-1;    ch=getchar();  }  while (ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;)  {    x=x*10+ch-&#39;0&#39;;    ch=getchar();  }  return f*x;}inline void add(int u,int v)//加边{  edge[cnt].to=v;  edge[cnt].next=head[u];  head[u]=cnt++;}void build(int x,int l,int r)//建树{  tree[x].left=l;  tree[x].right=r;  tree[x].deepest=-1;//注意要赋值为-1  if (r-l&gt;1)  {    build(x*2,l,(l+r)/2);    build(x*2+1,(l+r)/2,r);  }}void change(int x,int l,int r){  if (l&lt;=tree[x].left &amp;&amp; r&gt;=tree[x].right) tree[x].deepest=l;//只有一个元素时标记的最深的节点就是它自己  else  {    int mid=(tree[x].left+tree[x].right)/2;    if (l&lt;mid) change(x*2,l,r);    if (r&gt;mid) change(x*2+1,l,r);    tree[x].deepest=max(tree[x*2].deepest,tree[x*2+1].deepest);//取两段上最深的节点  }}int query(int x,int l,int r){  if (l&lt;=tree[x].left &amp;&amp; r&gt;=tree[x].right) return tree[x].deepest;  else  {    int mid=(tree[x].left+tree[x].right)/2,ans=-1;//同样注意初值    if (l&lt;mid) ans=max(ans,query(x*2,l,r));    if (r&gt;mid) ans=max(ans,query(x*2+1,l,r));    return ans;  }}void dfs1(int x,int f,int dep){  deep[x]=dep;  fa[x]=f;  size[x]=1;  int mx=-1;  for (int i=head[x];i;i=edge[i].next)  {    int y=edge[i].to;    if (y==f) continue;    dfs1(y,x,dep+1);    size[x]+=size[y];    if (size[y]&gt;mx)    {      mx=size[y];      son[x]=y;    }  }}void dfs2(int x,int topf){  top[x]=topf;  id[x]=++dfsord;  dfsid[dfsord]=x;//因为是输出节点原序号，这里得到dfs序对应的节点序号  if (!son[x]) return;  dfs2(son[x],topf);  for (int i=head[x];i;i=edge[i].next)  {    int y=edge[i].to;    if (y==fa[x] || y==son[x]) continue;    dfs2(y,y);  }}inline void uprange(int u){  change(1,id[u],id[u]+1);}inline int qrange(int u,int v){  int ans=-1;  while (top[u]!=top[v])  {    if (deep[id[u]]&lt;deep[id[v]]) swap(u,v);    ans=query(1,id[top[u]],id[u]+1);    if (ans!=-1) return dfsid[ans];//只要找到就返回    u=fa[top[u]];  }  if (deep[u]&gt;deep[v]) swap(u,v);  ans=query(1,id[u],id[v]+1);  return dfsid[ans];}int main(){  n=read();m=read();  for (int i=1;i&lt;n;i++)  {    a=read();b=read();    add(a,b);    add(b,a);  }  dfs1(1,0,1);  dfs2(1,1);  build(1,1,n+1);  change(1,1,2);//注意先将根节点打上标记  for (int i=1;i&lt;=m;i++)  {    cin&gt;&gt;x;    a=read();    if (x==&#39;C&#39;) uprange(a);    else printf(&quot;%d\n&quot;,qrange(a,1));  }  return 0;}</code></pre>]]></content>
       
       <categories>
           
@@ -44,6 +58,22 @@
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> 算法-树链剖分 </tag>
+            
+            <tag> 数据结构-线段树 </tag>
+            
+            <tag> 省选-河北 </tag>
+            
+            <tag> 省选-天津 </tag>
+            
+            <tag> OJ-洛谷 </tag>
+            
+            <tag> OJ-BZOJ </tag>
+            
+        </tags>
       
     </entry>
     
@@ -60,6 +90,12 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> 算法-二分图匹配 </tag>
+            
+        </tags>
+      
     </entry>
     
     <entry>
@@ -74,6 +110,20 @@
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> 算法-树链剖分 </tag>
+            
+            <tag> 数据结构-线段树 </tag>
+            
+            <tag> OJ-洛谷 </tag>
+            
+            <tag> OJ-BZOJ </tag>
+            
+            <tag> 省选-山东 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -90,6 +140,12 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> 算法-树链剖分 </tag>
+            
+        </tags>
+      
     </entry>
     
     <entry>
@@ -104,6 +160,14 @@
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> 算法-Tarjan </tag>
+            
+            <tag> 问题-LCA </tag>
+            
+        </tags>
       
     </entry>
     
@@ -120,6 +184,14 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> 数据结构-ST表 </tag>
+            
+            <tag> 问题-RMQ </tag>
+            
+        </tags>
+      
     </entry>
     
     <entry>
@@ -135,6 +207,12 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> 算法-归并排序 </tag>
+            
+        </tags>
+      
     </entry>
     
     <entry>
@@ -149,6 +227,79 @@
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> 算法-排序 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>拓扑排序</title>
+      <link href="/p/topological-sort.html"/>
+      <url>/p/topological-sort.html</url>
+      <content type="html"><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>拓扑排序是一种可以将有先决条件（即必须将a、b排在前面后再排c，缺一不可）的数据变得有序的一种排序方法。拓扑排序仅可在有向无环图中使用，同时可以判断图中是否有环。因为顺序不同，拓扑排序得到的答案可能不同。</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>因为排序是有先决条件的，所以可以将要有先决条件的个数（在图中即为入度）记录下来，每满足一个就减一，直到个数为0便可以将其放入序列中。</p><h2 id="手动实现"><a href="#手动实现" class="headerlink" title="手动实现"></a>手动实现</h2><p>如果我们有如下的一个有向无环图，我们需要对这个图的顶点进行拓扑排序，过程如下：</p><p><img src="https://cdn.uniqueue.cn/tuopu-1.png" alt="tuopu-1"></p><p>首先，我们发现V6和v1是没有前驱的，所以我们就随机选去一个输出，我们先输出V6，删除和V6有关的边，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-2.png" alt="tuopu-2"></p><p>然后，我们继续寻找没有前驱的顶点，发现V1没有前驱，所以输出V1，删除和V1有关的边，得到下图的结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-3.png" alt="tuopu-3"></p><p>然后，我们又发现V4和V3都是没有前驱的，那么我们就随机选取一个顶点输出（具体看你实现的算法和图存储结构），我们输出V4，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-4.png" alt="tuopu-4"></p><p>然后，我们输出没有前驱的顶点V3，得到如下结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-5.png" alt="tuopu-5"></p><p>然后，我们分别输出V5和V2，最后全部顶点输出完成，该图的一个拓扑序列为：</p><p>v6–&gt;v1—&gt;v4—&gt;v3—&gt;v5—&gt;v2</p><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>1.用邻接表存储数据，同时对终点的结点的入度加一；<br>2.将没有先决条件便可以排序的点（即初始入度为0的点）先加入队列并输出；<br>3.从队首元素开始扩展，将与队首元素相连的结点的入度减一（等同于擦除这条边），如果该结点入度变为0，则将其入队，作为下一次查找的起点；<br>4.将队首元素出队，当队首元素为空时停止排序。</p><h2 id="代码及注解"><a href="#代码及注解" class="headerlink" title="代码及注解"></a>代码及注解</h2><p>有n个点，m条边的有向无环图，输入n，m，然后每一行输入一条边的信息：起点x，终点y</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;int n,m,a,b,c,d,e,re;struct map1{    int stat,end;};map1 tu[100];int rd[100],chong[100];queue &lt;int&gt; q;int main(){    cin&gt;&gt;n&gt;&gt;m;//n点m边    for (a=1;a&lt;=m;a++)    {        cin&gt;&gt;tu[a].stat&gt;&gt;tu[a].end;        rd[tu[a].end]++;    }    for (int i=1;i&lt;=n;i++)    if (rd[i]==0) q.push(i);//将初始入度为0的结点入队    while (!q.empty())    {            cout&lt;&lt;q.front()&lt;&lt;&quot; &quot;;            for (int j=1;j&lt;=m;j++)            {                if (tu[j].stat==q.front())//找以队首元素为起点的边                {                    rd[tu[j].end]--;                    if (rd[tu[j].end]==0)                     {                        q.push(tu[j].end);                    }                }            }        q.pop();    }    return 0;}</code></pre>]]></content>
+      
+      <categories>
+          
+          <category> OI笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法-拓扑排序 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>最小生成树</title>
+      <link href="/p/minimum-spanning-tree.html"/>
+      <url>/p/minimum-spanning-tree.html</url>
+      <content type="html"><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>最小生成树即为无向图中结点构成的树中各边权值之和最小的树，可以有多种情况。一般用Kruskal（克鲁斯卡尔）算法或Prim（普里姆）算法求出。</p><h2 id="Kruskal算法"><a href="#Kruskal算法" class="headerlink" title="Kruskal算法"></a>Kruskal算法</h2><h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p>可以将Kruskal算法理解成对边的贪心算法。</p><p>1.将路径用邻接表存储，存储的值为起点、终点和权值；<br>2.将邻接表按照权值为关键字排序；<br>3.从最小权值的边开始循环，每连接起两个结点就把它们并到同一个集合（并查集实现），连接之前判断它们是否已经直接或间接相连（是否同一祖先），如没有相连则连上；<br>4.判断能否构成树：如果所以结点的祖先相同则能，反之则不能构成树。</p><h3 id="代码及注解"><a href="#代码及注解" class="headerlink" title="代码及注解"></a>代码及注解</h3><p>示例题目：<a href="https://www.luogu.org/problemnew/show/P3366" target="_blank" rel="noopener">洛谷 P3366 【模板】最小生成树</a></p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;int n,m,x,y,z,a,b,c,k,ans;int f[5005];struct lj{    int qi,zhong,zhi;};//邻接表存储lj map1[200005];bool com(lj a,lj b){    return a.zhi&gt;b.zhi;}//以权值为关键字排序int zx(int a){    if(a==f[a]) return a;    else     {        f[a]=zx(f[a]);        return f[a];    } }//并查集查找祖先int main(){    cin&gt;&gt;n&gt;&gt;m;    for (a=1;a&lt;=n;a++)    f[a]=a;    for (a=1;a&lt;=m;a++)    {        cin&gt;&gt;x&gt;&gt;y&gt;&gt;z;        map1[a].qi=x;        map1[a].zhong=y;        map1[a].zhi=z;    }    sort(map1,map1+m+1,com);//排序    while (m&gt;0)    {        x=map1[m].qi;        y=map1[m].zhong;        if (zx(x)!=zx(y)) //查找祖先以确定是否相连        {            f[zx(y)]=zx(x);//连接，统一祖先            ans+=map1[m].zhi;//加上权值        }        m--;    }    for (a=2;a&lt;=n;a++)    if (zx(a)!=zx(1))    {        cout&lt;&lt;&quot;orz&quot;;        return 0;    }//判断能否构成树，只有每一个结点祖先和第一个结点祖先相同，则所有结点祖先都相同    cout&lt;&lt;ans;    return 0;}</code></pre>]]></content>
+      
+      <categories>
+          
+          <category> OI笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 问题-最小生成树 </tag>
+            
+            <tag> 算法-Kruskal </tag>
+            
+            <tag> 算法-Prim </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>NOIP2017爆炸记</title>
+      <link href="/p/noip2017-summary.html"/>
+      <url>/p/noip2017-summary.html</url>
+      <content type="html"><![CDATA[<h3 id="Day-N"><a href="#Day-N" class="headerlink" title="Day -N"></a>Day -N</h3><p>去年只参加PJ，凑巧拿了个一。今年第一次参加TG，还有在<del>徐妈的逼迫下</del>又参加了PJ，还想拿个高分（事实上死的很惨）</p><h3 id="Day-0"><a href="#Day-0" class="headerlink" title="Day 0"></a>Day 0</h3><p>就复习了点简单的东西（毕竟考前三天才学会c++的文件，P转C的痛苦），中午大半时间在颓2048，感觉什么都没干</p><h3 id="Day-1"><a href="#Day-1" class="headerlink" title="Day 1"></a>Day 1</h3><p>上午TG。妈的我第一题找了大半个小时都没找出规律就打了个暴力了事；第二题纯种模拟，二十多个变量，样例都过了，<strong>当时</strong>感觉应该没有问题；第三题直接没时间了，tan90°。中午一对答案发现就是个扩展欧几里得，连高精度都不用，数学没学好很无奈啊。<br>中午和WZX绕着电子渴基大学走了一大圈，回来考PJ。第一题<del>真难没看懂</del>；第二题15分钟不到水完，事实上后来发现endl都没有打，20分；第三题深搜，过了样例，感觉还行；第四题不会，打了个暴力走人，感觉50分的数据应该能过。估分350。</p><h3 id="Day-2"><a href="#Day-2" class="headerlink" title="Day 2"></a>Day 2</h3><p>上午去晚了，连集合都没赶上就冲进了考场，整的还有人来问我“XX学校的Llf同学来了没有”，真的尴尬死了。先看了下题，选第三题分两种情况打了个暴力，期望40；然后第一题深搜（然而却并忘了剪枝而爆炸）；第二题乱搞的DP方程过了样例结果发现是错的。感觉就要炸。</p><h3 id="Day-N-爆炸实况"><a href="#Day-N-爆炸实况" class="headerlink" title="Day N 爆炸实况"></a>Day N 爆炸实况</h3><p>第二周的星期天就拿到了我的代码。先对PJ，第一题第二题都没测，第三题测出来出了点问题只有20，第四题发现交错程序了（因为我先打了个骗分版本）珂谷数据10分。感觉只有230了。然后测TG Day1第一题测出来50，第二题20；Day2第一题40（然后绝望的发现我没有剪枝）；第二题爆0；第三题只有30。当时很绝望，但是这不是最惨的时候。<br>到了学校测了PJ的一二题，惊讶的发现第二题只有20，然后绝望的发现并没有换行。我还能说些什么……<br>后来出了官方数据，第三题测出来50还是给了我点安慰，170，绝望的分数。<br>然后TG用官方数据更加炸。105……<br>然后一直绝望了一周。平时感觉自己还行，TG不说有一等起码二等也应该有。后来仔细想了一下，<strong>对PJ的轻视，对TG的畏惧</strong>是主要原因。如果不这样，我也不至于PJ第二题根本不检查，TGD1T1连找规律都不敢。<br>半期也炸掉了，历史最差名次，又被cm姐批了一顿。<br>后悔吗？不！因为</p><blockquote><p>自己选择的路，跪着也要走完</p></blockquote>]]></content>
+      
+      <categories>
+          
+          <category> 游记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 游记-NOIP </tag>
+            
+        </tags>
       
     </entry>
     

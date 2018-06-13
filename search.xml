@@ -3,6 +3,27 @@
   
     
     <entry>
+      <title>紫书第九章-动态规划初步 刷题总结</title>
+      <link href="/p/aoapc-book-9.html"/>
+      <url>/p/aoapc-book-9.html</url>
+      <content type="html"><![CDATA[<p>很久没写过总结了。紫书做了那么多道题，但是我的动规并没有找到什么感觉，也就只有普及难度的可以不看题解写，剩下的都是看着题解写完的，我还是太弱了。这里还是来总结一下吧。</p><h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h3 id="9-1-UVa1025-A-Spy-in-the-Metro"><a href="#9-1-UVa1025-A-Spy-in-the-Metro" class="headerlink" title="9-1 UVa1025-A Spy in the Metro"></a>9-1 <a href="https://vjudge.net/problem/UVA-1025" target="_blank" rel="noopener">UVa1025-A Spy in the Metro</a></h3><p>$f[i][j]$表示在车站i，时刻是j，还剩多少时间（根紫书略有不同）</p><p>决策有三个，上左边的车，上右边的车，<del>如果都不开往幼儿园</del>就等一时刻的车。</p><p>注意还要判断某一时刻是否有车，$havel[i][t]$和$haver[i][t]$表示在i车站在t时刻是否有车。</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;int n,m,t,a,b,c,tright,tleft,Time,cnt;int T[55],tl,tr,f[55][255];//在车站i，时刻j，还剩多少时间bool havel[55][255],haver[55][255];//在车站i，在t时刻是否有车inline int read(){    char ch=getchar();    int f=1,x=0;    while (ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;)    {        if (ch==&#39;-&#39;) f=-1;        ch=getchar();    }    while (ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;)    {        x=x*10+ch-&#39;0&#39;;        ch=getchar();    }    return f*x;}int main(){    while (1)    {        memset(havel,false,sizeof(havel));        memset(haver,false,sizeof(haver));        memset(f,0,sizeof(f));        memset(T,0,sizeof(T));        n=read(); if (n==0) break; t=read();        for (int i=1;i&lt;n;i++) T[i]=read();        tright=read();        for (int i=1;i&lt;=tright;i++)        {            tr=read();            Time=tr;            for (int j=1;j&lt;=n;j++) haver[j][Time]=true,Time+=T[j];        }        tleft=read();        for (int i=1;i&lt;=tleft;i++)        {            tl=read();            Time=tl;            for (int j=n;j&gt;=1;j--) havel[j][Time]=true,Time+=T[j-1];        }        for (int i=1;i&lt;=n-1;i++) f[i][t]=2e9;        f[n][t]=0;        for (int j=t-1;j&gt;=0;j--)            for (int i=1;i&lt;=n;i++)            {                f[i][j]=f[i][j+1]+1;                if (i&gt;1 &amp;&amp; havel[i][j] &amp;&amp; j+T[i-1]&lt;=t) f[i][j]=min(f[i][j],f[i-1][j+T[i-1]]);//左                if (i&lt;n &amp;&amp; haver[i][j] &amp;&amp; j+T[i]&lt;=t) f[i][j]=min(f[i][j],f[i+1][j+T[i]]);//右            }        printf(&quot;Case Number %d: &quot;,++cnt);        if (f[1][0]&gt;=2e9) printf(&quot;impossible\n&quot;);        else printf(&quot;%d\n&quot;,f[1][0]);    }    return 0;}</code></pre><h3 id="9-2-UVa437-The-Tower-of-Babylon"><a href="#9-2-UVa437-The-Tower-of-Babylon" class="headerlink" title="9-2 UVa437-The Tower of Babylon"></a>9-2 <a href="https://vjudge.net/problem/UVA-437" target="_blank" rel="noopener">UVa437-The Tower of Babylon</a></h3><p>长和宽都会严格减小，直接记忆化搜索即可。</p><p>用$f[id][h]$表示第id个立方体，第h个数据做高。需要将每个立方体的三维按从小到大排序。</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;#define Ans f[id][h]using namespace std;int n,m,a,b,c,h[4],f[40][4],ans,cnt;bool vis[40][4];struct Edge{    int x,y,z;} edge[35];inline int read(){    char ch=getchar();    int f=1,x=0;    while (ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;)    {        if (ch==&#39;-&#39;) f=-1;        ch=getchar();    }    while (ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;)    {        x=x*10+ch-&#39;0&#39;;        ch=getchar();    }    return f*x;}int dp(int id,int h){    if (vis[id][h]) return Ans;    vis[id][h]=1;    int E[2],hnow;    if (h==1) E[0]=edge[id].y,E[1]=edge[id].z,hnow=edge[id].x;    if (h==2) E[0]=edge[id].x,E[1]=edge[id].z,hnow=edge[id].y;    if (h==3) E[0]=edge[id].x,E[1]=edge[id].y,hnow=edge[id].z;//判断当前哪两个数据做底面，哪一个是高    for (int i=1;i&lt;=n;i++)    {        if (edge[i].x&lt;E[0] &amp;&amp; edge[i].y&lt;E[1]) Ans=max(Ans,dp(i,3)+hnow);        if (edge[i].x&lt;E[0] &amp;&amp; edge[i].z&lt;E[1]) Ans=max(Ans,dp(i,2)+hnow);        if (edge[i].y&lt;E[0] &amp;&amp; edge[i].z&lt;E[1]) Ans=max(Ans,dp(i,1)+hnow);    }    return Ans;}int main(){    for (;;)    {        memset(f,0,sizeof(f));        memset(vis,0,sizeof(vis));        ans=0;        n=read();        if (n==0) break;        for (int i=1;i&lt;=n;i++)        {            for (int j=1;j&lt;=3;j++) h[j]=read();            sort(h+1,h+4);            edge[i].x=h[1]; edge[i].y=h[2]; edge[i].z=h[3];            for (int j=1;j&lt;=3;j++) f[i][j]=h[j];        }        for (int i=1;i&lt;=n;i++)            for (int j=1;j&lt;=3;j++) ans=max(ans,dp(i,j));        printf(&quot;Case %d: maximum height = %d\n&quot;,++cnt,ans);    }    return 0;}</code></pre><h3 id="9-3-UVa1347-Tour"><a href="#9-3-UVa1347-Tour" class="headerlink" title="9-3 UVa1347-Tour"></a>9-3 <a href="https://vjudge.net/problem/UVA-1347" target="_blank" rel="noopener">UVa1347-Tour</a></h3><p>将题目的走法改成两个人同时从左边出发，$f[i][j]$表示$1-max(i,j)$全部走过，且两人位置为i和j，还要走多少距离。可以定义i&gt;j，并且只允许走到i+1这个点。</p><p>决策就有两个：走到$f[i+1][j]$和$f[i+1][i]$</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;double f[1005][1005];int n,m,a,b,c,x[1005],y[1005];inline double dis(int i,int j){    return sqrt((x[i]-x[j])*(x[i]-x[j])+(y[i]-y[j])*(y[i]-y[j]));}int main(){    while (scanf(&quot;%d&quot;,&amp;n)!=EOF)    {        memset(f,0,sizeof(f));        for (int i=1;i&lt;=n;i++) scanf(&quot;%d%d&quot;,&amp;x[i],&amp;y[i]);        for (int i=1;i&lt;n-1;i++) f[n-1][i]=dis(n-1,n)+dis(i,n);        for (int i=n-2;i&gt;=2;i--)            for (int j=1;j&lt;i;j++) f[i][j]=min(f[i+1][j]+dis(i,i+1),f[i+1][i]+dis(j,i+1));        cout&lt;&lt;fixed&lt;&lt;setprecision(2)&lt;&lt;f[2][1]+dis(1,2)&lt;&lt;endl;    }    return 0;}</code></pre><p>未完待续</p><p>以上更新于2018.5.26</p><hr>]]></content>
+      
+      <categories>
+          
+          <category> OI笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法-动态规划 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>基础数论学习总结</title>
       <link href="/p/number-theory.html"/>
       <url>/p/number-theory.html</url>
@@ -237,6 +258,27 @@
     </entry>
     
     <entry>
+      <title>拓扑排序</title>
+      <link href="/p/topological-sort.html"/>
+      <url>/p/topological-sort.html</url>
+      <content type="html"><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>拓扑排序是一种可以将有先决条件（即必须将a、b排在前面后再排c，缺一不可）的数据变得有序的一种排序方法。拓扑排序仅可在有向无环图中使用，同时可以判断图中是否有环。因为顺序不同，拓扑排序得到的答案可能不同。</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>因为排序是有先决条件的，所以可以将要有先决条件的个数（在图中即为入度）记录下来，每满足一个就减一，直到个数为0便可以将其放入序列中。</p><h2 id="手动实现"><a href="#手动实现" class="headerlink" title="手动实现"></a>手动实现</h2><p>如果我们有如下的一个有向无环图，我们需要对这个图的顶点进行拓扑排序，过程如下：</p><p><img src="https://cdn.uniqueue.cn/tuopu-1.png" alt="tuopu-1"></p><p>首先，我们发现V6和v1是没有前驱的，所以我们就随机选去一个输出，我们先输出V6，删除和V6有关的边，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-2.png" alt="tuopu-2"></p><p>然后，我们继续寻找没有前驱的顶点，发现V1没有前驱，所以输出V1，删除和V1有关的边，得到下图的结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-3.png" alt="tuopu-3"></p><p>然后，我们又发现V4和V3都是没有前驱的，那么我们就随机选取一个顶点输出（具体看你实现的算法和图存储结构），我们输出V4，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-4.png" alt="tuopu-4"></p><p>然后，我们输出没有前驱的顶点V3，得到如下结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-5.png" alt="tuopu-5"></p><p>然后，我们分别输出V5和V2，最后全部顶点输出完成，该图的一个拓扑序列为：</p><p>v6–&gt;v1—&gt;v4—&gt;v3—&gt;v5—&gt;v2</p><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>1.用邻接表存储数据，同时对终点的结点的入度加一；<br>2.将没有先决条件便可以排序的点（即初始入度为0的点）先加入队列并输出；<br>3.从队首元素开始扩展，将与队首元素相连的结点的入度减一（等同于擦除这条边），如果该结点入度变为0，则将其入队，作为下一次查找的起点；<br>4.将队首元素出队，当队首元素为空时停止排序。</p><h2 id="代码及注解"><a href="#代码及注解" class="headerlink" title="代码及注解"></a>代码及注解</h2><p>有n个点，m条边的有向无环图，输入n，m，然后每一行输入一条边的信息：起点x，终点y</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;int n,m,a,b,c,d,e,re;struct map1{    int stat,end;};map1 tu[100];int rd[100],chong[100];queue &lt;int&gt; q;int main(){    cin&gt;&gt;n&gt;&gt;m;//n点m边    for (a=1;a&lt;=m;a++)    {        cin&gt;&gt;tu[a].stat&gt;&gt;tu[a].end;        rd[tu[a].end]++;    }    for (int i=1;i&lt;=n;i++)    if (rd[i]==0) q.push(i);//将初始入度为0的结点入队    while (!q.empty())    {            cout&lt;&lt;q.front()&lt;&lt;&quot; &quot;;            for (int j=1;j&lt;=m;j++)            {                if (tu[j].stat==q.front())//找以队首元素为起点的边                {                    rd[tu[j].end]--;                    if (rd[tu[j].end]==0)                     {                        q.push(tu[j].end);                    }                }            }        q.pop();    }    return 0;}</code></pre>]]></content>
+      
+      <categories>
+          
+          <category> OI笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法-拓扑排序 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>最小生成树</title>
       <link href="/p/minimum-spanning-tree.html"/>
       <url>/p/minimum-spanning-tree.html</url>
@@ -256,27 +298,6 @@
             <tag> 算法-Kruskal </tag>
             
             <tag> 算法-Prim </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>拓扑排序</title>
-      <link href="/p/topological-sort.html"/>
-      <url>/p/topological-sort.html</url>
-      <content type="html"><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>拓扑排序是一种可以将有先决条件（即必须将a、b排在前面后再排c，缺一不可）的数据变得有序的一种排序方法。拓扑排序仅可在有向无环图中使用，同时可以判断图中是否有环。因为顺序不同，拓扑排序得到的答案可能不同。</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>因为排序是有先决条件的，所以可以将要有先决条件的个数（在图中即为入度）记录下来，每满足一个就减一，直到个数为0便可以将其放入序列中。</p><h2 id="手动实现"><a href="#手动实现" class="headerlink" title="手动实现"></a>手动实现</h2><p>如果我们有如下的一个有向无环图，我们需要对这个图的顶点进行拓扑排序，过程如下：</p><p><img src="https://cdn.uniqueue.cn/tuopu-1.png" alt="tuopu-1"></p><p>首先，我们发现V6和v1是没有前驱的，所以我们就随机选去一个输出，我们先输出V6，删除和V6有关的边，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-2.png" alt="tuopu-2"></p><p>然后，我们继续寻找没有前驱的顶点，发现V1没有前驱，所以输出V1，删除和V1有关的边，得到下图的结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-3.png" alt="tuopu-3"></p><p>然后，我们又发现V4和V3都是没有前驱的，那么我们就随机选取一个顶点输出（具体看你实现的算法和图存储结构），我们输出V4，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-4.png" alt="tuopu-4"></p><p>然后，我们输出没有前驱的顶点V3，得到如下结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-5.png" alt="tuopu-5"></p><p>然后，我们分别输出V5和V2，最后全部顶点输出完成，该图的一个拓扑序列为：</p><p>v6–&gt;v1—&gt;v4—&gt;v3—&gt;v5—&gt;v2</p><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>1.用邻接表存储数据，同时对终点的结点的入度加一；<br>2.将没有先决条件便可以排序的点（即初始入度为0的点）先加入队列并输出；<br>3.从队首元素开始扩展，将与队首元素相连的结点的入度减一（等同于擦除这条边），如果该结点入度变为0，则将其入队，作为下一次查找的起点；<br>4.将队首元素出队，当队首元素为空时停止排序。</p><h2 id="代码及注解"><a href="#代码及注解" class="headerlink" title="代码及注解"></a>代码及注解</h2><p>有n个点，m条边的有向无环图，输入n，m，然后每一行输入一条边的信息：起点x，终点y</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;int n,m,a,b,c,d,e,re;struct map1{    int stat,end;};map1 tu[100];int rd[100],chong[100];queue &lt;int&gt; q;int main(){    cin&gt;&gt;n&gt;&gt;m;//n点m边    for (a=1;a&lt;=m;a++)    {        cin&gt;&gt;tu[a].stat&gt;&gt;tu[a].end;        rd[tu[a].end]++;    }    for (int i=1;i&lt;=n;i++)    if (rd[i]==0) q.push(i);//将初始入度为0的结点入队    while (!q.empty())    {            cout&lt;&lt;q.front()&lt;&lt;&quot; &quot;;            for (int j=1;j&lt;=m;j++)            {                if (tu[j].stat==q.front())//找以队首元素为起点的边                {                    rd[tu[j].end]--;                    if (rd[tu[j].end]==0)                     {                        q.push(tu[j].end);                    }                }            }        q.pop();    }    return 0;}</code></pre>]]></content>
-      
-      <categories>
-          
-          <category> OI笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 算法-拓扑排序 </tag>
             
         </tags>
       
@@ -314,10 +335,10 @@
     </entry>
     
     <entry>
-      <title>标签云</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
-      <content type="html"><![CDATA[]]></content>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
+      <content type="html"><![CDATA[<p>我是Llf，最弱的蒟蒻，完了</p><p>本博客部分文章的markdown源文件均可通过将 <code>https://llf0703.com/p/*.html</code>改为 <code>https://md.llf0703.com/p/*.md</code> 查看</p><p>这个东西会不时更新，也许有的最新文章看不了</p><p><a href="https://bzoj.llf0703.com/" target="_blank" rel="noopener">BZOJ离线题库（By ruanxingzhi）</a></p><p>CSDN博客:  <a href="https://blog.csdn.net/Llf_0703" target="_blank" rel="noopener">Llf_0703</a></p><p>luogu:  <a href="https://www.luogu.org/space/show?uid=29696" target="_blank" rel="noopener">Llf0703</a></p><p>BZOJ:  <a href="https://www.lydsy.com/JudgeOnline/userinfo.php?user=Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Bilibili： <a href="https://space.bilibili.com/268840304/" target="_blank" rel="noopener">Llf030703</a></p><p>逼乎:  <a href="https://www.zhihu.com/people/llf-93-87/" target="_blank" rel="noopener">Llf</a></p><p>Coding:  <a href="https://coding.net/u/Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Gayhub:  <a href="https://github.com/Llf0703" target="_blank" rel="noopener">Llf0703</a></p>]]></content>
     </entry>
     
     <entry>
@@ -328,10 +349,10 @@
     </entry>
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
-      <content type="html"><![CDATA[<p>我是Llf，最弱的蒟蒻，完了</p><p>本博客部分文章的markdown源文件均可通过将 <code>https://llf0703.com/p/*.html</code>改为 <code>https://md.llf0703.com/p/*.md</code> 查看</p><p>这个东西会不时更新，也许有的最新文章看不了</p><p><a href="https://bzoj.llf0703.com/" target="_blank" rel="noopener">BZOJ离线题库（By ruanxingzhi）</a></p><p>CSDN博客:  <a href="https://blog.csdn.net/Llf_0703" target="_blank" rel="noopener">Llf_0703</a></p><p>luogu:  <a href="https://www.luogu.org/space/show?uid=29696" target="_blank" rel="noopener">Llf0703</a></p><p>BZOJ:  <a href="https://www.lydsy.com/JudgeOnline/userinfo.php?user=Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Bilibili： <a href="https://space.bilibili.com/268840304/" target="_blank" rel="noopener">Llf030703</a></p><p>逼乎:  <a href="https://www.zhihu.com/people/llf-93-87/" target="_blank" rel="noopener">Llf</a></p><p>Coding:  <a href="https://coding.net/u/Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Gayhub:  <a href="https://github.com/Llf0703" target="_blank" rel="noopener">Llf0703</a></p>]]></content>
+      <title>标签云</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
+      <content type="html"><![CDATA[]]></content>
     </entry>
     
   

@@ -24,6 +24,8 @@
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/viosey/hexo-theme-material@latest/source/"/>
 
 
+    <link rel="dns-prefetch" href="https://cdn1.lncld.net"/>
+
 
 
 
@@ -596,6 +598,29 @@ int main()
                 <!-- Post Comments -->
                 
                     
+    <div id="comment" style='padding:10px;' class="vcomment"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+    var GUEST_INFO = ['nick','mail','link'];
+    var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+        return GUEST_INFO.indexOf(item) > -1
+    });
+    var notify = 'false' == true;
+    var verify = 'fasle' == true;
+    new Valine({
+        el: '.vcomment',
+        notify: notify,
+        verify: verify,
+        appId: "F3FpnUQBuRdpuGADMdaFVosr-gzGzoHsz",
+        appKey: "sItEyL1cToUEFplRsthkA8sj",
+        placeholder: "欢迎来踩我这个蒟蒻",
+        pageSize:'10',
+        avatar:'identicon',
+        lang:'zh-cn'
+    });
+</script>
+
                 
             </div>
 
@@ -603,7 +628,7 @@ int main()
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/p/minimum-spanning-tree.html" id="post_nav-newer" class="prev-content">
+        <a href="/p/sort.html" id="post_nav-newer" class="prev-content">
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
                 <i class="material-icons">arrow_back</i>
             </button>
@@ -617,7 +642,7 @@ int main()
 
     <!-- Next Nav -->
     
-        <a href="/p/noip2017-summary.html" id="post_nav-older" class="next-content">
+        <a href="/p/minimum-spanning-tree.html" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
@@ -965,6 +990,8 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 
+
+   
 
 
 

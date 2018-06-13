@@ -24,6 +24,8 @@
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net/gh/viosey/hexo-theme-material@latest/source/"/>
 
 
+    <link rel="dns-prefetch" href="https://cdn1.lncld.net"/>
+
 
 
 
@@ -302,6 +304,15 @@
     <!-- Analytics -->
     
     
+        <script>
+    var _hmt = _hmt || [];
+    (function() {var hm = document.createElement('script');
+    hm.src = 'https://hm.baidu.com/hm.js?f788000dae07242a425b8d89dff07010';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
     
 
     <!-- Custom Head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
@@ -515,7 +526,7 @@
 <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ol>
 <li>链表/链式前向星</li>
 <li>线段树/树状数组/Splay等可以维护一段数据的数据结构</li>
-<li><a href="https://llf0703.com/p/LCA.html" target="_blank" rel="noopener">LCA</a> （其实只涉及到一些思想，而且几乎用不到，可以先不学）</li>
+<li><a href="https://llf0703.com/p/LCA.html">LCA</a> （其实只涉及到一些思想，而且几乎用不到，可以先不学）</li>
 </ol>
 <h2 id="树剖原理"><a href="#树剖原理" class="headerlink" title="树剖原理"></a>树剖原理</h2><p>我很早之前就听说过树剖，当时觉得实在是太高大上了，但现在发现只是名字比较高端，整个原理还是很简单的，只是码量比较大。</p>
 <p>作为蒟蒻，我在图论题中几乎都只会搜索，也靠着搜索在SCOI上拿了仅有的几十分。不过我好歹还是学过前缀和差分的，如果一个图中所有的点连成一条线，那么来找两个点之间路径长只需要维护前缀和就行了。如果一棵树中的结点都连成一条线，我们就把它称作链。如果把树上的结点分为若干条链，那么很多问题就可以变得简单多了。</p>
@@ -948,30 +959,27 @@ int main()
                 <!-- Post Comments -->
                 
                     
-    <!-- 使用 gitcoment -->
-<div id="gitment-comment">
-    <!-- Gitment 评论框 -->
-<div id="container"></div>
-</div>
-<style>
-    #gitment-comment{
-        background-color: #eee;
-        padding: 2pc;
-    }
-</style>
-<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <div id="comment" style='padding:10px;' class="vcomment"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
 <script>
-    var gitment = new Gitment({
-        //id: '页面 ID', // 可选。默认为 location.href
-        owner: '',
-        repo: '',
-        oauth: {
-            client_id: '',
-            client_secret: '',
-        },
-    })
-    gitment.render('container')
+    var GUEST_INFO = ['nick','mail','link'];
+    var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+        return GUEST_INFO.indexOf(item) > -1
+    });
+    var notify = 'false' == true;
+    var verify = 'true' == true;
+    new Valine({
+        el: '.vcomment',
+        notify: notify,
+        verify: verify,
+        appId: "F3FpnUQBuRdpuGADMdaFVosr-gzGzoHsz",
+        appKey: "sItEyL1cToUEFplRsthkA8sj",
+        placeholder: "欢迎来踩我这个蒟蒻",
+        pageSize:'10',
+        avatar:'identicon',
+        lang:'zh-cn'
+    });
 </script>
 
                 
@@ -1344,7 +1352,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 
-   <!-- Gitment -->
+   
 
 
 

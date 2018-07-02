@@ -383,21 +383,21 @@
     <!-- Post Thumbnail -->
     
         <!-- Custom Thumbnail -->
-        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50 lazy" data-original="https://i.loli.net/2018/06/11/5b1e75857b77c.png">
+        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50 lazy" data-original="https://i.loli.net/2018/06/11/5b1e7585660b0.png">
     
 
         <!-- Post Title -->
-        <p class="article-headline-p"><a href="/p/minimum-spanning-tree.html">最小生成树</a></p>
+        <p class="article-headline-p"><a href="/p/topological-sort.html">拓扑排序</a></p>
     </div>
 
     <!-- Post Excerpt -->
     <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
         
-            概念最小生成树即为无向图中结点构成的树中各边权值之和最小的树，可以有多种情况。一般用Kruskal...
+            概念拓扑排序是一种可以将有先决条件（即必须将a、b排在前面后再排c，缺一不可）的数据变得有序的一种...
         
         &nbsp;&nbsp;&nbsp;
         <span>
-            <a href="/p/minimum-spanning-tree.html" target="_self">阅读全文</a>
+            <a href="/p/topological-sort.html" target="_self">阅读全文</a>
         </span>
     </div>
     <!-- Post_entry Info-->
@@ -442,21 +442,21 @@
     <!-- Post Thumbnail -->
     
         <!-- Custom Thumbnail -->
-        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50 lazy" data-original="https://i.loli.net/2018/06/11/5b1e7585660b0.png">
+        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50 lazy" data-original="https://i.loli.net/2018/06/11/5b1e75857b77c.png">
     
 
         <!-- Post Title -->
-        <p class="article-headline-p"><a href="/p/topological-sort.html">拓扑排序</a></p>
+        <p class="article-headline-p"><a href="/p/minimum-spanning-tree.html">最小生成树</a></p>
     </div>
 
     <!-- Post Excerpt -->
     <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
         
-            概念拓扑排序是一种可以将有先决条件（即必须将a、b排在前面后再排c，缺一不可）的数据变得有序的一种...
+            概念最小生成树即为无向图中结点构成的树中各边权值之和最小的树，可以有多种情况。一般用Kruskal...
         
         &nbsp;&nbsp;&nbsp;
         <span>
-            <a href="/p/topological-sort.html" target="_self">阅读全文</a>
+            <a href="/p/minimum-spanning-tree.html" target="_self">阅读全文</a>
         </span>
     </div>
     <!-- Post_entry Info-->
@@ -930,7 +930,22 @@ console.log('\n %c © Material Theme | Version: 1.5.2 | https://github.com/viose
 </script>
 
                 </main>
-            </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-        </body>
+            </div>
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
     
 </html>

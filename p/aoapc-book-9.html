@@ -252,7 +252,7 @@
 
     
         <meta property="article:published_time" content="Sat May 26 2018 08:39:00 GMT+0800">
-        <meta property="article:modified_time" content="Wed Jun 13 2018 18:05:27 GMT+0800">
+        <meta property="article:modified_time" content="Tue Jul 03 2018 21:33:58 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -275,7 +275,7 @@
     "mainEntityOfPage": "https://llf0703.com/p/aoapc-book-9.html",
     "headline": "紫书第九章-动态规划初步 刷题总结",
     "datePublished": "Sat May 26 2018 08:39:00 GMT+0800",
-    "dateModified": "Wed Jun 13 2018 18:05:27 GMT+0800",
+    "dateModified": "Tue Jul 03 2018 21:33:58 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Llf0703",
@@ -372,7 +372,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#例题"><span class="post-toc-number">1.</span> <span class="post-toc-text">例题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-1-UVa1025-A-Spy-in-the-Metro"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">9-1 UVa1025-A Spy in the Metro</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-2-UVa437-The-Tower-of-Babylon"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">9-2 UVa437-The Tower of Babylon</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-3-UVa1347-Tour"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">9-3 UVa1347-Tour</span></a></li></ol></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#例题"><span class="post-toc-number">1.</span> <span class="post-toc-text">例题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-1-UVa1025-A-Spy-in-the-Metro"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">9-1 UVa1025-A Spy in the Metro</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-2-UVa437-The-Tower-of-Babylon"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">9-2 UVa437-The Tower of Babylon</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-3-UVa1347-Tour"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">9-3 UVa1347-Tour</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-4-UVa116-单向TSP"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">9-4 UVa116-单向TSP</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-5-UVa12563-劲歌金曲"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">9-5 UVa12563-劲歌金曲</span></a></li></ol></li></ol>
     </ul>
     
 
@@ -689,8 +689,102 @@ int main()
     return 0;
 }
 </code></pre>
-<p>未完待续</p>
 <p>以上更新于2018.5.26</p>
+<hr>
+<h3 id="9-4-UVa116-单向TSP"><a href="#9-4-UVa116-单向TSP" class="headerlink" title="9-4 UVa116-单向TSP"></a>9-4 <a href="https://vjudge.net/problem/UVA-116" target="_blank" rel="noopener">UVa116-单向TSP</a></h3><p>用$f[i][j]$来记录从起点到$(i,j)$的开销（和紫书上反过来了），注意边界判断就行了。唯一有点难度的就是输出路径，我感觉用的是有点像前向星的方法。</p>
+<pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+int f[105][105],t[105][105],rd[105][105],newf[105];
+int n,m;
+
+int main()
+{
+    while (~scanf(&quot;%d%d&quot;,&amp;m,&amp;n))
+    {
+        for (int i=1;i&lt;=m;i++)
+            for (int j=1;j&lt;=n;j++) scanf(&quot;%d&quot;,&amp;t[i][j]);
+        int ans=1e9, last=0;
+        for (int i=1;i&lt;=m;i++) f[i][n]=t[i][n];
+        if (n==1)
+        {
+            for (int i=1;i&lt;=m;i++)
+                if (f[i][1]&lt;ans) ans=f[i][1],last=i;
+        }
+        else
+        {
+            for (int j=n-1;j&gt;=1;j--)
+                for (int i=1;i&lt;=m;i++)
+                {
+                    int dir[]={i,i+1,i-1};
+                    if (i==1) dir[2]=m;
+                    if (i==m) dir[1]=1;
+                    sort(dir,dir+3);
+                    f[i][j]=f[dir[0]][j+1]+t[i][j];
+                    rd[i][j]=dir[0];
+                    for (int k=1;k&lt;3;k++)
+                        if (f[dir[k]][j+1]+t[i][j]&lt;f[i][j]) f[i][j]=f[dir[k]][j+1]+t[i][j],rd[i][j]=dir[k];
+                    if (j==1 &amp;&amp; f[i][j]&lt;ans) ans=f[i][j],last=i; 
+            }
+        }
+            printf(&quot;%d&quot;,last);
+            for (int i=rd[last][1],j=2;j&lt;=n;i=rd[i][j],j++) printf(&quot; %d&quot;,i);
+            printf(&quot;\n%d\n&quot;,ans);
+    }
+    return 0;
+}
+</code></pre>
+<h3 id="9-5-UVa12563-劲歌金曲"><a href="#9-5-UVa12563-劲歌金曲" class="headerlink" title="9-5 UVa12563-劲歌金曲"></a>9-5 <a href="https://vjudge.net/problem/UVA-12563" target="_blank" rel="noopener">UVa12563-劲歌金曲</a></h3><p><del>数据范围真的假</del>，直接01背包即可</p>
+<pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+int n,m,t,a,b,c,k,kase,sum,ans;
+int cnt[55][10005],f[55][10005],s[55];
+
+inline int read()
+{
+    char ch=getchar();
+    int f=1,x=0;
+    while (ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;)
+    {
+        if (ch==&#39;-&#39;) f=-1;
+        ch=getchar();
+    }
+    while (ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;)
+    {
+        x=x*10+ch-&#39;0&#39;;
+        ch=getchar();
+    }
+    return f*x;
+}
+
+int main()
+{
+    k=read();
+    while (k--)
+    {
+        n=read(); t=read();
+        for (int i=1;i&lt;=n;i++) s[i]=read();
+        for (int i=1;i&lt;=n;i++) 
+            for (int j=0;j&lt;=t;j++)
+            {
+                cnt[i][j]=(i==1) ? 0 : cnt[i-1][j];
+                f[i][j]=(i==1) ? 0 : f[i-1][j];
+                if (j&gt;s[i])
+                {
+                    if (cnt[i][j]&lt;cnt[i-1][j-s[i]]+1) 
+                    {
+                        cnt[i][j]=cnt[i-1][j-s[i]]+1;
+                        f[i][j]=f[i-1][j-s[i]]+s[i];
+                    }
+                    else if (cnt[i][j]==cnt[i-1][j-s[i]]+1) f[i][j]=max(f[i][j],f[i-1][j-s[i]]+s[i]);
+                }
+            }
+        printf(&quot;Case %d: %d %d\n&quot;,++kase,cnt[n][t]+1,f[n][t]+678);
+    }
+}
+</code></pre>
+<p>未完待续</p>
+<p>以上内容更新于2018.7.3</p>
 <hr>
 
         

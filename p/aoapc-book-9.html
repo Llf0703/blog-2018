@@ -252,7 +252,7 @@
 
     
         <meta property="article:published_time" content="Sat May 26 2018 08:39:00 GMT+0800">
-        <meta property="article:modified_time" content="Tue Jul 03 2018 21:33:58 GMT+0800">
+        <meta property="article:modified_time" content="Wed Jul 04 2018 08:10:55 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -275,7 +275,7 @@
     "mainEntityOfPage": "https://llf0703.com/p/aoapc-book-9.html",
     "headline": "紫书第九章-动态规划初步 刷题总结",
     "datePublished": "Sat May 26 2018 08:39:00 GMT+0800",
-    "dateModified": "Tue Jul 03 2018 21:33:58 GMT+0800",
+    "dateModified": "Wed Jul 04 2018 08:10:55 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Llf0703",
@@ -302,6 +302,14 @@
     
 
     <!-- Analytics -->
+    
+        <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-121971075-1', 'auto');ga('send', 'pageview');
+</script>
     
     
         <script>
@@ -372,7 +380,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#例题"><span class="post-toc-number">1.</span> <span class="post-toc-text">例题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-1-UVa1025-A-Spy-in-the-Metro"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">9-1 UVa1025-A Spy in the Metro</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-2-UVa437-The-Tower-of-Babylon"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">9-2 UVa437-The Tower of Babylon</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-3-UVa1347-Tour"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">9-3 UVa1347-Tour</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-4-UVa116-单向TSP"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">9-4 UVa116-单向TSP</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-5-UVa12563-劲歌金曲"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">9-5 UVa12563-劲歌金曲</span></a></li></ol></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#例题"><span class="post-toc-number">1.</span> <span class="post-toc-text">例题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-1-UVa1025-A-Spy-in-the-Metro"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">9-1 UVa1025-A Spy in the Metro</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-2-UVa437-The-Tower-of-Babylon"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">9-2 UVa437-The Tower of Babylon</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-3-UVa1347-Tour"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">9-3 UVa1347-Tour</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-4-UVa116-单向TSP"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">9-4 UVa116-单向TSP</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-5-UVa12563-劲歌金曲"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">9-5 UVa12563-劲歌金曲</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-6-UVa11400-照明系统设计"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">9-6 UVa11400-照明系统设计</span></a></li></ol></li></ol>
     </ul>
     
 
@@ -786,6 +794,58 @@ int main()
 <p>未完待续</p>
 <p>以上内容更新于2018.7.3</p>
 <hr>
+<h3 id="9-6-UVa11400-照明系统设计"><a href="#9-6-UVa11400-照明系统设计" class="headerlink" title="9-6 UVa11400-照明系统设计"></a>9-6 <a href="https://vjudge.net/problem/UVA-11400" target="_blank" rel="noopener">UVa11400-照明系统设计</a></h3><p>跟书上的思路一样。每种灯泡要么都取，要么都不取。然后用一个类似LIS的动规方法，用$f[i]$表示前i种灯泡的最小开销，$sum[i]$表示前i种灯泡的数量$f[i]=min(f[i],f[j]+(sum[i]-sum[j])*node[i].c+node[i].k)(j&lt;i)$</p>
+<pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+struct Node{
+    int v,k,c,l;
+} node[1005];
+int n,m,a,b,sum[1005],f[1005];
+
+inline int read()
+{
+    char ch=getchar();
+    int f=1,x=0;
+    while (ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;)
+    {
+        if (ch==&#39;-&#39;) f=-1;
+        ch=getchar();
+    }
+    while (ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;)
+    {
+        x=x*10+ch-&#39;0&#39;;
+        ch=getchar();
+    }
+    return f*x;
+}
+
+inline bool cmp(Node a,Node b)
+{
+    return a.v&lt;b.v;
+}
+
+int main()
+{
+    for (;;)
+    {
+        n=read();
+        if (n==0) break;
+        for (int i=1;i&lt;=n;i++) node[i].v=read(),node[i].k=read(),node[i].c=read(),node[i].l=read();
+        sort(node+1,node+n+1,cmp);
+        for (int i=1;i&lt;=n;i++) sum[i]=node[i].l+sum[i-1];
+        f[0]=0;
+        for (int i=1;i&lt;=n;i++)
+        {
+            int now=0x7fffffff;
+            for (int j=0;j&lt;i;j++) now=min(now,f[j]+(sum[i]-sum[j])*node[i].c+node[i].k);
+            f[i]=now;
+        }
+        printf(&quot;%d\n&quot;,f[n]);
+    }
+    return 0;
+}
+</code></pre>
 
         
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">

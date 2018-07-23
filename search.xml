@@ -3,6 +3,21 @@
   
     
     <entry>
+      <title>2018暑假清北学堂济南集训游记及总结</title>
+      <link href="/p/qbxt-2018-summer-summary.html"/>
+      <url>/p/qbxt-2018-summer-summary.html</url>
+      <content type="html"><![CDATA[<p>本来报的成都的班，结果取消了（多半是人不够），cyc，wzx和我就决定去济南，顺便提前去玩几天。<del>颓废的气息</del></p><h2 id="7-11"><a href="#7-11" class="headerlink" title="7.11"></a>7.11</h2><p>早上和cyc坐动车去了曲阜，悲催的wzx因为坐了晚一点的车被困在成都了。晚上和cyc在酒店里颓CSGO和吃鸡，<del>真是充实的一天。</del></p><h2 id="7-12"><a href="#7-12" class="headerlink" title="7.12"></a>7.12</h2><p>上午去了曲阜的三孔景区。感觉挺壮观的，环境也非常好（到处都是几百年的古树）。话说孔林和孔庙孔府离的好远啊，只有坐车去。从孔府出来就有人说35一个人去孔林，还好没听叫了个uber10块钱就过去了。孔林就只去看了孔子墓，周围绿水青山的，<del>风水极好</del>，听说只有孔姓后人才能埋在孔林，真是有福气。</p><p>中午退房以后就去火车站玩手机玩到4点，然后坐车去济南。晚上10点又去西站接wzx。这里要吐槽下济南城市布局，怎么火车站都在西边而且还这么远？而且第一条地铁也要2019年1月1日开通，真麻烦。</p><h2 id="7-13"><a href="#7-13" class="headerlink" title="7.13"></a>7.13</h2><p>我们三个上午骑车去了大明湖，然后坐在湖边打了一个多小时斗地主（<del>真有意境</del>）。后面大概逛了逛就回去了。</p><p>下午去看了山东<del>情妇院</del>博物馆（其实就是题词上面的“博物馆”看起来像情妇院，很久以前一个梗了）。本以为省博物馆位置肯定会好一些，结果所在的历下区<strong>又乱又差</strong>，到处都在施工，整的他们两个都在怀疑我是不是导航导错路了。而且全程上坡，累的一批，回来想着一直下坡很爽还tm车都找不到。（全济南共享单车都少，在成都我一直都是看到车后打开App扫，在济南我都是打开App找到车后扫，而且车都很旧，摩拜的新款车全都没有）。不过博物馆本身还是很有看头的，看完后对齐鲁大地的历史大概有了了解，<del>虽然我主要都去关注字画去了，里面有一幅隶书是真的好看啊</del>。 </p><h2 id="7-14"><a href="#7-14" class="headerlink" title="7.14"></a>7.14</h2><p>起床晚了，他们两个哪都不想去，就颓废了一上午。中午惊喜地发现上课的地方就在我们这，然后搬行李过去报道。三床房没了，cyc就只有和另一个人拼一个房间。下午我们分工写一个局域网联机的斗地主，也没什么结果。</p><h2 id="7-15"><a href="#7-15" class="headerlink" title="7.15"></a>7.15</h2><p><a href="https://llf0703.com/gugugu/">QBXT集训-基础算法总结</a></p><p>上午主要讲的是一些基础算法，像什么搜索、二分、倍增、分治之类的。感觉还好。</p><p>下午考了套题，我才rk25，好菜啊。</p><h2 id="7-16"><a href="#7-16" class="headerlink" title="7.16"></a>7.16</h2><p><a href="https://llf0703.com/gugugu/">QBXT集训-数论总结</a></p><p>上午还是讲的基础算法，无话。</p><p>下午讲数论，终于算是系统地学了一遍数论了，我发现我之前的总结写的好水啊，还有bug。</p><h2 id="7-17"><a href="#7-17" class="headerlink" title="7.17"></a>7.17</h2><p><a href="https://llf0703.com/gugugu/">QBXT集训-数据结构总结</a></p><p>对于这一天的内容，我只想问：为什么课表上那么简单，讲的那么难？</p><h2 id="7-18"><a href="#7-18" class="headerlink" title="7.18"></a>7.18</h2><p><a href="https://llf0703.com/gugugu/">QBXT集训-动态规划总结</a></p><p>数据结构和动规各讲一天半，下午开始讲动规。从头开始讲，所以还不算太难。</p><h2 id="7-19"><a href="#7-19" class="headerlink" title="7.19"></a>7.19</h2><p>又是一天dp，我感觉我dp怕是药丸。</p><h2 id="7-20"><a href="#7-20" class="headerlink" title="7.20"></a>7.20</h2><p><a href="https://llf0703.com/gugugu/">QBXT集训-动态规划总结</a></p><p>图论大多我都学过，但还是想巩固一下，结果大佬们纷纷表示不想听，于是难度就增加了，又听不懂了。我好菜啊！</p><h2 id="7-21"><a href="#7-21" class="headerlink" title="7.21"></a>7.21</h2><p><a href="https://llf0703.com/gugugu/">QBXT集训-字符串总结</a></p><p>字符串我大概都还会，所以基本上就水了一上午。</p><p>下午又是一套%你题。lmj太毒瘤了！第一题找规律，我离线处理得了60分，然后死磕第二题，最后TLE了，然后总分60rk竟然都是18。<del>lmj：这套题暴力都有240啊</del>。</p><h2 id="7-22"><a href="#7-22" class="headerlink" title="7.22"></a>7.22</h2><p>讲了点往年试题，大家似乎都在水。最后lmj还成功上演了“一步扫雷”。</p><p>下午又去机场打斗地主打到晚上，飞机还延误一个小时。23号0点过终于到了。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这一趟过去收获还是挺大的，也见识了比我强太多的大佬，感觉自已好菜啊！</p><p>总结还没写完，那些链接都只是在占坑，有时间慢慢补，就酱。</p><hr><p>更新于2018.7.23</p><hr>]]></content>
+      
+      <categories>
+          
+          <category> 游记 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    <entry>
       <title>紫书第九章-动态规划初步 刷题总结</title>
       <link href="/p/aoapc-book-9.html"/>
       <url>/p/aoapc-book-9.html</url>
@@ -43,21 +58,6 @@
             <tag> 数学 </tag>
             
         </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>2018暑假清北学堂济南集训游记及总结</title>
-      <link href="/p/qbxt-2018-summer-summary.html"/>
-      <url>/p/qbxt-2018-summer-summary.html</url>
-      <content type="html"><![CDATA[<p>本来报的成都的班，结果取消了（多半是人不够），cyc，wzx和我就决定去济南，顺便提前去玩几天。<del>颓废的气息</del></p><h2 id="7-11"><a href="#7-11" class="headerlink" title="7.11"></a>7.11</h2><p>早上和cyc坐动车去了曲阜，悲催的wzx因为坐了晚一点的车被困在成都了。晚上和cyc在酒店里颓CSGO和吃鸡，<del>真是充实的一天。</del></p><h2 id="7-12"><a href="#7-12" class="headerlink" title="7.12"></a>7.12</h2><p>上午去了曲阜的三孔景区。感觉挺壮观的，环境也非常好（到处都是几百年的古树）。话说孔林和孔庙孔府离的好远啊，只有坐车去。从孔府出来就有人说35一个人去孔林，还好没听叫了个uber10块钱就过去了。孔林就只去看了孔子墓，周围绿水青山的，<del>风水极好</del>，听说只有孔姓后人才能埋在孔林，真是有福气。</p><p>中午退房以后就去火车站玩手机玩到4点，然后坐车去济南。晚上10点又去西站接wzx。这里要吐槽下济南城市布局，怎么火车站都在西边而且还这么远？而且第一条地铁也要2019年1月1日开通，真麻烦。</p><h2 id="7-13"><a href="#7-13" class="headerlink" title="7.13"></a>7.13</h2><p>我们三个上午骑车去了大明湖，然后坐在湖边打了一个多小时斗地主（<del>真有意境</del>）。后面大概逛了逛就回去了。</p><p>下午去看了山东<del>情妇院</del>博物馆（其实就是题词上面的“博物馆”看起来像情妇院，很久以前一个梗了）。本以为省博物馆位置肯定会好一些，结果所在的历下区<strong>又乱又差</strong>，到处都在施工，整的他们两个都在怀疑我是不是导航导错路了。而且全程上坡，累的一批，回来想着一直下坡很爽还tm车都找不到。（全济南共享单车都少，在成都我一直都是看到车后打开App扫，在济南我都是打开App找到车后扫，而且车都很旧，摩拜的新款车全都没有）。不过博物馆本身还是很有看头的，看完后对齐鲁大地的历史大概有了了解，<del>虽然我主要都去关注字画去了，里面有一幅隶书是真的好看啊</del>。 </p><h2 id="7-14"><a href="#7-14" class="headerlink" title="7.14"></a>7.14</h2><p>起床晚了，他们两个哪都不想去，就颓废了一上午。中午惊喜地发现上课的地方就在我们这，然后搬行李过去报道。三床房没了，cyc就只有和另一个人拼一个房间。下午我们分工写一个局域网联机的斗地主，也没什么结果。</p><h2 id="7-15"><a href="#7-15" class="headerlink" title="7.15"></a>7.15</h2><p><a href="https://llf0703.com/gugugu/">QBXT集训-基础算法总结</a></p><p>上午主要讲的是一些基础算法，像什么搜索、二分、倍增、分治之类的。感觉还好。</p><p>下午考了套题，我才rk25，好菜啊。</p><h2 id="7-16"><a href="#7-16" class="headerlink" title="7.16"></a>7.16</h2><p><a href="https://llf0703.com/gugugu/">QBXT集训-数论总结</a></p><p>上午还是讲的基础算法，无话。</p><p>下午讲数论，终于算是系统地学了一遍数论了，我发现我之前的总结写的好水啊，还有bug。</p><h2 id="7-17"><a href="#7-17" class="headerlink" title="7.17"></a>7.17</h2><p><a href="https://llf0703.com/gugugu/">QBXT集训-数据结构总结</a></p><p>对于这一天的内容，我只想问：为什么课表上那么简单，讲的那么难？</p><h2 id="7-18"><a href="#7-18" class="headerlink" title="7.18"></a>7.18</h2><p><a href="https://llf0703.com/gugugu/">QBXT集训-动态规划总结</a></p><p>数据结构和动规各讲一天半，下午开始讲动规。从头开始讲，所以还不算太难。</p><h2 id="7-19"><a href="#7-19" class="headerlink" title="7.19"></a>7.19</h2><p>又是一天dp，我感觉我dp怕是药丸。</p><h2 id="7-20"><a href="#7-20" class="headerlink" title="7.20"></a>7.20</h2><p><a href="https://llf0703.com/gugugu/">QBXT集训-动态规划总结</a></p><p>图论大多我都学过，但还是想巩固一下，结果大佬们纷纷表示不想听，于是难度就增加了，又听不懂了。我好菜啊！</p><h2 id="7-21"><a href="#7-21" class="headerlink" title="7.21"></a>7.21</h2><p><a href="https://llf0703.com/gugugu/">QBXT集训-字符串总结</a></p><p>字符串我大概都还会，所以基本上就水了一上午。</p><p>下午又是一套%你题。lmj太毒瘤了！第一题找规律，我离线处理得了60分，然后死磕第二题，最后TLE了，然后总分60rk竟然都是18。<del>lmj：这套题暴力都有240啊</del>。</p><h2 id="7-22"><a href="#7-22" class="headerlink" title="7.22"></a>7.22</h2><p>讲了点往年试题，大家似乎都在水。最后lmj还成功上演了“一步扫雷”。</p><p>下午又去机场打斗地主打到晚上，飞机还延误一个小时。23号0点过终于到了。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这一趟过去收获还是挺大的，也见识了比我强太多的大佬，感觉自已好菜啊！</p><p>总结还没写完，那些链接都只是在占坑，有时间慢慢补，就酱。</p><hr><p>更新于2018.7.23</p><hr>]]></content>
-      
-      <categories>
-          
-          <category> 游记 </category>
-          
-      </categories>
-      
       
     </entry>
     
@@ -343,10 +343,17 @@
   
     
     <entry>
-      <title>时间轴</title>
-      <link href="/timeline/index.html"/>
-      <url>/timeline/index.html</url>
-      <content type="html"><![CDATA[]]></content>
+      <title>咕咕咕</title>
+      <link href="/gugugu/index.html"/>
+      <url>/gugugu/index.html</url>
+      <content type="html"><![CDATA[<h1>    <center> 蒟蒻Llf0703鸽了这篇文章 </center></h1><p>这不是404，只是用作占坑文章的临时页面，请返回上一页。</p>]]></content>
+    </entry>
+    
+    <entry>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
+      <content type="html"><![CDATA[<p>我是Llf，最弱的蒟蒻，完了</p><p>本博客部分文章的markdown源文件均可通过将 <code>https://llf0703.com/p/*.html</code>改为 <code>https://md.llf0703.com/p/*.md</code> 查看</p><p>这个东西会不时更新，也许有的最新文章看不了</p><p><a href="https://bzoj.llf0703.com/" target="_blank" rel="noopener">BZOJ离线题库（By ruanxingzhi）</a></p><p>CSDN博客:  <a href="https://blog.csdn.net/Llf_0703" target="_blank" rel="noopener">Llf_0703</a></p><p>luogu:  <a href="https://www.luogu.org/space/show?uid=29696" target="_blank" rel="noopener">Llf0703</a></p><p>BZOJ:  <a href="https://www.lydsy.com/JudgeOnline/userinfo.php?user=Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Bilibili： <a href="https://space.bilibili.com/268840304/" target="_blank" rel="noopener">Llf030703</a></p><p>逼乎:  <a href="https://www.zhihu.com/people/llf-93-87/" target="_blank" rel="noopener">Llf</a></p><p>Coding:  <a href="https://coding.net/u/Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Gayhub:  <a href="https://github.com/Llf0703" target="_blank" rel="noopener">Llf0703</a></p>]]></content>
     </entry>
     
     <entry>
@@ -364,17 +371,10 @@
     </entry>
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
-      <content type="html"><![CDATA[<p>我是Llf，最弱的蒟蒻，完了</p><p>本博客部分文章的markdown源文件均可通过将 <code>https://llf0703.com/p/*.html</code>改为 <code>https://md.llf0703.com/p/*.md</code> 查看</p><p>这个东西会不时更新，也许有的最新文章看不了</p><p><a href="https://bzoj.llf0703.com/" target="_blank" rel="noopener">BZOJ离线题库（By ruanxingzhi）</a></p><p>CSDN博客:  <a href="https://blog.csdn.net/Llf_0703" target="_blank" rel="noopener">Llf_0703</a></p><p>luogu:  <a href="https://www.luogu.org/space/show?uid=29696" target="_blank" rel="noopener">Llf0703</a></p><p>BZOJ:  <a href="https://www.lydsy.com/JudgeOnline/userinfo.php?user=Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Bilibili： <a href="https://space.bilibili.com/268840304/" target="_blank" rel="noopener">Llf030703</a></p><p>逼乎:  <a href="https://www.zhihu.com/people/llf-93-87/" target="_blank" rel="noopener">Llf</a></p><p>Coding:  <a href="https://coding.net/u/Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Gayhub:  <a href="https://github.com/Llf0703" target="_blank" rel="noopener">Llf0703</a></p>]]></content>
-    </entry>
-    
-    <entry>
-      <title>咕咕咕</title>
-      <link href="/gugugu/index.html"/>
-      <url>/gugugu/index.html</url>
-      <content type="html"><![CDATA[<h1>    <center> 蒟蒻Llf0703鸽了这篇文章 </center></h1><p>这不是404，只是用作占坑文章的临时页面，请返回上一页。</p>]]></content>
+      <title>时间轴</title>
+      <link href="/timeline/index.html"/>
+      <url>/timeline/index.html</url>
+      <content type="html"><![CDATA[]]></content>
     </entry>
     
   

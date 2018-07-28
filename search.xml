@@ -42,7 +42,7 @@
       <title>基础数论学习总结</title>
       <link href="/p/number-theory.html"/>
       <url>/p/number-theory.html</url>
-      <content type="html"><![CDATA[<p>原本打算先学Splay的，但想到提高组一般不考，而且我其它东西还差的多，就先把基础数论的东西复习一下，并且加深一下难度，<del>还做了n多道水题，虽然主要是之前没过的</del>。</p><hr><h2 id="1-整除"><a href="#1-整除" class="headerlink" title="1.整除"></a>1.整除</h2><p>这里就把整除的性质列一下：</p><ol><li>如果$a \mid b$且$b \mid c$，那么$a \mid c$</li><li>$a \mid b$且$a \mid c$等价于$\forall x,y$，有$a \mid (b \times x + c \times y)$</li><li>设$m\neq 0$,那么$a \mid b $等价于$(m \times a) \mid (m \times b)$</li><li>设$x,y$满足$a \times x+b \times y=1$且$a \mid n,b \mid n$，那么$(a \times b) \mid n$</li><li>若$b=q \times d+c$,那么$d \mid b$的充要条件是$d \mid c$</li></ol><h2 id="2-同余"><a href="#2-同余" class="headerlink" title="2.同余"></a>2.同余</h2><p>同余性质：</p><ol><li>自反性 $a\equiv a(mod m) $</li><li>对称性 若$a\equiv b(mod m)$则$b\equiv a(mod m)$</li><li>传递性 若$a\equiv b(mod m),b\equiv c(mod m)$，则$a\equiv c(mod m)$</li><li>同加性 若$a\equiv b(modm)$，则$a+c\equiv b+c(modm)$</li><li>同乘性(1) 若$a\equiv b(modm)$，则$a\times c\equiv b\times c(modm)$ </li><li>同乘性(2) 若$a\equiv b(modm),c\equiv d(modm)$ ，则$a\times c\equiv b\times d(modm)$</li><li>同幂性 若$a\equiv b(modm)$，则$a^{n}\equiv b^{n} (modm)$</li></ol><h2 id="3-最大公约数-gcd"><a href="#3-最大公约数-gcd" class="headerlink" title="3.最大公约数(gcd)"></a>3.最大公约数(gcd)</h2><h3 id="辗转相除法"><a href="#辗转相除法" class="headerlink" title="辗转相除法"></a>辗转相除法</h3><p>基础方法，不再赘述</p><pre><code class="lang-cpp">int gcd(int a,int b){    if (b==0) return a;    return gcd(b,a%b);}</code></pre><h3 id="二进制算法"><a href="#二进制算法" class="headerlink" title="二进制算法"></a>二进制算法</h3><p>不断去除因数2来提高gcd的效率</p><pre><code class="lang-cpp">inline int gcd(int x,int y){    int i,j;    if (x==0) return y;    if (y==0) return x;    for (i=0;0==(x&amp;1);i++) x&gt;&gt;=1;//去掉2    for (j=0;0==(y&amp;1);j++) y&gt;&gt;=1;    if (i&gt;j) i=j;    for (;;)    {        if (x&lt;y) x^=y,y^=x,x^=y;        if (0==(x-=y)) return y&lt;&lt;i;//如果x==y gcd==x==y        while (0==(x&amp;1)) x&gt;&gt;=1;    }}</code></pre><h3 id="扩展欧几里得算法"><a href="#扩展欧几里得算法" class="headerlink" title="扩展欧几里得算法"></a>扩展欧几里得算法</h3><p>扩展欧几里得算法用来在已知$(a,b)$，求$(x,y)$，使$a\times x+b\times y=gcd(a,b)$</p><pre><code class="lang-cpp">void exgcd(LL l,LL r,LL &amp;x,LL &amp;y){    if (r==0) x=1,y=0;    else    {        exgcd(r,l%r,y,x);        y-=l/r*x;    }}</code></pre><p>例题：<a href="https://www.luogu.org/problemnew/show/P1516" target="_blank" rel="noopener">洛谷P1516 青蛙的约会</a></p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;#define LL long longusing namespace std;LL n,m,a,b,c,x,y,l,X,Y;inline int read(){    char ch=getchar();    int x=0,f=1;    while (ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;)    {        if (ch==&#39;-&#39;) f=-1;        ch=getchar();    }    while (ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;)    {        x=x*10+ch-&#39;0&#39;;        ch=getchar();    }    return f*x;}inline LL exgcd(LL l,LL r,LL &amp;X,LL &amp;Y){    if (r==0)    {        X=1; Y=0;        return l;    }    LL a=exgcd(r,l%r,Y,X);    Y-=l/r*X;    return a;}int main(){    x=read(); y=read(); m=read(); n=read(); l=read();    LL deltav=(m&gt;=n) ? m-n : n-m;    LL deltas=(m&gt;=n) ? y-x : x-y;    LL k=exgcd(deltav,l,X,Y);    if (deltas%k!=0) printf(&quot;Impossible&quot;);    else printf(&quot;%lld&quot;,(X*(deltas/k)%(l/k)+(l/k))%(l/k));    return 0;}</code></pre><h2 id="4-逆元"><a href="#4-逆元" class="headerlink" title="4.逆元"></a>4.逆元</h2><p>若$a\times x\equiv 1(modb)$，就称x是a的逆元。</p><p>可以将这个式子转化为$a\times x+b\times y=1$，然后用扩展欧几里得定理求解。</p><p>当然也有一种线性算法，在需要求连续逆元时是最优的算法。</p><blockquote><p>以下内容来自<a href="https://www.luogu.org/blog/zjp-shadow/cheng-fa-ni-yuan" target="_blank" rel="noopener">https://www.luogu.org/blog/zjp-shadow/cheng-fa-ni-yuan</a></p></blockquote><hr><p>首先我们有一个, $1^{-1}\equiv 1(\bmod p)$</p><p>然后设 $p=k∗i+r,r&lt;i,1&lt;i&lt;p$ ,再将这个式子放到 $\bmod {p}$ 意义下就会得到：</p><p>$k∗i+r≡0(modp)$</p><p>然后乘上 $i^{-1} , r^{-1}$ 就可以得到:</p><p>$k*r^{-1}+i^{-1}\equiv 0 (\bmod p)$</p><p>$i^{-1}\equiv -k*r^{-1} (\bmod p)$</p><p>$i^{-1}\equiv -\lfloor \frac{p}{i} \rfloor*(p \bmod i)^{-1} (\bmod p)$</p><hr><p>模板题：<a href="https://www.luogu.org/problemnew/show/P3811" target="_blank" rel="noopener">洛谷P3811 【模板】乘法逆元</a></p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;#define LL long longusing namespace std;LL n,p,inv[3000005];int main(){    scanf(&quot;%d%d&quot;,&amp;n,&amp;p);    inv[1]=1;    printf(&quot;%d\n&quot;,inv[1]);    for (int i=2;i&lt;=n;i++)    {        inv[i]=-(p/i)*inv[p%i];        inv[i]=(inv[i]%p+p)%p;        printf(&quot;%d\n&quot;,inv[i]);    }    return 0;}</code></pre><h2 id="5-中国剩余定理"><a href="#5-中国剩余定理" class="headerlink" title="5.中国剩余定理"></a>5.中国剩余定理</h2><p>还是就放一个我看的吧</p><p><a href="https://blog.csdn.net/acdreamers/article/details/8050018" target="_blank" rel="noopener">https://blog.csdn.net/acdreamers/article/details/8050018</a></p><p>例题：<a href="https://www.luogu.org/problemnew/show/P3868" target="_blank" rel="noopener">洛谷P3868 [TJOI2009]猜数字</a></p><p>可以用裸的中国剩余定理来做，但是要注意必须用快速乘，不然$10^{18}\times 10^{18}$肯定会超范围。</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;#define LL long longusing namespace std;LL n,m,k;LL A[15],B[15];inline LL read(){    char ch=getchar();    LL f=1,x=0;    while (ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;)    {        if (ch==&#39;-&#39;) f=-1;        ch=getchar();    }    while (ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;)    {        x=x*10+ch-&#39;0&#39;;        ch=getchar();    }    return f*x;}inline void exgcd(LL l,LL r,LL &amp;x,LL &amp;y){    if (r==0) x=1,y=0;    else    {        exgcd(r,l%r,y,x);        y-=l/r*x;    }}inline LL gcd(LL a,LL b){    if (b==0) return a;    return gcd(b,a%b);}inline LL qmul(LL a,LL b,LL mod){    LL ans=0,k=a,f=1;    if (k&lt;0) k=-k,f*=-1;    if (b&lt;0) b=-b,b*=-1;    while (b)    {        if (b&amp;1) ans=(ans+k)%mod;        k=(k+k)%mod;        b&gt;&gt;=1;    }    return ans*f;}inline LL crt(){    LL M=1,ans=0;    for (int i=1;i&lt;=k;i++) M*=B[i];    for (int i=1;i&lt;=k;i++)    {        LL x,y,Mi=M/B[i];        exgcd(Mi,B[i],x,y);        x=(x%B[i]+B[i])%B[i];        ans=(ans+qmul(qmul(Mi,x,M),A[i],M))%M;    }    return (ans&lt;0)?ans+M:ans;}int main(){    k=read();    for (int i=1;i&lt;=k;i++) A[i]=read();    for (int i=1;i&lt;=k;i++) B[i]=read();    for (int i=1;i&lt;=k;i++) A[i]=(A[i]%B[i]+B[i])%B[i];    printf(&quot;%lld&quot;,crt());    return 0;}</code></pre><h2 id="6-素数筛"><a href="#6-素数筛" class="headerlink" title="6.素数筛"></a>6.素数筛</h2><h3 id="普通筛法"><a href="#普通筛法" class="headerlink" title="普通筛法"></a>普通筛法</h3><pre><code class="lang-cpp">inline void getprime(){    memset(ss,true,sizeof(ss));    int cnt=1;    ss[0]=ss[1]=false;    for (a=2;a&lt;=sqrt(n);a++)    {        if (ss[a]) zs[cnt++]=a;        for (b=2;b&lt;=n/a;b++) ss[a*b]=false;    }}</code></pre><h3 id="高效筛法"><a href="#高效筛法" class="headerlink" title="高效筛法"></a>高效筛法</h3><p>可以很容易的想到，普通筛法中筛了很多重复的数。而高效筛法可以减少重复（其实仍然有，只是少一些）。主要思路是运用得到了的素数来标记后面的合数。</p><pre><code class="lang-cpp">inline void getprime(){    memset(ss,true,sizeof(ss));    ss[0]=ss[1]=false;    for (int i=2;i&lt;=n;i++)    {        if (ss[i]) zs[cnt++]=i;        for (int j=1;j&lt;cnt &amp;&amp; zs[j]*i&lt;=n;j++) ss[zs[j]*i]=false;    }}</code></pre><p>以上内容更新于2018.5.9</p><hr>]]></content>
+      <content type="html"><![CDATA[<p>原本打算先学Splay的，但想到提高组一般不考，而且我其它东西还差的多，就先把基础数论的东西复习一下，并且加深一下难度，<del>还做了n多道水题，虽然主要是之前没过的</del>。</p><hr><h2 id="1-整除"><a href="#1-整除" class="headerlink" title="1.整除"></a>1.整除</h2><p>这里就把整除的性质列一下：</p><ol><li>如果$a \mid b$且$b \mid c$，那么$a \mid c$</li><li>$a \mid b$且$a \mid c$等价于$\forall x,y$，有$a \mid (b \times x + c \times y)$</li><li>设$m\neq 0$,那么$a \mid b $等价于$(m \times a) \mid (m \times b)$</li><li>设$x,y$满足$a \times x+b \times y=1$且$a \mid n,b \mid n$，那么$(a \times b) \mid n$</li><li>若$b=q \times d+c$,那么$d \mid b$的充要条件是$d \mid c$</li></ol><h2 id="2-同余"><a href="#2-同余" class="headerlink" title="2.同余"></a>2.同余</h2><p>同余性质：</p><ol><li>自反性 $a\equiv a(mod m) $</li><li>对称性 若$a\equiv b(mod m)$则$b\equiv a(mod m)$</li><li>传递性 若$a\equiv b(mod m),b\equiv c(mod m)$，则$a\equiv c(mod m)$</li><li>同加性 若$a\equiv b(modm)$，则$a+c\equiv b+c(modm)$</li><li>同乘性(1) 若$a\equiv b(modm)$，则$a\times c\equiv b\times c(modm)$ </li><li>同乘性(2) 若$a\equiv b(modm),c\equiv d(modm)$ ，则$a\times c\equiv b\times d(modm)$</li><li>同幂性 若$a\equiv b(modm)$，则$a^{n}\equiv b^{n} (modm)$</li></ol><h2 id="3-最大公约数-gcd"><a href="#3-最大公约数-gcd" class="headerlink" title="3.最大公约数(gcd)"></a>3.最大公约数(gcd)</h2><h3 id="辗转相除法"><a href="#辗转相除法" class="headerlink" title="辗转相除法"></a>辗转相除法</h3><p>基础方法，不再赘述</p><pre><code class="lang-cpp">int gcd(int a,int b){    if (b==0) return a;    return gcd(b,a%b);}</code></pre><h3 id="二进制算法"><a href="#二进制算法" class="headerlink" title="二进制算法"></a>二进制算法</h3><p>不断去除因数2来提高gcd的效率</p><pre><code class="lang-cpp">inline int gcd(int x,int y){    int i,j;    if (x==0) return y;    if (y==0) return x;    for (i=0;0==(x&amp;1);i++) x&gt;&gt;=1;//去掉2    for (j=0;0==(y&amp;1);j++) y&gt;&gt;=1;    if (i&gt;j) i=j;    for (;;)    {        if (x&lt;y) x^=y,y^=x,x^=y;        if (0==(x-=y)) return y&lt;&lt;i;//如果x==y gcd==x==y        while (0==(x&amp;1)) x&gt;&gt;=1;    }}</code></pre><h3 id="扩展欧几里得算法"><a href="#扩展欧几里得算法" class="headerlink" title="扩展欧几里得算法"></a>扩展欧几里得算法</h3><p>扩展欧几里得算法用来在已知$(a,b)$，求$(x,y)$，使$a\times x+b\times y=gcd(a,b)$</p><pre><code class="lang-cpp">void exgcd(LL l,LL r,LL &amp;x,LL &amp;y){    if (r==0) x=1,y=0;    else    {        exgcd(r,l%r,y,x);        y-=l/r*x;    }}</code></pre><p>例题：<a href="https://www.luogu.org/problemnew/show/P1516" target="_blank" rel="noopener">洛谷P1516 青蛙的约会</a></p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;#define LL long longusing namespace std;LL n,m,a,b,c,x,y,l,X,Y;inline int read(){    char ch=getchar();    int x=0,f=1;    while (ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;)    {        if (ch==&#39;-&#39;) f=-1;        ch=getchar();    }    while (ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;)    {        x=x*10+ch-&#39;0&#39;;        ch=getchar();    }    return f*x;}inline LL exgcd(LL l,LL r,LL &amp;X,LL &amp;Y){    if (r==0)    {        X=1; Y=0;        return l;    }    LL a=exgcd(r,l%r,Y,X);    Y-=l/r*X;    return a;}int main(){    x=read(); y=read(); m=read(); n=read(); l=read();    LL deltav=(m&gt;=n) ? m-n : n-m;    LL deltas=(m&gt;=n) ? y-x : x-y;    LL k=exgcd(deltav,l,X,Y);    if (deltas%k!=0) printf(&quot;Impossible&quot;);    else printf(&quot;%lld&quot;,(X*(deltas/k)%(l/k)+(l/k))%(l/k));    return 0;}</code></pre><h2 id="4-逆元"><a href="#4-逆元" class="headerlink" title="4.逆元"></a>4.逆元</h2><p>若$a\times x\equiv 1(modb)$，就称x是a的逆元。</p><p>可以将这个式子转化为$a\times x+b\times y=1$，然后用扩展欧几里得定理求解。</p><p>当然也有一种线性算法，在需要求连续逆元时是最优的算法。</p><blockquote><p>以下内容来自<a href="https://www.luogu.org/blog/zjp-shadow/cheng-fa-ni-yuan" target="_blank" rel="noopener">https://www.luogu.org/blog/zjp-shadow/cheng-fa-ni-yuan</a></p></blockquote><hr><p>首先我们有一个, $1^{-1}\equiv 1(\bmod p)$</p><p>然后设 $p=k∗i+r,r&lt;i,1&lt;i&lt;p$ ,再将这个式子放到 $\bmod {p}$ 意义下就会得到：</p><p>$k∗i+r≡0(modp)$</p><p>然后乘上 $i^{-1} , r^{-1}$ 就可以得到:</p><p>$k*r^{-1}+i^{-1}\equiv 0 (\bmod p)$</p><p>$i^{-1}\equiv -k*r^{-1} (\bmod p)$</p><p>$i^{-1}\equiv -\lfloor \frac{p}{i} \rfloor*(p \bmod i)^{-1} (\bmod p)$</p><hr><p>模板题：<a href="https://www.luogu.org/problemnew/show/P3811" target="_blank" rel="noopener">洛谷P3811 【模板】乘法逆元</a></p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;#define LL long longusing namespace std;LL n,p,inv[3000005];int main(){    scanf(&quot;%d%d&quot;,&amp;n,&amp;p);    inv[1]=1;    printf(&quot;%d\n&quot;,inv[1]);    for (int i=2;i&lt;=n;i++)    {        inv[i]=-(p/i)*inv[p%i];        inv[i]=(inv[i]%p+p)%p;        printf(&quot;%d\n&quot;,inv[i]);    }    return 0;}</code></pre><h2 id="5-中国剩余定理"><a href="#5-中国剩余定理" class="headerlink" title="5.中国剩余定理"></a>5.中国剩余定理</h2><p>还是就放一个我看的吧</p><p><a href="https://blog.csdn.net/acdreamers/article/details/8050018" target="_blank" rel="noopener">https://blog.csdn.net/acdreamers/article/details/8050018</a></p><p>例题：<a href="https://www.luogu.org/problemnew/show/P3868" target="_blank" rel="noopener">洛谷P3868 [TJOI2009]猜数字</a></p><p>可以用裸的中国剩余定理来做，但是要注意必须用快速乘，不然$10^{18}\times 10^{18}$肯定会超范围。</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;#define LL long longusing namespace std;LL n,m,k;LL A[15],B[15];inline LL read(){    char ch=getchar();    LL f=1,x=0;    while (ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;)    {        if (ch==&#39;-&#39;) f=-1;        ch=getchar();    }    while (ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;)    {        x=x*10+ch-&#39;0&#39;;        ch=getchar();    }    return f*x;}inline void exgcd(LL l,LL r,LL &amp;x,LL &amp;y){    if (r==0) x=1,y=0;    else    {        exgcd(r,l%r,y,x);        y-=l/r*x;    }}inline LL gcd(LL a,LL b){    if (b==0) return a;    return gcd(b,a%b);}inline LL qmul(LL a,LL b,LL mod){    LL ans=0,k=a,f=1;    if (k&lt;0) k=-k,f*=-1;    if (b&lt;0) b=-b,b*=-1;    while (b)    {        if (b&amp;1) ans=(ans+k)%mod;        k=(k+k)%mod;        b&gt;&gt;=1;    }    return ans*f;}inline LL crt(){    LL M=1,ans=0;    for (int i=1;i&lt;=k;i++) M*=B[i];    for (int i=1;i&lt;=k;i++)    {        LL x,y,Mi=M/B[i];        exgcd(Mi,B[i],x,y);        x=(x%B[i]+B[i])%B[i];        ans=(ans+qmul(qmul(Mi,x,M),A[i],M))%M;    }    return (ans&lt;0)?ans+M:ans;}int main(){    k=read();    for (int i=1;i&lt;=k;i++) A[i]=read();    for (int i=1;i&lt;=k;i++) B[i]=read();    for (int i=1;i&lt;=k;i++) A[i]=(A[i]%B[i]+B[i])%B[i];    printf(&quot;%lld&quot;,crt());    return 0;}</code></pre><h2 id="6-素数筛"><a href="#6-素数筛" class="headerlink" title="6.素数筛"></a>6.素数筛</h2><h3 id="普通筛法"><a href="#普通筛法" class="headerlink" title="普通筛法"></a>普通筛法</h3><pre><code class="lang-cpp">inline void getprime(){    memset(ss,true,sizeof(ss));    int cnt=1;    ss[0]=ss[1]=false;    for (a=2;a&lt;=sqrt(n);a++)    {        if (ss[a]) zs[cnt++]=a;        for (b=2;b&lt;=n/a;b++) ss[a*b]=false;    }}</code></pre><h3 id="线性筛"><a href="#线性筛" class="headerlink" title="线性筛"></a>线性筛</h3><p>可以很容易的想到，普通筛法中筛了很多重复的数。而线性筛法可以避免重复。主要思路是运用得到了的素数来标记后面的合数。</p><pre><code class="lang-cpp">inline void getprime(){    memset(ss,true,sizeof(ss));    ss[0]=ss[1]=false;    for (int i=2;i&lt;=n;i++)    {        if (ss[i]) zs[cnt++]=i;        for (int j=1;j&lt;cnt &amp;&amp; zs[j]*i&lt;=n;j++)         {            ss[zs[j]*i]=false;            if (i%zs[j]==0) break;        }    }}</code></pre><p>以上内容更新于2018.5.9</p><p>线性筛法错误修正于2018.7.28</p><hr>]]></content>
       
       <categories>
           
@@ -101,13 +101,13 @@
             
             <tag> 数据结构-线段树 </tag>
             
-            <tag> OJ-洛谷 </tag>
-            
-            <tag> OJ-BZOJ </tag>
-            
             <tag> 省选-河北 </tag>
             
             <tag> 省选-天津 </tag>
+            
+            <tag> OJ-洛谷 </tag>
+            
+            <tag> OJ-BZOJ </tag>
             
         </tags>
       
@@ -153,11 +153,11 @@
             
             <tag> 数据结构-线段树 </tag>
             
-            <tag> 省选-山东 </tag>
-            
             <tag> OJ-洛谷 </tag>
             
             <tag> OJ-BZOJ </tag>
+            
+            <tag> 省选-山东 </tag>
             
         </tags>
       
@@ -273,6 +273,27 @@
     </entry>
     
     <entry>
+      <title>拓扑排序</title>
+      <link href="/p/topological-sort.html"/>
+      <url>/p/topological-sort.html</url>
+      <content type="html"><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>拓扑排序是一种可以将有先决条件（即必须将a、b排在前面后再排c，缺一不可）的数据变得有序的一种排序方法。拓扑排序仅可在有向无环图中使用，同时可以判断图中是否有环。因为顺序不同，拓扑排序得到的答案可能不同。</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>因为排序是有先决条件的，所以可以将要有先决条件的个数（在图中即为入度）记录下来，每满足一个就减一，直到个数为0便可以将其放入序列中。</p><h2 id="手动实现"><a href="#手动实现" class="headerlink" title="手动实现"></a>手动实现</h2><p>如果我们有如下的一个有向无环图，我们需要对这个图的顶点进行拓扑排序，过程如下：</p><p><img src="https://cdn.uniqueue.cn/tuopu-1.png" alt="tuopu-1"></p><p>首先，我们发现V6和v1是没有前驱的，所以我们就随机选去一个输出，我们先输出V6，删除和V6有关的边，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-2.png" alt="tuopu-2"></p><p>然后，我们继续寻找没有前驱的顶点，发现V1没有前驱，所以输出V1，删除和V1有关的边，得到下图的结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-3.png" alt="tuopu-3"></p><p>然后，我们又发现V4和V3都是没有前驱的，那么我们就随机选取一个顶点输出（具体看你实现的算法和图存储结构），我们输出V4，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-4.png" alt="tuopu-4"></p><p>然后，我们输出没有前驱的顶点V3，得到如下结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-5.png" alt="tuopu-5"></p><p>然后，我们分别输出V5和V2，最后全部顶点输出完成，该图的一个拓扑序列为：</p><p>v6–&gt;v1—&gt;v4—&gt;v3—&gt;v5—&gt;v2</p><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>1.用邻接表存储数据，同时对终点的结点的入度加一；<br>2.将没有先决条件便可以排序的点（即初始入度为0的点）先加入队列并输出；<br>3.从队首元素开始扩展，将与队首元素相连的结点的入度减一（等同于擦除这条边），如果该结点入度变为0，则将其入队，作为下一次查找的起点；<br>4.将队首元素出队，当队首元素为空时停止排序。</p><h2 id="代码及注解"><a href="#代码及注解" class="headerlink" title="代码及注解"></a>代码及注解</h2><p>有n个点，m条边的有向无环图，输入n，m，然后每一行输入一条边的信息：起点x，终点y</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;int n,m,a,b,c,d,e,re;struct map1{    int stat,end;};map1 tu[100];int rd[100],chong[100];queue &lt;int&gt; q;int main(){    cin&gt;&gt;n&gt;&gt;m;//n点m边    for (a=1;a&lt;=m;a++)    {        cin&gt;&gt;tu[a].stat&gt;&gt;tu[a].end;        rd[tu[a].end]++;    }    for (int i=1;i&lt;=n;i++)    if (rd[i]==0) q.push(i);//将初始入度为0的结点入队    while (!q.empty())    {            cout&lt;&lt;q.front()&lt;&lt;&quot; &quot;;            for (int j=1;j&lt;=m;j++)            {                if (tu[j].stat==q.front())//找以队首元素为起点的边                {                    rd[tu[j].end]--;                    if (rd[tu[j].end]==0)                     {                        q.push(tu[j].end);                    }                }            }        q.pop();    }    return 0;}</code></pre>]]></content>
+      
+      <categories>
+          
+          <category> OI笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法-拓扑排序 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>最小生成树</title>
       <link href="/p/minimum-spanning-tree.html"/>
       <url>/p/minimum-spanning-tree.html</url>
@@ -292,27 +313,6 @@
             <tag> 算法-Kruskal </tag>
             
             <tag> 算法-Prim </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>拓扑排序</title>
-      <link href="/p/topological-sort.html"/>
-      <url>/p/topological-sort.html</url>
-      <content type="html"><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>拓扑排序是一种可以将有先决条件（即必须将a、b排在前面后再排c，缺一不可）的数据变得有序的一种排序方法。拓扑排序仅可在有向无环图中使用，同时可以判断图中是否有环。因为顺序不同，拓扑排序得到的答案可能不同。</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>因为排序是有先决条件的，所以可以将要有先决条件的个数（在图中即为入度）记录下来，每满足一个就减一，直到个数为0便可以将其放入序列中。</p><h2 id="手动实现"><a href="#手动实现" class="headerlink" title="手动实现"></a>手动实现</h2><p>如果我们有如下的一个有向无环图，我们需要对这个图的顶点进行拓扑排序，过程如下：</p><p><img src="https://cdn.uniqueue.cn/tuopu-1.png" alt="tuopu-1"></p><p>首先，我们发现V6和v1是没有前驱的，所以我们就随机选去一个输出，我们先输出V6，删除和V6有关的边，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-2.png" alt="tuopu-2"></p><p>然后，我们继续寻找没有前驱的顶点，发现V1没有前驱，所以输出V1，删除和V1有关的边，得到下图的结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-3.png" alt="tuopu-3"></p><p>然后，我们又发现V4和V3都是没有前驱的，那么我们就随机选取一个顶点输出（具体看你实现的算法和图存储结构），我们输出V4，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-4.png" alt="tuopu-4"></p><p>然后，我们输出没有前驱的顶点V3，得到如下结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-5.png" alt="tuopu-5"></p><p>然后，我们分别输出V5和V2，最后全部顶点输出完成，该图的一个拓扑序列为：</p><p>v6–&gt;v1—&gt;v4—&gt;v3—&gt;v5—&gt;v2</p><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>1.用邻接表存储数据，同时对终点的结点的入度加一；<br>2.将没有先决条件便可以排序的点（即初始入度为0的点）先加入队列并输出；<br>3.从队首元素开始扩展，将与队首元素相连的结点的入度减一（等同于擦除这条边），如果该结点入度变为0，则将其入队，作为下一次查找的起点；<br>4.将队首元素出队，当队首元素为空时停止排序。</p><h2 id="代码及注解"><a href="#代码及注解" class="headerlink" title="代码及注解"></a>代码及注解</h2><p>有n个点，m条边的有向无环图，输入n，m，然后每一行输入一条边的信息：起点x，终点y</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;int n,m,a,b,c,d,e,re;struct map1{    int stat,end;};map1 tu[100];int rd[100],chong[100];queue &lt;int&gt; q;int main(){    cin&gt;&gt;n&gt;&gt;m;//n点m边    for (a=1;a&lt;=m;a++)    {        cin&gt;&gt;tu[a].stat&gt;&gt;tu[a].end;        rd[tu[a].end]++;    }    for (int i=1;i&lt;=n;i++)    if (rd[i]==0) q.push(i);//将初始入度为0的结点入队    while (!q.empty())    {            cout&lt;&lt;q.front()&lt;&lt;&quot; &quot;;            for (int j=1;j&lt;=m;j++)            {                if (tu[j].stat==q.front())//找以队首元素为起点的边                {                    rd[tu[j].end]--;                    if (rd[tu[j].end]==0)                     {                        q.push(tu[j].end);                    }                }            }        q.pop();    }    return 0;}</code></pre>]]></content>
-      
-      <categories>
-          
-          <category> OI笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 算法-拓扑排序 </tag>
             
         </tags>
       
@@ -350,16 +350,16 @@
     </entry>
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
-      <content type="html"><![CDATA[<p>我是Llf，最弱的蒟蒻，完了</p><p>本博客部分文章的markdown源文件均可通过将 <code>https://llf0703.com/p/*.html</code>改为 <code>https://md.llf0703.com/p/*.md</code> 查看</p><p>这个东西会不时更新，也许有的最新文章看不了</p><p><a href="https://bzoj.llf0703.com/" target="_blank" rel="noopener">BZOJ离线题库（By ruanxingzhi）</a></p><p>CSDN博客:  <a href="https://blog.csdn.net/Llf_0703" target="_blank" rel="noopener">Llf_0703</a></p><p>luogu:  <a href="https://www.luogu.org/space/show?uid=29696" target="_blank" rel="noopener">Llf0703</a></p><p>BZOJ:  <a href="https://www.lydsy.com/JudgeOnline/userinfo.php?user=Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Bilibili： <a href="https://space.bilibili.com/268840304/" target="_blank" rel="noopener">Llf030703</a></p><p>逼乎:  <a href="https://www.zhihu.com/people/llf-93-87/" target="_blank" rel="noopener">Llf</a></p><p>Coding:  <a href="https://coding.net/u/Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Gayhub:  <a href="https://github.com/Llf0703" target="_blank" rel="noopener">Llf0703</a></p>]]></content>
-    </entry>
-    
-    <entry>
       <title>友链</title>
       <link href="/links/index.html"/>
       <url>/links/index.html</url>
+      <content type="html"><![CDATA[]]></content>
+    </entry>
+    
+    <entry>
+      <title>时间轴</title>
+      <link href="/timeline/index.html"/>
+      <url>/timeline/index.html</url>
       <content type="html"><![CDATA[]]></content>
     </entry>
     
@@ -371,10 +371,10 @@
     </entry>
     
     <entry>
-      <title>时间轴</title>
-      <link href="/timeline/index.html"/>
-      <url>/timeline/index.html</url>
-      <content type="html"><![CDATA[]]></content>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
+      <content type="html"><![CDATA[<p>我是Llf，最弱的蒟蒻，完了</p><p>本博客部分文章的markdown源文件均可通过将 <code>https://llf0703.com/p/*.html</code>改为 <code>https://md.llf0703.com/p/*.md</code> 查看</p><p>这个东西会不时更新，也许有的最新文章看不了</p><p><a href="https://bzoj.llf0703.com/" target="_blank" rel="noopener">BZOJ离线题库（By ruanxingzhi）</a></p><p>CSDN博客:  <a href="https://blog.csdn.net/Llf_0703" target="_blank" rel="noopener">Llf_0703</a></p><p>luogu:  <a href="https://www.luogu.org/space/show?uid=29696" target="_blank" rel="noopener">Llf0703</a></p><p>BZOJ:  <a href="https://www.lydsy.com/JudgeOnline/userinfo.php?user=Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Bilibili： <a href="https://space.bilibili.com/268840304/" target="_blank" rel="noopener">Llf030703</a></p><p>逼乎:  <a href="https://www.zhihu.com/people/llf-93-87/" target="_blank" rel="noopener">Llf</a></p><p>Coding:  <a href="https://coding.net/u/Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Gayhub:  <a href="https://github.com/Llf0703" target="_blank" rel="noopener">Llf0703</a></p>]]></content>
     </entry>
     
   

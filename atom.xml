@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://llf0703.com/"/>
-  <updated>2018-07-23T15:21:38.495Z</updated>
+  <updated>2018-08-06T05:04:40.795Z</updated>
   <id>https://llf0703.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>紫书第三章-数组与字符串 刷题总结</title>
+    <link href="https://llf0703.com/p/aoapc-book-3.html"/>
+    <id>https://llf0703.com/p/aoapc-book-3.html</id>
+    <published>2018-08-06T03:00:00.000Z</published>
+    <updated>2018-08-06T05:04:40.795Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="OI笔记" scheme="https://llf0703.com/categories/OI%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="数据结构-字符串" scheme="https://llf0703.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+  </entry>
   
   <entry>
     <title>2018暑假清北学堂济南集训游记及总结</title>
@@ -146,13 +172,13 @@
     
       <category term="数据结构-线段树" scheme="https://llf0703.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%BA%BF%E6%AE%B5%E6%A0%91/"/>
     
-      <category term="省选-河北" scheme="https://llf0703.com/tags/%E7%9C%81%E9%80%89-%E6%B2%B3%E5%8C%97/"/>
-    
-      <category term="省选-天津" scheme="https://llf0703.com/tags/%E7%9C%81%E9%80%89-%E5%A4%A9%E6%B4%A5/"/>
-    
       <category term="OJ-洛谷" scheme="https://llf0703.com/tags/OJ-%E6%B4%9B%E8%B0%B7/"/>
     
       <category term="OJ-BZOJ" scheme="https://llf0703.com/tags/OJ-BZOJ/"/>
+    
+      <category term="省选-河北" scheme="https://llf0703.com/tags/%E7%9C%81%E9%80%89-%E6%B2%B3%E5%8C%97/"/>
+    
+      <category term="省选-天津" scheme="https://llf0703.com/tags/%E7%9C%81%E9%80%89-%E5%A4%A9%E6%B4%A5/"/>
     
   </entry>
   
@@ -208,11 +234,11 @@
     
       <category term="数据结构-线段树" scheme="https://llf0703.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%BA%BF%E6%AE%B5%E6%A0%91/"/>
     
+      <category term="省选-山东" scheme="https://llf0703.com/tags/%E7%9C%81%E9%80%89-%E5%B1%B1%E4%B8%9C/"/>
+    
       <category term="OJ-洛谷" scheme="https://llf0703.com/tags/OJ-%E6%B4%9B%E8%B0%B7/"/>
     
       <category term="OJ-BZOJ" scheme="https://llf0703.com/tags/OJ-BZOJ/"/>
-    
-      <category term="省选-山东" scheme="https://llf0703.com/tags/%E7%9C%81%E9%80%89-%E5%B1%B1%E4%B8%9C/"/>
     
   </entry>
   

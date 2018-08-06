@@ -3,6 +3,27 @@
   
     
     <entry>
+      <title>紫书第三章-数组与字符串 刷题总结</title>
+      <link href="/p/aoapc-book-3.html"/>
+      <url>/p/aoapc-book-3.html</url>
+      <content type="html"><![CDATA[<p>我太菜了，已经沦落到天天刷水题的地步了。由于实在是太水了，我就只总结个别有价值的题。还有动规那一章迟早会总结完的（gugugu~）</p><h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h3 id="3-6-UVa1584-Circular-Sequence"><a href="#3-6-UVa1584-Circular-Sequence" class="headerlink" title="3-6 UVa1584-Circular Sequence"></a>3-6 <a href="https://vjudge.net/problem/UVA-1584" target="_blank" rel="noopener">UVa1584-Circular Sequence</a></h3><p>我一开始以为就是找到最小的那个然后再决定一下左边走还是右边走，后面才发现竟然只有4个字母，肯定有很多重复，而且还只有顺时针，显然这样不行。</p><p>然后做法就跟书上一样了，枚举从每个字母开始的字典序，和当前最优值比较即可。</p><p><del>话说这种水题总结来有什么意义，不过要是不总结我例题就没啥总结的了</del></p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;char cir[105];int n,m,a,b,c;int main(){    scanf(&quot;%d&quot;,&amp;n);    while (n--)    {        scanf(&quot;%s&quot;,cir);        int mnid=0,len=strlen(cir);        for (int i=0;i&lt;len;i++)        {            for (int j=0;j&lt;len;j++)            {                if (cir[(i+j)%len]&lt;cir[(mnid+j)%len])                {                    mnid=i;                    break;                }                else if (cir[(i+j)%len]&gt;cir[(mnid+j)%len]) break;            }        }        for (int i=0;i&lt;len;i++)            printf(&quot;%c&quot;,cir[(mnid+i)%len]);        printf(&quot;\n&quot;);    }    return 0;}</code></pre><h2 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h2><h3 id="3-3-UVa1225-Digit-Counting"><a href="#3-3-UVa1225-Digit-Counting" class="headerlink" title="3-3 UVa1225-Digit Counting"></a>3-3 <a href="https://vjudge.net/problem/UVA-1225" target="_blank" rel="noopener">UVa1225-Digit Counting</a></h3><p>似乎网上很多人直接暴力就行，我还离线处理排了一遍序，优化了个log。</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;int n,m,q[25],cnt,ans[10][25],now[10];struct Query{    int q,id;} Q[25];inline void work(int x){    while (x)    {        now[x%10]++;        x/=10;    }}inline bool cmp(Query x,Query y){    return x.q&lt;y.q;}int main(){    cin&gt;&gt;m;    for (int i=1;i&lt;=m;i++)    {        cin&gt;&gt;n;        Q[i].q=n;        Q[i].id=i;    }    sort(Q+1,Q+m+1,cmp);    int j=1,last=-1;    for (int i=1;i&lt;=m;i++)    {        for (;j&lt;=Q[i].q;j++) work(j);        for (int k=0;k&lt;=9;k++) ans[k][Q[i].id]=now[k];    }    for (int i=1;i&lt;=m;i++)    {        for (int j=0;j&lt;=8;j++) cout&lt;&lt;ans[j][i]&lt;&lt;&quot; &quot;;        cout&lt;&lt;ans[9][i]&lt;&lt;endl;    }    return 0;}</code></pre><h3 id="3-5-UVa227-Puzzle"><a href="#3-5-UVa227-Puzzle" class="headerlink" title="3-5 UVa227-Puzzle"></a>3-5 <a href="https://vjudge.net/problem/UVA-227" target="_blank" rel="noopener">UVa227-Puzzle</a></h3><p>我这道题做法大概是这样：</p><ol><li>得到空格最开始位置</li><li>按照题意模拟，如果不合法，则标记后直接continue（否则会有多余输入）</li><li>因为操作有多行，所以每行都需要getline，读到0以后退出即可</li></ol><p>坑点也挺多的，大概如下：</p><ol><li>如果用getline的话最后一个字符如果没有是不会看成空格的，我后来直接改成不是字母就为空格</li><li>操作有多行</li><li>我最开始遇到不合法就直接退出，导致有输入被输到下一次操作</li><li><strong>不合法操作除了越界还有操作不是ABLR！！！</strong></li><li>这道题格式要求很严，注意多余空格和换行都要过滤掉，如果不想PE的话还可以用<a href="https://www.udebug.com/UVa/227" target="_blank" rel="noopener">uDebug</a>测一下</li></ol><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;int n,m,a,b,c,kase;int main(){    for (;;)    {        string s[5];        getline(cin,s[0]);        int x=0,y=0;        if (s[0][0]==&#39;Z&#39;) break;        if (kase) cout&lt;&lt;endl;        printf(&quot;Puzzle #%d:\n&quot;,++kase);        for (int i=1;i&lt;5;i++) getline(cin,s[i]);        for (int i=0;i&lt;5;i++)        {            for (int j=0;j&lt;5;j++)            {                if (s[i][j]&lt;&#39;A&#39; || s[i][j]&gt;&#39;Z&#39;)                {                    x=i;                    y=j;                    break;                }            }        }        bool done=0;        bool can=1;        for (;;)        {            string q;            getline(cin,q);            for (int i=0;i&lt;q.length();i++)            {                if (q[i]==&#39;0&#39;)                {                    done=1;                    break;                }                if (!can) continue;                else if (q[i]==&#39;A&#39;)                {                    if (x==0) can=0;                    else                    {                        s[x][y]=s[x-1][y];                        s[x-1][y]=&#39; &#39;;                        x--;                    }                }                else if (q[i]==&#39;B&#39;)                {                    if (x==4) can=0;                    else                    {                        s[x][y]=s[x+1][y];                        s[x+1][y]=&#39; &#39;;                        x++;                    }                }                else if (q[i]==&#39;L&#39;)                {                    if (y==0) can=0;                    else                    {                        s[x][y]=s[x][y-1];                        s[x][y-1]=&#39; &#39;;                        y--;                    }                }                else if (q[i]==&#39;R&#39;)                {                    if (y==4) can=0;                    else                    {                        s[x][y]=s[x][y+1];                        s[x][y+1]=&#39; &#39;;                        y++;                    }                }                else can=0;            }            if (done)            {                if (!can) printf(&quot;This puzzle has no final configuration.\n&quot;);                else                {                    for (int i=0;i&lt;5;i++)                    {                        for (int j=0;j&lt;4;j++) cout&lt;&lt;s[i][j]&lt;&lt;&quot; &quot;;                        cout&lt;&lt;s[i][4];                        cout&lt;&lt;&quot;\n&quot;;                    }                }                break;            }        }    }    return 0;}</code></pre><h3 id="3-8-UVa202-Repeating-Decimals"><a href="#3-8-UVa202-Repeating-Decimals" class="headerlink" title="3-8 UVa202-Repeating Decimals"></a>3-8 <a href="https://vjudge.net/problem/UVA-202" target="_blank" rel="noopener">UVa202-Repeating Decimals</a></h3><p>我最开始发现50位的话double肯定不够用啊，然后到网上一看才发现自己zz了。除的过程就跟竖式除法一样 $n \times 10 / m$ 就行了，其它的枚举循环节即可。</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;int n,m,a,b,c;int s[100005],id[100005];int main(){    while (~scanf(&quot;%d%d&quot;,&amp;n,&amp;m))    {        memset(s,0,sizeof(s));        memset(id,0,sizeof(id));        s[0]=n/m;        printf(&quot;%d/%d = %d.&quot;,n,m,s[0]);        n%=m;        int cnt=1;        while (n &amp;&amp; !id[n])        {            id[n]=cnt;            s[cnt]=n*10/m;            n=n*10%m;            cnt++;        }        if (!n)        {            for (int i=1;i&lt;cnt;i++) printf(&quot;%d&quot;,s[i]);            printf(&quot;(0)\n&quot;);        }        else        {            for (int i=1;i&lt;id[n];i++) printf(&quot;%d&quot;,s[i]);            printf(&quot;(&quot;);            for (int i=id[n];i&lt;=min(cnt-1,50);i++) printf(&quot;%d&quot;,s[i]);            if (cnt&gt;50) printf(&quot;...&quot;);            printf(&quot;)\n&quot;);        }        printf(&quot;   %d&quot;,!n ? 1 : cnt-id[n]);        printf(&quot; = number of digits in repeating cycle\n\n&quot;);    }    return 0;}</code></pre><p>完了，就酱。</p>]]></content>
+      
+      <categories>
+          
+          <category> OI笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 数据结构-字符串 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>2018暑假清北学堂济南集训游记及总结</title>
       <link href="/p/qbxt-2018-summer-summary.html"/>
       <url>/p/qbxt-2018-summer-summary.html</url>
@@ -101,13 +122,13 @@
             
             <tag> 数据结构-线段树 </tag>
             
-            <tag> 省选-河北 </tag>
-            
-            <tag> 省选-天津 </tag>
-            
             <tag> OJ-洛谷 </tag>
             
             <tag> OJ-BZOJ </tag>
+            
+            <tag> 省选-河北 </tag>
+            
+            <tag> 省选-天津 </tag>
             
         </tags>
       
@@ -153,11 +174,11 @@
             
             <tag> 数据结构-线段树 </tag>
             
+            <tag> 省选-山东 </tag>
+            
             <tag> OJ-洛谷 </tag>
             
             <tag> OJ-BZOJ </tag>
-            
-            <tag> 省选-山东 </tag>
             
         </tags>
       

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://llf0703.com/"/>
-  <updated>2018-08-06T05:04:40.795Z</updated>
+  <updated>2018-08-23T05:14:12.074Z</updated>
   <id>https://llf0703.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>题解-洛谷P1141 01迷宫</title>
+    <link href="https://llf0703.com/p/luogu-solution-p1141.html"/>
+    <id>https://llf0703.com/p/luogu-solution-p1141.html</id>
+    <published>2018-08-22T16:00:00.000Z</published>
+    <updated>2018-08-23T05:14:12.074Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="题解" scheme="https://llf0703.com/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+      <category term="算法-bfs" scheme="https://llf0703.com/tags/%E7%AE%97%E6%B3%95-bfs/"/>
+    
+      <category term="数据结构-并查集" scheme="https://llf0703.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%B9%B6%E6%9F%A5%E9%9B%86/"/>
+    
+  </entry>
   
   <entry>
     <title>紫书第三章-数组与字符串 刷题总结</title>

@@ -3,6 +3,29 @@
   
     
     <entry>
+      <title>题解-洛谷P1141 01迷宫</title>
+      <link href="/p/luogu-solution-p1141.html"/>
+      <url>/p/luogu-solution-p1141.html</url>
+      <content type="html"><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P1141" target="_blank" rel="noopener">原题链接</a> <a href="https://www.luogu.org/blog/llf/solution-p1141" target="_blank" rel="noopener">洛谷博客该题解链接</a></p><hr><p><del>今天我看见这道我大半年前裸bfs只有80分的题就用并查集顺手切了</del></p><p>话说题解里各位大佬的并查集怎么这么奇怪啊，我就直接用的裸的并查集。</p><p>对于每一组询问，如果这个点有祖先，则直接输出祖先的答案；否则就把这个起点当作一个新的祖先来bfs，在bfs过程中将目标结点和当前结点合并，当前结点祖先的答案值+1即可</p><p>当然为了做并查集要将每个结点编号，其中<code>getid()</code>函数就是拿来做这个。其他的看注释吧</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;bool s[1000005],vis[1000005];int fa[1000005],n,m,ans[1000005];inline int read(){    char ch=getchar();    int f=1,x=0;    while (ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;)    {        if (ch==&#39;-&#39;) f=-1;        ch=getchar();    }    while (ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;)    {        x=x*10+ch-&#39;0&#39;;        ch=getchar();    }    return f*x;}int getfa(int x) //查找祖先{    if (x==fa[x]) return fa[x];    fa[x]=getfa(fa[x]);    return fa[x];}inline void merge(int x,int y) //合并{    int gfx=getfa(x),gfy=getfa(y);    if (gfx!=gfy)        fa[gfx]=gfy;}inline int getid(int x,int y) //编号{    return n*(x-1)+y;}int main(){    n=read(),m=read();    for (int i=1;i&lt;=n;i++)    {        char ch[1005];        scanf(&quot;%s&quot;,ch);        for (int j=0;j&lt;n;j++) s[getid(i,j+1)]=ch[j]-&#39;0&#39;;    }    for (int i=1;i&lt;=n*n;i++) fa[i]=i; //初始化    int go[4]={1,-1,n,-n}; //四个方向，分别是右，左，下，上    for (int i=1;i&lt;=m;i++)    {        int x=read(),y=read();        int id=getid(x,y);        if (ans[getfa(id)]) //如果有祖先直接输出祖先的答案        {            printf(&quot;%d\n&quot;,ans[getfa(id)]);            continue;        }        queue &lt;int&gt; q;        q.push(id);        vis[id]=1;        while (!q.empty()) //bfs        {            int x=q.front(); q.pop();            ans[getfa(x)]++; //祖先的答案值+1            for (int i=0;i&lt;4;i++)            {                int y=x+go[i];                /******下面两行肥肠重要！******/                if (x%n==1 &amp;&amp; i==1) continue;                if (x%n==0 &amp;&amp; i==0) continue;                /*如果在每一行开头或结尾则向左或向右会算到另一行的不相邻的结点，此时需要跳过*/                if (y&lt;=0 || y&gt;n*n) continue; //越界                if (vis[y] || s[x]==s[y]) continue; //如果访问过或者相同也跳过                q.push(y);                vis[y]=1;                merge(y,x); //合并，注意要将目标结点合并到当前结点的祖先上而不能相反            }        }        printf(&quot;%d\n&quot;,ans[id]); //id（即起点）一定是祖先    }    return 0;}</code></pre>]]></content>
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法-bfs </tag>
+            
+            <tag> 数据结构-并查集 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>紫书第三章-数组与字符串 刷题总结</title>
       <link href="/p/aoapc-book-3.html"/>
       <url>/p/aoapc-book-3.html</url>
@@ -385,17 +408,17 @@
     </entry>
     
     <entry>
-      <title>标签云</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
-      <content type="html"><![CDATA[]]></content>
-    </entry>
-    
-    <entry>
       <title>关于</title>
       <link href="/about/index.html"/>
       <url>/about/index.html</url>
       <content type="html"><![CDATA[<p>我是Llf，最弱的蒟蒻，完了</p><p>本博客部分文章的markdown源文件均可通过将 <code>https://llf0703.com/p/*.html</code>改为 <code>https://md.llf0703.com/p/*.md</code> 查看</p><p>这个东西会不时更新，也许有的最新文章看不了</p><p><a href="https://bzoj.llf0703.com/" target="_blank" rel="noopener">BZOJ离线题库（By ruanxingzhi）</a></p><p>CSDN博客:  <a href="https://blog.csdn.net/Llf_0703" target="_blank" rel="noopener">Llf_0703</a></p><p>luogu:  <a href="https://www.luogu.org/space/show?uid=29696" target="_blank" rel="noopener">Llf0703</a></p><p>BZOJ:  <a href="https://www.lydsy.com/JudgeOnline/userinfo.php?user=Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Bilibili： <a href="https://space.bilibili.com/268840304/" target="_blank" rel="noopener">Llf030703</a></p><p>逼乎:  <a href="https://www.zhihu.com/people/llf-93-87/" target="_blank" rel="noopener">Llf</a></p><p>Coding:  <a href="https://coding.net/u/Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Gayhub:  <a href="https://github.com/Llf0703" target="_blank" rel="noopener">Llf0703</a></p>]]></content>
+    </entry>
+    
+    <entry>
+      <title>标签云</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
+      <content type="html"><![CDATA[]]></content>
     </entry>
     
   

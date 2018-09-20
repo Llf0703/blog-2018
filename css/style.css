@@ -27,9 +27,6 @@ body {
     bottom: 0;
     left: 0;
     z-index: -1;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-attachment: fixed;
     content: '';
@@ -90,6 +87,7 @@ a {
 /****************/
 
 .highlight tr {
+    display: -ms-flexbox;
     display: flex;
 }
 #post-content .line {
@@ -289,7 +287,6 @@ a {
 }
 #post-content img {
     max-width: 100%;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 #post-content span.frame {
@@ -500,12 +497,14 @@ a {
 }
 #scheme-Paradox .material-layout .material-post,
 #scheme-Paradox .material-layout .material-index {
+    display: -ms-flexbox;
     display: flex;
     margin: 0 auto;
     padding: 0;
     width: 100%;
     max-width: 900px;
-    flex-shrink: 0
+    -ms-flex-negative: 0;
+        flex-shrink: 0
 }
 #scheme-Paradox .material-layout .material-layout__content {
     position: relative;
@@ -519,10 +518,13 @@ a {
     }
 }
 #scheme-Paradox .material-layout .mdl-card {
+    display: -ms-flexbox;
     display: flex;
     min-height: 400px;
-    flex-direction: column;
-    align-items: stretch;
+    -ms-flex-direction: column;
+        flex-direction: column;
+    -ms-flex-align: stretch;
+        align-items: stretch;
     border-radius: 2px;
 }
 @media screen and (max-width: 480px) {
@@ -532,17 +534,22 @@ a {
 }
 #scheme-Paradox .material-layout .mdl-card__title {
     padding: 1pc;
-    flex-grow: 1
+    -ms-flex-positive: 1;
+        flex-grow: 1
 }
 #scheme-Paradox .material-layout .mdl-card__media {
+    display: -ms-flexbox;
     display: flex;
     box-sizing: border-box;
     padding: 24.72px;
     background-size: cover;
     cursor: pointer;
-    flex-grow: 1;
-    flex-direction: row;
-    align-items: flex-end
+    -ms-flex-positive: 1;
+        flex-grow: 1;
+    -ms-flex-direction: row;
+        flex-direction: row;
+    -ms-flex-align: end;
+        align-items: flex-end
 }
 #scheme-Paradox .material-layout .mdl-card__media a,
 #scheme-Paradox .material-layout .mdl-card__title a {
@@ -553,7 +560,8 @@ a {
     padding: 20px 0 1pc;
     width: 100%;
     min-height: 4pc;
-    align-items: center
+    -ms-flex-align: center;
+        align-items: center
 }
 #scheme-Paradox .material-layout .mdl-card__supporting-text strong {
     font-weight: 700
@@ -590,19 +598,24 @@ a {
     margin-left: 0
 }
 #scheme-Paradox .material-layout .meta {
+    display: -ms-flexbox;
     display: flex;
     box-sizing: border-box;
     padding: 1pc;
     height: auto;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start
+    -ms-flex-direction: row;
+        flex-direction: row;
+    -ms-flex-align: center;
+        align-items: center;
+    -ms-flex-pack: start;
+        justify-content: flex-start
 }
 #scheme-Paradox .material-layout .meta>.meta__favorites {
     margin: 0 8px;
     font-weight: 500;
     font-size: 13px;
-    flex-direction: row
+    -ms-flex-direction: row;
+        flex-direction: row
 }
 #scheme-Paradox .material-layout .meta>.meta__favorites .material-icons {
     margin-left: 9pt;
@@ -610,14 +623,17 @@ a {
     cursor: pointer
 }
 #scheme-Paradox .material-layout .mdl-card .meta.meta--fill {
-    justify-content: space-between
+    -ms-flex-pack: justify;
+        justify-content: space-between
 }
 #scheme-Paradox .material-layout .meta>:first-child {
     margin-right: 1pc
 }
 #scheme-Paradox .material-layout .meta>* {
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column
+    -ms-flex-direction: column;
+        flex-direction: column
 }
 #scheme-Paradox .material-layout .something-else>button {
     position: absolute;
@@ -626,14 +642,19 @@ a {
     transform: translate(0, -28px)
 }
 #scheme-Paradox .material-layout .something-else .something-else-logo {
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    -ms-flex-direction: column;
+        flex-direction: column;
+    -ms-flex-pack: center;
+        justify-content: center;
+    -ms-flex-align: center;
+        align-items: center;
     border-top-right-radius: 2px;
     border-top-left-radius: 2px;
     font-size: 13px;
-    flex-grow: 1;
+    -ms-flex-positive: 1;
+        flex-grow: 1;
     box-sizing: border-box;
     padding: 24px;
     background-size: cover
@@ -655,13 +676,17 @@ a {
 }
 #scheme-Paradox .material-layout .material-post>.material-nav,
 #scheme-Paradox .material-layout .material-index>.material-nav {
+    display: -ms-flexbox;
     display: flex;
     margin: 10px 15px;
     color: #fff;
     font-weight: 500;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center
+    -ms-flex-direction: row;
+        flex-direction: row;
+    -ms-flex-pack: justify;
+        justify-content: space-between;
+    -ms-flex-align: center;
+        align-items: center
 }
 #scheme-Paradox .material-layout .material-post>.material-nav>.material-nav__button,
 #scheme-Paradox .material-layout .material-index>.material-nav>.material-nav__button {
@@ -728,19 +753,25 @@ a {
 #scheme-Paradox .material-post_container .meta+.mdl-card__supporting-text {
     display: block;
     border: 0;
-    flex-direction: column
+    -ms-flex-direction: column;
+        flex-direction: column
 }
 #scheme-Paradox .material-post_container .meta+.mdl-card__supporting-text p {} #scheme-Paradox .material-post_container .comments {
     background-color: #eee;
+    display: -ms-flexbox;
     display: flex;
     box-sizing: border-box;
     padding: 2pc;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
+    -ms-flex-direction: column;
+        flex-direction: column;
+    -ms-flex-pack: start;
+        justify-content: flex-start;
+    -ms-flex-align: stretch;
+        align-items: stretch;
     position: relative
 }
 #scheme-Paradox .material-post_container .comments>form {
+    display: -ms-flexbox;
     display: flex;
     margin-bottom: 1pc;
     flex-diretion: row
@@ -748,7 +779,8 @@ a {
 #scheme-Paradox .material-post_container .comments>form .mdl-textfield {
     margin-right: 1pc;
     color: #616161;
-    flex-grow: 1
+    -ms-flex-positive: 1;
+        flex-grow: 1
 }
 #scheme-Paradox .material-post_container .comments>form .mdl-textfield input,
 #scheme-Paradox .material-post_container .comments>form .mdl-textfield textarea {
@@ -760,29 +792,41 @@ a {
     color: #fff
 }
 #scheme-Paradox .material-post_container .comments .comment {
-    flex-direction: column;
-    align-items: stretch
+    -ms-flex-direction: column;
+        flex-direction: column;
+    -ms-flex-align: stretch;
+        align-items: stretch
 }
 #scheme-Paradox .material-post_container .comments .comment>.comment__header {
+    display: -ms-flexbox;
     display: flex;
     margin-bottom: 1pc;
-    flex-direction: row;
-    align-items: center
+    -ms-flex-direction: row;
+        flex-direction: row;
+    -ms-flex-align: center;
+        align-items: center
 }
 #scheme-Paradox .material-post_container .comments .comment>.comment__header>.comment__author {
+    display: -ms-flexbox;
     display: flex;
-    flex-grow: 1;
-    flex-direction: column
+    -ms-flex-positive: 1;
+        flex-grow: 1;
+    -ms-flex-direction: column;
+        flex-direction: column
 }
 #scheme-Paradox .material-post_container .comments .comment>.comment__text {
     line-height: 1.5em
 }
 #scheme-Paradox .material-post_container .comments .comment>.comment__actions {
+    display: -ms-flexbox;
     display: flex;
     font-size: .8em;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
+    -ms-flex-direction: row;
+        flex-direction: row;
+    -ms-flex-pack: start;
+        justify-content: flex-start;
+    -ms-flex-align: center;
+        align-items: center;
     padding-left: 64px
 }
 #scheme-Paradox .material-post_container .comments .comment>.comment__actions button {
@@ -807,7 +851,8 @@ a {
     }
 }
 #scheme-Paradox .material-layout .section-spacer {
-    flex-grow: 1
+    -ms-flex-positive: 1;
+        flex-grow: 1
 }
 #scheme-Paradox .material-layout .something-else {
     z-index: 7;
@@ -825,6 +870,7 @@ a {
     background-size: 50%
 }
 #scheme-Paradox .mdl-grid {
+    display: -ms-flexbox!important;
     display: flex!important
 }
 #scheme-Paradox .social-btn {
@@ -847,7 +893,8 @@ a {
     padding: 40px;
     height: 120px;
     background-color: #fff;
-    align-items: center
+    -ms-flex-align: center;
+        align-items: center
 }
 @media screen and (max-width: 840px) {
     #scheme-Paradox .material-layout .mdl-mini-footer {
@@ -1637,13 +1684,17 @@ a {
 }
 #scheme-Isolation .material-layout .material-index>.material-nav,
 #scheme-Isolation .material-layout .material-post>.material-nav {
+    display: -ms-flexbox;
     display: flex;
     margin: 10px 15px;
     color: #fff;
     font-weight: 500;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    -ms-flex-direction: row;
+        flex-direction: row;
+    -ms-flex-pack: justify;
+        justify-content: space-between;
+    -ms-flex-align: center;
+        align-items: center;
 }
 #scheme-Isolation .page-number {
     display: none
@@ -1747,8 +1798,6 @@ a {
 *,
 :after,
 :before {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box
 }
 .sidebar-material-icons {
@@ -1771,20 +1820,12 @@ a {
     opacity: 0;
     background: #000;
     z-index: 9;
-    -webkit-transition: visibility 0 linear .4s, opacity .4s cubic-bezier(.4, 0, .2, 1);
-    -moz-transition: visibility 0 linear .4s, opacity .4s cubic-bezier(.4, 0, .2, 1);
     transition: visibility 0 linear .4s, opacity .4s cubic-bezier(.4, 0, .2, 1);
-    -webkit-transform: translateZ(0);
-    -moz-transform: translateZ(0);
-    -ms-transform: translateZ(0);
-    -o-transform: translateZ(0);
     transform: translateZ(0)
 }
 .sidebar-overlay.active {
     opacity: .5;
     visibility: visible;
-    -webkit-transition-delay: 0;
-    -moz-transition-delay: 0;
     transition-delay: 0
 }
 .top-bar {
@@ -1817,8 +1858,6 @@ a {
     overflow-y: auto;
     overflow-x: hidden;
     border: none;
-    -webkit-transition: all .5s cubic-bezier(.55, 0, .1, 1);
-    -o-transition: all .5s cubic-bezier(.55, 0, .1, 1);
     transition: all .5s cubic-bezier(.55, 0, .1, 1)
 }
 .sidebar .sidebar-toggle:after,
@@ -1852,7 +1891,6 @@ a {
 } 
 .sidebar .sidebar-header {
     height: 158.13px;
-    -webkit-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out
 }
 .sidebar .sidebar-header,
@@ -1863,9 +1901,6 @@ a {
 .sidebar .sidebar-header.header-cover {
     background-repeat: no-repeat;
     background-position: center center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: 100%
 }
 .sidebar .sidebar-header:hover .sidebar-toggle {
@@ -1881,7 +1916,6 @@ a {
     width: 40px;
     font-size: 20px;
     opacity: .7;
-    -webkit-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out
 }
 .sidebar .icon-material-sidebar-arrow:before {
@@ -1893,8 +1927,6 @@ a {
     margin: 16px;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, .2);
-    -webkit-transition: all .2s ease-in-out;
-    -o-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out
 }
 .sidebar .sidebar-brand {
@@ -1908,16 +1940,12 @@ a {
     padding: 0 56px 0 16px;
     clear: both;
     overflow: hidden;
-    -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
     white-space: nowrap;
-    -webkit-transition: all .2s ease-in-out;
-    -o-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out
 }
 .sidebar .sidebar-brand:focus,
 .sidebar .sidebar-brand:hover {
-    -webkit-box-shadow: none;
     box-shadow: none;
     outline: 0;
     text-decoration: none
@@ -1972,14 +2000,12 @@ a {
     line-height: 48px;
     text-decoration: none;
     clear: both;
-    -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
     -webkit-transition: all .2s ease-in-out;
     -o-transition: all .2s ease-in-out
 }
 .sidebar .sidebar-text:focus,
 .sidebar .sidebar-text:hover {
-    -webkit-box-shadow: none;
     box-shadow: none;
     outline: 0
 }
@@ -2018,14 +2044,16 @@ a {
 .sidebar .sidebar-nav li a {
     position: relative;
     cursor: pointer;
-    user-select: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
     display: block;
     padding: 0 56px 0 16px;
     transition: all .2s ease-in-out
 }
 .sidebar .sidebar-nav li a:focus,
 .sidebar .sidebar-nav li a:hover {
-    -webkit-box-shadow: none;
     box-shadow: none;
     outline: 0
 }
@@ -2055,7 +2083,6 @@ a {
     padding: 0;
     border: none;
     border-radius: 0;
-    -webkit-box-shadow: none;
     box-shadow: none
 }
 .sidebar-colored {
@@ -2153,13 +2180,11 @@ a {
 }
 .sidebar {
     width: 0;
-    -webkit-transform: translate3d(-280px, 0, 0);
     transform: translate3d(-280px, 0, 0)
 }
 .sidebar.open {
     min-width: 280px;
     width: 280px;
-    -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0)
 }
 .sidebar-fixed-left {
@@ -2212,7 +2237,6 @@ a {
     width: 20px;
     background: #eee;
     position: relative;
-    -webkit-animation-duration: 300ms;
     animation-duration: 300ms;
     animation-timing-function: ease-in-out
 }
@@ -2230,7 +2254,6 @@ a {
     background: inherit;
     left: 0;
     content: '';
-    -webkit-animation-duration: 300ms;
     animation-duration: 300ms;
     animation-timing-function: ease-in-out
 }
@@ -2241,118 +2264,59 @@ a {
     top: 5px
 }
 .MD-burger-arrow {
-    -webkit-animation-name: MD-burger-icon-arrow;
     animation-name: MD-burger-icon-arrow;
-    -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards
 }
 .MD-burger-arrow:before {
-    -webkit-animation-name: MD-burger-icon-before-arrow;
     animation-name: MD-burger-icon-before-arrow;
-    -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards
 }
 .MD-burger-arrow:after {
-    -webkit-animation-name: MD-burger-icon-after-arrow;
     animation-name: MD-burger-icon-after-arrow;
-    -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards
 }
 .MD-burger-line {
-    -webkit-animation-name: MD-burger-icon-line;
     animation-name: MD-burger-icon-line
 }
 .MD-burger-line:before {
-    -webkit-animation-name: MD-burger-icon-before-line;
     animation-name: MD-burger-icon-before-line
 }
 .MD-burger-line:after {
-    -webkit-animation-name: MD-burger-icon-after-line;
     animation-name: MD-burger-icon-after-line
-}
-@-webkit-keyframes MD-burger-icon-arrow {
-    100% {
-        -webkit-transform: rotate(180deg);
-        transform: rotate(180deg)
-    }
 }
 @keyframes MD-burger-icon-arrow {
     100% {
-        -webkit-transform: rotate(180deg);
         transform: rotate(180deg)
-    }
-}
-@-webkit-keyframes MD-burger-icon-before-arrow {
-    100% {
-        -webkit-transform: rotate(45deg);
-        transform: rotate(45deg);
-        margin: 3% 37%;
-        width: 75%
     }
 }
 @keyframes MD-burger-icon-before-arrow {
     100% {
-        -webkit-transform: rotate(45deg);
         transform: rotate(45deg);
-        margin: 3% 37%;
-        width: 75%
-    }
-}
-@-webkit-keyframes MD-burger-icon-after-arrow {
-    100% {
-        -webkit-transform: rotate(-45deg);
-        transform: rotate(-45deg);
         margin: 3% 37%;
         width: 75%
     }
 }
 @keyframes MD-burger-icon-after-arrow {
     100% {
-        -webkit-transform: rotate(-45deg);
         transform: rotate(-45deg);
         margin: 3% 37%;
         width: 75%
-    }
-}
-@-webkit-keyframes MD-burger-icon-line {
-    0% {
-        -webkit-transform: rotate(-180deg);
-        transform: rotate(-180deg)
     }
 }
 @keyframes MD-burger-icon-line {
     0% {
-        -webkit-transform: rotate(-180deg);
         transform: rotate(-180deg)
-    }
-}
-@-webkit-keyframes MD-burger-icon-before-line {
-    0% {
-        -webkit-transform: rotate(45deg);
-        transform: rotate(45deg);
-        margin: 3% 37%;
-        width: 75%
     }
 }
 @keyframes MD-burger-icon-before-line {
     0% {
-        -webkit-transform: rotate(45deg);
         transform: rotate(45deg);
-        margin: 3% 37%;
-        width: 75%
-    }
-}
-@-webkit-keyframes MD-burger-icon-after-line {
-    0% {
-        -webkit-transform: rotate(-45deg);
-        transform: rotate(-45deg);
         margin: 3% 37%;
         width: 75%
     }
 }
 @keyframes MD-burger-icon-after-line {
     0% {
-        -webkit-transform: rotate(-45deg);
         transform: rotate(-45deg);
         margin: 3% 37%;
         width: 75%
@@ -2418,7 +2382,8 @@ a {
     direction: ltr;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    font-feature-settings: 'liga'
+    -webkit-font-feature-settings: 'liga';
+            font-feature-settings: 'liga'
 }
 /**************/
 /* Footer_Top */
@@ -2461,9 +2426,6 @@ a {
     background: #00BCD4;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, .12), 0 3px 3px 0 rgba(0, 0, 0, .24);
     cursor: pointer;
-    -webkit-transition: all .1s ease-out;
-    -moz-transition: all .1s ease-out;
-    -o-transition: all .1s ease-out;
     transition: all .1s ease-out;
     position: relative;
     overflow: hidden
@@ -2499,39 +2461,24 @@ a {
 }
 @keyframes zoomIn {
     0% {
-        -moz-transform: scale(0);
-        -ms-transform: scale(0);
-        -webkit-transform: scale(0);
         transform: scale(0);
         opacity: 0
     }
     100% {
-        -moz-transform: scale(1);
-        -ms-transform: scale(1);
-        -webkit-transform: scale(1);
         transform: scale(1);
         opacity: 1
     }
 }
 @keyframes load {
     0% {
-        -moz-transform: scale(0);
-        -ms-transform: scale(0);
-        -webkit-transform: scale(0);
         transform: scale(0);
         opacity: 0
     }
     50% {
-        -moz-transform: scale(1.5);
-        -ms-transform: scale(1.5);
-        -webkit-transform: scale(1.5);
         transform: scale(1.5);
         opacity: 1
     }
     100% {
-        -moz-transform: scale(1);
-        -ms-transform: scale(1);
-        -webkit-transform: scale(1);
         transform: scale(1);
         opacity: 0
     }
@@ -2612,8 +2559,6 @@ a {
     height: 100%;
     box-shadow: 0 0 10px #29d, 0 0 5px #29d;
     opacity: 1;
-    -webkit-transform: rotate(3deg) translate(0, -4px);
-    -ms-transform: rotate(3deg) translate(0, -4px);
     transform: rotate(3deg) translate(0, -4px)
 }
 #nprogress .spinner {
@@ -2635,7 +2580,6 @@ a {
     border-top-color: #29d;
     border-left-color: #29d;
     border-radius: 50%;
-    -webkit-animation: nprogress-spinner 400ms linear infinite;
     animation: nprogress-spinner 400ms linear infinite
 }
 .nprogress-custom-parent {
@@ -2645,14 +2589,6 @@ a {
 .nprogress-custom-parent #nprogress .bar,
 .nprogress-custom-parent #nprogress .spinner {
     position: absolute
-}
-@-webkit-keyframes nprogress-spinner {
-    0% {
-        -webkit-transform: rotate(0)
-    }
-    100% {
-        -webkit-transform: rotate(360deg)
-    }
 }
 @keyframes nprogress-spinner {
     0% {

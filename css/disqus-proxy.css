@@ -1,5 +1,4 @@
 .comment-toggle {
-	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex
 }
@@ -25,12 +24,10 @@
 	box-sizing: border-box;
 	cursor: pointer;
 	padding: 2.5px 3px;
-	-webkit-transition: all .3s;
 	transition: all .3s
 }
 
 .comment-toggle .comment-toggle-icon:before {
-	-webkit-transition: all .3s;
 	transition: all .3s;
 	content: "";
 	display: block;
@@ -111,9 +108,7 @@
 	border-style: solid;
 	border-color: rgba(51,54,58,.4) transparent;
 	border-radius: 13px;
-	-webkit-transform-origin: 50% 50% 0;
 	transform-origin: 50% 50% 0;
-	-webkit-animation: disqus-loader-spinner-animation .7s infinite linear!important;
 	animation: disqus-loader-spinner-animation .7s infinite linear!important
 }
 
@@ -126,7 +121,6 @@
 }
 
 .comment-box,.comment-header {
-	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex
 }
@@ -136,7 +130,6 @@
 	line-height: 36px;
 	font-weight: 700;
 	font-size: 15px;
-	-webkit-box-pack: justify;
 	-ms-flex-pack: justify;
 	justify-content: space-between;
 	border-bottom: 2px solid #e7e9ee;
@@ -160,7 +153,6 @@
 .comment-header .comment-header-count,.comment-header .comment-show {
 	width: 120px;
 	text-align: center;
-	-webkit-transition: all .2s ease-in-out;
 	transition: all .2s ease-in-out;
 	text-transform: capitalize
 }
@@ -181,14 +173,10 @@
 }
 
 .comment-form {
-	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
 	-ms-flex-direction: column;
 	flex-direction: column;
-	-webkit-box-flex: 1;
 	-ms-flex: auto;
 	flex: auto
 }
@@ -208,8 +196,6 @@
 }
 
 .comment-form-wrapper {
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
 	-ms-flex-direction: column;
 	flex-direction: column;
 	border: 2px solid #dbdfe4;
@@ -218,7 +204,6 @@
 }
 
 .comment-actions,.comment-form-wrapper {
-	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex
 }
@@ -226,11 +211,9 @@
 .comment-actions {
 	background: #f6f8f9;
 	border-radius: 0 0 2px 2px;
-	-webkit-box-pack: justify;
 	-ms-flex-pack: justify;
 	justify-content: space-between;
 	height: 0;
-	-webkit-transition: opacity .2s linear;
 	transition: opacity .2s linear;
 	opacity: 0;
 	filter: alpha(opacity=0);
@@ -238,7 +221,6 @@
 }
 
 .comment-actions .comment-actions-group {
-	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
 	position: relative
@@ -266,7 +248,6 @@
 	color: #737474;
 	cursor: pointer;
 	fill: #c2c6cc;
-	-webkit-transition: all .2s;
 	transition: all .2s
 }
 
@@ -294,7 +275,6 @@
 	top: -125px;
 	left: -2px;
 	margin-left: 0;
-	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
 	-ms-flex-wrap: wrap;
@@ -331,7 +311,6 @@
 }
 
 .expanded .comment-image {
-	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex
 }
@@ -371,7 +350,6 @@
 
 .expanded .comment-image .comment-image-list {
 	list-style: none;
-	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex
 }
@@ -388,7 +366,6 @@
 	overflow: hidden;
 	line-height: 0;
 	height: 0;
-	-webkit-transition: all .3s;
 	transition: all .3s;
 	content: "\70B9\51FB\79FB\9664";
 	display: block;
@@ -435,13 +412,11 @@
 }
 
 .comment-form-wrapper.editing .comment-image {
-	-webkit-transition: padding-bottom .15s ease-in-out;
 	transition: padding-bottom .15s ease-in-out;
 	background-color: rgba(16,48,68,.03)
 }
 
 .comment-form-wrapper.editing .comment-actions {
-	-webkit-transition: all .2s ease-in-out;
 	transition: all .2s ease-in-out;
 	border-top: 2px solid #dbdfe4;
 	opacity: 1;
@@ -451,7 +426,6 @@
 }
 
 .comment-form-wrapper.editing .comment-actions-form {
-	-webkit-transition: all .3s .5s;
 	transition: all .3s .5s;
 	margin: 87px -2px -2px
 }
@@ -535,14 +509,12 @@
 
 .comment-form-wrapper.logged-in .comment-form-submit {
 	border-radius: 0 0 4px;
-	-webkit-transition: none;
 	transition: none;
 	opacity: 1
 }
 
 .comment-form-wrapper.logged-in .comment-actions-form {
 	margin: 0;
-	-webkit-transition: all .5s;
 	transition: all .5s
 }
 
@@ -571,12 +543,10 @@
 	height: 44px;
 	font: 18px/30px Helvetica Neue,Helvetica,Arial,\\5FAE\8F6F\96C5\9ED1,Microsoft YaHei;
 	padding: 7px;
-	-webkit-transition: all .2s ease-in-out;
 	transition: all .2s ease-in-out
 }
 
 .comment-actions-form {
-	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex
 }
@@ -609,11 +579,9 @@
 }
 
 .comment-login {
-	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
 	opacity: 0;
-	-webkit-transition: all .5s .2s;
 	transition: all .5s .2s;
 	height: 0;
 	margin: -40px -5px 40px;
@@ -649,7 +617,6 @@
 }
 
 .comment-form-item {
-	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
 	margin: 10px 0
@@ -669,7 +636,6 @@
 .comment-form-item .comment-form-textarea {
 	background-color: #fff;
 	border: 2px solid #dbdfe4;
-	-webkit-transition: all .2s linear;
 	transition: all .2s linear;
 	padding: 2px 10px;
 	border-radius: 4px;
@@ -678,7 +644,6 @@
 	margin: 0 5px;
 	width: 30px;
 	line-height: 20px;
-	-webkit-box-flex: 1;
 	-ms-flex: auto;
 	flex: auto
 }
@@ -690,7 +655,6 @@
 .comment-form-input {
 	background-color: #fff;
 	border: 2px solid #dbdfe4;
-	-webkit-transition: all .2s linear;
 	transition: all .2s linear;
 	padding: 0 10px;
 	border-radius: 4px;
@@ -699,7 +663,6 @@
 	margin: 0 5px;
 	width: 30px;
 	line-height: 32px;
-	-webkit-box-flex: 1;
 	-ms-flex: auto;
 	flex: auto
 }
@@ -729,26 +692,12 @@
 	height: 48px
 }
 
-@-webkit-keyframes disqus-loader-spinner-animation {
-	0% {
-		-webkit-transform: rotate(0);
-		transform: rotate(0)
-	}
-
-	to {
-		-webkit-transform: rotate(1turn);
-		transform: rotate(1turn)
-	}
-}
-
 @keyframes disqus-loader-spinner-animation {
 	0% {
-		-webkit-transform: rotate(0);
 		transform: rotate(0)
 	}
 
 	to {
-		-webkit-transform: rotate(1turn);
 		transform: rotate(1turn)
 	}
 }
@@ -776,7 +725,6 @@
 }
 
 .comment-list .comment-item {
-	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
 	margin-bottom: 10px
@@ -815,7 +763,6 @@
 }
 
 .comment-list .comment-item-images {
-	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
 	margin: 0 -5px;
@@ -878,7 +825,6 @@
 }
 
 .comment-list .comment-item-main {
-	-webkit-box-flex: 1;
 	-ms-flex: 1;
 	flex: 1
 }
@@ -896,7 +842,6 @@
 	color: #fff!important;
 	line-height: 1.1;
 	border-radius: 3px;
-	-webkit-transition: background .2s;
 	transition: background .2s;
 	text-shadow: none
 }

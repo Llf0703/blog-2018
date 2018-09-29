@@ -3,6 +3,29 @@
   
     
     <entry>
+      <title>近期做的几道搜索题的总结</title>
+      <link href="/p/search-summary-201809.html"/>
+      <url>/p/search-summary-201809.html</url>
+      
+        <content type="html"><![CDATA[<p>我前段时期刷紫书才发现我搜索实在是菜的一匹，近期就在做这方面的题。今天突然有觉得自己该发一篇文章了，于是就有了这个。</p><h2 id="洛谷P1379-八数码难题"><a href="#洛谷P1379-八数码难题" class="headerlink" title="洛谷P1379 八数码难题"></a><a href="https://www.luogu.org/problemnew/show/P1379" target="_blank" rel="noopener">洛谷P1379 八数码难题</a></h2><p>这道题其实并不是太难，<del>说到这我想起了一位已经AFO搞物竞的同学花了三个月改了九个版本真正纯种暴搜最后拿了15的故事</del>，主要难点集中在判重。这里我用的是康托展开。</p><p>康托展开是用来求在n个数的 所有排列组合中 某种排列组合的编号(就是从小到大的第几个)。</p><p>公式是</p><script type="math/tex; mode=display">X=a[n] \times (n-1)! + a[n-1] \times (n-2)! +...+ a[1] \times 0!</script><blockquote><p><code>a[i]</code>表示第i个元素在未出现的元素(即第i~n位的数字中)中排列第几(也就是求后面有几个数字比ai小)</p></blockquote><p>看公式其实原理就比较清楚了，下面就放个代码(求数列s的康托展开值)</p><pre><code class="lang-cpp">inline int get_hash(int *s){    int ans=0;    for (int i=1;i&lt;=9;i++)    {        int sm=0;        for (int j=i+1;j&lt;=9;j++)            if (s[j]&lt;s[i]) sm++;        ans+=fac[8-i+1]*sm;    }    return ans;}</code></pre><p>整道题的代码我自己觉得还是很清晰的，就直接放代码吧</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;struct MP{    int s[10],id,x0,y0;};int vis[370005]; //vis[]始终标记的是康托展开值int fac[]={1,1,2,6,24,120,720,5040,40320},fx[4]={0,1,0,-1},fy[4]={1,0,-1,0};int mp[4][4],ans[10]={0,1,2,3,8,0,4,7,6,5};inline int get_hash(int *s) //康托展开值{    int ans=0;    for (int i=1;i&lt;=9;i++)    {        int sm=0;        for (int j=i+1;j&lt;=9;j++)            if (s[j]&lt;s[i]) sm++;        ans+=fac[8-i+1]*sm;    }    return ans;}inline int to_line(int x,int y) //将二维坐标转换为一维{    return (x-1)*3+y;}inline void bfs(int stx,int sty){    queue &lt;MP&gt; q;    MP stat;    stat.x0=stx; stat.y0=sty;    for (int i=1;i&lt;=3;i++)        for (int j=1;j&lt;=3;j++)            stat.s[to_line(i,j)]=mp[i][j];    stat.id=get_hash(stat.s);    vis[stat.id]=1; //为了标记把初始值设为1，最后-1即可    q.push(stat);    while (!q.empty())    {        MP x=q.front(); q.pop();        int mapp[10];        for (int i=1;i&lt;=9;i++) mapp[i]=x.s[i]; //复制一份        for (int i=0;i&lt;4;i++)        {            int tx=x.x0+fx[i],ty=x.y0+fy[i];            if (tx&gt;3 || tx&lt;1 || ty&gt;3 || ty&lt;1) continue; //越界退出            int newpos=to_line(tx,ty),pos=to_line(x.x0,x.y0); //当前空格的位置和将要与之交换的位置            swap(mapp[pos],mapp[newpos]);            int new_hash=get_hash(mapp); //得到新的康托展开值            if (vis[new_hash])            {                swap(mapp[pos],mapp[newpos]); //不满足需要换回来                continue;            }            bool is_ans=1; //是否找到答案            MP y; //下面是完善拓展结点的信息            y.x0=tx; y.y0=ty;            y.id=new_hash;            for (int j=1;j&lt;=9;j++)             {                y.s[j]=mapp[j];                if (mapp[j]!=ans[j]) is_ans=0;            }            vis[y.id]=vis[x.id]+1; //vis[]顺便记录答案            if (is_ans) return;            q.push(y);            swap(mapp[pos],mapp[newpos]);        }    }}int main(){    char x[10];    int s[10];    scanf(&quot;%s&quot;,x);    int cnt=-1,stx,sty;    for (int i=1;i&lt;=3;i++)    {        for (int j=1;j&lt;=3;j++)        {            mp[i][j]=x[++cnt]-&#39;0&#39;;            if (mp[i][j]==0) stx=i,sty=j; //得到初始空格位置        }    }    bfs(stx,sty);    int anshash=get_hash(ans);    printf(&quot;%d&quot;,vis[anshash]-1); //最后-1，理由见上    return 0;}</code></pre><h2 id="洛谷P1074-靶形数独"><a href="#洛谷P1074-靶形数独" class="headerlink" title="洛谷P1074 靶形数独"></a><a href="https://www.luogu.org/problemnew/show/P1074" target="_blank" rel="noopener">洛谷P1074 靶形数独</a></h2><p>这题其实评分虚高，于是我又打了个入门难度平衡了一下。<del>说的好像我有不打入门难度的题一样</del></p><p>刚开始看这评分还以为要用特殊的搜索方法+各种剪枝，事实上纯暴搜就有70，稍微改变下搜索顺序就AC了。</p><p>就跟真正的数独一样，我们要从已经填了的数字最多的那一行开始填。所以我们事先排个序，搜索时按照从多到少的顺序搜索即可。</p><p>值得一提的是我刚开始统计填了多少个数字时根本没有判断是不是0(也就意味着每一行都一样)都得了70分，不过很玄学的是开了O2以后就爆0了。所以这道题真的很水，大概普及难度就差不多了。</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;int mp[10][10],ans;bool vis[3][10][10];//0横，1竖，2九宫格int score[10][10]={{0,0,0,0,0,0,0,0,0,0},{0,6,6,6,6,6,6,6,6,6},{0,6,7,7,7,7,7,7,7,6},{0,6,7,8,8,8,8,8,7,6},{0,6,7,8,9,9,9,8,7,6},{0,6,7,8,9,10,9,8,7,6},{0,6,7,8,9,9,9,8,7,6},{0,6,7,8,8,8,8,8,7,6},{0,6,7,7,7,7,7,7,7,6},{0,6,6,6,6,6,6,6,6,6}};struct line{    int num,id;} l[10];inline int read(){    char ch=getchar();    int f=1,x=0;    while (ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;)    {        if (ch==&#39;-&#39;) f=-1;        ch=getchar();    }    while (ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;)    {        x=x*10+ch-&#39;0&#39;;        ch=getchar();    }    return f*x;}inline int nine(int x,int y) //得到所在的九宫格编号{    return (x-1)/3*3+(y-1)/3+1;}void dfs(int id,int y){    int x=l[id].id; //得到从大到小第id行的行数    if (id==10) //搜完了统计答案    {        int now=0;        for (int j=1;j&lt;=9;j++)            for (int k=1;k&lt;=9;k++)                now+=mp[j][k]*score[j][k];        ans=max(ans,now);        return;    }    if (y==10) //搜到最后一列后继续搜下一行    {        dfs(id+1,1);        return;    }    if (mp[x][y]) //已经填了，继续搜    {        dfs(id,y+1);        return;    }    for (int i=1;i&lt;=9;i++) //没填就填个数再搜    {        if (vis[0][x][i] || vis[1][y][i] || vis[2][nine(x,y)][i]) continue;        vis[0][x][i]=1;        vis[1][y][i]=1;        vis[2][nine(x,y)][i]=1;        mp[x][y]=i;        dfs(id,y+1);        vis[0][x][i]=0;        vis[1][y][i]=0;        vis[2][nine(x,y)][i]=0;        mp[x][y]=0;    }    return;}inline bool cmp(line x,line y){    return x.num&gt;y.num;}int main(){    for (int i=1;i&lt;=9;i++)    {        l[i].id=i;        for (int j=1;j&lt;=9;j++)         {            mp[i][j]=read();            if (mp[i][j]) l[i].num++; //统计已填个数            vis[0][i][mp[i][j]]=1;            vis[1][j][mp[i][j]]=1;            vis[2][nine(i,j)][mp[i][j]]=1;        }    }    sort(l+1,l+10,cmp); //从大到小排序    ans=-1; //如果搜不到即无解就输出-1    dfs(1,1);    printf(&quot;%d&quot;,ans);    return 0;}</code></pre><h2 id="洛谷P1120-小木棍"><a href="#洛谷P1120-小木棍" class="headerlink" title="洛谷P1120 小木棍"></a><a href="https://www.luogu.org/problemnew/show/P1120" target="_blank" rel="noopener">洛谷P1120 小木棍</a></h2><p>练习这道题对剪枝技能的提升很大，值得一刷。</p><p>总的来说这道题就是暴搜+各种神奇的剪枝。</p><p>搜索的思路就是先得到所有木棍的总长度，然后枚举各个可能的长度即能被总长度整除的长度，并以之进行搜索。当然事先需要将所有木棍从大到小排序，这样能加快搜索速度。</p><p>于是得到纯暴搜代码：</p><blockquote><p><code>len</code>是当前枚举到的可能长度，<code>num</code>是有多少根，可以用总长度/可能长度得到，<code>id</code>是搜索到了第几根，<code>sum</code>是搜索到的当前的和</p></blockquote><pre><code class="lang-cpp">bool dfs(int len,int num,int id,int sum){    if (sum==len)     {        if (id==num) return 1;        else return dfs(len,num,id+1,0);    }    int i=1;    while (len-sum&lt;s[i]) i++; //跳过放不下的    bool can=0;    for (;i&lt;=n;i++)    {        if (vis[i]) continue;        vis[i]=1;        can=dfs(len,num,id,sum+s[i]);        if (can) return 1;        vis[i]=0;    }    return 0;}</code></pre><p>这个代码得了33分。于是考虑优化，我加了一句</p><pre><code class="lang-cpp">if (len-sum-s[i]&lt;mn &amp;&amp; len!=sum+s[i]) break;</code></pre><p>就是剩下的长度连最小的都放不下了就直接退出，相当于可以少搜索一层。现在39分了。但是后来发现这句话有些bug会导致WA于是就没用了。</p><p>我还是太菜了，只有去看题解。题解中写到当前搜索应该从上一次搜索用的下一根木棍开始搜。仔细一想，这样可以保证之前用的比后面用的木棍都大，可以去除很多重复。于是我就加了个last变量，下一次搜索从last+1开始。同时我自己还想到如果已经搜了<code>num-1</code>根了那么剩下的一定可以组成最后一根了，于是可以少搜一层，不过似乎并没有太大的作用。</p><p>现在搜索变成了这样：</p><pre><code class="lang-cpp">bool dfs(int len,int num,int id,int sum,int last){    if (sum==len)     {        if (id==num-1) return 1; //那个并没有什么卵用的优化        else return dfs(len,num,id+1,0,0);    }    bool can=0;    int i=last+1;    while (len-sum&lt;s[i]) i++; //从last+1开始    for (;i&lt;=n;i++)    {        if (vis[i]) continue;        if (len-sum-s[i]&lt;mn &amp;&amp; len!=sum+s[i]) break;        vis[i]=1;        can=dfs(len,num,id,sum+s[i],i);        if (can) return 1;        vis[i]=0;    }    return 0;}</code></pre><p>现在有了48分了。</p><p>我突然想到，<code>i</code>只是代表第几个，如果有重复的长度的话仅仅+1就会搜索很多次重复的情况。于是我事先预处理了一个<code>nxt[]</code>数组，表示排序后第一个与第<code>i</code>位不同的数在第几位：</p><pre><code class="lang-cpp">for (int i=n-1;i;i--){    if (s[i]==s[i+1]) nxt[i]=nxt[i+1];    else nxt[i]=i+1;}</code></pre><p>搜索中的枚举步骤变成了这样：</p><pre><code class="lang-cpp">while (i&lt;=n){    if (vis[i])     {        i++;        continue;    }    vis[i]=1;    can=dfs(len,num,id,sum+s[i],i);    if (can) return 1;    vis[i]=0;    i=nxt[i];}</code></pre><p>现在57分了。我是真的没办法了，又去看了题解。接下来可谓是最重要的优化了：</p><blockquote><p>对于每一次枚举，如果拼接失败，而且 <strong>当前已拼接的长度为0 或者 当前枚举的木棍长度=剩余未拼接长度</strong> ，则停止枚举，直接退出循环。</p></blockquote><p>感觉这个优化很难理解，更难想到，不过仔细想想还是比较容易理解的。</p><p>我们可以逆向来想一下。之所以退出循环，肯定是因为上一根拼的根本就不行。</p><p>如果当前已拼接的长度是0，那么当前枚举的木棍，肯定要在<strong>当前拼接的组</strong>用上。因为它必定会出现在剩下的任意一个组里，而如果当前拼接的是0，那么它出现在剩下的哪个组其实都一样。而如果拼接失败，则代表它拼在哪个组都不行，所以上一根就没对，直接退出。</p><p>如果当前枚举的木棍长度=剩余未拼接长度，那么把当前的这根拼上其实就转化为上面的情况了，所以同理。</p><p>总结一下所有优化：</p><ol><li>事先排序，搜索时从大到小搜</li><li>每次枚举从上一次搜索用的下一根木棍开始搜</li><li>预处理<code>nxt[]</code>数组，跳过重复</li><li>如果拼接失败，而且当前已拼接的长度为0 或者 当前枚举的木棍长度=剩余未拼接长度 ，则停止枚举，直接退出循环</li></ol><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;inline int read(){    char ch=getchar();    int f=1,x=0;    while (ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;)    {        if (ch==&#39;-&#39;) f=-1;        ch=getchar();    }    while (ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;)    {        x=x*10+ch-&#39;0&#39;;        ch=getchar();    }    return f*x;}int s[70],len[70],n,ans,mn,nxt[70];bool vis[70];inline bool cmp(int x,int y){    return x&gt;y;}bool dfs(int len,int num,int id,int sum,int last){    if (sum==len)     {        if (id==num-1) return 1;        else return dfs(len,num,id+1,0,0);    }    bool can=0;    int i=last+1; //优化2    while (len-sum&lt;s[i]) i=nxt[i];    while (i&lt;=n)    {        if (vis[i])         {            i++;            continue;        }        vis[i]=1;        can=dfs(len,num,id,sum+s[i],i);        if (can) return 1;        vis[i]=0;        if (sum==0 || sum+s[i]==len) break; //优化4        i=nxt[i];    }    return 0;}int main(){    n=read();    int cnt=0,sum=0,mx=0;    for (int i=1;i&lt;=n;i++)    {        int a=read();        if (a&gt;50) continue;         s[++cnt]=a;        sum+=a;    }    n=cnt;    sort(s+1,s+cnt+1,cmp); //优化1    mx=s[1]; mn=s[n];    int lcnt=0;    for (int i=mx;i*2&lt;=sum;i++)    {        if (sum%i) continue;        len[++lcnt]=i;    }    nxt[n]=n+1;    for (int i=n-1;i;i--) //优化3    {        if (s[i]==s[i+1]) nxt[i]=nxt[i+1];        else nxt[i]=i+1;    }    ans=sum;//全部拼成一根    for (int i=1;i&lt;=lcnt;i++)    {        if (dfs(len[i],sum/len[i],1,0,0))        {            ans=len[i];            break;        }    }    printf(&quot;%d&quot;,ans);    return 0;}</code></pre><h2 id="洛谷P1378-油滴扩展"><a href="#洛谷P1378-油滴扩展" class="headerlink" title="洛谷P1378 油滴扩展"></a><a href="https://www.luogu.org/problemnew/show/P1378" target="_blank" rel="noopener">洛谷P1378 油滴扩展</a></h2><p>裸的搜索。唯一需要注意的是如果两点距离&lt;0的话需要把最大半径取成0。还有最好全部用<code>double</code>，否则最大的那组数据可能有精度问题。</p><p>还有就是<code>double</code>输出应该用<code>%f</code>，cyc大佬某天WA掉就是因为用了<code>%lf</code>输出。</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;#define pi acos(-1)using namespace std;double lx,rx,uy,dy;int cur[10],n;struct point{    double x,y,len;} pt[10];bool vis[10];inline double dis(int x1,int y1,int x2,int y2){    return sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));}double dfs(int x){    if (x==n+1) return 0;    double mx=0;    for (int i=1;i&lt;=n;i++)    {        if (vis[i]) continue;        cur[x]=i;        vis[i]=1;        double lmax=min(min(pt[i].x-lx,rx-pt[i].x),min(pt[i].y-dy,uy-pt[i].y)); //距离四条边的最短距离        for (int j=1;j&lt;x;j++)        {            double d=dis(pt[i].x,pt[i].y,pt[cur[j]].x,pt[cur[j]].y);            lmax=min(lmax,max(d-pt[cur[j]].len,0.0)); //距离每个点的最小距离        }        pt[i].len=lmax;        double ans=pi*lmax*lmax+dfs(x+1);        vis[i]=0;        pt[i].len=0;        mx=max(mx,ans);    }    return mx;}int main(){    scanf(&quot;%d&quot;,&amp;n);    double x,y,xx,yy;    scanf(&quot;%lf%lf%lf%lf&quot;,&amp;x,&amp;y,&amp;xx,&amp;yy);    lx=min(x,xx); rx=max(x,xx); uy=max(y,yy); dy=min(y,yy);    for (int i=1;i&lt;=n;i++) scanf(&quot;%lf%lf&quot;,&amp;pt[i].x,&amp;pt[i].y);    double s=(rx-lx)*(uy-dy);    printf(&quot;%.0f&quot;,s-dfs(1)); // double输出用%f!    return 0;}</code></pre><p>以上。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> OI笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法-搜索 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>信息学科普基地Noip2017%你题第二试总结</title>
       <link href="/p/contest-summary-1.html"/>
       <url>/p/contest-summary-1.html</url>
@@ -343,6 +366,29 @@
     </entry>
     
     <entry>
+      <title>拓扑排序</title>
+      <link href="/p/topological-sort.html"/>
+      <url>/p/topological-sort.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>拓扑排序是一种可以将有先决条件（即必须将a、b排在前面后再排c，缺一不可）的数据变得有序的一种排序方法。拓扑排序仅可在有向无环图中使用，同时可以判断图中是否有环。因为顺序不同，拓扑排序得到的答案可能不同。</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>因为排序是有先决条件的，所以可以将要有先决条件的个数（在图中即为入度）记录下来，每满足一个就减一，直到个数为0便可以将其放入序列中。</p><h2 id="手动实现"><a href="#手动实现" class="headerlink" title="手动实现"></a>手动实现</h2><p>如果我们有如下的一个有向无环图，我们需要对这个图的顶点进行拓扑排序，过程如下：</p><p><img src="https://cdn.uniqueue.cn/tuopu-1.png" alt="tuopu-1"></p><p>首先，我们发现V6和v1是没有前驱的，所以我们就随机选去一个输出，我们先输出V6，删除和V6有关的边，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-2.png" alt="tuopu-2"></p><p>然后，我们继续寻找没有前驱的顶点，发现V1没有前驱，所以输出V1，删除和V1有关的边，得到下图的结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-3.png" alt="tuopu-3"></p><p>然后，我们又发现V4和V3都是没有前驱的，那么我们就随机选取一个顶点输出（具体看你实现的算法和图存储结构），我们输出V4，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-4.png" alt="tuopu-4"></p><p>然后，我们输出没有前驱的顶点V3，得到如下结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-5.png" alt="tuopu-5"></p><p>然后，我们分别输出V5和V2，最后全部顶点输出完成，该图的一个拓扑序列为：</p><p>v6–&gt;v1—&gt;v4—&gt;v3—&gt;v5—&gt;v2</p><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>1.用邻接表存储数据，同时对终点的结点的入度加一；<br>2.将没有先决条件便可以排序的点（即初始入度为0的点）先加入队列并输出；<br>3.从队首元素开始扩展，将与队首元素相连的结点的入度减一（等同于擦除这条边），如果该结点入度变为0，则将其入队，作为下一次查找的起点；<br>4.将队首元素出队，当队首元素为空时停止排序。</p><h2 id="代码及注解"><a href="#代码及注解" class="headerlink" title="代码及注解"></a>代码及注解</h2><p>有n个点，m条边的有向无环图，输入n，m，然后每一行输入一条边的信息：起点x，终点y</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;int n,m,a,b,c,d,e,re;struct map1{    int stat,end;};map1 tu[100];int rd[100],chong[100];queue &lt;int&gt; q;int main(){    cin&gt;&gt;n&gt;&gt;m;//n点m边    for (a=1;a&lt;=m;a++)    {        cin&gt;&gt;tu[a].stat&gt;&gt;tu[a].end;        rd[tu[a].end]++;    }    for (int i=1;i&lt;=n;i++)    if (rd[i]==0) q.push(i);//将初始入度为0的结点入队    while (!q.empty())    {            cout&lt;&lt;q.front()&lt;&lt;&quot; &quot;;            for (int j=1;j&lt;=m;j++)            {                if (tu[j].stat==q.front())//找以队首元素为起点的边                {                    rd[tu[j].end]--;                    if (rd[tu[j].end]==0)                     {                        q.push(tu[j].end);                    }                }            }        q.pop();    }    return 0;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> OI笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法-拓扑排序 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>最小生成树</title>
       <link href="/p/minimum-spanning-tree.html"/>
       <url>/p/minimum-spanning-tree.html</url>
@@ -364,29 +410,6 @@
             <tag> 算法-Kruskal </tag>
             
             <tag> 算法-Prim </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>拓扑排序</title>
-      <link href="/p/topological-sort.html"/>
-      <url>/p/topological-sort.html</url>
-      
-        <content type="html"><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>拓扑排序是一种可以将有先决条件（即必须将a、b排在前面后再排c，缺一不可）的数据变得有序的一种排序方法。拓扑排序仅可在有向无环图中使用，同时可以判断图中是否有环。因为顺序不同，拓扑排序得到的答案可能不同。</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>因为排序是有先决条件的，所以可以将要有先决条件的个数（在图中即为入度）记录下来，每满足一个就减一，直到个数为0便可以将其放入序列中。</p><h2 id="手动实现"><a href="#手动实现" class="headerlink" title="手动实现"></a>手动实现</h2><p>如果我们有如下的一个有向无环图，我们需要对这个图的顶点进行拓扑排序，过程如下：</p><p><img src="https://cdn.uniqueue.cn/tuopu-1.png" alt="tuopu-1"></p><p>首先，我们发现V6和v1是没有前驱的，所以我们就随机选去一个输出，我们先输出V6，删除和V6有关的边，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-2.png" alt="tuopu-2"></p><p>然后，我们继续寻找没有前驱的顶点，发现V1没有前驱，所以输出V1，删除和V1有关的边，得到下图的结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-3.png" alt="tuopu-3"></p><p>然后，我们又发现V4和V3都是没有前驱的，那么我们就随机选取一个顶点输出（具体看你实现的算法和图存储结构），我们输出V4，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-4.png" alt="tuopu-4"></p><p>然后，我们输出没有前驱的顶点V3，得到如下结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-5.png" alt="tuopu-5"></p><p>然后，我们分别输出V5和V2，最后全部顶点输出完成，该图的一个拓扑序列为：</p><p>v6–&gt;v1—&gt;v4—&gt;v3—&gt;v5—&gt;v2</p><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>1.用邻接表存储数据，同时对终点的结点的入度加一；<br>2.将没有先决条件便可以排序的点（即初始入度为0的点）先加入队列并输出；<br>3.从队首元素开始扩展，将与队首元素相连的结点的入度减一（等同于擦除这条边），如果该结点入度变为0，则将其入队，作为下一次查找的起点；<br>4.将队首元素出队，当队首元素为空时停止排序。</p><h2 id="代码及注解"><a href="#代码及注解" class="headerlink" title="代码及注解"></a>代码及注解</h2><p>有n个点，m条边的有向无环图，输入n，m，然后每一行输入一条边的信息：起点x，终点y</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;int n,m,a,b,c,d,e,re;struct map1{    int stat,end;};map1 tu[100];int rd[100],chong[100];queue &lt;int&gt; q;int main(){    cin&gt;&gt;n&gt;&gt;m;//n点m边    for (a=1;a&lt;=m;a++)    {        cin&gt;&gt;tu[a].stat&gt;&gt;tu[a].end;        rd[tu[a].end]++;    }    for (int i=1;i&lt;=n;i++)    if (rd[i]==0) q.push(i);//将初始入度为0的结点入队    while (!q.empty())    {            cout&lt;&lt;q.front()&lt;&lt;&quot; &quot;;            for (int j=1;j&lt;=m;j++)            {                if (tu[j].stat==q.front())//找以队首元素为起点的边                {                    rd[tu[j].end]--;                    if (rd[tu[j].end]==0)                     {                        q.push(tu[j].end);                    }                }            }        q.pop();    }    return 0;}</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> OI笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 算法-拓扑排序 </tag>
             
         </tags>
       
@@ -419,20 +442,20 @@
   
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
-      
-        <content type="html"><![CDATA[<p>我是Llf，最弱的蒟蒻，完了</p><p>本博客部分文章的markdown源文件均可通过将 <code>https://llf0703.com/p/*.html</code>改为 <code>https://md.llf0703.com/p/*.md</code> 查看</p><p>这个东西会不时更新，也许有的最新文章看不了</p><p><a href="https://bzoj.llf0703.com/" target="_blank" rel="noopener">BZOJ离线题库（By ruanxingzhi）</a></p><p>CSDN博客:  <a href="https://blog.csdn.net/Llf_0703" target="_blank" rel="noopener">Llf_0703</a></p><p>luogu:  <a href="https://www.luogu.org/space/show?uid=29696" target="_blank" rel="noopener">Llf0703</a></p><p>BZOJ:  <a href="https://www.lydsy.com/JudgeOnline/userinfo.php?user=Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Bilibili： <a href="https://space.bilibili.com/268840304/" target="_blank" rel="noopener">Llf030703</a></p><p>逼乎:  <a href="https://www.zhihu.com/people/llf-93-87/" target="_blank" rel="noopener">Llf</a></p><p>Coding:  <a href="https://coding.net/u/Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Gayhub:  <a href="https://github.com/Llf0703" target="_blank" rel="noopener">Llf0703</a></p>]]></content>
-      
-    </entry>
-    
-    <entry>
       <title>咕咕咕</title>
       <link href="/gugugu/index.html"/>
       <url>/gugugu/index.html</url>
       
         <content type="html"><![CDATA[<h1>    <center> 蒟蒻Llf0703鸽了这篇文章 </center></h1><p>这不是404，只是用作占坑文章的临时页面，请返回上一页。</p>]]></content>
+      
+    </entry>
+    
+    <entry>
+      <title>时间轴</title>
+      <link href="/timeline/index.html"/>
+      <url>/timeline/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
@@ -455,11 +478,11 @@
     </entry>
     
     <entry>
-      <title>时间轴</title>
-      <link href="/timeline/index.html"/>
-      <url>/timeline/index.html</url>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p>我是Llf，最弱的蒟蒻，完了</p><p>本博客部分文章的markdown源文件均可通过将 <code>https://llf0703.com/p/*.html</code>改为 <code>https://md.llf0703.com/p/*.md</code> 查看</p><p>这个东西会不时更新，也许有的最新文章看不了</p><p><a href="https://bzoj.llf0703.com/" target="_blank" rel="noopener">BZOJ离线题库（By ruanxingzhi）</a></p><p>CSDN博客:  <a href="https://blog.csdn.net/Llf_0703" target="_blank" rel="noopener">Llf_0703</a></p><p>luogu:  <a href="https://www.luogu.org/space/show?uid=29696" target="_blank" rel="noopener">Llf0703</a></p><p>BZOJ:  <a href="https://www.lydsy.com/JudgeOnline/userinfo.php?user=Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Bilibili： <a href="https://space.bilibili.com/268840304/" target="_blank" rel="noopener">Llf030703</a></p><p>逼乎:  <a href="https://www.zhihu.com/people/llf-93-87/" target="_blank" rel="noopener">Llf</a></p><p>Coding:  <a href="https://coding.net/u/Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Gayhub:  <a href="https://github.com/Llf0703" target="_blank" rel="noopener">Llf0703</a></p>]]></content>
       
     </entry>
     

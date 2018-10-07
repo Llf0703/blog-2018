@@ -3,6 +3,29 @@
   
     
     <entry>
+      <title>科普基地国庆集训测试题总结</title>
+      <link href="/p/contest-summary-2.html"/>
+      <url>/p/contest-summary-2.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="D1T1-剪刀石头布-stone"><a href="#D1T1-剪刀石头布-stone" class="headerlink" title="D1T1 剪刀石头布(stone)"></a>D1T1 剪刀石头布(stone)</h2><p>我一开始还真的以为模拟题的D1T1就是真的noipD1T1难度呢，现在想来还是太naive了。</p><p>最开始我没有注意到只能取最大或最小，以为都可以取，那么这道题就真的是D1T1难度了。当然，因为两位数要么最大，要么最小，所以这样我们也就解决了40%的点了。</p><p>对于每个一位数，直接取完就可以获胜，而只有10可以取到一位数，所以轮到10就输了，而如果要取到10只能选11~19。这样推下去，我们发现：</p><ol><li>当n%10!=0时，小明肯定会将它取到%10=0来让自己获胜</li><li>当n%10==0时，小明只能把它取到第一种情况，小头就可以照1中小明的做以获胜</li></ol><p>综上，我们得出结论：</p><blockquote><p>当n%10!=0，输出”NO”; 当n%10==0，输出”YES”</p></blockquote><p>然后我很开心地写完了， <del>很开心</del>的得了40分。</p><pre><code class="lang-cpp">while (t--){    n=read();    if (n%10==0) printf(&quot;NO\n&quot;);    else printf(&quot;YES\n&quot;);}</code></pre><p>后来讲评的时候发现似乎只有1人AC，还有1人做法和我一样，但他没有看错题，就是铁了心要得40分的。</p><p>然后告诉我们正解竟然是搜索？！做法就是直接dfs，因为只要存在一种让小明胜利的方法，小明就一定能胜利（先手真好），所以搜到以后直接退出就行了。WTF？</p><p>代码先咕咕咕了，<del>我会补上的，已经在写了</del>。</p><h2 id="D1T2-n染色-color"><a href="#D1T2-n染色-color" class="headerlink" title="D1T2 n染色(color)"></a>D1T2 n染色(color)</h2><p>我在考场上推了整整两张草稿纸也没搞出个什么名堂，虽然似乎在数学上是个对的结论，但全部TLE。</p><p>正解就是个dp，$ f[i][j][k] $ 表示画到第i条边，用的是颜色j，上一条边的颜色是k。很显然，对于100%的数据肯定爆。</p><p>优化就是将后两维看成一个矩阵，因为不管是画到第几条边后两维的转移都是一样的，然后矩阵快速幂就行了。</p><p>代码还是先咕咕咕了，我真的会补上的。</p><h2 id="D1T3-Stree-stree"><a href="#D1T3-Stree-stree" class="headerlink" title="D1T3 Stree(stree)"></a>D1T3 Stree(stree)</h2><p>这道题是这套题唯一一道我有AC代码的题，不过我是在测完后20分钟后才A的。</p><p>对于30%的数据，很容易想到直接暴力。当然，我们也可以预处理一遍最小生成树，如果这条边在树里就直接输出，否则在跑一遍最小生成树。</p><p>其实这样我们就已经完成了正解的第一步了，也就是预处理最小生成树，而且在树里就直接输出。如果这条边不在最小生成树里，就意味着我们需要加上这条边，并且一定要删掉一条在树里的边。我们设加上的这条边的两端点为u和v，那么加上这条边后就一定会以这条边和u和v之前在树里的路径形成一个环，我们只需要在u和v原来的路径里找到一条边删掉就行了。</p><p>为了让权值和最小，我们肯定会选择删u和v路径中最大的边。这里可以用倍增LCA之类的方法解决，我用的是树剖。一般涉及到LCA的问题我都用树剖，主要是常数小。</p><blockquote><p>树剖详解传送门: <a href="https://llf0703.com/p/shu-lian-pou-fen.html">https://llf0703.com/p/shu-lian-pou-fen.html</a></p></blockquote><pre><code class="lang-cpp">#include&lt;iostream&gt;#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;algorithm&gt;#include&lt;cmath&gt;#define ll long longusing namespace std;inline ll read(){    char ch=getchar();    ll f=1,x=0;    while (ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;)    {        if (ch==&#39;-&#39;) f=-1;        ch=getchar();    }    while (ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;)    {        x=x*10+ch-&#39;0&#39;;        ch=getchar();    }    return f*x;}struct Edge{    ll stat,end,w,id;} edge[200005];struct Edge2{    ll next,to,w,id;} e[400005];struct Tree{    ll left,right,mx;} tree[800005];ll fa[200005],n,m,cnt=1,dfsord,head[200005],deep[200005],w[200005],wnew[200005],id[200005],f[200005],son[200005],top[200005],siz[200005];bool intree[200005];inline bool cmp(Edge x,Edge y) //第一次按边权从大到小{    return x.w&lt;y.w;}inline bool cmp2(Edge x,Edge y) //第二次按原来顺序还原{    return x.id&lt;y.id;}ll getfa(ll x){    if (x==fa[x]) return fa[x];    fa[x]=getfa(fa[x]);    return fa[x];}inline void add(ll u,ll v,ll w){    e[cnt].to=v;    e[cnt].w=w;    e[cnt].next=head[u];    head[u]=cnt++;}inline void pushup(int x) //线段树{    tree[x].mx=max(tree[x*2].mx,tree[x*2+1].mx);}void build(int x,int l,int r){    tree[x].left=l;    tree[x].right=r;    if (r-l==1) tree[x].mx=wnew[l];    else    {        build(x*2,l,(l+r)/2);        build(x*2+1,(l+r)/2,r);        pushup(x);    }}ll query(int x,int l,int r){    if (l&lt;=tree[x].left &amp;&amp; r&gt;=tree[x].right) return tree[x].mx;    else    {        ll ans=0,mid=(tree[x].left+tree[x].right)/2;        if (l&lt;mid) ans=max(ans,query(x*2,l,r));        if (r&gt;mid) ans=max(ans,query(x*2+1,l,r));        return ans;    }}void dfs1(int x,int fath,int dep){    f[x]=fath;    deep[x]=dep;    siz[x]=1;    int mx=-1;    for (int i=head[x];i;i=e[i].next)    {        int y=e[i].to;        if (y==fath) continue;        w[y]=e[i].w;        dfs1(y,x,dep+1);        siz[x]+=siz[y];        if (siz[y]&gt;mx)        {            mx=siz[y];            son[x]=y;        }    }}void dfs2(int x,int topf){    top[x]=topf;    id[x]=++dfsord;    wnew[dfsord]=w[x];    if (!son[x]) return;    dfs2(son[x],topf);    for (int i=head[x];i;i=e[i].next)    {        int y=e[i].to;        if (y==f[x] || y==son[x]) continue;        dfs2(y,y);    }}inline ll qRangeMax(int u,int v) //查找路径最大{    ll ans=0;    while (top[u]!=top[v])    {        if (deep[top[u]]&lt;deep[top[v]]) swap(u,v);        ans=max(ans,query(1,id[top[u]],id[u]+1));        u=f[top[u]];    }    if (deep[u]&gt;deep[v]) swap(u,v);    ans=max(ans,query(1,id[u]+1,id[v]+1));    return ans;}int main(){    freopen(&quot;stree.in&quot;,&quot;r&quot;,stdin);    freopen(&quot;stree.out&quot;,&quot;w&quot;,stdout);    ll ans=0;    n=read(); m=read();    for (int i=1;i&lt;=m;i++)     {        edge[i].stat=read(); edge[i].end=read(); edge[i].w=read();        edge[i].id=i;    }    sort(edge+1,edge+m+1,cmp);    for (int i=1;i&lt;=n;i++) fa[i]=i;    for (int i=1;i&lt;=m;i++)    {        ll st=edge[i].stat,ed=edge[i].end,w=edge[i].w;        ll gfa=getfa(st),gfb=getfa(ed);        if (gfa==gfb) continue;        fa[gfa]=gfb; //最小生成树过程        ans+=w;        intree[edge[i].id]=1; //判断是否已在树里        add(st,ed,w);        add(ed,st,w);    }    dfs1(1,0,1);    dfs2(1,1);    build(1,1,n+1);    sort(edge+1,edge+m+1,cmp2);    for (int i=1;i&lt;=m;i++)    {        if (intree[i]) //在树里直接输出        {            printf(&quot;%lld\n&quot;,ans);            continue;        }        ll st=edge[i].stat,ed=edge[i].end,w=edge[i].w,mx;        mx=qRangeMax(st,ed);        printf(&quot;%lld\n&quot;,ans-mx+w);    }    fclose(stdin);    fclose(stdout);    return 0;}</code></pre><p>Day2先咕了，全是dp，有时间再写</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 比赛-模拟题 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>近期做的几道搜索题的总结</title>
       <link href="/p/search-summary-201809.html"/>
       <url>/p/search-summary-201809.html</url>
@@ -366,29 +389,6 @@
     </entry>
     
     <entry>
-      <title>拓扑排序</title>
-      <link href="/p/topological-sort.html"/>
-      <url>/p/topological-sort.html</url>
-      
-        <content type="html"><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>拓扑排序是一种可以将有先决条件（即必须将a、b排在前面后再排c，缺一不可）的数据变得有序的一种排序方法。拓扑排序仅可在有向无环图中使用，同时可以判断图中是否有环。因为顺序不同，拓扑排序得到的答案可能不同。</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>因为排序是有先决条件的，所以可以将要有先决条件的个数（在图中即为入度）记录下来，每满足一个就减一，直到个数为0便可以将其放入序列中。</p><h2 id="手动实现"><a href="#手动实现" class="headerlink" title="手动实现"></a>手动实现</h2><p>如果我们有如下的一个有向无环图，我们需要对这个图的顶点进行拓扑排序，过程如下：</p><p><img src="https://cdn.uniqueue.cn/tuopu-1.png" alt="tuopu-1"></p><p>首先，我们发现V6和v1是没有前驱的，所以我们就随机选去一个输出，我们先输出V6，删除和V6有关的边，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-2.png" alt="tuopu-2"></p><p>然后，我们继续寻找没有前驱的顶点，发现V1没有前驱，所以输出V1，删除和V1有关的边，得到下图的结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-3.png" alt="tuopu-3"></p><p>然后，我们又发现V4和V3都是没有前驱的，那么我们就随机选取一个顶点输出（具体看你实现的算法和图存储结构），我们输出V4，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-4.png" alt="tuopu-4"></p><p>然后，我们输出没有前驱的顶点V3，得到如下结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-5.png" alt="tuopu-5"></p><p>然后，我们分别输出V5和V2，最后全部顶点输出完成，该图的一个拓扑序列为：</p><p>v6–&gt;v1—&gt;v4—&gt;v3—&gt;v5—&gt;v2</p><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>1.用邻接表存储数据，同时对终点的结点的入度加一；<br>2.将没有先决条件便可以排序的点（即初始入度为0的点）先加入队列并输出；<br>3.从队首元素开始扩展，将与队首元素相连的结点的入度减一（等同于擦除这条边），如果该结点入度变为0，则将其入队，作为下一次查找的起点；<br>4.将队首元素出队，当队首元素为空时停止排序。</p><h2 id="代码及注解"><a href="#代码及注解" class="headerlink" title="代码及注解"></a>代码及注解</h2><p>有n个点，m条边的有向无环图，输入n，m，然后每一行输入一条边的信息：起点x，终点y</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;int n,m,a,b,c,d,e,re;struct map1{    int stat,end;};map1 tu[100];int rd[100],chong[100];queue &lt;int&gt; q;int main(){    cin&gt;&gt;n&gt;&gt;m;//n点m边    for (a=1;a&lt;=m;a++)    {        cin&gt;&gt;tu[a].stat&gt;&gt;tu[a].end;        rd[tu[a].end]++;    }    for (int i=1;i&lt;=n;i++)    if (rd[i]==0) q.push(i);//将初始入度为0的结点入队    while (!q.empty())    {            cout&lt;&lt;q.front()&lt;&lt;&quot; &quot;;            for (int j=1;j&lt;=m;j++)            {                if (tu[j].stat==q.front())//找以队首元素为起点的边                {                    rd[tu[j].end]--;                    if (rd[tu[j].end]==0)                     {                        q.push(tu[j].end);                    }                }            }        q.pop();    }    return 0;}</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> OI笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 算法-拓扑排序 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
       <title>最小生成树</title>
       <link href="/p/minimum-spanning-tree.html"/>
       <url>/p/minimum-spanning-tree.html</url>
@@ -410,6 +410,29 @@
             <tag> 算法-Kruskal </tag>
             
             <tag> 算法-Prim </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>拓扑排序</title>
+      <link href="/p/topological-sort.html"/>
+      <url>/p/topological-sort.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>拓扑排序是一种可以将有先决条件（即必须将a、b排在前面后再排c，缺一不可）的数据变得有序的一种排序方法。拓扑排序仅可在有向无环图中使用，同时可以判断图中是否有环。因为顺序不同，拓扑排序得到的答案可能不同。</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>因为排序是有先决条件的，所以可以将要有先决条件的个数（在图中即为入度）记录下来，每满足一个就减一，直到个数为0便可以将其放入序列中。</p><h2 id="手动实现"><a href="#手动实现" class="headerlink" title="手动实现"></a>手动实现</h2><p>如果我们有如下的一个有向无环图，我们需要对这个图的顶点进行拓扑排序，过程如下：</p><p><img src="https://cdn.uniqueue.cn/tuopu-1.png" alt="tuopu-1"></p><p>首先，我们发现V6和v1是没有前驱的，所以我们就随机选去一个输出，我们先输出V6，删除和V6有关的边，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-2.png" alt="tuopu-2"></p><p>然后，我们继续寻找没有前驱的顶点，发现V1没有前驱，所以输出V1，删除和V1有关的边，得到下图的结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-3.png" alt="tuopu-3"></p><p>然后，我们又发现V4和V3都是没有前驱的，那么我们就随机选取一个顶点输出（具体看你实现的算法和图存储结构），我们输出V4，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-4.png" alt="tuopu-4"></p><p>然后，我们输出没有前驱的顶点V3，得到如下结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-5.png" alt="tuopu-5"></p><p>然后，我们分别输出V5和V2，最后全部顶点输出完成，该图的一个拓扑序列为：</p><p>v6–&gt;v1—&gt;v4—&gt;v3—&gt;v5—&gt;v2</p><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>1.用邻接表存储数据，同时对终点的结点的入度加一；<br>2.将没有先决条件便可以排序的点（即初始入度为0的点）先加入队列并输出；<br>3.从队首元素开始扩展，将与队首元素相连的结点的入度减一（等同于擦除这条边），如果该结点入度变为0，则将其入队，作为下一次查找的起点；<br>4.将队首元素出队，当队首元素为空时停止排序。</p><h2 id="代码及注解"><a href="#代码及注解" class="headerlink" title="代码及注解"></a>代码及注解</h2><p>有n个点，m条边的有向无环图，输入n，m，然后每一行输入一条边的信息：起点x，终点y</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;int n,m,a,b,c,d,e,re;struct map1{    int stat,end;};map1 tu[100];int rd[100],chong[100];queue &lt;int&gt; q;int main(){    cin&gt;&gt;n&gt;&gt;m;//n点m边    for (a=1;a&lt;=m;a++)    {        cin&gt;&gt;tu[a].stat&gt;&gt;tu[a].end;        rd[tu[a].end]++;    }    for (int i=1;i&lt;=n;i++)    if (rd[i]==0) q.push(i);//将初始入度为0的结点入队    while (!q.empty())    {            cout&lt;&lt;q.front()&lt;&lt;&quot; &quot;;            for (int j=1;j&lt;=m;j++)            {                if (tu[j].stat==q.front())//找以队首元素为起点的边                {                    rd[tu[j].end]--;                    if (rd[tu[j].end]==0)                     {                        q.push(tu[j].end);                    }                }            }        q.pop();    }    return 0;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> OI笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法-拓扑排序 </tag>
             
         </tags>
       
@@ -442,6 +465,15 @@
   
     
     <entry>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
+      
+        <content type="html"><![CDATA[<p>我是Llf，最弱的蒟蒻，完了</p><p>本博客部分文章的markdown源文件均可通过将 <code>https://llf0703.com/p/*.html</code>改为 <code>https://md.llf0703.com/p/*.md</code> 查看</p><p>这个东西会不时更新，也许有的最新文章看不了</p><p><a href="https://bzoj.llf0703.com/" target="_blank" rel="noopener">BZOJ离线题库（By ruanxingzhi）</a></p><p>CSDN博客:  <a href="https://blog.csdn.net/Llf_0703" target="_blank" rel="noopener">Llf_0703</a></p><p>luogu:  <a href="https://www.luogu.org/space/show?uid=29696" target="_blank" rel="noopener">Llf0703</a></p><p>BZOJ:  <a href="https://www.lydsy.com/JudgeOnline/userinfo.php?user=Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Bilibili： <a href="https://space.bilibili.com/268840304/" target="_blank" rel="noopener">Llf030703</a></p><p>逼乎:  <a href="https://www.zhihu.com/people/llf-93-87/" target="_blank" rel="noopener">Llf</a></p><p>Coding:  <a href="https://coding.net/u/Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Gayhub:  <a href="https://github.com/Llf0703" target="_blank" rel="noopener">Llf0703</a></p>]]></content>
+      
+    </entry>
+    
+    <entry>
       <title>咕咕咕</title>
       <link href="/gugugu/index.html"/>
       <url>/gugugu/index.html</url>
@@ -460,15 +492,6 @@
     </entry>
     
     <entry>
-      <title>时间轴</title>
-      <link href="/timeline/index.html"/>
-      <url>/timeline/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    <entry>
       <title>标签云</title>
       <link href="/tags/index.html"/>
       <url>/tags/index.html</url>
@@ -478,11 +501,11 @@
     </entry>
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
+      <title>时间轴</title>
+      <link href="/timeline/index.html"/>
+      <url>/timeline/index.html</url>
       
-        <content type="html"><![CDATA[<p>我是Llf，最弱的蒟蒻，完了</p><p>本博客部分文章的markdown源文件均可通过将 <code>https://llf0703.com/p/*.html</code>改为 <code>https://md.llf0703.com/p/*.md</code> 查看</p><p>这个东西会不时更新，也许有的最新文章看不了</p><p><a href="https://bzoj.llf0703.com/" target="_blank" rel="noopener">BZOJ离线题库（By ruanxingzhi）</a></p><p>CSDN博客:  <a href="https://blog.csdn.net/Llf_0703" target="_blank" rel="noopener">Llf_0703</a></p><p>luogu:  <a href="https://www.luogu.org/space/show?uid=29696" target="_blank" rel="noopener">Llf0703</a></p><p>BZOJ:  <a href="https://www.lydsy.com/JudgeOnline/userinfo.php?user=Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Bilibili： <a href="https://space.bilibili.com/268840304/" target="_blank" rel="noopener">Llf030703</a></p><p>逼乎:  <a href="https://www.zhihu.com/people/llf-93-87/" target="_blank" rel="noopener">Llf</a></p><p>Coding:  <a href="https://coding.net/u/Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Gayhub:  <a href="https://github.com/Llf0703" target="_blank" rel="noopener">Llf0703</a></p>]]></content>
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     

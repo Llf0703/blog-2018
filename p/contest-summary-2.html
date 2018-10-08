@@ -252,7 +252,7 @@
 
     
         <meta property="article:published_time" content="Sat Oct 06 2018 00:00:00 GMT+0800">
-        <meta property="article:modified_time" content="Sun Oct 07 2018 13:17:06 GMT+0800">
+        <meta property="article:modified_time" content="Mon Oct 08 2018 10:59:25 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -275,7 +275,7 @@
     "mainEntityOfPage": "https://llf0703.com/p/contest-summary-2.html",
     "headline": "科普基地国庆集训测试题总结",
     "datePublished": "Sat Oct 06 2018 00:00:00 GMT+0800",
-    "dateModified": "Sun Oct 07 2018 13:17:06 GMT+0800",
+    "dateModified": "Mon Oct 08 2018 10:59:25 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Llf0703",
@@ -556,11 +556,68 @@
 </code></pre>
 <p>后来讲评的时候发现似乎只有1人AC，还有1人做法和我一样，但他没有看错题，就是铁了心要得40分的。</p>
 <p>然后告诉我们正解竟然是搜索？！做法就是直接dfs，因为只要存在一种让小明胜利的方法，小明就一定能胜利（先手真好），所以搜到以后直接退出就行了。WTF？</p>
-<p>代码先咕咕咕了，<del>我会补上的，已经在写了</del>。</p>
+<p>当然，对于搜到每一个数，结果一定是一样的，所以我们可以用个记忆化来优化。<del>不加记忆化40，加了就A了</del></p>
+<pre><code class="lang-cpp">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;cmath&gt;
+
+using namespace std;
+
+inline int read()
+{
+    char ch=getchar();
+    int f=1,x=0;
+    while (ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;)
+    {
+        if (ch==&#39;-&#39;) f=-1;
+        ch=getchar();
+    }
+    while (ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;)
+    {
+        x=x*10+ch-&#39;0&#39;;
+        ch=getchar();
+    }
+    return f*x;
+}
+
+int n,t,f[1000005];
+
+bool dfs(int x)
+{
+    if (f[x]!=-1) return f[x];
+    int y=x,mx=0,mn=1e9;
+    while (y)
+    {
+        int res=y%10;
+        mx=max(mx,res);
+        if (res) mn=min(mn,res);
+        y/=10;
+    }
+    if (dfs(x-mx) &amp;&amp; dfs(x-mn)) f[x]=0;
+    else f[x]=1;
+    return f[x];
+}
+
+int main()
+{
+    t=read();
+    memset(f,-1,sizeof(f));
+    f[0]=0;
+    while (t--)
+    {
+        n=read();
+        if (dfs(n)) printf(&quot;YES\n&quot;);
+        else printf(&quot;NO\n&quot;);
+    }
+    return 0;
+}
+</code></pre>
 <h2 id="D1T2-n染色-color"><a href="#D1T2-n染色-color" class="headerlink" title="D1T2 n染色(color)"></a>D1T2 n染色(color)</h2><p>我在考场上推了整整两张草稿纸也没搞出个什么名堂，虽然似乎在数学上是个对的结论，但全部TLE。</p>
 <p>正解就是个dp，$ f[i][j][k] $ 表示画到第i条边，用的是颜色j，上一条边的颜色是k。很显然，对于100%的数据肯定爆。</p>
 <p>优化就是将后两维看成一个矩阵，因为不管是画到第几条边后两维的转移都是一样的，然后矩阵快速幂就行了。</p>
-<p>代码还是先咕咕咕了，我真的会补上的。</p>
+<p>代码先咕咕咕了，我真的会补上的。</p>
 <h2 id="D1T3-Stree-stree"><a href="#D1T3-Stree-stree" class="headerlink" title="D1T3 Stree(stree)"></a>D1T3 Stree(stree)</h2><p>这道题是这套题唯一一道我有AC代码的题，不过我是在测完后20分钟后才A的。</p>
 <p>对于30%的数据，很容易想到直接暴力。当然，我们也可以预处理一遍最小生成树，如果这条边在树里就直接输出，否则在跑一遍最小生成树。</p>
 <p>其实这样我们就已经完成了正解的第一步了，也就是预处理最小生成树，而且在树里就直接输出。如果这条边不在最小生成树里，就意味着我们需要加上这条边，并且一定要删掉一条在树里的边。我们设加上的这条边的两端点为u和v，那么加上这条边后就一定会以这条边和u和v之前在树里的路径形成一个环，我们只需要在u和v原来的路径里找到一条边删掉就行了。</p>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://llf0703.com/"/>
-  <updated>2018-10-10T13:50:04.271Z</updated>
+  <updated>2018-10-11T13:53:42.726Z</updated>
   <id>https://llf0703.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>初赛知识点复习(乱序)</title>
+    <link href="https://llf0703.com/p/noip-pretest-summary.html"/>
+    <id>https://llf0703.com/p/noip-pretest-summary.html</id>
+    <published>2018-10-10T16:00:00.000Z</published>
+    <updated>2018-10-11T13:53:42.726Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="OI笔记" scheme="https://llf0703.com/categories/OI%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="比赛-初赛" scheme="https://llf0703.com/tags/%E6%AF%94%E8%B5%9B-%E5%88%9D%E8%B5%9B/"/>
+    
+  </entry>
   
   <entry>
     <title>科普基地国庆集训测试题总结</title>

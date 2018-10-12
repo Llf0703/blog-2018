@@ -7,7 +7,7 @@
       <link href="/p/noip-pretest-summary.html"/>
       <url>/p/noip-pretest-summary.html</url>
       
-        <content type="html"><![CDATA[<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><blockquote><p>作者： dreamcatcher-cx 出处： <a href="https://www.cnblogs.com/chengxiao/" target="_blank" rel="noopener">https://www.cnblogs.com/chengxiao/</a></p><p>本文版权归作者和博客园共有，欢迎转载，但未经作者同意必须保留此段声明，且在页面明显位置给出原文链接。</p></blockquote><p>我们来看下希尔排序的基本步骤，在此我们选择增量gap=length/2，缩小增量继续以gap = gap/2的方式，这种增量选择我们可以用一个序列来表示，<code>n/2,(n/2)/2,...,1</code>，称为增量序列。</p><p>希尔排序的增量序列的选择与证明是个数学难题，我们选择的这个增量序列是比较常用的，也是希尔建议的增量，称为希尔增量，但其实这个增量序列不是最优的。此处我们做示例使用希尔增量。</p><p><img src="https://cdn.uniqueue.cn/xier-sort.png" alt="希尔排序"></p><p>例题：设一组初始记录关键字序列为(50，40，95，20，15，70，60，45)，则以增量d=4的一趟希尔排序结束后前4条记录关键字为（）。</p><ul><li>A、40，50，20，95         </li><li>B、15，40，60，20</li><li>C、15，20，40，45         </li><li>D、45，40，15，20</li></ul><p>答案：B</p><h3 id="std-sort"><a href="#std-sort" class="headerlink" title="std:sort"></a>std:sort</h3><blockquote><p><code>std::sort</code> 在数据量大时采用快排，分段递归排序；一旦分段后的数据小于某个值，就改用插入排序；如果递归层次过深，还会改用堆排序。</p></blockquote><p><code>std::sort</code>使用了快排，插入排序（希尔排序），堆排序。</p><p>例题：c++的std::sort实现中使用了以下哪些快速排序的算法（） </p><ul><li>A、快速排序   </li><li>B、堆排序  </li><li>C、基数排序   </li><li>D、插入排序(希尔排序)</li></ul><p>答案：ABD</p><h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><h3 id="哈夫曼树"><a href="#哈夫曼树" class="headerlink" title="哈夫曼树"></a>哈夫曼树</h3><p>哈夫曼树是最优二叉树，即每个点的权值 $\times$ 它到根节点的路径和最小。</p><p>哈夫曼树的构建方法是先将每个点单独构建成一颗只有自己的树，然后每次选取路径和最小的两棵树合并到一起，所有树合并完即构建成功。</p><p><img src="https://cdn.uniqueue.cn/huffman.jpg" alt="哈夫曼"></p><p>例题：设某哈夫曼树中有199个结点，则该哈夫曼树中有（）个叶子结点。</p><ul><li>A、 99    </li><li>B、 100    </li><li>C、 101    </li><li>D、 102</li></ul><p>答案：B</p><p>解析：把 $ n $ 个节点构建成哈夫曼树，相当于把 $ n $ 个只有根节点的子树合并成一个树，其中将任意两个子树合并成一个棵树需要增加一个节点，则一共需要增加 $ n-1 $ 个节点，才能使其变成一棵哈夫曼树，即这棵哈夫曼树一种有 $ 2n-1 $ 个树。$ 2 \times n - 1 = 199 $ ，解得：$n = 100$</p><p>后面的有时间再更新。</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><blockquote><p>作者： dreamcatcher-cx 出处： <a href="https://www.cnblogs.com/chengxiao/" target="_blank" rel="noopener">https://www.cnblogs.com/chengxiao/</a></p><p>本文版权归作者和博客园共有，欢迎转载，但未经作者同意必须保留此段声明，且在页面明显位置给出原文链接。</p></blockquote><p>我们来看下希尔排序的基本步骤，在此我们选择增量gap=length/2，缩小增量继续以gap = gap/2的方式，这种增量选择我们可以用一个序列来表示，<code>n/2,(n/2)/2,...,1</code>，称为增量序列。</p><p>希尔排序的增量序列的选择与证明是个数学难题，我们选择的这个增量序列是比较常用的，也是希尔建议的增量，称为希尔增量，但其实这个增量序列不是最优的。此处我们做示例使用希尔增量。</p><p><img src="https://cdn.uniqueue.cn/xier-sort.png" alt="希尔排序"></p><p>例题：设一组初始记录关键字序列为(50，40，95，20，15，70，60，45)，则以增量d=4的一趟希尔排序结束后前4条记录关键字为（）。</p><ul><li>A、40，50，20，95         </li><li>B、15，40，60，20</li><li>C、15，20，40，45         </li><li>D、45，40，15，20</li></ul><p>答案：B</p><h3 id="std-sort"><a href="#std-sort" class="headerlink" title="std:sort"></a>std:sort</h3><blockquote><p><code>std::sort</code> 在数据量大时采用快排，分段递归排序；一旦分段后的数据小于某个值，就改用插入排序；如果递归层次过深，还会改用堆排序。</p></blockquote><p><code>std::sort</code>使用了快排，插入排序（希尔排序），堆排序。</p><p>例题：c++的std::sort实现中使用了以下哪些快速排序的算法（） </p><ul><li>A、快速排序   </li><li>B、堆排序  </li><li>C、基数排序   </li><li>D、插入排序(希尔排序)</li></ul><p>答案：ABD</p><h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><p>运用递归将原数据不断二分，然后在回溯过程中使用归并算法将其一步步合并，最后合成一个有序数列。</p><p>时间效率：最好：$ O(log n) $ 最坏：$ O(n \times log n) $</p><p>其中归并就是将两个数组一个个比较即可，最多比较 $ 2n-1 $ 次。</p><p>例(NOIp2017 T11)：设 A 和 B 是两个长为 n 的有序数组，现在需要将 A 和 B 合并成一个排好序的 数组，请问任何以元素比较作为基本运算的归并算法最坏情况下至少要做 （ ）次比较。</p><p>答案：$ 2n-1 $</p><h3 id="排序的稳定性"><a href="#排序的稳定性" class="headerlink" title="排序的稳定性"></a>排序的稳定性</h3><ul><li>稳定排序：插入排序、桶排序、基数排序</li><li>不稳定排序：快速排序、堆排序、希尔排序、归并排序、选择排序、冒泡排序</li></ul><h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><h3 id="哈夫曼树"><a href="#哈夫曼树" class="headerlink" title="哈夫曼树"></a>哈夫曼树</h3><p>哈夫曼树是最优二叉树，即每个点的权值 $\times$ 它到根节点的路径和最小。</p><p>哈夫曼树的构建方法是先将每个点单独构建成一颗只有自己的树，然后每次选取路径和最小的两棵树合并到一起，所有树合并完即构建成功。</p><p><img src="https://cdn.uniqueue.cn/huffman.jpg" alt="哈夫曼"></p><p>例题：设某哈夫曼树中有199个结点，则该哈夫曼树中有（）个叶子结点。</p><ul><li>A、 99    </li><li>B、 100    </li><li>C、 101    </li><li>D、 102</li></ul><p>答案：B</p><p>解析：把 $ n $ 个节点构建成哈夫曼树，相当于把 $ n $ 个只有根节点的子树合并成一个树，其中将任意两个子树合并成一个棵树需要增加一个节点，则一共需要增加 $ n-1 $ 个节点，才能使其变成一棵哈夫曼树，即这棵哈夫曼树一种有 $ 2n-1 $ 个树。$ 2 \times n - 1 = 199 $ ，解得：$n = 100$</p><h2 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h2><h3 id="中缀表达式"><a href="#中缀表达式" class="headerlink" title="中缀表达式"></a>中缀表达式</h3><p>就是一般人用的表达式，初赛肯定不会考。</p><h3 id="前缀表达式"><a href="#前缀表达式" class="headerlink" title="前缀表达式"></a>前缀表达式</h3><blockquote><p>以下内容转载至：<a href="https://www.cnblogs.com/chensongxian/p/7059802.html" target="_blank" rel="noopener">https://www.cnblogs.com/chensongxian/p/7059802.html</a></p></blockquote><p>就是把运算符放到数字的前面。</p><p>前缀转中缀：从右至左扫描表达式，遇到数字时，将数字压入堆栈，遇到运算符时，弹出栈顶的两个数，用运算符对它们做相应的计算（栈顶元素 op 次顶元素），并将结果入栈；重复上述过程直到表达式最左端，最后运算得出的值即为表达式的结果</p><p>中缀转前缀：</p><ol><li>初始化两个栈:运算符栈s1，储存中间结果的栈s2</li><li>从右至左扫描中缀表达式</li><li>遇到操作数时，将其压入s2</li><li>遇到运算符时，比较其与s1栈顶运算符的优先级<ol><li>如果s1为空，或栈顶运算符为右括号“)”，则直接将此运算符入栈</li><li>否则，若优先级比栈顶运算符的较高或相等，也将运算符压入s1</li><li>否则，将s1栈顶的运算符弹出并压入到s2中，再次转到(4-1)与s1中新的栈顶运算符相比较</li></ol></li><li>遇到括号时<ol><li>如果是右括号“)”，则直接压入s1</li><li>如果是左括号“(”，则依次弹出S1栈顶的运算符，并压入S2，直到遇到右括号为止，此时将这一对括号丢弃</li></ol></li><li>重复步骤2至5，直到表达式的最左边</li><li>将s1中剩余的运算符依次弹出并压入s2</li><li>依次弹出s2中的元素并输出，结果即为中缀表达式对应的前缀表达式</li></ol><h3 id="后缀表达式"><a href="#后缀表达式" class="headerlink" title="后缀表达式"></a>后缀表达式</h3><p>就是把运算符放到数字的左边。</p><p>前缀转中缀：从右至左扫描表达式，遇到数字时，将数字压入堆栈，遇到运算符时，弹出栈顶的两个数，用运算符对它们做相应的计算（栈顶元素 op 次顶元素），并将结果入栈；重复上述过程直到表达式最左端，最后运算得出的值即为表达式的结果</p><p>中缀转前缀：和中缀转后缀差不多，就是从左到右扫，最后逆序就行了。</p><p>例(NOIp2017 T7)：表达式 a <em> (b + c) </em> d 的后缀形式是（ ）。</p><ul><li>A. a b c d <em> + </em></li><li>B. a b c + <em> d </em></li><li>C. a <em> b c + </em> d</li><li>D. b + c <em> a </em> d </li></ul><p>答案：B</p><h3 id="个人看法"><a href="#个人看法" class="headerlink" title="个人看法"></a>个人看法</h3><p>中缀转前缀、后缀的方法其实根本用不上，只需要把选项转成中缀比对就行了。</p><p><del>当然，如果除了选择题的题考到了，那就另说吧。</del></p><h2 id="图"><a href="#图" class="headerlink" title="图"></a>图</h2><h3 id="无向连通图相关"><a href="#无向连通图相关" class="headerlink" title="无向连通图相关"></a>无向连通图相关</h3><p>例：(NOIp2017 T8) 由四个不同的点构成的简单无向连通图的个数是（ ）。</p><p>答案：38</p><p>解析：按照分类标准连1条、连2条、连3条、连4条、连5条、连6条分类讨论。其中连1条、连2条由于无法构成无向连通图而舍掉。再对剩下的情况进行组合（因为无向），即在6条可能的边中连上3、4、5或6条，并将可以构成无向连通图的情况进行计数。不能构成的情况其实应该只有连3条边时才出现。比如ABCD 4个点三条边分别连接A-B、B-C、C-A就不行，一共四种不行的。算出来一共是42-4=38种。 </p>]]></content>
       
       
       <categories>
@@ -412,6 +412,29 @@
     </entry>
     
     <entry>
+      <title>拓扑排序</title>
+      <link href="/p/topological-sort.html"/>
+      <url>/p/topological-sort.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>拓扑排序是一种可以将有先决条件（即必须将a、b排在前面后再排c，缺一不可）的数据变得有序的一种排序方法。拓扑排序仅可在有向无环图中使用，同时可以判断图中是否有环。因为顺序不同，拓扑排序得到的答案可能不同。</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>因为排序是有先决条件的，所以可以将要有先决条件的个数（在图中即为入度）记录下来，每满足一个就减一，直到个数为0便可以将其放入序列中。</p><h2 id="手动实现"><a href="#手动实现" class="headerlink" title="手动实现"></a>手动实现</h2><p>如果我们有如下的一个有向无环图，我们需要对这个图的顶点进行拓扑排序，过程如下：</p><p><img src="https://cdn.uniqueue.cn/tuopu-1.png" alt="tuopu-1"></p><p>首先，我们发现V6和v1是没有前驱的，所以我们就随机选去一个输出，我们先输出V6，删除和V6有关的边，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-2.png" alt="tuopu-2"></p><p>然后，我们继续寻找没有前驱的顶点，发现V1没有前驱，所以输出V1，删除和V1有关的边，得到下图的结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-3.png" alt="tuopu-3"></p><p>然后，我们又发现V4和V3都是没有前驱的，那么我们就随机选取一个顶点输出（具体看你实现的算法和图存储结构），我们输出V4，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-4.png" alt="tuopu-4"></p><p>然后，我们输出没有前驱的顶点V3，得到如下结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-5.png" alt="tuopu-5"></p><p>然后，我们分别输出V5和V2，最后全部顶点输出完成，该图的一个拓扑序列为：</p><p>v6–&gt;v1—&gt;v4—&gt;v3—&gt;v5—&gt;v2</p><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>1.用邻接表存储数据，同时对终点的结点的入度加一；<br>2.将没有先决条件便可以排序的点（即初始入度为0的点）先加入队列并输出；<br>3.从队首元素开始扩展，将与队首元素相连的结点的入度减一（等同于擦除这条边），如果该结点入度变为0，则将其入队，作为下一次查找的起点；<br>4.将队首元素出队，当队首元素为空时停止排序。</p><h2 id="代码及注解"><a href="#代码及注解" class="headerlink" title="代码及注解"></a>代码及注解</h2><p>有n个点，m条边的有向无环图，输入n，m，然后每一行输入一条边的信息：起点x，终点y</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;int n,m,a,b,c,d,e,re;struct map1{    int stat,end;};map1 tu[100];int rd[100],chong[100];queue &lt;int&gt; q;int main(){    cin&gt;&gt;n&gt;&gt;m;//n点m边    for (a=1;a&lt;=m;a++)    {        cin&gt;&gt;tu[a].stat&gt;&gt;tu[a].end;        rd[tu[a].end]++;    }    for (int i=1;i&lt;=n;i++)    if (rd[i]==0) q.push(i);//将初始入度为0的结点入队    while (!q.empty())    {            cout&lt;&lt;q.front()&lt;&lt;&quot; &quot;;            for (int j=1;j&lt;=m;j++)            {                if (tu[j].stat==q.front())//找以队首元素为起点的边                {                    rd[tu[j].end]--;                    if (rd[tu[j].end]==0)                     {                        q.push(tu[j].end);                    }                }            }        q.pop();    }    return 0;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> OI笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法-拓扑排序 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>最小生成树</title>
       <link href="/p/minimum-spanning-tree.html"/>
       <url>/p/minimum-spanning-tree.html</url>
@@ -433,29 +456,6 @@
             <tag> 算法-Kruskal </tag>
             
             <tag> 算法-Prim </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>拓扑排序</title>
-      <link href="/p/topological-sort.html"/>
-      <url>/p/topological-sort.html</url>
-      
-        <content type="html"><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>拓扑排序是一种可以将有先决条件（即必须将a、b排在前面后再排c，缺一不可）的数据变得有序的一种排序方法。拓扑排序仅可在有向无环图中使用，同时可以判断图中是否有环。因为顺序不同，拓扑排序得到的答案可能不同。</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>因为排序是有先决条件的，所以可以将要有先决条件的个数（在图中即为入度）记录下来，每满足一个就减一，直到个数为0便可以将其放入序列中。</p><h2 id="手动实现"><a href="#手动实现" class="headerlink" title="手动实现"></a>手动实现</h2><p>如果我们有如下的一个有向无环图，我们需要对这个图的顶点进行拓扑排序，过程如下：</p><p><img src="https://cdn.uniqueue.cn/tuopu-1.png" alt="tuopu-1"></p><p>首先，我们发现V6和v1是没有前驱的，所以我们就随机选去一个输出，我们先输出V6，删除和V6有关的边，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-2.png" alt="tuopu-2"></p><p>然后，我们继续寻找没有前驱的顶点，发现V1没有前驱，所以输出V1，删除和V1有关的边，得到下图的结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-3.png" alt="tuopu-3"></p><p>然后，我们又发现V4和V3都是没有前驱的，那么我们就随机选取一个顶点输出（具体看你实现的算法和图存储结构），我们输出V4，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-4.png" alt="tuopu-4"></p><p>然后，我们输出没有前驱的顶点V3，得到如下结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-5.png" alt="tuopu-5"></p><p>然后，我们分别输出V5和V2，最后全部顶点输出完成，该图的一个拓扑序列为：</p><p>v6–&gt;v1—&gt;v4—&gt;v3—&gt;v5—&gt;v2</p><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>1.用邻接表存储数据，同时对终点的结点的入度加一；<br>2.将没有先决条件便可以排序的点（即初始入度为0的点）先加入队列并输出；<br>3.从队首元素开始扩展，将与队首元素相连的结点的入度减一（等同于擦除这条边），如果该结点入度变为0，则将其入队，作为下一次查找的起点；<br>4.将队首元素出队，当队首元素为空时停止排序。</p><h2 id="代码及注解"><a href="#代码及注解" class="headerlink" title="代码及注解"></a>代码及注解</h2><p>有n个点，m条边的有向无环图，输入n，m，然后每一行输入一条边的信息：起点x，终点y</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;int n,m,a,b,c,d,e,re;struct map1{    int stat,end;};map1 tu[100];int rd[100],chong[100];queue &lt;int&gt; q;int main(){    cin&gt;&gt;n&gt;&gt;m;//n点m边    for (a=1;a&lt;=m;a++)    {        cin&gt;&gt;tu[a].stat&gt;&gt;tu[a].end;        rd[tu[a].end]++;    }    for (int i=1;i&lt;=n;i++)    if (rd[i]==0) q.push(i);//将初始入度为0的结点入队    while (!q.empty())    {            cout&lt;&lt;q.front()&lt;&lt;&quot; &quot;;            for (int j=1;j&lt;=m;j++)            {                if (tu[j].stat==q.front())//找以队首元素为起点的边                {                    rd[tu[j].end]--;                    if (rd[tu[j].end]==0)                     {                        q.push(tu[j].end);                    }                }            }        q.pop();    }    return 0;}</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> OI笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 算法-拓扑排序 </tag>
             
         </tags>
       
@@ -488,18 +488,18 @@
   
     
     <entry>
-      <title>友链</title>
-      <link href="/links/index.html"/>
-      <url>/links/index.html</url>
+      <title>咕咕咕</title>
+      <link href="/gugugu/index.html"/>
+      <url>/gugugu/index.html</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h1>    <center> 蒟蒻Llf0703鸽了这篇文章 </center></h1><p>这不是404，只是用作占坑文章的临时页面，请返回上一页。</p>]]></content>
       
     </entry>
     
     <entry>
-      <title>标签云</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
+      <title>友链</title>
+      <link href="/links/index.html"/>
+      <url>/links/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -515,11 +515,11 @@
     </entry>
     
     <entry>
-      <title>咕咕咕</title>
-      <link href="/gugugu/index.html"/>
-      <url>/gugugu/index.html</url>
+      <title>标签云</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
-        <content type="html"><![CDATA[<h1>    <center> 蒟蒻Llf0703鸽了这篇文章 </center></h1><p>这不是404，只是用作占坑文章的临时页面，请返回上一页。</p>]]></content>
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     

@@ -20,11 +20,11 @@
     </entry>
     
     <entry>
-      <title>近期需要加强的知识点</title>
+      <title>近期需要加强的知识点(置顶)</title>
       <link href="/p/improve-sth-201810.html"/>
       <url>/p/improve-sth-201810.html</url>
       
-        <content type="html"><![CDATA[<h2 id="需要加强板块"><a href="#需要加强板块" class="headerlink" title="需要加强板块"></a>需要加强板块</h2><ol><li>高精 （差个重定义运算符版）</li><li>贪心</li><li><del>搜索</del></li><li>二分、分治</li><li>二叉树，二叉排序树相关</li><li>图论相关模板<ol><li>LCA（倍增）</li><li>二分图匹配</li><li>强连通，割点等</li><li>最短路</li></ol></li><li>字符串相关<ol><li>KMP</li><li>AC自动机</li><li>Trie</li></ol></li><li>数论相关</li><li>DP <del>Dark Fantasy</del></li></ol><h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><ul><li>10.15-10.29 做完洛谷试炼场提高</li><li>10.15 重点加强高精</li><li>10.16 完成动态规划lv1，重做所有图论模板题并完成最短路问题板块</li></ul>]]></content>
+        <content type="html"><![CDATA[<h2 id="需要加强板块"><a href="#需要加强板块" class="headerlink" title="需要加强板块"></a>需要加强板块</h2><ol><li>高精 （差个重定义运算符版）</li><li>贪心</li><li><del>搜索</del></li><li>二分、分治</li><li>二叉树，二叉排序树相关</li><li>图论相关模板<ol><li>LCA（倍增）</li><li>二分图匹配</li><li>强连通，割点等</li><li>最短路</li></ol></li><li>字符串相关<ol><li>KMP</li><li>AC自动机</li><li>Trie</li><li>hash</li></ol></li><li>数论相关</li><li>DP <del>Dark Fantasy</del></li></ol><h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><ul><li>10.15-10.29 做完洛谷试炼场提高</li><li>10.15 重点加强高精</li><li>10.16 完成动态规划lv1，重做所有图论模板题并完成最短路问题板块</li></ul>]]></content>
       
       
       <categories>

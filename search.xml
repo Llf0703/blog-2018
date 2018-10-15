@@ -3,11 +3,28 @@
   
     
     <entry>
+      <title>2018.10.15日记</title>
+      <link href="/p/diary-20181015.html"/>
+      <url>/p/diary-20181015.html</url>
+      
+        <content type="html"><![CDATA[<p>今天是停课第一天，总的来说效率还是挺高的。不知道后面还能不能保持。</p><h2 id="杂事"><a href="#杂事" class="headerlink" title="杂事"></a>杂事</h2><p>今天最尴尬的事莫过于我被xtq大佬坑了，少上了节数学课（我只上数学）。不过好像都是做题，没讲新知识点，所以还好。</p><p>下午又被一个浙江来的老师虐的体无完肤，感觉自己学OI真的没前途了。</p><blockquote><p>你洛谷才300多道题啊，我们那(ZJ)小学6年级学生题量都有这么多。</p><p>绿题及以下都是水题，蓝题和紫题算是中等题，你做的大多都是水题。</p><p>我当时考试的时候30分钟就把前两道题的正解打完了，然后睡了会儿，起来很快把第三题70分暴力打了。</p><p>我们当时打题都是劈里啪啦一顿打，如果你10分钟都还打不完暴力那NOIp差不多就完了。</p><p>你就搜个算法，然后把洛谷这一面所有题全部打完。想不到就去看题解，不一定要完全理解。</p></blockquote><p>感觉自己遭受<code>0x7fffffff</code>点暴击，都不敢打水题了QAQ。</p><p>总的来说我的感受是：<strong>我好菜啊，我校好菜啊，我省好菜啊</strong>。</p><h2 id="正事"><a href="#正事" class="headerlink" title="正事"></a>正事</h2><p>上午把高精的板块刷完了，然后把之前因为高精搁置的题处理完了。然后徐妈又让我们打了onecode天梯的第二套，全是水题，最后92分，<del>如果我第三题开了<code>long long</code>就AK了</del>。</p><p>下午去小黑屋打了好多道贪心的水题，可是我就连橙题都不能一遍过，还是太菜了。</p><p>晚上做了两道蓝题的DP，感觉海星。</p><p>今天总共做了15道题，还是很不错的。</p><h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>虽然被虐的很惨，但是感觉他的话还是有很多道理的。尤其是要多做题，就算理解不了记下来方法就行了。不管是什么考试，其实题型都很难有变化，如果做过类似的题，至少思路这个最重要的部分就没问题了。而且像初二初三我理解了的算法还是忘了很多，还不如我背的数据结构熟练。</p><p>我个人感觉做水题还是很有帮助的，毕竟水题中经常会有些细节被我忽略，而这些细节难题中可能也会出现。毕竟“题多不压身”（我编的）。</p><h2 id="明天计划"><a href="#明天计划" class="headerlink" title="明天计划"></a>明天计划</h2><p>完成动态规划lv1，重做所有图论模板题并完成最短路问题板块。</p><p>剩下的时间视情况安排。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 日记 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    <entry>
       <title>近期需要加强的知识点</title>
       <link href="/p/improve-sth-201810.html"/>
       <url>/p/improve-sth-201810.html</url>
       
-        <content type="html"><![CDATA[<h2 id="需要加强板块"><a href="#需要加强板块" class="headerlink" title="需要加强板块"></a>需要加强板块</h2><ol><li>高精 </li><li>搜索</li><li>二分、分治</li><li>二叉树，二叉排序树相关</li><li>图论相关模板<ol><li>LCA（倍增）</li><li>二分图匹配</li></ol></li><li>字符串相关<ol><li>KMP</li><li>AC自动机</li><li>Trie</li></ol></li><li>数论相关</li></ol><h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><ul><li>10.15-10.29 做完洛谷试炼场值提高完</li><li>10.15 重点加强高精</li></ul>]]></content>
+        <content type="html"><![CDATA[<h2 id="需要加强板块"><a href="#需要加强板块" class="headerlink" title="需要加强板块"></a>需要加强板块</h2><ol><li>高精 （差个重定义运算符版）</li><li>贪心</li><li><del>搜索</del></li><li>二分、分治</li><li>二叉树，二叉排序树相关</li><li>图论相关模板<ol><li>LCA（倍增）</li><li>二分图匹配</li><li>强连通，割点等</li><li>最短路</li></ol></li><li>字符串相关<ol><li>KMP</li><li>AC自动机</li><li>Trie</li></ol></li><li>数论相关</li><li>DP <del>Dark Fantasy</del></li></ol><h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><ul><li>10.15-10.29 做完洛谷试炼场提高</li><li>10.15 重点加强高精</li><li>10.16 完成动态规划lv1，重做所有图论模板题并完成最短路问题板块</li></ul>]]></content>
       
       
       <categories>
@@ -514,20 +531,20 @@
     </entry>
     
     <entry>
-      <title>友链</title>
-      <link href="/links/index.html"/>
-      <url>/links/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    <entry>
       <title>咕咕咕</title>
       <link href="/gugugu/index.html"/>
       <url>/gugugu/index.html</url>
       
         <content type="html"><![CDATA[<h1>    <center> 蒟蒻Llf0703鸽了这篇文章 </center></h1><p>这不是404，只是用作占坑文章的临时页面，请返回上一页。</p>]]></content>
+      
+    </entry>
+    
+    <entry>
+      <title>友链</title>
+      <link href="/links/index.html"/>
+      <url>/links/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     

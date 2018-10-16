@@ -3,6 +3,23 @@
   
     
     <entry>
+      <title>2018.10.15日记·洛谷TG试炼场DP-lv1总结</title>
+      <link href="/p/diary-20181016.html"/>
+      <url>/p/diary-20181016.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="昨天计划完成情况"><a href="#昨天计划完成情况" class="headerlink" title="昨天计划完成情况"></a>昨天计划完成情况</h2><p>因为上午下午都被徐妈拉去打onecode的天梯水题，所以咕咕咕了。只做完了dp的lv1模块。明天上午又有一套浙江的摸你题，所以把剩下的挪到明天应该就差不多了<del>（大概吧）</del></p><h2 id="杂事"><a href="#杂事" class="headerlink" title="杂事"></a>杂事</h2><p>无</p><h2 id="正事"><a href="#正事" class="headerlink" title="正事"></a>正事</h2><p>今天完成了onecode天梯的3和14，都是水题，就不写了。被14D坑惨了，加上快读全部TLE，cyc大佬的快读也是，然后他的fread也多WA了几个点。这TM绝壁是数据的锅，辣鸡OJ。</p><p>然后晚上做了洛谷TG试炼场的DP lv1 模块，还是大致总结一下。</p><h3 id="洛谷P1005-矩阵取数游戏"><a href="#洛谷P1005-矩阵取数游戏" class="headerlink" title="洛谷P1005 矩阵取数游戏"></a><a href="https://www.luogu.org/problemnew/show/P1005" target="_blank" rel="noopener">洛谷P1005 矩阵取数游戏</a></h3><p>区间DP。对于每行，我们可以单独处理。用 $ f[l][r] $ 表示已经取了 $ l..r $ 这个区间后的得分最大值。然后记忆化搜索即可。</p><p>$ $ 肯定是爆<code>long long</code>了，按理来说应该要写高精的，但是我发现这玩意写高精如果没有运算符重载版的是真的恶心，然后<code>__int128</code>水过去了。</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;#define ll __int128using namespace std;inline ll read(){    char ch=getchar();    ll f=1,x=0;    while (ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;)    {        if (ch==&#39;-&#39;) f=-1;        ch=getchar();    }    while (ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;)    {        x=x*10+ch-&#39;0&#39;;        ch=getchar();    }    return f*x;}ll mp[85][85],n,m,f[85][85],ans,two[85];ll dfs(int i,int l,int r){    if (f[l][r]!=-1) return f[l][r];    if (l==r) return f[l][r]=mp[i][l]*two[m];    return f[l][r]=max(dfs(i,l+1,r)+mp[i][l]*two[m-r+l],dfs(i,l,r-1)+mp[i][r]*two[m-r+l]);}void print(ll x){    if (x==0) return;    print(x/10);    putchar(x%10+&#39;0&#39;);}int main(){    n=read(); m=read();    for (int i=1;i&lt;=n;i++)        for (int j=1;j&lt;=m;j++)            mp[i][j]=read();    two[0]=1;    for (int i=1;i&lt;=m;i++) two[i]=two[i-1]*2;    for (int i=1;i&lt;=n;i++)    {        memset(f,-1,sizeof(f));        ans+=dfs(i,1,m);    }    if (ans==0) printf(&quot;0&quot;);    else print(ans);    return 0;}</code></pre><h3 id="洛谷P1373-小a和uim之大逃离"><a href="#洛谷P1373-小a和uim之大逃离" class="headerlink" title="洛谷P1373 小a和uim之大逃离"></a><a href="https://www.luogu.org/problemnew/show/P1373" target="_blank" rel="noopener">洛谷P1373 小a和uim之大逃离</a></h3><p>首先容易想到把小a和uim两人的魔液量都记录下来，但这样空间就爆了。事实上，我们不关心他们具体的魔液量，只要他们两人魔液量的差是 $ (k+1) $ 的倍数就行了。所以记录两人魔液的差量就行了，如果超过 $ (k+1) $ 膜就行了。</p><p>用 $ f[i][j][l][t] $ 表示走到 $ (i,j) $ ，魔液差量为 $ l $ ，第 $ t $ 个人取 <del>(因为k被用了)</del>。方程式即为：</p><script type="math/tex; mode=display">f[i][j][l][0]=f[i-1][j][(l-mp[i][j]+k) mod k][1]+f[i][j-1][(l-mp[i][j]+k) mod k][1]</script><script type="math/tex; mode=display">f[i][j][l][t]=f[i-1][j][(l+mp[i][j]) mod k][0]+f[i][j-1][l+mp[i][j]) mod k][0]</script><p>自觉这道题码风极其<del>简洁</del>丑陋。</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;#define ha 1000000007using namespace std;inline int read(){    char ch=getchar();    int f=1,x=0;    while (ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;)    {        if (ch==&#39;-&#39;) f=-1;        ch=getchar();    }    while (ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;)    {        x=x*10+ch-&#39;0&#39;;        ch=getchar();    }    return f*x;}int f[805][805][16][2],mp[805][805];//到(i,j)，差值为k，l取int n,m,k,ans;int main(){    n=read(); m=read(); k=read();    k++;    for (int i=1;i&lt;=n;i++)        for (int j=1;j&lt;=m;j++)            mp[i][j]=read()%k,f[i][j][mp[i][j]][0]=1;    for (int i=1;i&lt;=n;i++)        for (int j=1;j&lt;=m;j++)            for (int l=0;l&lt;k;l++)                for (int t=0;t&lt;=1;t++)                    f[i][j][l][t]=(f[i][j][l][t] + f[i-1][j][t ? (l+mp[i][j])%k : (l-mp[i][j]+k)%k][!t]%ha + f[i][j-1][t ? (l+mp[i][j])%k : (l-mp[i][j]+k)%k][!t]%ha)%ha;    for (int i=1;i&lt;=n;i++)        for (int j=1;j&lt;=m;j++)            ans=(ans+f[i][j][0][1])%ha;    printf(&quot;%d&quot;,ans);    return 0;}</code></pre><h3 id="洛谷P2279-HNOI2003-消防局的设立"><a href="#洛谷P2279-HNOI2003-消防局的设立" class="headerlink" title="洛谷P2279 [HNOI2003]消防局的设立"></a><a href="https://www.luogu.org/problemnew/show/P2279" target="_blank" rel="noopener">洛谷P2279 [HNOI2003]消防局的设立</a></h3><p>虽说放在DP板块，但贪心就能水过。。。</p><p>我们肯定要保证覆盖到叶节点，而对于每一个结点，他能覆盖到的地方就是最远到它爷爷，它孙子和它兄♂弟。它的爷爷节点就可以把它和它兄弟都覆盖了。</p><p>也就是说对于每个 叶节点或子节点及以下都已经被覆盖了 的点，选取它的爷爷节点一定是最优的。所以用一个优先队列每次找到深度最深的没有被覆盖的点的爷爷节点放上消防站，然后更新周围即可。</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;#define pr pair&lt;int,int&gt;#define mp make_pairusing namespace std;inline int read(){    char ch=getchar();    int f=1,x=0;    while (ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;)    {        if (ch==&#39;-&#39;) f=-1;        ch=getchar();    }    while (ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;)    {        x=x*10+ch-&#39;0&#39;;        ch=getchar();    }    return f*x;}struct Edge{    int next,to;} edge[2005];int head[1005],deep[1005],cnt=1,n,m,a,b,c,fa[1005],ans;priority_queue &lt;pr&gt; q;bool vis[1005];inline void add(int u,int v){    edge[cnt].to=v;    edge[cnt].next=head[u];    head[u]=cnt++;}void dfs(int x,int f,int dep){    deep[x]=dep;    fa[x]=f;    for (int i=head[x];i;i=edge[i].next)    {        int y=edge[i].to;        if (y==f) continue;        dfs(y,x,dep+1);    }}void dfs2(int x,int f,int dep){    if (dep&gt;2) return;    vis[x]=1;    for (int i=head[x];i;i=edge[i].next)    {        int y=edge[i].to;        if (y==f) continue;        dfs2(y,x,dep+1);    }}inline void work(int x){    if (!x) x=1; //最高就是根节点    dfs2(x,0,0);}int main(){    n=read();    for (int i=2;i&lt;=n;i++)    {        a=read();        add(a,i);        add(i,a);    }    dfs(1,0,1);    for (int i=1;i&lt;=n;i++) q.push(mp(deep[i],i));    while (!q.empty())    {        int x=q.top().second;        q.pop();        if (vis[x]) continue;        work(fa[fa[x]]);        ans++;    }    printf(&quot;%d&quot;,ans);    return 0;}</code></pre><h3 id="洛谷P1220-关路灯"><a href="#洛谷P1220-关路灯" class="headerlink" title="洛谷P1220 关路灯"></a><a href="https://www.luogu.org/problemnew/show/P1220" target="_blank" rel="noopener">洛谷P1220 关路灯</a></h3><p>也是区间DP。因为关灯不需要时间，所以路过后肯定把路上的灯都关上比较划算，这就意味着关了的等都是连续的并且可以看作一段区间。</p><p>用 $ f[l][r][0/1] $ 表示老张关了 $ l..r $ 区间的灯，然后站在左边/右边。转移的时候就加上所需的时间 $ \times $ 两头没关的灯的功率和即可。算功率和预处理一个前缀和数组<code>sum</code>即可。转移方程式如下：</p><pre><code class="lang-cpp">f[l][r][1]=min(f[l][r-1][1]+(pos[r]-pos[r-1])*(sum[n]-sum[r-1]+sum[l-1]),f[l][r-1][0]+(pos[r]-pos[l])*(sum[n]-sum[r-1]+sum[l-1]));f[l][r][0]=min(f[l+1][r][0]+(pos[l+1]-pos[l])*(sum[n]-sum[r]+sum[l]),f[l+1][r][1]+(pos[r]-pos[l])*(sum[n]-sum[r]+sum[l]));</code></pre><p>因为太菜了写不来递推式，我就用的记忆化搜索。</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;inline int read(){    char ch=getchar();    int f=1,x=0;    while (ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;)    {        if (ch==&#39;-&#39;) f=-1;        ch=getchar();    }    while (ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;)    {        x=x*10+ch-&#39;0&#39;;        ch=getchar();    }    return f*x;}int f[55][55][2],n,c,pos[55],v,sum[55];int dfs(int l,int r,bool s) //0左1右{    if (l&gt;r) return 1e9;    int &amp;ans=f[l][r][s];    if (ans!=-1) return ans;    if (s) ans=min(dfs(l,r-1,s)+(pos[r]-pos[r-1])*(sum[n]-sum[r-1]+sum[l-1]),dfs(l,r-1,!s)+(pos[r]-pos[l])*(sum[n]-sum[r-1]+sum[l-1]));    else ans=min(dfs(l+1,r,s)+(pos[l+1]-pos[l])*(sum[n]-sum[r]+sum[l]),dfs(l+1,r,!s)+(pos[r]-pos[l])*(sum[n]-sum[r]+sum[l]));    return ans;}int main(){    n=read(); c=read();    for (int i=1;i&lt;=n;i++) pos[i]=read(),v=read(),sum[i]=sum[i-1]+v;    memset(f,-1,sizeof(f));    f[c][c][0]=f[c][c][1]=0;    printf(&quot;%d&quot;,min(dfs(1,n,0),dfs(1,n,1)));    return 0;}</code></pre><p>奶牛那个题看了下题解，似乎是变形的背包，不想做了。</p><h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>今天一共完成了11道题，因为DP难度较大所以和昨天其实也差不多。感觉还是计划赶不上变化，只有尽量完成计划。</p><h2 id="明天的咕咕咕计划"><a href="#明天的咕咕咕计划" class="headerlink" title="明天的咕咕咕计划"></a>明天的<del>咕咕咕</del>计划</h2><p>上午浙江第1套，下午及晚上 重做所有图论模板题并完成最短路问题板块。</p><p>以上。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 日记 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    <entry>
       <title>2018.10.15日记</title>
       <link href="/p/diary-20181015.html"/>
       <url>/p/diary-20181015.html</url>
@@ -24,7 +41,7 @@
       <link href="/p/improve-sth-201810.html"/>
       <url>/p/improve-sth-201810.html</url>
       
-        <content type="html"><![CDATA[<h2 id="需要加强板块"><a href="#需要加强板块" class="headerlink" title="需要加强板块"></a>需要加强板块</h2><ol><li>高精 （差个重定义运算符版）</li><li>贪心</li><li><del>搜索</del></li><li>二分、分治</li><li>二叉树，二叉排序树相关</li><li>图论相关模板<ol><li>LCA（倍增）</li><li>二分图匹配</li><li>强连通，割点等</li><li>最短路</li></ol></li><li>字符串相关<ol><li>KMP</li><li>AC自动机</li><li>Trie</li><li>hash</li></ol></li><li>数论相关</li><li>DP <del>Dark Fantasy</del></li></ol><h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><ul><li>10.15-10.29 做完洛谷试炼场提高</li><li>10.15 重点加强高精</li><li>10.16 完成动态规划lv1，重做所有图论模板题并完成最短路问题板块</li></ul>]]></content>
+        <content type="html"><![CDATA[<h2 id="需要加强板块"><a href="#需要加强板块" class="headerlink" title="需要加强板块"></a>需要加强板块</h2><ol><li>高精 （差个重定义运算符版）</li><li>贪心</li><li><del>搜索</del></li><li>二分、分治</li><li>二叉树，二叉排序树相关</li><li>图论相关模板<ol><li>LCA（倍增）</li><li>二分图匹配</li><li>强连通，割点等</li><li>最短路</li></ol></li><li>字符串相关<ol><li>KMP</li><li>AC自动机</li><li>Trie</li><li>hash</li></ol></li><li>数论相关</li><li>DP <del>Dark Fantasy</del></li></ol><h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><ul><li>10.15-10.29 做完洛谷试炼场提高</li><li>10.15 重点加强高精</li><li>10.16 完成动态规划lv1(完成)，<del>重做所有图论模板题并完成最短路问题板块</del>(未完成)</li><li>10.17 上午浙江第1套，下午及晚上 重做所有图论模板题并完成最短路问题板块</li></ul>]]></content>
       
       
       <categories>
@@ -446,29 +463,6 @@
     </entry>
     
     <entry>
-      <title>拓扑排序</title>
-      <link href="/p/topological-sort.html"/>
-      <url>/p/topological-sort.html</url>
-      
-        <content type="html"><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>拓扑排序是一种可以将有先决条件（即必须将a、b排在前面后再排c，缺一不可）的数据变得有序的一种排序方法。拓扑排序仅可在有向无环图中使用，同时可以判断图中是否有环。因为顺序不同，拓扑排序得到的答案可能不同。</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>因为排序是有先决条件的，所以可以将要有先决条件的个数（在图中即为入度）记录下来，每满足一个就减一，直到个数为0便可以将其放入序列中。</p><h2 id="手动实现"><a href="#手动实现" class="headerlink" title="手动实现"></a>手动实现</h2><p>如果我们有如下的一个有向无环图，我们需要对这个图的顶点进行拓扑排序，过程如下：</p><p><img src="https://cdn.uniqueue.cn/tuopu-1.png" alt="tuopu-1"></p><p>首先，我们发现V6和v1是没有前驱的，所以我们就随机选去一个输出，我们先输出V6，删除和V6有关的边，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-2.png" alt="tuopu-2"></p><p>然后，我们继续寻找没有前驱的顶点，发现V1没有前驱，所以输出V1，删除和V1有关的边，得到下图的结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-3.png" alt="tuopu-3"></p><p>然后，我们又发现V4和V3都是没有前驱的，那么我们就随机选取一个顶点输出（具体看你实现的算法和图存储结构），我们输出V4，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-4.png" alt="tuopu-4"></p><p>然后，我们输出没有前驱的顶点V3，得到如下结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-5.png" alt="tuopu-5"></p><p>然后，我们分别输出V5和V2，最后全部顶点输出完成，该图的一个拓扑序列为：</p><p>v6–&gt;v1—&gt;v4—&gt;v3—&gt;v5—&gt;v2</p><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>1.用邻接表存储数据，同时对终点的结点的入度加一；<br>2.将没有先决条件便可以排序的点（即初始入度为0的点）先加入队列并输出；<br>3.从队首元素开始扩展，将与队首元素相连的结点的入度减一（等同于擦除这条边），如果该结点入度变为0，则将其入队，作为下一次查找的起点；<br>4.将队首元素出队，当队首元素为空时停止排序。</p><h2 id="代码及注解"><a href="#代码及注解" class="headerlink" title="代码及注解"></a>代码及注解</h2><p>有n个点，m条边的有向无环图，输入n，m，然后每一行输入一条边的信息：起点x，终点y</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;int n,m,a,b,c,d,e,re;struct map1{    int stat,end;};map1 tu[100];int rd[100],chong[100];queue &lt;int&gt; q;int main(){    cin&gt;&gt;n&gt;&gt;m;//n点m边    for (a=1;a&lt;=m;a++)    {        cin&gt;&gt;tu[a].stat&gt;&gt;tu[a].end;        rd[tu[a].end]++;    }    for (int i=1;i&lt;=n;i++)    if (rd[i]==0) q.push(i);//将初始入度为0的结点入队    while (!q.empty())    {            cout&lt;&lt;q.front()&lt;&lt;&quot; &quot;;            for (int j=1;j&lt;=m;j++)            {                if (tu[j].stat==q.front())//找以队首元素为起点的边                {                    rd[tu[j].end]--;                    if (rd[tu[j].end]==0)                     {                        q.push(tu[j].end);                    }                }            }        q.pop();    }    return 0;}</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> OI笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 算法-拓扑排序 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
       <title>最小生成树</title>
       <link href="/p/minimum-spanning-tree.html"/>
       <url>/p/minimum-spanning-tree.html</url>
@@ -490,6 +484,29 @@
             <tag> 算法-Kruskal </tag>
             
             <tag> 算法-Prim </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>拓扑排序</title>
+      <link href="/p/topological-sort.html"/>
+      <url>/p/topological-sort.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>拓扑排序是一种可以将有先决条件（即必须将a、b排在前面后再排c，缺一不可）的数据变得有序的一种排序方法。拓扑排序仅可在有向无环图中使用，同时可以判断图中是否有环。因为顺序不同，拓扑排序得到的答案可能不同。</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>因为排序是有先决条件的，所以可以将要有先决条件的个数（在图中即为入度）记录下来，每满足一个就减一，直到个数为0便可以将其放入序列中。</p><h2 id="手动实现"><a href="#手动实现" class="headerlink" title="手动实现"></a>手动实现</h2><p>如果我们有如下的一个有向无环图，我们需要对这个图的顶点进行拓扑排序，过程如下：</p><p><img src="https://cdn.uniqueue.cn/tuopu-1.png" alt="tuopu-1"></p><p>首先，我们发现V6和v1是没有前驱的，所以我们就随机选去一个输出，我们先输出V6，删除和V6有关的边，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-2.png" alt="tuopu-2"></p><p>然后，我们继续寻找没有前驱的顶点，发现V1没有前驱，所以输出V1，删除和V1有关的边，得到下图的结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-3.png" alt="tuopu-3"></p><p>然后，我们又发现V4和V3都是没有前驱的，那么我们就随机选取一个顶点输出（具体看你实现的算法和图存储结构），我们输出V4，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-4.png" alt="tuopu-4"></p><p>然后，我们输出没有前驱的顶点V3，得到如下结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-5.png" alt="tuopu-5"></p><p>然后，我们分别输出V5和V2，最后全部顶点输出完成，该图的一个拓扑序列为：</p><p>v6–&gt;v1—&gt;v4—&gt;v3—&gt;v5—&gt;v2</p><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>1.用邻接表存储数据，同时对终点的结点的入度加一；<br>2.将没有先决条件便可以排序的点（即初始入度为0的点）先加入队列并输出；<br>3.从队首元素开始扩展，将与队首元素相连的结点的入度减一（等同于擦除这条边），如果该结点入度变为0，则将其入队，作为下一次查找的起点；<br>4.将队首元素出队，当队首元素为空时停止排序。</p><h2 id="代码及注解"><a href="#代码及注解" class="headerlink" title="代码及注解"></a>代码及注解</h2><p>有n个点，m条边的有向无环图，输入n，m，然后每一行输入一条边的信息：起点x，终点y</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;int n,m,a,b,c,d,e,re;struct map1{    int stat,end;};map1 tu[100];int rd[100],chong[100];queue &lt;int&gt; q;int main(){    cin&gt;&gt;n&gt;&gt;m;//n点m边    for (a=1;a&lt;=m;a++)    {        cin&gt;&gt;tu[a].stat&gt;&gt;tu[a].end;        rd[tu[a].end]++;    }    for (int i=1;i&lt;=n;i++)    if (rd[i]==0) q.push(i);//将初始入度为0的结点入队    while (!q.empty())    {            cout&lt;&lt;q.front()&lt;&lt;&quot; &quot;;            for (int j=1;j&lt;=m;j++)            {                if (tu[j].stat==q.front())//找以队首元素为起点的边                {                    rd[tu[j].end]--;                    if (rd[tu[j].end]==0)                     {                        q.push(tu[j].end);                    }                }            }        q.pop();    }    return 0;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> OI笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法-拓扑排序 </tag>
             
         </tags>
       
@@ -522,11 +539,11 @@
   
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
+      <title>时间轴</title>
+      <link href="/timeline/index.html"/>
+      <url>/timeline/index.html</url>
       
-        <content type="html"><![CDATA[<p>我是Llf，最弱的蒟蒻，完了</p><p>本博客部分文章的markdown源文件均可通过将 <code>https://llf0703.com/p/*.html</code>改为 <code>https://md.llf0703.com/p/*.md</code> 查看</p><p>这个东西会不时更新，也许有的最新文章看不了</p><p><a href="https://bzoj.llf0703.com/" target="_blank" rel="noopener">BZOJ离线题库（By ruanxingzhi）</a></p><p>CSDN博客:  <a href="https://blog.csdn.net/Llf_0703" target="_blank" rel="noopener">Llf_0703</a></p><p>luogu:  <a href="https://www.luogu.org/space/show?uid=29696" target="_blank" rel="noopener">Llf0703</a></p><p>BZOJ:  <a href="https://www.lydsy.com/JudgeOnline/userinfo.php?user=Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Bilibili： <a href="https://space.bilibili.com/268840304/" target="_blank" rel="noopener">Llf030703</a></p><p>逼乎:  <a href="https://www.zhihu.com/people/llf-93-87/" target="_blank" rel="noopener">Llf</a></p><p>Coding:  <a href="https://coding.net/u/Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Gayhub:  <a href="https://github.com/Llf0703" target="_blank" rel="noopener">Llf0703</a></p>]]></content>
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
@@ -558,11 +575,11 @@
     </entry>
     
     <entry>
-      <title>时间轴</title>
-      <link href="/timeline/index.html"/>
-      <url>/timeline/index.html</url>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p>我是Llf，最弱的蒟蒻，完了</p><p>本博客部分文章的markdown源文件均可通过将 <code>https://llf0703.com/p/*.html</code>改为 <code>https://md.llf0703.com/p/*.md</code> 查看</p><p>这个东西会不时更新，也许有的最新文章看不了</p><p><a href="https://bzoj.llf0703.com/" target="_blank" rel="noopener">BZOJ离线题库（By ruanxingzhi）</a></p><p>CSDN博客:  <a href="https://blog.csdn.net/Llf_0703" target="_blank" rel="noopener">Llf_0703</a></p><p>luogu:  <a href="https://www.luogu.org/space/show?uid=29696" target="_blank" rel="noopener">Llf0703</a></p><p>BZOJ:  <a href="https://www.lydsy.com/JudgeOnline/userinfo.php?user=Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Bilibili： <a href="https://space.bilibili.com/268840304/" target="_blank" rel="noopener">Llf030703</a></p><p>逼乎:  <a href="https://www.zhihu.com/people/llf-93-87/" target="_blank" rel="noopener">Llf</a></p><p>Coding:  <a href="https://coding.net/u/Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Gayhub:  <a href="https://github.com/Llf0703" target="_blank" rel="noopener">Llf0703</a></p>]]></content>
       
     </entry>
     

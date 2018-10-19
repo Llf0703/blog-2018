@@ -3,6 +3,23 @@
   
     
     <entry>
+      <title>2018.10.18日记</title>
+      <link href="/p/diary-20181018.html"/>
+      <url>/p/diary-20181018.html</url>
+      
+        <content type="html"><![CDATA[<p><del>那个啥，好吧我承认，这个东西是我10.19下午才赶出来的。</del></p><h2 id="杂事"><a href="#杂事" class="headerlink" title="杂事"></a>杂事</h2><p>无</p><h2 id="正事"><a href="#正事" class="headerlink" title="正事"></a>正事</h2><p>今天打了第三套，非常不爽。打了一个多小时的第三题告诉我题目有问题，少了个省略号。徐妈说的要加时，但我又因为要上数学课最后一节课走了，然后最后就只有第一题有60分。回来我才发现第四题其实是最简单的一道题，洛谷评分只有PJ-。。。</p><p>然后下午调第二题调了一下午，现在都还没调出来。晚上又做第三题，可算是把高精板子全部打了一遍了，然后struct里面忘了赋初值又调了半天。真是荒废的一天。</p><h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>比昨天还不爽</p><h2 id="明天计划"><a href="#明天计划" class="headerlink" title="明天计划"></a>明天计划</h2><p>没啥计划了，见机行事，免得又咕咕咕了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 日记 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    <entry>
       <title>2018.10.17日记</title>
       <link href="/p/diary-20181017.html"/>
       <url>/p/diary-20181017.html</url>
@@ -64,7 +81,7 @@
       <link href="/p/improve-sth-201810.html"/>
       <url>/p/improve-sth-201810.html</url>
       
-        <content type="html"><![CDATA[<h2 id="需要加强板块"><a href="#需要加强板块" class="headerlink" title="需要加强板块"></a>需要加强板块</h2><ol><li>高精 （差个重定义运算符版）</li><li>贪心</li><li><del>搜索</del></li><li>二分、分治</li><li>二叉树，二叉排序树相关</li><li>图论相关模板<ol><li>LCA（倍增）</li><li>二分图匹配</li><li>强连通，割点等</li><li>最短路</li></ol></li><li>字符串相关<ol><li>KMP</li><li>AC自动机</li><li>Trie</li><li>hash</li></ol></li><li>数论相关</li><li>DP <del>Dark Fantasy</del></li></ol><h2 id="犯过的低级错误"><a href="#犯过的低级错误" class="headerlink" title="犯过的低级错误"></a>犯过的低级错误</h2><ol><li>数组排序后还是取下标直接使用：<a href="https://www.luogu.org/problemnew/show/P1462" target="_blank" rel="noopener">洛谷P1462 通往奥格瑞玛的道路</a></li></ol><h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><ul><li>10.15-10.29 做完洛谷试炼场提高</li><li>10.15 重点加强高精</li><li>10.16 完成动态规划lv1(完成)，<del>重做所有图论模板题并完成最短路问题板块</del>(未完成)</li><li>10.17 上午浙江第1套，下午及晚上 重做所有图论模板题并完成最短路问题板块</li><li>10.18 继续搞图论</li></ul>]]></content>
+        <content type="html"><![CDATA[<h2 id="需要加强板块"><a href="#需要加强板块" class="headerlink" title="需要加强板块"></a>需要加强板块</h2><ol><li>高精 （差个重定义运算符版）</li><li>贪心</li><li><del>搜索</del></li><li>二分、分治</li><li>二叉树，二叉排序树相关</li><li>图论相关模板<ol><li>LCA（倍增）</li><li>二分图匹配</li><li>强连通，割点等</li><li>最短路</li></ol></li><li>字符串相关<ol><li>KMP</li><li>AC自动机</li><li>Trie</li><li>hash</li></ol></li><li>数论相关</li><li>DP <del>Dark Fantasy</del></li></ol><h2 id="犯过的低级错误"><a href="#犯过的低级错误" class="headerlink" title="犯过的低级错误"></a>犯过的低级错误</h2><ol><li>数组排序后还是取下标直接使用：<a href="https://www.luogu.org/problemnew/show/P1462" target="_blank" rel="noopener">洛谷P1462 通往奥格瑞玛的道路</a></li><li>struct里面没赋初值：<a href="https://www.luogu.org/problemnew/show/P1625" target="_blank" rel="noopener">洛谷P1625 求和</a></li></ol><h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><ul><li>10.15-10.29 做完洛谷试炼场提高</li><li>10.15 重点加强高精</li><li>10.16 完成动态规划lv1(完成)，<del>重做所有图论模板题并完成最短路问题板块</del>(未完成)</li><li>10.17 上午浙江第1套，下午及晚上 重做所有图论模板题并完成最短路问题板块</li><li>10.18 继续搞图论</li><li>10.19 打两套题，没啥计划了</li></ul>]]></content>
       
       
       <categories>
@@ -300,13 +317,13 @@
             
             <tag> 数据结构-线段树 </tag>
             
-            <tag> OJ-洛谷 </tag>
-            
-            <tag> OJ-BZOJ </tag>
-            
             <tag> 省选-河北 </tag>
             
             <tag> 省选-天津 </tag>
+            
+            <tag> OJ-洛谷 </tag>
+            
+            <tag> OJ-BZOJ </tag>
             
         </tags>
       
@@ -356,11 +373,11 @@
             
             <tag> 数据结构-线段树 </tag>
             
-            <tag> 省选-山东 </tag>
-            
             <tag> OJ-洛谷 </tag>
             
             <tag> OJ-BZOJ </tag>
+            
+            <tag> 省选-山东 </tag>
             
         </tags>
       
@@ -562,11 +579,11 @@
   
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
+      <title>咕咕咕</title>
+      <link href="/gugugu/index.html"/>
+      <url>/gugugu/index.html</url>
       
-        <content type="html"><![CDATA[<p>我是Llf，最弱的蒟蒻，完了</p><p>本博客部分文章的markdown源文件均可通过将 <code>https://llf0703.com/p/*.html</code>改为 <code>https://md.llf0703.com/p/*.md</code> 查看</p><p>这个东西会不时更新，也许有的最新文章看不了</p><p><a href="https://bzoj.llf0703.com/" target="_blank" rel="noopener">BZOJ离线题库（By ruanxingzhi）</a></p><p>CSDN博客:  <a href="https://blog.csdn.net/Llf_0703" target="_blank" rel="noopener">Llf_0703</a></p><p>luogu:  <a href="https://www.luogu.org/space/show?uid=29696" target="_blank" rel="noopener">Llf0703</a></p><p>BZOJ:  <a href="https://www.lydsy.com/JudgeOnline/userinfo.php?user=Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Bilibili： <a href="https://space.bilibili.com/268840304/" target="_blank" rel="noopener">Llf030703</a></p><p>逼乎:  <a href="https://www.zhihu.com/people/llf-93-87/" target="_blank" rel="noopener">Llf</a></p><p>Coding:  <a href="https://coding.net/u/Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Gayhub:  <a href="https://github.com/Llf0703" target="_blank" rel="noopener">Llf0703</a></p>]]></content>
+        <content type="html"><![CDATA[<h1>    <center> 蒟蒻Llf0703鸽了这篇文章 </center></h1><p>这不是404，只是用作占坑文章的临时页面，请返回上一页。</p>]]></content>
       
     </entry>
     
@@ -580,11 +597,20 @@
     </entry>
     
     <entry>
-      <title>咕咕咕</title>
-      <link href="/gugugu/index.html"/>
-      <url>/gugugu/index.html</url>
+      <title>时间轴</title>
+      <link href="/timeline/index.html"/>
+      <url>/timeline/index.html</url>
       
-        <content type="html"><![CDATA[<h1>    <center> 蒟蒻Llf0703鸽了这篇文章 </center></h1><p>这不是404，只是用作占坑文章的临时页面，请返回上一页。</p>]]></content>
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    <entry>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
+      
+        <content type="html"><![CDATA[<p>我是Llf，最弱的蒟蒻，完了</p><p>本博客部分文章的markdown源文件均可通过将 <code>https://llf0703.com/p/*.html</code>改为 <code>https://md.llf0703.com/p/*.md</code> 查看</p><p>这个东西会不时更新，也许有的最新文章看不了</p><p><a href="https://bzoj.llf0703.com/" target="_blank" rel="noopener">BZOJ离线题库（By ruanxingzhi）</a></p><p>CSDN博客:  <a href="https://blog.csdn.net/Llf_0703" target="_blank" rel="noopener">Llf_0703</a></p><p>luogu:  <a href="https://www.luogu.org/space/show?uid=29696" target="_blank" rel="noopener">Llf0703</a></p><p>BZOJ:  <a href="https://www.lydsy.com/JudgeOnline/userinfo.php?user=Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Bilibili： <a href="https://space.bilibili.com/268840304/" target="_blank" rel="noopener">Llf030703</a></p><p>逼乎:  <a href="https://www.zhihu.com/people/llf-93-87/" target="_blank" rel="noopener">Llf</a></p><p>Coding:  <a href="https://coding.net/u/Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Gayhub:  <a href="https://github.com/Llf0703" target="_blank" rel="noopener">Llf0703</a></p>]]></content>
       
     </entry>
     
@@ -592,15 +618,6 @@
       <title>标签云</title>
       <link href="/tags/index.html"/>
       <url>/tags/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    <entry>
-      <title>时间轴</title>
-      <link href="/timeline/index.html"/>
-      <url>/timeline/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       

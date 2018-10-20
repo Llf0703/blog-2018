@@ -3,6 +3,23 @@
   
     
     <entry>
+      <title>高精度算法模板</title>
+      <link href="/p/bigint.html"/>
+      <url>/p/bigint.html</url>
+      
+        <content type="html"><![CDATA[<p>只是发个板子。虽说似乎NOIp近几年一般都是取膜而不是高精了，但我还是担心会考，所以就复习了一下。</p><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>用struct储存整个数和位数。整个数全部倒序方便计算。</p><pre><code class="lang-cpp">struct bigint{    int s[5005],len;    bigint(){memset(s,0,sizeof(s));len=0;}};</code></pre><h2 id="加法"><a href="#加法" class="headerlink" title="加法"></a>加法</h2><pre><code class="lang-cpp">inline bigint add(bigint x,bigint y){    bigint z;    int len=max(x.len,y.len),add=0;    for (int i=1;i&lt;=len;i++)    {        z.s[i]=x.s[i]+y.s[i]+add;        add=z.s[i]/10;        z.s[i]%=10;    }    if (add) z.s[++len]=add;    z.len=len;    return z;}</code></pre><h2 id="减法"><a href="#减法" class="headerlink" title="减法"></a>减法</h2><p>和加法原理相同，不过这里保证x&gt;y。所以</p><pre><code class="lang-cpp">inline bigint sub(bigint x,bigint y) //x&gt;y{    bigint z;    int add=0,len=x.len;y    for (int i=1;i&lt;=len;i++)    {        z.s[i]=x.s[i]-y.s[i]-add;        add=0;        if (z.s[i]&lt;0) add=1,z.s[i]+=10;    }     z.len=len;    return z;}</code></pre><h2 id="乘法"><a href="#乘法" class="headerlink" title="乘法"></a>乘法</h2><h3 id="高精乘低精"><a href="#高精乘低精" class="headerlink" title="高精乘低精"></a>高精乘低精</h3><p>原理也差不多，只是注意最后要把进位全部加完。</p><pre><code class="lang-cpp">inline bigint times(bigint x,int y){    bigint z;    int len=x.len,add=0;    for (int i=1;i&lt;=len;i++)    {        z.s[i]=x.s[i]*y+add;        add=z.s[i]/10;        z.s[i]%=10;    }    while (add)     {        z.s[++len]=add%10;        add/=10;    }    z.len=len;    return z;}</code></pre><h3 id="高精乘高精"><a href="#高精乘高精" class="headerlink" title="高精乘高精"></a>高精乘高精</h3><p>写过了，但还没写成模板，暂时先咕咕咕了。</p><h2 id="除法"><a href="#除法" class="headerlink" title="除法"></a>除法</h2><h3 id="高精除低精"><a href="#高精除低精" class="headerlink" title="高精除低精"></a>高精除低精</h3><p>跟竖式一样，需要正着从高位往低位除。最后注意下把前导0去掉。</p><pre><code class="lang-cpp">inline bigint division(bigint x,int y){    bigint z;    int sum=0,len=x.len;    for (int i=len;i;i--)    {        sum=sum*10+x.s[i];        z.s[i]=sum/y;        sum%=y;    }    while (!z.s[len]) len--;    z.len=len;    return z;}</code></pre><h3 id="高精除高精"><a href="#高精除高精" class="headerlink" title="高精除高精"></a>高精除高精</h3><p>写不来，noip估计也不会考。我太菜了。</p><h2 id="比较大小"><a href="#比较大小" class="headerlink" title="比较大小"></a>比较大小</h2><p>返回1表示 $ x&gt;y $ ,-1表示 $ x&lt;y $ ,0表示 $ x=y $。按位比较即可。</p><pre><code class="lang-cpp">inline int cmp(bigint x,bigint y){    if (x.len&gt;y.len) return 1;    if (x.len&lt;y.len) return -1;    for (int i=x.len;i;i--)    {        if (x.s[i]&lt;y.s[i]) return -1;        if (x.s[i]&gt;y.s[i]) return 1;    }    return 0;}</code></pre><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>逆序输出即可。</p><pre><code class="lang-cpp">inline void print(bigint x){    for (int i=x.len;i;i--)        printf(&quot;%d&quot;,x.s[i]);}</code></pre><h2 id="清空"><a href="#清空" class="headerlink" title="清空"></a>清空</h2><p>把数组和长度都赋为0。</p><pre><code class="lang-cpp">inline void clear(bigint &amp;x){    for (int i=1;i&lt;=x.len;i++)        x.s[i]=0;    x.len=0;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> OI笔记 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    <entry>
       <title>2018.10.18日记</title>
       <link href="/p/diary-20181018.html"/>
       <url>/p/diary-20181018.html</url>
@@ -317,13 +334,13 @@
             
             <tag> 数据结构-线段树 </tag>
             
-            <tag> 省选-河北 </tag>
-            
-            <tag> 省选-天津 </tag>
-            
             <tag> OJ-洛谷 </tag>
             
             <tag> OJ-BZOJ </tag>
+            
+            <tag> 省选-河北 </tag>
+            
+            <tag> 省选-天津 </tag>
             
         </tags>
       
@@ -373,11 +390,11 @@
             
             <tag> 数据结构-线段树 </tag>
             
+            <tag> 省选-山东 </tag>
+            
             <tag> OJ-洛谷 </tag>
             
             <tag> OJ-BZOJ </tag>
-            
-            <tag> 省选-山东 </tag>
             
         </tags>
       
@@ -588,9 +605,9 @@
     </entry>
     
     <entry>
-      <title>友链</title>
-      <link href="/links/index.html"/>
-      <url>/links/index.html</url>
+      <title>标签云</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -606,20 +623,20 @@
     </entry>
     
     <entry>
+      <title>友链</title>
+      <link href="/links/index.html"/>
+      <url>/links/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    <entry>
       <title>关于</title>
       <link href="/about/index.html"/>
       <url>/about/index.html</url>
       
         <content type="html"><![CDATA[<p>我是Llf，最弱的蒟蒻，完了</p><p>本博客部分文章的markdown源文件均可通过将 <code>https://llf0703.com/p/*.html</code>改为 <code>https://md.llf0703.com/p/*.md</code> 查看</p><p>这个东西会不时更新，也许有的最新文章看不了</p><p><a href="https://bzoj.llf0703.com/" target="_blank" rel="noopener">BZOJ离线题库（By ruanxingzhi）</a></p><p>CSDN博客:  <a href="https://blog.csdn.net/Llf_0703" target="_blank" rel="noopener">Llf_0703</a></p><p>luogu:  <a href="https://www.luogu.org/space/show?uid=29696" target="_blank" rel="noopener">Llf0703</a></p><p>BZOJ:  <a href="https://www.lydsy.com/JudgeOnline/userinfo.php?user=Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Bilibili： <a href="https://space.bilibili.com/268840304/" target="_blank" rel="noopener">Llf030703</a></p><p>逼乎:  <a href="https://www.zhihu.com/people/llf-93-87/" target="_blank" rel="noopener">Llf</a></p><p>Coding:  <a href="https://coding.net/u/Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Gayhub:  <a href="https://github.com/Llf0703" target="_blank" rel="noopener">Llf0703</a></p>]]></content>
-      
-    </entry>
-    
-    <entry>
-      <title>标签云</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
       
     </entry>
     

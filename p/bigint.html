@@ -47,7 +47,7 @@
     
     <title>
         
-            基础数论学习总结 | 
+            高精度算法模板 | 
         
         Llf0703&#39;s blog
     </title>
@@ -58,7 +58,7 @@
 
     <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="">
-    <meta name="keywords" content="Llf,Llf0703,blog,OI,博客,信息学竞赛,算法,数据结构,数论,数学">
+    <meta name="keywords" content="Llf,Llf0703,blog,OI,博客,信息学竞赛,算法,数据结构">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -224,7 +224,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Llf0703&#39;s blog">
-    <meta name="msapplication-starturl" content="https://llf0703.com/p/number-theory.html">
+    <meta name="msapplication-starturl" content="https://llf0703.com/p/bigint.html">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Llf0703&#39;s blog">
@@ -243,16 +243,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://llf0703.com/p/number-theory.html">
+    <meta property="og:url" content="https://llf0703.com/p/bigint.html">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="基础数论学习总结 | Llf0703&#39;s blog">
+    <meta property="og:title" content="高精度算法模板 | Llf0703&#39;s blog">
     <meta property="og:image" content="https://i.loli.net/2018/05/23/5b0522df21452.png">
     <meta property="og:description" content="">
-    <meta property="og:article:tag" content="数论"> <meta property="og:article:tag" content="数学"> 
+    
 
     
-        <meta property="article:published_time" content="Wed May 09 2018 20:46:00 GMT+0800">
-        <meta property="article:modified_time" content="Sat Jul 28 2018 11:29:16 GMT+0800">
+        <meta property="article:published_time" content="Fri Oct 19 2018 00:00:00 GMT+0800">
+        <meta property="article:modified_time" content="Sat Oct 20 2018 15:12:45 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -260,7 +260,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://llf0703.com/p/number-theory.html" />
+        <link rel="canonical" href="https://llf0703.com/p/bigint.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -272,10 +272,10 @@
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "mainEntityOfPage": "https://llf0703.com/p/number-theory.html",
-    "headline": "基础数论学习总结",
-    "datePublished": "Wed May 09 2018 20:46:00 GMT+0800",
-    "dateModified": "Sat Jul 28 2018 11:29:16 GMT+0800",
+    "mainEntityOfPage": "https://llf0703.com/p/bigint.html",
+    "headline": "高精度算法模板",
+    "datePublished": "Fri Oct 19 2018 00:00:00 GMT+0800",
+    "dateModified": "Sat Oct 20 2018 15:12:45 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Llf0703",
@@ -293,7 +293,7 @@
             "url": "https://i.loli.net/2018/05/23/5b0522df21452.png"
         }
     },
-    "keywords": ",数论,数学Llf,Llf0703,blog,OI,博客,信息学竞赛,算法,数据结构",
+    "keywords": "Llf,Llf0703,blog,OI,博客,信息学竞赛,算法,数据结构",
     "description": "",
 }
 </script>
@@ -373,7 +373,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-整除"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.整除</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-同余"><span class="post-toc-number">2.</span> <span class="post-toc-text">2.同余</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-最大公约数-gcd"><span class="post-toc-number">3.</span> <span class="post-toc-text">3.最大公约数(gcd)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#辗转相除法"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">辗转相除法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二进制算法"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">二进制算法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#扩展欧几里得算法"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">扩展欧几里得算法</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-逆元"><span class="post-toc-number">4.</span> <span class="post-toc-text">4.逆元</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-中国剩余定理"><span class="post-toc-number">5.</span> <span class="post-toc-text">5.中国剩余定理</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-素数筛"><span class="post-toc-number">6.</span> <span class="post-toc-text">6.素数筛</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#普通筛法"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">普通筛法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#线性筛"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">线性筛</span></a></li></ol></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#定义"><span class="post-toc-number">1.</span> <span class="post-toc-text">定义</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#加法"><span class="post-toc-number">2.</span> <span class="post-toc-text">加法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#减法"><span class="post-toc-number">3.</span> <span class="post-toc-text">减法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#乘法"><span class="post-toc-number">4.</span> <span class="post-toc-text">乘法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#高精乘低精"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">高精乘低精</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#高精乘高精"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">高精乘高精</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#除法"><span class="post-toc-number">5.</span> <span class="post-toc-text">除法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#高精除低精"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">高精除低精</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#高精除高精"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">高精除高精</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#比较大小"><span class="post-toc-number">6.</span> <span class="post-toc-text">比较大小</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#输出"><span class="post-toc-number">7.</span> <span class="post-toc-text">输出</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#清空"><span class="post-toc-number">8.</span> <span class="post-toc-text">清空</span></a></li></ol>
     </ul>
     
 
@@ -392,11 +392,20 @@
                 
     <!-- Paradox Post Header -->
     
-        <!-- Custom Thumbnail -->
-        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(https://i.loli.net/2018/06/09/5b1b6394cb914.png)">
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
     
             <p class="article-headline-p">
-                基础数论学习总结
+                高精度算法模板
             </p>
         </div>
 
@@ -415,7 +424,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>Llf0703</strong>
-        <span>5月 09, 2018</span>
+        <span>10月 19, 2018</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -437,22 +446,13 @@
 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
     <li class="mdl-menu__item">在其它设备中阅读本文章</li>
     
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAAB9klEQVR42u3aS27CQBAFQO5/6WQbCWG/NwMB0zUrhCwzxaLVv9vPV5wbBgYGBgYGBsbHMG7xuX/+7zf3n5P3r90BAwNjJuMktMUXPX5n+/3xMxgYGDMZxwHx0avz4Jv8NfkdMDAwMJKfOU4B25CNgYGB8YqAmyd8SRGLgYGB8awi9qSwfBBwk2D9r7U4BgbGBRntYOAVn98w38DAwLgIo15xWBoMtOnmy3dGMDAwLsVIFimOE758YFAUqEmDDwMDYzBjh7SzFlYXzBgYGMMYeZtsLb3bGW0+vBUGBsZIRjKGXAuvecL3hMEABgbGlzLytCxZ/3rWaOFkyQMDAwMjCHx5W619JvrLMDAwxjDylC5v37eN/naZFQMDYxqjLWJ3is88WB+XrxgYGNMYefusxdepXjl+wMDAmMbIVx+S4jMpifOxAQYGBkbeYsuv1S5wrLX/MDAw5jDa1C1J45IxQNt6w8DAwNhJ1NqBZRKg62ULDAyMAYz8tOOBtsQtVjEwMDDGMNrAtzN0bIP74iQWAwPjSxk7CxP5FduAezJexcDAGMmo1x3KBDEvYqPiGQMDA2MpHdxaSI3HEhgYGBj5WHHn+SRZPElDMTAwRjLy5n7UuI8v/YZ2GwYGxgUZa4OBfNliLUBjYGBgXP1gYGBgYGBgYLz1/AI2b32Ch691VwAAAABJRU5ErkJggg==">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAAB70lEQVR42u3aS3KEMAwFQO5/6eQAFORJhszYblap+YA6C41k6fhZ4jowMDAwMDAwML6GccTX+VvnO5zfvXrWAzFgYGBsxvgjtQ2EmHyyGgMGBsbOjKsEdx/65WNuE+t4DBgYGBh5iL1PYmBgYLzHSBrRvEHFwMDAeKOJHQk9LyJf78UxMDAmZOSH8u/9/a/zDQwMjKkYzUWH2wfkBd+Hd0YwMDAmYVSTY144Vkeb1cIRAwNjN0Z19SEJ99nFskKFi4GBsRwjP1bL02jSgiaAZhOLgYGxHCMfVfYGnCNj0ccqXAwMjMkZ75Vx94D8noXfDQwMjA0YvUP8JKzeHcpNLAYGxqKMpJjrtaP5gKGa4jEwMHZm9MYD1TXW3qJGYYSJgYGxDaM3AMj/QXkhOJRwMTAwlmDkQ8q8iKyORfOnY2Bg7MkYKeny0O8LzSoJAwNjN0beNCalYY9aLRwxMDB2YyS3qza6+bJFfgCHgYGxM6N69Y71R0YChdIQAwNjUcZThV21oa2WhhgYGBhJks1f7/GSoSkGBgZGsiLWazurrWw0ZMXAwMAYXtuqJtaEioGBgTGScJMxQHXJ4wO/GxgYGF/PyJvYPF2OHKg1ly0wMDAWZVQTaG9Ro5qCX5xvYGBgTMWY98LAwMDAwMDA+Oj1CzLSNcoKAuZzAAAAAElFTkSuQmCC">
     
 </ul>
 
     
 
     <!-- Tags (bookmark) -->
-    
-    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-        <i class="material-icons" role="presentation">bookmark</i>
-        <span class="visuallyhidden">bookmark</span>
-    </button>
-    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
-        <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/数学/">数学</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/数论/">数论</a>
-    </ul>
     
 
     <!-- Share -->
@@ -468,7 +468,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=基础数论学习总结&url=https://llf0703.com/p/number-theory.html&pic=https://llf0703.comhttps://i.loli.net/2018/05/23/5b0522df21452.png&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=高精度算法模板&url=https://llf0703.com/p/bigint.html&pic=https://llf0703.comhttps://i.loli.net/2018/05/23/5b0522df21452.png&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -477,7 +477,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=基础数论学习总结&url=https://llf0703.com/p/number-theory.html&via=Llf0703" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=高精度算法模板&url=https://llf0703.com/p/bigint.html&via=Llf0703" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -486,7 +486,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://llf0703.com/p/number-theory.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://llf0703.com/p/bigint.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -495,7 +495,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=https://llf0703.com/p/number-theory.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://llf0703.com/p/bigint.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -507,7 +507,7 @@
 
     <!-- Share QQ -->
     
-        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Llf0703&#39;s blog&title=基础数论学习总结&summary=&pics=https://llf0703.comhttps://i.loli.net/2018/05/23/5b0522df21452.png&url=https://llf0703.com/p/number-theory.html" target="_blank">
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Llf0703&#39;s blog&title=高精度算法模板&summary=&pics=https://llf0703.comhttps://i.loli.net/2018/05/23/5b0522df21452.png&url=https://llf0703.com/p/bigint.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 QQ
             </li>
@@ -526,256 +526,109 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>原本打算先学Splay的，但想到提高组一般不考，而且我其它东西还差的多，就先把基础数论的东西复习一下，并且加深一下难度，<del>还做了n多道水题，虽然主要是之前没过的</del>。</p>
-<hr>
-<h2 id="1-整除"><a href="#1-整除" class="headerlink" title="1.整除"></a>1.整除</h2><p>这里就把整除的性质列一下：</p>
-<ol>
-<li>如果$a \mid b$且$b \mid c$，那么$a \mid c$</li>
-<li>$a \mid b$且$a \mid c$等价于$\forall x,y$，有$a \mid (b \times x + c \times y)$</li>
-<li>设$m\neq 0$,那么$a \mid b $等价于$(m \times a) \mid (m \times b)$</li>
-<li>设$x,y$满足$a \times x+b \times y=1$且$a \mid n,b \mid n$，那么$(a \times b) \mid n$</li>
-<li>若$b=q \times d+c$,那么$d \mid b$的充要条件是$d \mid c$</li>
-</ol>
-<h2 id="2-同余"><a href="#2-同余" class="headerlink" title="2.同余"></a>2.同余</h2><p>同余性质：</p>
-<ol>
-<li>自反性 $a\equiv a(mod m) $</li>
-<li>对称性 若$a\equiv b(mod m)$则$b\equiv a(mod m)$</li>
-<li>传递性 若$a\equiv b(mod m),b\equiv c(mod m)$，则$a\equiv c(mod m)$</li>
-<li>同加性 若$a\equiv b(modm)$，则$a+c\equiv b+c(modm)$</li>
-<li>同乘性(1) 若$a\equiv b(modm)$，则$a\times c\equiv b\times c(modm)$ </li>
-<li>同乘性(2) 若$a\equiv b(modm),c\equiv d(modm)$ ，则$a\times c\equiv b\times d(modm)$</li>
-<li>同幂性 若$a\equiv b(modm)$，则$a^{n}\equiv b^{n} (modm)$</li>
-</ol>
-<h2 id="3-最大公约数-gcd"><a href="#3-最大公约数-gcd" class="headerlink" title="3.最大公约数(gcd)"></a>3.最大公约数(gcd)</h2><h3 id="辗转相除法"><a href="#辗转相除法" class="headerlink" title="辗转相除法"></a>辗转相除法</h3><p>基础方法，不再赘述</p>
-<pre><code class="lang-cpp">int gcd(int a,int b)
+        <p>只是发个板子。虽说似乎NOIp近几年一般都是取膜而不是高精了，但我还是担心会考，所以就复习了一下。</p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>用struct储存整个数和位数。整个数全部倒序方便计算。</p>
+<pre><code class="lang-cpp">struct bigint{
+    int s[5005],len;
+    bigint(){memset(s,0,sizeof(s));len=0;}
+};
+</code></pre>
+<h2 id="加法"><a href="#加法" class="headerlink" title="加法"></a>加法</h2><pre><code class="lang-cpp">inline bigint add(bigint x,bigint y)
 {
-    if (b==0) return a;
-    return gcd(b,a%b);
+    bigint z;
+    int len=max(x.len,y.len),add=0;
+    for (int i=1;i&lt;=len;i++)
+    {
+        z.s[i]=x.s[i]+y.s[i]+add;
+        add=z.s[i]/10;
+        z.s[i]%=10;
+    }
+    if (add) z.s[++len]=add;
+    z.len=len;
+    return z;
 }
 </code></pre>
-<h3 id="二进制算法"><a href="#二进制算法" class="headerlink" title="二进制算法"></a>二进制算法</h3><p>不断去除因数2来提高gcd的效率</p>
-<pre><code class="lang-cpp">inline int gcd(int x,int y)
+<h2 id="减法"><a href="#减法" class="headerlink" title="减法"></a>减法</h2><p>和加法原理相同，不过这里保证x&gt;y。所以</p>
+<pre><code class="lang-cpp">inline bigint sub(bigint x,bigint y) //x&gt;y
 {
-    int i,j;
-    if (x==0) return y;
-    if (y==0) return x;
-    for (i=0;0==(x&amp;1);i++) x&gt;&gt;=1;//去掉2
-    for (j=0;0==(y&amp;1);j++) y&gt;&gt;=1;
-    if (i&gt;j) i=j;
-    for (;;)
+    bigint z;
+    int add=0,len=x.len;y
+    for (int i=1;i&lt;=len;i++)
     {
-        if (x&lt;y) x^=y,y^=x,x^=y;
-        if (0==(x-=y)) return y&lt;&lt;i;//如果x==y gcd==x==y
-        while (0==(x&amp;1)) x&gt;&gt;=1;
-    }
+        z.s[i]=x.s[i]-y.s[i]-add;
+        add=0;
+        if (z.s[i]&lt;0) add=1,z.s[i]+=10;
+    } 
+    z.len=len;
+    return z;
 }
 </code></pre>
-<h3 id="扩展欧几里得算法"><a href="#扩展欧几里得算法" class="headerlink" title="扩展欧几里得算法"></a>扩展欧几里得算法</h3><p>扩展欧几里得算法用来在已知$(a,b)$，求$(x,y)$，使$a\times x+b\times y=gcd(a,b)$</p>
-<pre><code class="lang-cpp">void exgcd(LL l,LL r,LL &amp;x,LL &amp;y)
+<h2 id="乘法"><a href="#乘法" class="headerlink" title="乘法"></a>乘法</h2><h3 id="高精乘低精"><a href="#高精乘低精" class="headerlink" title="高精乘低精"></a>高精乘低精</h3><p>原理也差不多，只是注意最后要把进位全部加完。</p>
+<pre><code class="lang-cpp">inline bigint times(bigint x,int y)
 {
-    if (r==0) x=1,y=0;
-    else
+    bigint z;
+    int len=x.len,add=0;
+    for (int i=1;i&lt;=len;i++)
     {
-        exgcd(r,l%r,y,x);
-        y-=l/r*x;
+        z.s[i]=x.s[i]*y+add;
+        add=z.s[i]/10;
+        z.s[i]%=10;
     }
+    while (add) 
+    {
+        z.s[++len]=add%10;
+        add/=10;
+    }
+    z.len=len;
+    return z;
 }
 </code></pre>
-<p>例题：<a href="https://www.luogu.org/problemnew/show/P1516" target="_blank" rel="noopener">洛谷P1516 青蛙的约会</a></p>
-<pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;
-#define LL long long
-using namespace std;
-LL n,m,a,b,c,x,y,l,X,Y;
-
-inline int read()
+<h3 id="高精乘高精"><a href="#高精乘高精" class="headerlink" title="高精乘高精"></a>高精乘高精</h3><p>写过了，但还没写成模板，暂时先咕咕咕了。</p>
+<h2 id="除法"><a href="#除法" class="headerlink" title="除法"></a>除法</h2><h3 id="高精除低精"><a href="#高精除低精" class="headerlink" title="高精除低精"></a>高精除低精</h3><p>跟竖式一样，需要正着从高位往低位除。最后注意下把前导0去掉。</p>
+<pre><code class="lang-cpp">inline bigint division(bigint x,int y)
 {
-    char ch=getchar();
-    int x=0,f=1;
-    while (ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;)
+    bigint z;
+    int sum=0,len=x.len;
+    for (int i=len;i;i--)
     {
-        if (ch==&#39;-&#39;) f=-1;
-        ch=getchar();
+        sum=sum*10+x.s[i];
+        z.s[i]=sum/y;
+        sum%=y;
     }
-    while (ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;)
-    {
-        x=x*10+ch-&#39;0&#39;;
-        ch=getchar();
-    }
-    return f*x;
-}
-
-inline LL exgcd(LL l,LL r,LL &amp;X,LL &amp;Y)
-{
-    if (r==0)
-    {
-        X=1; Y=0;
-        return l;
-    }
-    LL a=exgcd(r,l%r,Y,X);
-    Y-=l/r*X;
-    return a;
-}
-
-int main()
-{
-    x=read(); y=read(); m=read(); n=read(); l=read();
-    LL deltav=(m&gt;=n) ? m-n : n-m;
-    LL deltas=(m&gt;=n) ? y-x : x-y;
-    LL k=exgcd(deltav,l,X,Y);
-    if (deltas%k!=0) printf(&quot;Impossible&quot;);
-    else printf(&quot;%lld&quot;,(X*(deltas/k)%(l/k)+(l/k))%(l/k));
-    return 0;
+    while (!z.s[len]) len--;
+    z.len=len;
+    return z;
 }
 </code></pre>
-<h2 id="4-逆元"><a href="#4-逆元" class="headerlink" title="4.逆元"></a>4.逆元</h2><p>若$a\times x\equiv 1(modb)$，就称x是a的逆元。</p>
-<p>可以将这个式子转化为$a\times x+b\times y=1$，然后用扩展欧几里得定理求解。</p>
-<p>当然也有一种线性算法，在需要求连续逆元时是最优的算法。</p>
-<blockquote>
-<p>以下内容来自<a href="https://www.luogu.org/blog/zjp-shadow/cheng-fa-ni-yuan" target="_blank" rel="noopener">https://www.luogu.org/blog/zjp-shadow/cheng-fa-ni-yuan</a></p>
-</blockquote>
-<hr>
-<p>首先我们有一个, $1^{-1}\equiv 1(\bmod p)$</p>
-<p>然后设 $p=k∗i+r,r&lt;i,1&lt;i&lt;p$ ,再将这个式子放到 $\bmod {p}$ 意义下就会得到：</p>
-<p>$k∗i+r≡0(modp)$</p>
-<p>然后乘上 $i^{-1} , r^{-1}$ 就可以得到:</p>
-<p>$k*r^{-1}+i^{-1}\equiv 0 (\bmod p)$</p>
-<p>$i^{-1}\equiv -k*r^{-1} (\bmod p)$</p>
-<p>$i^{-1}\equiv -\lfloor \frac{p}{i} \rfloor*(p \bmod i)^{-1} (\bmod p)$</p>
-<hr>
-<p>模板题：<a href="https://www.luogu.org/problemnew/show/P3811" target="_blank" rel="noopener">洛谷P3811 【模板】乘法逆元</a></p>
-<pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;
-#define LL long long
-using namespace std;
-
-LL n,p,inv[3000005];
-
-int main()
+<h3 id="高精除高精"><a href="#高精除高精" class="headerlink" title="高精除高精"></a>高精除高精</h3><p>写不来，noip估计也不会考。我太菜了。</p>
+<h2 id="比较大小"><a href="#比较大小" class="headerlink" title="比较大小"></a>比较大小</h2><p>返回1表示 $ x&gt;y $ ,-1表示 $ x&lt;y $ ,0表示 $ x=y $。按位比较即可。</p>
+<pre><code class="lang-cpp">inline int cmp(bigint x,bigint y)
 {
-    scanf(&quot;%d%d&quot;,&amp;n,&amp;p);
-    inv[1]=1;
-    printf(&quot;%d\n&quot;,inv[1]);
-    for (int i=2;i&lt;=n;i++)
+    if (x.len&gt;y.len) return 1;
+    if (x.len&lt;y.len) return -1;
+    for (int i=x.len;i;i--)
     {
-        inv[i]=-(p/i)*inv[p%i];
-        inv[i]=(inv[i]%p+p)%p;
-        printf(&quot;%d\n&quot;,inv[i]);
+        if (x.s[i]&lt;y.s[i]) return -1;
+        if (x.s[i]&gt;y.s[i]) return 1;
     }
     return 0;
 }
 </code></pre>
-<h2 id="5-中国剩余定理"><a href="#5-中国剩余定理" class="headerlink" title="5.中国剩余定理"></a>5.中国剩余定理</h2><p>还是就放一个我看的吧</p>
-<p><a href="https://blog.csdn.net/acdreamers/article/details/8050018" target="_blank" rel="noopener">https://blog.csdn.net/acdreamers/article/details/8050018</a></p>
-<p>例题：<a href="https://www.luogu.org/problemnew/show/P3868" target="_blank" rel="noopener">洛谷P3868 [TJOI2009]猜数字</a></p>
-<p>可以用裸的中国剩余定理来做，但是要注意必须用快速乘，不然$10^{18}\times 10^{18}$肯定会超范围。</p>
-<pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;
-#define LL long long
-using namespace std;
-
-LL n,m,k;
-LL A[15],B[15];
-
-inline LL read()
+<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>逆序输出即可。</p>
+<pre><code class="lang-cpp">inline void print(bigint x)
 {
-    char ch=getchar();
-    LL f=1,x=0;
-    while (ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;)
-    {
-        if (ch==&#39;-&#39;) f=-1;
-        ch=getchar();
-    }
-    while (ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;)
-    {
-        x=x*10+ch-&#39;0&#39;;
-        ch=getchar();
-    }
-    return f*x;
-}
-
-inline void exgcd(LL l,LL r,LL &amp;x,LL &amp;y)
-{
-    if (r==0) x=1,y=0;
-    else
-    {
-        exgcd(r,l%r,y,x);
-        y-=l/r*x;
-    }
-}
-
-inline LL gcd(LL a,LL b)
-{
-    if (b==0) return a;
-    return gcd(b,a%b);
-}
-
-inline LL qmul(LL a,LL b,LL mod)
-{
-    LL ans=0,k=a,f=1;
-    if (k&lt;0) k=-k,f*=-1;
-    if (b&lt;0) b=-b,b*=-1;
-    while (b)
-    {
-        if (b&amp;1) ans=(ans+k)%mod;
-        k=(k+k)%mod;
-        b&gt;&gt;=1;
-    }
-    return ans*f;
-}
-
-inline LL crt()
-{
-    LL M=1,ans=0;
-    for (int i=1;i&lt;=k;i++) M*=B[i];
-    for (int i=1;i&lt;=k;i++)
-    {
-        LL x,y,Mi=M/B[i];
-        exgcd(Mi,B[i],x,y);
-        x=(x%B[i]+B[i])%B[i];
-        ans=(ans+qmul(qmul(Mi,x,M),A[i],M))%M;
-    }
-    return (ans&lt;0)?ans+M:ans;
-}
-
-int main()
-{
-    k=read();
-    for (int i=1;i&lt;=k;i++) A[i]=read();
-    for (int i=1;i&lt;=k;i++) B[i]=read();
-    for (int i=1;i&lt;=k;i++) A[i]=(A[i]%B[i]+B[i])%B[i];
-    printf(&quot;%lld&quot;,crt());
-    return 0;
+    for (int i=x.len;i;i--)
+        printf(&quot;%d&quot;,x.s[i]);
 }
 </code></pre>
-<h2 id="6-素数筛"><a href="#6-素数筛" class="headerlink" title="6.素数筛"></a>6.素数筛</h2><h3 id="普通筛法"><a href="#普通筛法" class="headerlink" title="普通筛法"></a>普通筛法</h3><pre><code class="lang-cpp">inline void getprime()
+<h2 id="清空"><a href="#清空" class="headerlink" title="清空"></a>清空</h2><p>把数组和长度都赋为0。</p>
+<pre><code class="lang-cpp">inline void clear(bigint &amp;x)
 {
-    memset(ss,true,sizeof(ss));
-    int cnt=1;
-    ss[0]=ss[1]=false;
-    for (a=2;a&lt;=sqrt(n);a++)
-    {
-        if (ss[a]) zs[cnt++]=a;
-        for (b=2;b&lt;=n/a;b++) ss[a*b]=false;
-    }
+    for (int i=1;i&lt;=x.len;i++)
+        x.s[i]=0;
+    x.len=0;
 }
 </code></pre>
-<h3 id="线性筛"><a href="#线性筛" class="headerlink" title="线性筛"></a>线性筛</h3><p>可以很容易的想到，普通筛法中筛了很多重复的数。而线性筛法可以避免重复。主要思路是运用得到了的素数来标记后面的合数。</p>
-<pre><code class="lang-cpp">inline void getprime()
-{
-    memset(ss,true,sizeof(ss));
-    ss[0]=ss[1]=false;
-    for (int i=2;i&lt;=n;i++)
-    {
-        if (ss[i]) zs[cnt++]=i;
-        for (int j=1;j&lt;cnt &amp;&amp; zs[j]*i&lt;=n;j++) 
-        {
-            ss[zs[j]*i]=false;
-            if (i%zs[j]==0) break;
-        }
-    }
-}
-</code></pre>
-<p>以上内容更新于2018.5.9</p>
-<p>线性筛法错误修正于2018.7.28</p>
-<hr>
 
         
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
@@ -784,7 +637,7 @@ int main()
                             本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。<br/> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0 International License</a>.
                         </strong>
                         <br>
-                        <strong>本文链接：</strong><a href="https://llf0703.com/p/number-theory.html">https://llf0703.com/p/number-theory.html</a>
+                        <strong>本文链接：</strong><a href="https://llf0703.com/p/bigint.html">https://llf0703.com/p/bigint.html</a>
                     </p>
                 </blockquote>
         
@@ -829,21 +682,13 @@ int main()
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/p/aoapc-book-9.html" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
     
-        <a href="/p/dian-fen-zhi.html" id="post_nav-older" class="next-content">
+        <a href="/p/diary-20181018.html" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">

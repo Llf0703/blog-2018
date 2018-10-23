@@ -139,11 +139,11 @@
   </entry>
   
   <entry>
-    <title>近期需要加强的知识点(置顶)</title>
-    <link href="https://llf0703.com/p/improve-sth-201810.html"/>
-    <id>https://llf0703.com/p/improve-sth-201810.html</id>
+    <title>NOIp前复习杂记(置顶)</title>
+    <link href="https://llf0703.com/p/review-before-noip.html"/>
+    <id>https://llf0703.com/p/review-before-noip.html</id>
     <published>2018-10-13T16:00:00.000Z</published>
-    <updated>2018-10-19T07:56:02.209Z</updated>
+    <updated>2018-10-23T13:52:30.609Z</updated>
     
     <summary type="html">
     
@@ -422,13 +422,13 @@
     
       <category term="数据结构-线段树" scheme="https://llf0703.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%BA%BF%E6%AE%B5%E6%A0%91/"/>
     
-      <category term="OJ-洛谷" scheme="https://llf0703.com/tags/OJ-%E6%B4%9B%E8%B0%B7/"/>
-    
-      <category term="OJ-BZOJ" scheme="https://llf0703.com/tags/OJ-BZOJ/"/>
-    
       <category term="省选-河北" scheme="https://llf0703.com/tags/%E7%9C%81%E9%80%89-%E6%B2%B3%E5%8C%97/"/>
     
       <category term="省选-天津" scheme="https://llf0703.com/tags/%E7%9C%81%E9%80%89-%E5%A4%A9%E6%B4%A5/"/>
+    
+      <category term="OJ-洛谷" scheme="https://llf0703.com/tags/OJ-%E6%B4%9B%E8%B0%B7/"/>
+    
+      <category term="OJ-BZOJ" scheme="https://llf0703.com/tags/OJ-BZOJ/"/>
     
   </entry>
   
@@ -484,11 +484,11 @@
     
       <category term="数据结构-线段树" scheme="https://llf0703.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%BA%BF%E6%AE%B5%E6%A0%91/"/>
     
-      <category term="省选-山东" scheme="https://llf0703.com/tags/%E7%9C%81%E9%80%89-%E5%B1%B1%E4%B8%9C/"/>
-    
       <category term="OJ-洛谷" scheme="https://llf0703.com/tags/OJ-%E6%B4%9B%E8%B0%B7/"/>
     
       <category term="OJ-BZOJ" scheme="https://llf0703.com/tags/OJ-BZOJ/"/>
+    
+      <category term="省选-山东" scheme="https://llf0703.com/tags/%E7%9C%81%E9%80%89-%E5%B1%B1%E4%B8%9C/"/>
     
   </entry>
   
@@ -653,11 +653,11 @@
   </entry>
   
   <entry>
-    <title>最小生成树</title>
+    <title>最小生成树总结</title>
     <link href="https://llf0703.com/p/minimum-spanning-tree.html"/>
     <id>https://llf0703.com/p/minimum-spanning-tree.html</id>
     <published>2018-02-06T12:21:00.000Z</published>
-    <updated>2018-06-11T13:31:38.757Z</updated>
+    <updated>2018-10-23T13:51:31.228Z</updated>
     
     <summary type="html">
     
@@ -683,11 +683,11 @@
   </entry>
   
   <entry>
-    <title>NOIP2017爆炸记</title>
+    <title>NOIp2017爆炸记</title>
     <link href="https://llf0703.com/p/noip2017-summary.html"/>
     <id>https://llf0703.com/p/noip2017-summary.html</id>
     <published>2017-12-02T15:11:00.000Z</published>
-    <updated>2018-06-11T13:29:52.005Z</updated>
+    <updated>2018-10-23T10:43:00.489Z</updated>
     
     <summary type="html">
     
@@ -704,7 +704,7 @@
       <category term="游记" scheme="https://llf0703.com/categories/%E6%B8%B8%E8%AE%B0/"/>
     
     
-      <category term="游记-NOIP" scheme="https://llf0703.com/tags/%E6%B8%B8%E8%AE%B0-NOIP/"/>
+      <category term="游记-NOIp" scheme="https://llf0703.com/tags/%E6%B8%B8%E8%AE%B0-NOIp/"/>
     
   </entry>
   

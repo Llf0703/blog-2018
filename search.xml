@@ -94,11 +94,11 @@
     </entry>
     
     <entry>
-      <title>近期需要加强的知识点(置顶)</title>
-      <link href="/p/improve-sth-201810.html"/>
-      <url>/p/improve-sth-201810.html</url>
+      <title>NOIp前复习杂记(置顶)</title>
+      <link href="/p/review-before-noip.html"/>
+      <url>/p/review-before-noip.html</url>
       
-        <content type="html"><![CDATA[<h2 id="需要加强板块"><a href="#需要加强板块" class="headerlink" title="需要加强板块"></a>需要加强板块</h2><ol><li>高精 （差个重定义运算符版）</li><li>贪心</li><li><del>搜索</del></li><li>二分、分治</li><li>二叉树，二叉排序树相关</li><li>图论相关模板<ol><li>LCA（倍增）</li><li>二分图匹配</li><li>强连通，割点等</li><li>最短路</li></ol></li><li>字符串相关<ol><li>KMP</li><li>AC自动机</li><li>Trie</li><li>hash</li></ol></li><li>数论相关</li><li>DP <del>Dark Fantasy</del></li></ol><h2 id="犯过的低级错误"><a href="#犯过的低级错误" class="headerlink" title="犯过的低级错误"></a>犯过的低级错误</h2><ol><li>数组排序后还是取下标直接使用：<a href="https://www.luogu.org/problemnew/show/P1462" target="_blank" rel="noopener">洛谷P1462 通往奥格瑞玛的道路</a></li><li>struct里面没赋初值：<a href="https://www.luogu.org/problemnew/show/P1625" target="_blank" rel="noopener">洛谷P1625 求和</a></li></ol><h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><ul><li>10.15-10.29 做完洛谷试炼场提高</li><li>10.15 重点加强高精</li><li>10.16 完成动态规划lv1(完成)，<del>重做所有图论模板题并完成最短路问题板块</del>(未完成)</li><li>10.17 上午浙江第1套，下午及晚上 重做所有图论模板题并完成最短路问题板块</li><li>10.18 继续搞图论</li><li>10.19 打两套题，没啥计划了</li></ul>]]></content>
+        <content type="html"><![CDATA[<h2 id="每天大致的总结"><a href="#每天大致的总结" class="headerlink" title="每天大致的总结"></a>每天大致的总结</h2><ul><li>10.23 完成ZJ第五套，打了些试炼场的图论题，学习Prim算法(我好菜啊，那么久都只会Kruskal)并填了半年前咕咕咕的坑: <a href="https://llf0703.com/p/minimum-spanning-tree.html">最小生成树总结</a></li></ul><h2 id="需要加强板块"><a href="#需要加强板块" class="headerlink" title="需要加强板块"></a>需要加强板块</h2><ol><li>高精 （差个重定义运算符版）</li><li>贪心</li><li>搜索 √</li><li>二分、分治</li><li>二叉树，二叉排序树相关</li><li>图论相关模板<ol><li>LCA（倍增）</li><li>二分图匹配 √</li><li>强连通，割点等</li><li>最短路 √</li><li>生成树 √</li></ol></li><li>字符串相关<ol><li>KMP</li><li>Trie</li><li>hash</li></ol></li><li>数论相关</li><li>DP <del>Dark Fantasy</del></li><li>二进制相关知识</li></ol><h2 id="犯过的低级错误"><a href="#犯过的低级错误" class="headerlink" title="犯过的低级错误"></a>犯过的低级错误</h2><ol><li>数组排序后还是取下标直接使用：<a href="https://www.luogu.org/problemnew/show/P1462" target="_blank" rel="noopener">洛谷P1462 通往奥格瑞玛的道路</a></li><li>struct里面没赋初值：<a href="https://www.luogu.org/problemnew/show/P1625" target="_blank" rel="noopener">洛谷P1625 求和</a></li><li>差分约束最初没连负权边就写了Dijkstra后来发现不对又连了负权边却没改成SPFA：<a href="https://www.luogu.org/problemnew/show/P1645" target="_blank" rel="noopener">洛谷P1645 序列</a></li></ol><h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><ul><li>10.15-10.29 做完洛谷试炼场提高</li><li>10.15 重点加强高精</li><li>10.16 完成动态规划lv1(完成)，<del>重做所有图论模板题并完成最短路问题板块</del>(未完成)</li><li>10.17 上午浙江第1套，下午及晚上 重做所有图论模板题并完成最短路问题板块</li><li>10.18 继续搞图论</li><li>10.19 打两套题，没啥计划了</li><li>我觉得计划赶不上变化，写日记又浪费时间，干脆不写了，只做些专题的复习。</li></ul>]]></content>
       
       
       <categories>
@@ -334,13 +334,13 @@
             
             <tag> 数据结构-线段树 </tag>
             
-            <tag> OJ-洛谷 </tag>
-            
-            <tag> OJ-BZOJ </tag>
-            
             <tag> 省选-河北 </tag>
             
             <tag> 省选-天津 </tag>
+            
+            <tag> OJ-洛谷 </tag>
+            
+            <tag> OJ-BZOJ </tag>
             
         </tags>
       
@@ -390,11 +390,11 @@
             
             <tag> 数据结构-线段树 </tag>
             
-            <tag> 省选-山东 </tag>
-            
             <tag> OJ-洛谷 </tag>
             
             <tag> OJ-BZOJ </tag>
+            
+            <tag> 省选-山东 </tag>
             
         </tags>
       
@@ -543,11 +543,11 @@
     </entry>
     
     <entry>
-      <title>最小生成树</title>
+      <title>最小生成树总结</title>
       <link href="/p/minimum-spanning-tree.html"/>
       <url>/p/minimum-spanning-tree.html</url>
       
-        <content type="html"><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>最小生成树即为无向图中结点构成的树中各边权值之和最小的树，可以有多种情况。一般用Kruskal（克鲁斯卡尔）算法或Prim（普里姆）算法求出。</p><h2 id="Kruskal算法"><a href="#Kruskal算法" class="headerlink" title="Kruskal算法"></a>Kruskal算法</h2><h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p>可以将Kruskal算法理解成对边的贪心算法。</p><p>1.将路径用邻接表存储，存储的值为起点、终点和权值；<br>2.将邻接表按照权值为关键字排序；<br>3.从最小权值的边开始循环，每连接起两个结点就把它们并到同一个集合（并查集实现），连接之前判断它们是否已经直接或间接相连（是否同一祖先），如没有相连则连上；<br>4.判断能否构成树：如果所以结点的祖先相同则能，反之则不能构成树。</p><h3 id="代码及注解"><a href="#代码及注解" class="headerlink" title="代码及注解"></a>代码及注解</h3><p>示例题目：<a href="https://www.luogu.org/problemnew/show/P3366" target="_blank" rel="noopener">洛谷 P3366 【模板】最小生成树</a></p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;int n,m,x,y,z,a,b,c,k,ans;int f[5005];struct lj{    int qi,zhong,zhi;};//邻接表存储lj map1[200005];bool com(lj a,lj b){    return a.zhi&gt;b.zhi;}//以权值为关键字排序int zx(int a){    if(a==f[a]) return a;    else     {        f[a]=zx(f[a]);        return f[a];    } }//并查集查找祖先int main(){    cin&gt;&gt;n&gt;&gt;m;    for (a=1;a&lt;=n;a++)    f[a]=a;    for (a=1;a&lt;=m;a++)    {        cin&gt;&gt;x&gt;&gt;y&gt;&gt;z;        map1[a].qi=x;        map1[a].zhong=y;        map1[a].zhi=z;    }    sort(map1,map1+m+1,com);//排序    while (m&gt;0)    {        x=map1[m].qi;        y=map1[m].zhong;        if (zx(x)!=zx(y)) //查找祖先以确定是否相连        {            f[zx(y)]=zx(x);//连接，统一祖先            ans+=map1[m].zhi;//加上权值        }        m--;    }    for (a=2;a&lt;=n;a++)    if (zx(a)!=zx(1))    {        cout&lt;&lt;&quot;orz&quot;;        return 0;    }//判断能否构成树，只有每一个结点祖先和第一个结点祖先相同，则所有结点祖先都相同    cout&lt;&lt;ans;    return 0;}</code></pre>]]></content>
+        <content type="html"><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>最小生成树即为无向图中结点构成的树中各边权值之和最小的树，可以有多种情况。一般用Kruskal（克鲁斯卡尔）算法或Prim（普里姆）算法求出。</p><h2 id="Kruskal算法"><a href="#Kruskal算法" class="headerlink" title="Kruskal算法"></a>Kruskal算法</h2><h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p>可以将Kruskal算法理解成对边的贪心算法。</p><p>1.将路径用邻接表存储，存储的值为起点、终点和权值；<br>2.将邻接表按照权值为关键字排序；<br>3.从最小权值的边开始循环，每连接起两个结点就把它们并到同一个集合（并查集实现），连接之前判断它们是否已经直接或间接相连（是否同一祖先），如没有相连则连上；<br>4.判断能否构成树：如果所以结点的祖先相同则能，反之则不能构成树。</p><h3 id="代码及注解"><a href="#代码及注解" class="headerlink" title="代码及注解"></a>代码及注解</h3><p>示例题目：<a href="https://www.luogu.org/problemnew/show/P3366" target="_blank" rel="noopener">洛谷 P3366 【模板】最小生成树</a></p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;int n,m,x,y,z,a,b,c,k,ans;int f[5005];struct lj{    int qi,zhong,zhi;};//邻接表存储lj map1[200005];bool com(lj a,lj b){    return a.zhi&gt;b.zhi;}//以权值为关键字排序int zx(int a){    if(a==f[a]) return a;    else     {        f[a]=zx(f[a]);        return f[a];    } }//并查集查找祖先int main(){    cin&gt;&gt;n&gt;&gt;m;    for (a=1;a&lt;=n;a++)    f[a]=a;    for (a=1;a&lt;=m;a++)    {        cin&gt;&gt;x&gt;&gt;y&gt;&gt;z;        map1[a].qi=x;        map1[a].zhong=y;        map1[a].zhi=z;    }    sort(map1,map1+m+1,com);//排序    while (m&gt;0)    {        x=map1[m].qi;        y=map1[m].zhong;        if (zx(x)!=zx(y)) //查找祖先以确定是否相连        {            f[zx(y)]=zx(x);//连接，统一祖先            ans+=map1[m].zhi;//加上权值        }        m--;    }    for (a=2;a&lt;=n;a++)    if (zx(a)!=zx(1))    {        cout&lt;&lt;&quot;orz&quot;;        return 0;    }//判断能否构成树，只有每一个结点祖先和第一个结点祖先相同，则所有结点祖先都相同    cout&lt;&lt;ans;    return 0;}</code></pre><blockquote><p>upd:2018.10.23 今天来把这个大半年的坑给填了。咕咕咕</p></blockquote><h2 id="Prim算法"><a href="#Prim算法" class="headerlink" title="Prim算法"></a>Prim算法</h2><h3 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h3><p>每次找到与当前点连接的点中权值最小且没被查找过的点进行拓展，记录一下当前点是否已经被查找过，如果全部查找完了就结束了。</p><p>过程和Dijkstra算法的堆优化写法很像，可以用一个优先队列来维护队列中权值最小的点，然后BFS即可。</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;#define pr pair&lt;int,int&gt;#define mp make_pairusing namespace std;inline int read(){    char ch=getchar();    int f=1,x=0;    while (ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;)    {        if (ch==&#39;-&#39;) f=-1;        ch=getchar();    }    while (ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;)    {        x=x*10+ch-&#39;0&#39;;        ch=getchar();    }    return f*x;}struct Edge{    int next,to,w;} edge[400005];int n,m,a,b,c,cnt,ct,head[5005],ans,mn[5005];bool vis[5005];inline void add(int u,int v,int w){    edge[++cnt].to=v;    edge[cnt].w=w;    edge[cnt].next=head[u];    head[u]=cnt;}inline void prim(){    priority_queue &lt;pr,vector&lt;pr&gt;,greater&lt;pr&gt; &gt; q;    q.push(mp(0,1));    for (int i=1;i&lt;=n;i++) mn[i]=1e9;    mn[1]=0;    memset(vis,0,sizeof(vis));    while (!q.empty() &amp;&amp; ct&lt;n)    {        int x=q.top().second,qf=q.top().first; q.pop();        if (vis[x]) continue;        ans+=qf;        ct++;        vis[x]=1;        for (int i=head[x];i;i=edge[i].next)        {            int y=edge[i].to,w=edge[i].w;            if (w&lt;mn[y])            {                mn[y]=w;                q.push(mp(mn[y],y));            }        }    }}int main(){    n=read(); m=read();    for (int i=1;i&lt;=m;i++)    {        a=read(); b=read(); c=read();        add(a,b,c);        add(b,a,c);    }    prim();    if (ct==n) printf(&quot;%d&quot;,ans);    else printf(&quot;orz&quot;);    return 0;}</code></pre><blockquote><p>感觉自己码风变化真大，寒假的时候还是太naive了。</p></blockquote>]]></content>
       
       
       <categories>
@@ -570,7 +570,7 @@
     </entry>
     
     <entry>
-      <title>NOIP2017爆炸记</title>
+      <title>NOIp2017爆炸记</title>
       <link href="/p/noip2017-summary.html"/>
       <url>/p/noip2017-summary.html</url>
       
@@ -586,7 +586,7 @@
       
         <tags>
             
-            <tag> 游记-NOIP </tag>
+            <tag> 游记-NOIp </tag>
             
         </tags>
       
@@ -601,6 +601,15 @@
       <url>/about/index.html</url>
       
         <content type="html"><![CDATA[<p>我是Llf，最弱的蒟蒻，完了</p><p>本博客部分文章的markdown源文件均可通过将 <code>https://llf0703.com/p/*.html</code>改为 <code>https://md.llf0703.com/p/*.md</code> 查看</p><p>这个东西会不时更新，也许有的最新文章看不了</p><p><a href="https://bzoj.llf0703.com/" target="_blank" rel="noopener">BZOJ离线题库（By ruanxingzhi）</a></p><p>CSDN博客:  <a href="https://blog.csdn.net/Llf_0703" target="_blank" rel="noopener">Llf_0703</a></p><p>luogu:  <a href="https://www.luogu.org/space/show?uid=29696" target="_blank" rel="noopener">Llf0703</a></p><p>BZOJ:  <a href="https://www.lydsy.com/JudgeOnline/userinfo.php?user=Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Bilibili： <a href="https://space.bilibili.com/268840304/" target="_blank" rel="noopener">Llf030703</a></p><p>逼乎:  <a href="https://www.zhihu.com/people/llf-93-87/" target="_blank" rel="noopener">Llf</a></p><p>Coding:  <a href="https://coding.net/u/Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Gayhub:  <a href="https://github.com/Llf0703" target="_blank" rel="noopener">Llf0703</a></p>]]></content>
+      
+    </entry>
+    
+    <entry>
+      <title>标签云</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
@@ -626,15 +635,6 @@
       <title>时间轴</title>
       <link href="/timeline/index.html"/>
       <url>/timeline/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    <entry>
-      <title>标签云</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       

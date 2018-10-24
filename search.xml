@@ -3,6 +3,23 @@
   
     
     <entry>
+      <title>ZJ第六套总结</title>
+      <link href="/p/contest-summary-zj6.html"/>
+      <url>/p/contest-summary-zj6.html</url>
+      
+        <content type="html"><![CDATA[<p>其实徐妈口中的所谓的ZJ十套就是《全国青少年信息学竞赛培训教材复赛》中的十套膜你题。今天先应徐妈之要求把今天的总结了，以后再补之前的。</p><h2 id="分组-group"><a href="#分组-group" class="headerlink" title="分组(group)"></a>分组(group)</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1109" target="_blank" rel="noopener">P1109 学生分组</a></p><p>大水题，直接放代码。</p><pre><code class="lang-cpp">#include&lt;iostream&gt;#include&lt;cstdio&gt;#include&lt;algorithm&gt;#include&lt;cstring&gt;#include&lt;cmath&gt;#include&lt;queue&gt;using namespace std;inline int read(){    char ch=getchar();    int f=1,x=0;    while (ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;)    {        if (ch==&#39;-&#39;) f=-1;        ch=getchar();    }    while (ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;)    {        x=x*10+ch-&#39;0&#39;;        ch=getchar();    }    return f*x;}int n,l,r,a,sum,ans1,ans2,ans,s[55];int main(){    freopen(&quot;group.in&quot;,&quot;r&quot;,stdin);    freopen(&quot;group.out&quot;,&quot;w&quot;,stdout);    n=read();    for (int i=1;i&lt;=n;i++) s[i]=read();    l=read(); r=read();    for (int i=1;i&lt;=n;i++)    {        sum+=s[i];        if (s[i]&gt;=l &amp;&amp; s[i]&lt;=r) continue;        if (s[i]&gt;r) ans1+=s[i]-r;        if (s[i]&lt;l) ans2+=l-s[i];    }    ans=max(ans1,ans2);    if (sum&gt;n*r || sum&lt;n*l) printf(&quot;-1&quot;);    else printf(&quot;%d&quot;,ans);    fclose(stdin);    fclose(stdout);    return 0;}</code></pre><h2 id="阶乘-num"><a href="#阶乘-num" class="headerlink" title="阶乘(num)"></a>阶乘(num)</h2><p>洛谷上并没有这道题。</p><p>找下规律，发现末尾都是偶数，而且如果没有5的话直接按照个位来乘就行了。但是遇到5、15之类的就非常恶心了，所以对于这些肯定要分类讨论。</p><p>可以知道，最后的0的来源肯定是2和5，显然，5的个数小于2的个数，所以我们考虑5。</p><p>首先假设没有5存在。即便这样 $ O(n) $ 的时间复杂度还是不现实的。由于只和最后一位有关，所以我们可以将其10个分为一组运算，这样最多算2009次就行了。</p><p>最后总的阶乘和 $ \div 10^{x} $ 就是答案，我们不考虑5的话只需要最后 $ \div 2^{x} $ 就行了（x是5的个数也是0的个数）。所以最后有多少个5我们 $ \div 2 $ 多少个2就行了。可以发现 $ \div 2 $ 后的对应关系</p><ul><li>2—&gt;6</li><li>4—&gt;2</li><li>6—&gt;8</li><li>8—&gt;4</li></ul><p>所以不断除5，并且把答案不断除2也就是变成对应关系就行了，其他的就按10分组直接算。显然要用高精。</p><p>然后我在考场上很开心的写完了<del>TLE</del>代码</p><pre><code class="lang-cpp">#include&lt;iostream&gt;#include&lt;cstdio&gt;#include&lt;algorithm&gt;#include&lt;cstring&gt;#include&lt;cmath&gt;#include&lt;queue&gt;using namespace std;inline int read(){    char ch=getchar();    int f=1,x=0;    while (ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;)    {        if (ch==&#39;-&#39;) f=-1;        ch=getchar();    }    while (ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;)    {        x=x*10+ch-&#39;0&#39;;        ch=getchar();    }    return f*x;}struct bigint{    int s[5005],len;    bigint(){memset(s,0,sizeof(s));len=0;}} n;int t,a,b,c,ans;inline bigint division(bigint x,int y){    bigint z;    int sum=0,len=x.len;    for (int i=len;i;i--)    {        sum=sum*10+x.s[i];        z.s[i]=sum/y;        sum%=y;    }    while (!z.s[len]) len--;    z.len=len;    return z;}inline void clear(bigint &amp;x){    for (int i=1;i&lt;=x.len;i++)        x.s[i]=0;    x.len=0;}int main(){    freopen(&quot;num.in&quot;,&quot;r&quot;,stdin);    freopen(&quot;num.out&quot;,&quot;w&quot;,stdout);    t=read();    while (t--)    {        clear(n); ans=1;        char ch[2018];        scanf(&quot;%s&quot;,ch);        for (int i=strlen(ch)-1;i&gt;=0;i--) n.s[++n.len]=ch[i]-&#39;0&#39;;        if (n.len==1 &amp;&amp; n.s[1]==1)        {            printf(&quot;1\n&quot;);            continue;        }        while (n.len&gt;=1)        {            for (int i=1;i&lt;=n.s[1];i++)            {                if (i==5) continue;                ans=(ans*i)%10;            }            n=division(n,5);            int sum=n.s[1]+n.s[2]*10;            if (sum%4==0) ans=(ans*6)%10;            else if (sum%4==1) ans=(ans*8)%10;            else if (sum%4==2) ans=(ans*4)%10;            else if (sum%4==3) ans=(ans*2)%10;        }        printf(&quot;%d\n&quot;,ans);    }    fclose(stdin);    fclose(stdout);    return 0;}</code></pre><p>然后很开心的得了50.</p><p>考后看书才发现那个每一位上都循环乘一遍太浪费时间了，树上直接预处理了一个数组：</p><pre><code class="lang-cpp">int val[10]={1,1,2,6,4,4,4,8,4,6};</code></pre><p>时间复杂度变成了原来的 $ \dfrac {1}{10} $ ，但还是50分。我想是不是高精度初始化和clear太浪费了，就把它删了，毕竟都是重新赋值。然后就有70分了。最后把函数直接写在了<code>main</code>函数里就A了。<del>这TM卡常是有多严重啊</del></p><p>附上AC代码</p><pre><code class="lang-cpp">#include&lt;iostream&gt;#include&lt;cstdio&gt;#include&lt;algorithm&gt;#include&lt;cstring&gt;#include&lt;cmath&gt;#include&lt;queue&gt;using namespace std;inline int read(){    char ch=getchar();    int f=1,x=0;    while (ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;)    {        if (ch==&#39;-&#39;) f=-1;        ch=getchar();    }    while (ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;)    {        x=x*10+ch-&#39;0&#39;;        ch=getchar();    }    return f*x;}struct bigint{    int s[3005],len;} n;int t,a,b,c,ans,val[10]={1,1,2,6,4,4,4,8,4,6};int main(){    freopen(&quot;num.in&quot;,&quot;r&quot;,stdin);    freopen(&quot;num.out&quot;,&quot;w&quot;,stdout);    t=read();    while (t--)    {        n.len=0;        ans=1;        char ch[2018];        scanf(&quot;%s&quot;,ch);        for (int i=strlen(ch)-1;i&gt;=0;i--) n.s[++n.len]=ch[i]-&#39;0&#39;;        if (n.len==1 &amp;&amp; n.s[1]==1)        {            printf(&quot;1\n&quot;);            continue;        }        while (n.len&gt;=1)        {            ans=(ans*val[n.s[1]])%10;            int sum=0,len=n.len;            for (int i=len;i;i--)            {                sum=sum*10+n.s[i];                n.s[i]=sum/5;                sum%=5;            }            while (!n.s[len]) len--;            n.len=len;            sum=n.s[1]+n.s[2]*10;            if (sum%4==0) ans=(ans*6)%10;            else if (sum%4==1) ans=(ans*8)%10;            else if (sum%4==2) ans=(ans*4)%10;            else if (sum%4==3) ans=(ans*2)%10;        }        printf(&quot;%d\n&quot;,ans);    }    fclose(stdin);    fclose(stdout);    return 0;}</code></pre><h2 id="拐弯-ddos"><a href="#拐弯-ddos" class="headerlink" title="拐弯(ddos)"></a>拐弯(ddos)</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1649" target="_blank" rel="noopener">P1649 [USACO07OCT]障碍路线Obstacle Course</a></p><p>真·玄学题目</p><p>我在11:23的时候花5分钟写了个DFS，然后忘了回溯爆0了。。。加了一句话多了60分。代码长这样：</p><pre><code class="lang-cpp">#include&lt;iostream&gt;#include&lt;cstdio&gt;#include&lt;algorithm&gt;#include&lt;cstring&gt;#include&lt;cmath&gt;#include&lt;queue&gt;using namespace std;inline int read(){    char ch=getchar();    int f=1,x=0;    while (ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;)    {        if (ch==&#39;-&#39;) f=-1;        ch=getchar();    }    while (ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;)    {        x=x*10+ch-&#39;0&#39;;        ch=getchar();    }    return f*x;}int n,mp[105][105],st[2],ed[2],fx[4]={1,0,-1,0},fy[4]={0,1,0,-1},ans;bool vis[105][105];void dfs(int x,int y,int last,int now){    if (x==ed[0] &amp;&amp; y==ed[1])    {        vis[x][y]=1;        ans=min(ans,now);        return;    }    if (vis[x][y]) return;    vis[x][y]=1;    for (int i=0;i&lt;4;i++)    {        int tx=x+fx[i],ty=y+fy[i];        if (tx&lt;1 || tx&gt;n || ty&lt;1 || ty&gt;n || mp[tx][ty]==0) continue;        int sum;        if (i==last || last==-1) sum=0;        else sum=1;        dfs(tx,ty,i,now+sum);    }    vis[x][y]=0;}int main(){    n=read();    for (int i=1;i&lt;=n;i++)    {        for (int j=1;j&lt;=n;j++)        {            char ch;            cin&gt;&gt;ch;            if (ch==&#39;.&#39;) mp[i][j]=1;            else if (ch==&#39;x&#39;) mp[i][j]=0;            else if (ch==&#39;A&#39;) st[0]=i,st[1]=j,mp[i][j]=1;            else ed[0]=i,ed[1]=j,mp[i][j]=1;        }    }    ans=1e9;    dfs(st[0],st[1],-1,0);    if (!vis[ed[0]][ed[1]]) printf(&quot;-1&quot;);    else printf(&quot;%d&quot;,ans);    return 0;}</code></pre><p>这真的是我5分钟打出来的！除了头文件和快读是粘贴的。看来我搜索没有那么蒻了。</p><p>然后改成BFS就能过。。。只需要注意为了保证拐弯次数递增，每次需要把当前方向走到底再换方向走</p><p>AC代码：</p><pre><code class="lang-cpp">#include&lt;iostream&gt;#include&lt;cstdio&gt;#include&lt;algorithm&gt;#include&lt;cstring&gt;#include&lt;cmath&gt;#include&lt;queue&gt;#define pr pair&lt;int,int&gt;#define mpr make_pairusing namespace std;inline int read(){    char ch=getchar();    int f=1,x=0;    while (ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;)    {        if (ch==&#39;-&#39;) f=-1;        ch=getchar();    }    while (ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;)    {        x=x*10+ch-&#39;0&#39;;        ch=getchar();    }    return f*x;}int n,mp[105][105],st[2],ed[2],fx[4]={1,0,-1,0},fy[4]={0,1,0,-1},ans[105][105];inline void bfs(){    queue &lt;pr&gt; q;    q.push(mpr(st[0],st[1]));    ans[st[0]][st[1]]=0;    while (!q.empty())    {        int x=q.front().first,y=q.front().second; q.pop();        if (x==ed[0] &amp;&amp; y==ed[1]) break;        for (int i=0;i&lt;4;i++)        {            int tx=x,ty=y;            for (;;)            {                tx+=fx[i]; ty+=fy[i];                if (tx&lt;1 || tx&gt;n || ty&lt;1 || ty&gt;n || !mp[tx][ty]) break;                if (ans[x][y]+1&lt;ans[tx][ty])                {                    ans[tx][ty]=ans[x][y]+1;                    q.push(mpr(tx,ty));                }            }        }    }    if (ans[ed[0]][ed[1]]==1e9) printf(&quot;-1&quot;);    else printf(&quot;%d&quot;,ans[ed[0]][ed[1]]-1);    return;}int main(){    n=read();    for (int i=1;i&lt;=n;i++)    {        for (int j=1;j&lt;=n;j++)        {            ans[i][j]=1e9;            char ch;            cin&gt;&gt;ch;            if (ch==&#39;.&#39;) mp[i][j]=1;            else if (ch==&#39;x&#39;) mp[i][j]=0;            else if (ch==&#39;A&#39;) st[0]=i,st[1]=j,mp[i][j]=1;            else ed[0]=i,ed[1]=j,mp[i][j]=1;        }    }    bfs();    return 0;}</code></pre><h2 id="赛马-horse"><a href="#赛马-horse" class="headerlink" title="赛马(horse)"></a>赛马(horse)</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1650" target="_blank" rel="noopener">P1650 田忌赛马</a></p><p>贪心。</p><blockquote><p>以下内容转载自：<a href="https://www.luogu.org/blog/user55918/solution-p1650" target="_blank" rel="noopener">https://www.luogu.org/blog/user55918/solution-p1650</a></p></blockquote><ol><li>开始也是先排序，可以使用sort快排</li><li>然后将田忌最大的马与国王进行比较</li><li>如果田忌最大的马大于国王，那么就胜场++</li><li>如果田忌最大的马小于国王，那么就一定会输，所以用田忌最小的马输给国王最大的马</li><li>如果田忌最大的马等于国王，那么就比较最小的马<ol><li>如果田忌最小的马大于国王，那么胜场++</li><li>如果田忌最小的马小于国王，那么就输给国王</li><li>如果田忌最小的马等于国王，就用田忌最小的马对国王最大的马，如果国王最大的马大，那么财产要减200</li></ol></li></ol><pre><code class="lang-cpp">#include&lt;iostream&gt;#include&lt;cstdio&gt;#include&lt;algorithm&gt;#include&lt;cstring&gt;#include&lt;cmath&gt;#include&lt;queue&gt;using namespace std;inline int read(){    char ch=getchar();    int f=1,x=0;    while (ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;)    {        if (ch==&#39;-&#39;) f=-1;        ch=getchar();    }    while (ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;)    {        x=x*10+ch-&#39;0&#39;;        ch=getchar();    }    return f*x;}int n,x[2005],y[2005],ans;inline bool cmp(int x,int y){    return x&gt;y;}int main(){    n=read();    for (int i=1;i&lt;=n;i++) x[i]=read();    for (int i=1;i&lt;=n;i++) y[i]=read();    sort(x+1,x+n+1,cmp);    sort(y+1,y+n+1,cmp);    int i=1,j=n,k=1,l=n;    while (i&lt;=j)    {        if (x[i]&gt;y[k])        {            ans+=200;            i++; k++;        }        else if (x[i]&lt;y[k])        {            ans-=200;            j--; k++;        }        else if (x[j]&gt;y[l])        {            ans+=200;            j--; l--;        }        else        {            if (x[j]&lt;y[k]) ans-=200;            j--; k++;        }    }    printf(&quot;%d&quot;,ans);    return 0;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    <entry>
       <title>高精度算法模板</title>
       <link href="/p/bigint.html"/>
       <url>/p/bigint.html</url>
@@ -98,7 +115,7 @@
       <link href="/p/review-before-noip.html"/>
       <url>/p/review-before-noip.html</url>
       
-        <content type="html"><![CDATA[<h2 id="每天大致的总结"><a href="#每天大致的总结" class="headerlink" title="每天大致的总结"></a>每天大致的总结</h2><ul><li>10.23 完成ZJ第五套，打了些试炼场的图论题，学习Prim算法(我好菜啊，那么久都只会Kruskal)并填了半年前咕咕咕的坑: <a href="https://llf0703.com/p/minimum-spanning-tree.html">最小生成树总结</a></li></ul><h2 id="需要加强板块"><a href="#需要加强板块" class="headerlink" title="需要加强板块"></a>需要加强板块</h2><ol><li>高精 （差个重定义运算符版）</li><li>贪心</li><li>搜索 √</li><li>二分、分治</li><li>二叉树，二叉排序树相关</li><li>图论相关模板<ol><li>LCA（倍增）</li><li>二分图匹配 √</li><li>强连通，割点等</li><li>最短路 √</li><li>生成树 √</li></ol></li><li>字符串相关<ol><li>KMP</li><li>Trie</li><li>hash</li></ol></li><li>数论相关</li><li>DP <del>Dark Fantasy</del></li><li>二进制相关知识</li></ol><h2 id="犯过的低级错误"><a href="#犯过的低级错误" class="headerlink" title="犯过的低级错误"></a>犯过的低级错误</h2><ol><li>数组排序后还是取下标直接使用：<a href="https://www.luogu.org/problemnew/show/P1462" target="_blank" rel="noopener">洛谷P1462 通往奥格瑞玛的道路</a></li><li>struct里面没赋初值：<a href="https://www.luogu.org/problemnew/show/P1625" target="_blank" rel="noopener">洛谷P1625 求和</a></li><li>差分约束最初没连负权边就写了Dijkstra后来发现不对又连了负权边却没改成SPFA：<a href="https://www.luogu.org/problemnew/show/P1645" target="_blank" rel="noopener">洛谷P1645 序列</a></li></ol><h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><ul><li>10.15-10.29 做完洛谷试炼场提高</li><li>10.15 重点加强高精</li><li>10.16 完成动态规划lv1(完成)，<del>重做所有图论模板题并完成最短路问题板块</del>(未完成)</li><li>10.17 上午浙江第1套，下午及晚上 重做所有图论模板题并完成最短路问题板块</li><li>10.18 继续搞图论</li><li>10.19 打两套题，没啥计划了</li><li>我觉得计划赶不上变化，写日记又浪费时间，干脆不写了，只做些专题的复习。</li></ul>]]></content>
+        <content type="html"><![CDATA[<h2 id="每天大致的总结"><a href="#每天大致的总结" class="headerlink" title="每天大致的总结"></a>每天大致的总结</h2><ul><li>10.23 完成ZJ第五套，打了些试炼场的图论题，学习Prim算法(我好菜啊，那么久都只会Kruskal)并填了半年前咕咕咕的坑: <a href="https://llf0703.com/p/minimum-spanning-tree.html">最小生成树总结</a></li><li>10.24 完成ZJ第六套，下午优化一道题和完成那套题搞了一下午，又在WZX的怂恿下挑战了不编译写线段树和树剖直接交，都是先CE了一遍然后加了两个变量直接过的。做了一道prim的题然后就差不多了。</li></ul><h2 id="需要加强板块"><a href="#需要加强板块" class="headerlink" title="需要加强板块"></a>需要加强板块</h2><ol><li>高精 （差个重定义运算符版）</li><li>贪心</li><li>搜索 √</li><li>二分、分治</li><li>二叉树，二叉排序树相关</li><li>图论相关模板<ol><li>LCA（倍增）</li><li>二分图匹配 √</li><li>强连通，割点等</li><li>最短路 √</li><li>生成树 √</li></ol></li><li>字符串相关<ol><li>KMP</li><li>Trie</li><li>hash</li></ol></li><li>数论相关</li><li>DP <del>Dark Fantasy</del></li><li>二进制相关知识</li></ol><h2 id="犯过的低级错误"><a href="#犯过的低级错误" class="headerlink" title="犯过的低级错误"></a>犯过的低级错误</h2><ol><li>数组排序后还是取下标直接使用：<a href="https://www.luogu.org/problemnew/show/P1462" target="_blank" rel="noopener">洛谷P1462 通往奥格瑞玛的道路</a></li><li>struct里面没赋初值：<a href="https://www.luogu.org/problemnew/show/P1625" target="_blank" rel="noopener">洛谷P1625 求和</a></li><li>差分约束最初没连负权边就写了Dijkstra后来发现不对又连了负权边却没改成SPFA：<a href="https://www.luogu.org/problemnew/show/P1645" target="_blank" rel="noopener">洛谷P1645 序列</a></li><li>在求两点的距离时没有注意double精度：<a href="https://www.luogu.org/problemnew/show/P1265" target="_blank" rel="noopener">洛谷P1265 公路修建</a></li></ol><h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><ul><li>10.15-10.29 做完洛谷试炼场提高</li><li>10.15 重点加强高精</li><li>10.16 完成动态规划lv1(完成)，<del>重做所有图论模板题并完成最短路问题板块</del>(未完成)</li><li>10.17 上午浙江第1套，下午及晚上 重做所有图论模板题并完成最短路问题板块</li><li>10.18 继续搞图论</li><li>10.19 打两套题，没啥计划了</li><li>我觉得计划赶不上变化，写日记又浪费时间，干脆不写了，只做些专题的复习。</li></ul>]]></content>
       
       
       <categories>
@@ -334,13 +351,13 @@
             
             <tag> 数据结构-线段树 </tag>
             
-            <tag> 省选-河北 </tag>
-            
-            <tag> 省选-天津 </tag>
-            
             <tag> OJ-洛谷 </tag>
             
             <tag> OJ-BZOJ </tag>
+            
+            <tag> 省选-河北 </tag>
+            
+            <tag> 省选-天津 </tag>
             
         </tags>
       
@@ -390,11 +407,11 @@
             
             <tag> 数据结构-线段树 </tag>
             
+            <tag> 省选-山东 </tag>
+            
             <tag> OJ-洛谷 </tag>
             
             <tag> OJ-BZOJ </tag>
-            
-            <tag> 省选-山东 </tag>
             
         </tags>
       
@@ -520,29 +537,6 @@
     </entry>
     
     <entry>
-      <title>拓扑排序</title>
-      <link href="/p/topological-sort.html"/>
-      <url>/p/topological-sort.html</url>
-      
-        <content type="html"><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>拓扑排序是一种可以将有先决条件（即必须将a、b排在前面后再排c，缺一不可）的数据变得有序的一种排序方法。拓扑排序仅可在有向无环图中使用，同时可以判断图中是否有环。因为顺序不同，拓扑排序得到的答案可能不同。</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>因为排序是有先决条件的，所以可以将要有先决条件的个数（在图中即为入度）记录下来，每满足一个就减一，直到个数为0便可以将其放入序列中。</p><h2 id="手动实现"><a href="#手动实现" class="headerlink" title="手动实现"></a>手动实现</h2><p>如果我们有如下的一个有向无环图，我们需要对这个图的顶点进行拓扑排序，过程如下：</p><p><img src="https://cdn.uniqueue.cn/tuopu-1.png" alt="tuopu-1"></p><p>首先，我们发现V6和v1是没有前驱的，所以我们就随机选去一个输出，我们先输出V6，删除和V6有关的边，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-2.png" alt="tuopu-2"></p><p>然后，我们继续寻找没有前驱的顶点，发现V1没有前驱，所以输出V1，删除和V1有关的边，得到下图的结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-3.png" alt="tuopu-3"></p><p>然后，我们又发现V4和V3都是没有前驱的，那么我们就随机选取一个顶点输出（具体看你实现的算法和图存储结构），我们输出V4，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-4.png" alt="tuopu-4"></p><p>然后，我们输出没有前驱的顶点V3，得到如下结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-5.png" alt="tuopu-5"></p><p>然后，我们分别输出V5和V2，最后全部顶点输出完成，该图的一个拓扑序列为：</p><p>v6–&gt;v1—&gt;v4—&gt;v3—&gt;v5—&gt;v2</p><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>1.用邻接表存储数据，同时对终点的结点的入度加一；<br>2.将没有先决条件便可以排序的点（即初始入度为0的点）先加入队列并输出；<br>3.从队首元素开始扩展，将与队首元素相连的结点的入度减一（等同于擦除这条边），如果该结点入度变为0，则将其入队，作为下一次查找的起点；<br>4.将队首元素出队，当队首元素为空时停止排序。</p><h2 id="代码及注解"><a href="#代码及注解" class="headerlink" title="代码及注解"></a>代码及注解</h2><p>有n个点，m条边的有向无环图，输入n，m，然后每一行输入一条边的信息：起点x，终点y</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;int n,m,a,b,c,d,e,re;struct map1{    int stat,end;};map1 tu[100];int rd[100],chong[100];queue &lt;int&gt; q;int main(){    cin&gt;&gt;n&gt;&gt;m;//n点m边    for (a=1;a&lt;=m;a++)    {        cin&gt;&gt;tu[a].stat&gt;&gt;tu[a].end;        rd[tu[a].end]++;    }    for (int i=1;i&lt;=n;i++)    if (rd[i]==0) q.push(i);//将初始入度为0的结点入队    while (!q.empty())    {            cout&lt;&lt;q.front()&lt;&lt;&quot; &quot;;            for (int j=1;j&lt;=m;j++)            {                if (tu[j].stat==q.front())//找以队首元素为起点的边                {                    rd[tu[j].end]--;                    if (rd[tu[j].end]==0)                     {                        q.push(tu[j].end);                    }                }            }        q.pop();    }    return 0;}</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> OI笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 算法-拓扑排序 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
       <title>最小生成树总结</title>
       <link href="/p/minimum-spanning-tree.html"/>
       <url>/p/minimum-spanning-tree.html</url>
@@ -564,6 +558,29 @@
             <tag> 算法-Kruskal </tag>
             
             <tag> 算法-Prim </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>拓扑排序</title>
+      <link href="/p/topological-sort.html"/>
+      <url>/p/topological-sort.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>拓扑排序是一种可以将有先决条件（即必须将a、b排在前面后再排c，缺一不可）的数据变得有序的一种排序方法。拓扑排序仅可在有向无环图中使用，同时可以判断图中是否有环。因为顺序不同，拓扑排序得到的答案可能不同。</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>因为排序是有先决条件的，所以可以将要有先决条件的个数（在图中即为入度）记录下来，每满足一个就减一，直到个数为0便可以将其放入序列中。</p><h2 id="手动实现"><a href="#手动实现" class="headerlink" title="手动实现"></a>手动实现</h2><p>如果我们有如下的一个有向无环图，我们需要对这个图的顶点进行拓扑排序，过程如下：</p><p><img src="https://cdn.uniqueue.cn/tuopu-1.png" alt="tuopu-1"></p><p>首先，我们发现V6和v1是没有前驱的，所以我们就随机选去一个输出，我们先输出V6，删除和V6有关的边，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-2.png" alt="tuopu-2"></p><p>然后，我们继续寻找没有前驱的顶点，发现V1没有前驱，所以输出V1，删除和V1有关的边，得到下图的结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-3.png" alt="tuopu-3"></p><p>然后，我们又发现V4和V3都是没有前驱的，那么我们就随机选取一个顶点输出（具体看你实现的算法和图存储结构），我们输出V4，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-4.png" alt="tuopu-4"></p><p>然后，我们输出没有前驱的顶点V3，得到如下结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-5.png" alt="tuopu-5"></p><p>然后，我们分别输出V5和V2，最后全部顶点输出完成，该图的一个拓扑序列为：</p><p>v6–&gt;v1—&gt;v4—&gt;v3—&gt;v5—&gt;v2</p><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>1.用邻接表存储数据，同时对终点的结点的入度加一；<br>2.将没有先决条件便可以排序的点（即初始入度为0的点）先加入队列并输出；<br>3.从队首元素开始扩展，将与队首元素相连的结点的入度减一（等同于擦除这条边），如果该结点入度变为0，则将其入队，作为下一次查找的起点；<br>4.将队首元素出队，当队首元素为空时停止排序。</p><h2 id="代码及注解"><a href="#代码及注解" class="headerlink" title="代码及注解"></a>代码及注解</h2><p>有n个点，m条边的有向无环图，输入n，m，然后每一行输入一条边的信息：起点x，终点y</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;int n,m,a,b,c,d,e,re;struct map1{    int stat,end;};map1 tu[100];int rd[100],chong[100];queue &lt;int&gt; q;int main(){    cin&gt;&gt;n&gt;&gt;m;//n点m边    for (a=1;a&lt;=m;a++)    {        cin&gt;&gt;tu[a].stat&gt;&gt;tu[a].end;        rd[tu[a].end]++;    }    for (int i=1;i&lt;=n;i++)    if (rd[i]==0) q.push(i);//将初始入度为0的结点入队    while (!q.empty())    {            cout&lt;&lt;q.front()&lt;&lt;&quot; &quot;;            for (int j=1;j&lt;=m;j++)            {                if (tu[j].stat==q.front())//找以队首元素为起点的边                {                    rd[tu[j].end]--;                    if (rd[tu[j].end]==0)                     {                        q.push(tu[j].end);                    }                }            }        q.pop();    }    return 0;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> OI笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法-拓扑排序 </tag>
             
         </tags>
       
@@ -605,15 +622,6 @@
     </entry>
     
     <entry>
-      <title>标签云</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    <entry>
       <title>咕咕咕</title>
       <link href="/gugugu/index.html"/>
       <url>/gugugu/index.html</url>
@@ -626,6 +634,15 @@
       <title>友链</title>
       <link href="/links/index.html"/>
       <url>/links/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    <entry>
+      <title>标签云</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       

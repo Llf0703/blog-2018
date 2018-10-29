@@ -252,7 +252,7 @@
 
     
         <meta property="article:published_time" content="Mon Oct 29 2018 00:00:00 GMT+0800">
-        <meta property="article:modified_time" content="Mon Oct 29 2018 15:23:59 GMT+0800">
+        <meta property="article:modified_time" content="Mon Oct 29 2018 18:18:27 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -275,7 +275,7 @@
     "mainEntityOfPage": "https://llf0703.com/p/contest-summary-zj9.html",
     "headline": "ZJ第九套总结",
     "datePublished": "Mon Oct 29 2018 00:00:00 GMT+0800",
-    "dateModified": "Mon Oct 29 2018 15:23:59 GMT+0800",
+    "dateModified": "Mon Oct 29 2018 18:18:27 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Llf0703",
@@ -562,7 +562,7 @@ int main()
 <script type="math/tex; mode=display">A[x]-P[x]\times (x-1)+A[x+1]-P[x+1]\times x</script><p>如果我们交换第 $ x $ 和第 $ x+1 $  头猪，利益和 $ W2 $ 就变成了</p>
 <script type="math/tex; mode=display">A[x]-P[x]\times x+A[x+1]-P[x+1]\times (x-1)</script><p>肯定是有更多利益我们才会交换，所以需要满足</p>
 <script type="math/tex; mode=display">W2-W1=P[x+1]-P[x]>0,即 P[x+1]>P[x]</script><p>交换后就是 $ P[x]&gt;P[x+1] $ 了，所以按照<code>p</code>从大到小排序。</p>
-<p>剩下的就是标准01背包，由于数据不大，状不状压都可以。方程式是：</p>
+<p>剩下的就是标准01背包，由于数据不大，用不用滚动数组都可以。方程式是：</p>
 <script type="math/tex; mode=display">f[i][j]=\max \begin{equation}\begin{cases} f[i-1][j] \\ f[i-1][j-1]+\max(0,A[i]-P[i]*(j-1)) \end{cases}\end{equation}</script><pre><code class="lang-cpp">int n,k,f[1005][1005],ans;
 struct pig{
     int a,p;
@@ -770,7 +770,7 @@ int main()
 
     <!-- Next Nav -->
     
-        <a href="/p/contest-summary-zj7.html" id="post_nav-older" class="next-content">
+        <a href="/p/materialfox.html" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">

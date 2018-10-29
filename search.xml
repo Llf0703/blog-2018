@@ -3,11 +3,11 @@
   
     
     <entry>
-      <title>ZJ第七套总结</title>
-      <link href="/p/contest-summary-zj7.html"/>
-      <url>/p/contest-summary-zj7.html</url>
+      <title>ZJ第九套总结</title>
+      <link href="/p/contest-summary-zj9.html"/>
+      <url>/p/contest-summary-zj9.html</url>
       
-        <content type="html"><![CDATA[<p>我决定，为了去除冗余的文章长度，所有代码删掉头文件和快读。</p><h2 id="塔-tower"><a href="#塔-tower" class="headerlink" title="塔(tower)"></a>塔(tower)</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1651" target="_blank" rel="noopener">P1651 塔</a></p><p>我几乎毫不犹豫就先花5分钟打了一发暴搜，检查没有发现任何问题，最后交上去就有80分：</p><pre><code class="lang-cpp">int h[55],n,m,a,b,c,ans;bool vis[55];bool check(int cnt,int hmax,int sum,int last){    if (sum==hmax &amp;&amp; cnt==2) return 1;    if (sum==hmax &amp;&amp; cnt==1) return check(2,hmax,0,0);    if (sum&gt;hmax) return 0;    for (int i=last+1;i&lt;=n;i++)    {        if (vis[i]) continue;        vis[i]=1;        if (check(cnt,hmax,sum+h[i],i)) return 1;        vis[i]=0;    }    return 0;}inline bool cmp(int x,int y){    return x&gt;y;}int main(){    n=read();    int sum=0;    for (int i=1;i&lt;=n;i++) h[i]=read(),sum+=h[i];    sort(h+1,h+n+1,cmp);    ans=-1;    for (int i=sum&gt;&gt;1;i;i--)    {        if (check(1,i,0,0))        {            ans=i;            break;        }    }    printf(&quot;%d&quot;,ans);    return 0;}</code></pre><p>可以说是十分划算了，<del>要什么正解系列</del>。</p><p>正解就是一个dp，用 $ f[i][j] $ 表示放到了第i个，两个塔的差值是j时高塔的最大高度。决策有三种：</p><ol><li>不要</li><li>放到高塔，差值变大</li><li>放到低塔，差值变小（或者反超）</li></ol><p>对应方程就是：</p><script type="math/tex; mode=display">f\left[ i\right] \left[ j\right] =\max \begin{equation}\begin{cases} f[i-1][j] \\ f[i-1][j+s[i]] \\ f[i-1][j-s[i]]+s[i] (j>s[i]) \\ f[i-1][s[i]-j]+j (j<=s[i]) \end{cases}\end{equation}</script><pre><code class="lang-cpp">int f[55][500005],n,m,a,b,c,s[55],sum;int main(){    n=read();    for (int i=1;i&lt;=n;i++) s[i]=read(),sum+=s[i];    memset(f,-0x3f,sizeof(f));    f[0][0]=0;    for (int i=1;i&lt;=n;i++)    {        for (int j=0;j&lt;=sum;j++)        {            f[i][j]=max(f[i-1][j],f[i-1][j+s[i]]);            if (j&gt;s[i]) f[i][j]=max(f[i][j],f[i-1][j-s[i]]+s[i]);            else f[i][j]=max(f[i][j],f[i-1][s[i]-j]+j);        }    }    if (!f[n][0]) printf(&quot;-1&quot;);    else printf(&quot;%d&quot;,f[n][0]);    return 0;}</code></pre><p>还有实名反对洛谷第一个题解，数组大小开的都是错的，真不知道怎么做出来的。</p><h2 id="圆-circle）"><a href="#圆-circle）" class="headerlink" title="圆(circle）"></a>圆(circle）</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1652" target="_blank" rel="noopener">P1652 圆</a></p><p>大水题。只是注意是曲线，不是直线，我写了半天才发现看错题了。这就意味着对于每个圆只需要判断两个点在圆内还是圆外，如果在异端就把答案++即可。</p><pre><code class="lang-cpp">int sx,sy,ex,ey,n,A,B,C,ans;struct cir{    int x,y,r;} c[55];inline double dis(int x1,int y1,int x2,int y2){    return sqrt((double)(x1-x2)*(x1-x2)+(double)(y1-y2)*(y1-y2));}int main(){    n=read();    for (int i=1;i&lt;=n;i++) c[i].x=read();    for (int i=1;i&lt;=n;i++) c[i].y=read();    for (int i=1;i&lt;=n;i++) c[i].r=read();    sx=read(); sy=read(); ex=read(); ey=read();    for (int i=1;i&lt;=n;i++)    {        double dis1=dis(sx,sy,c[i].x,c[i].y),dis2=dis(ex,ey,c[i].x,c[i].y);        if (dis1&lt;c[i].r &amp;&amp; dis2&gt;c[i].r) ans++;        else if (dis1&gt;c[i].r &amp;&amp; dis2&lt;c[i].r) ans++;    }    printf(&quot;%d&quot;,ans);    return 0;}</code></pre><h2 id="猴子-monkey"><a href="#猴子-monkey" class="headerlink" title="猴子(monkey)"></a>猴子(monkey)</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1653" target="_blank" rel="noopener">P1653 猴子</a></p><p>我一开始以为真的是树，这样放开以后把他的子树中所有结点更新答案即可，跑一遍dfs记录dfs序和子树大小，然后用线段树维护即可。敲完了发现TM竟然还有互相拉这种操作，然后就GG了，水了个暴力的10分。</p><p>看了题解才发现可以把放手的操作建成图。</p><blockquote><p>事实上我们可以把猴子放手的时间当作这条边的边权，而不放手的边权为一个大数，我们需要求得其实就是一条单源路径，让这条路径最小边权最大，直接输出这个值即可，若这个值为那个大数，就输出-1。(<a href="https://www.luogu.org/blog/the-Despair/solution-p1653" target="_blank" rel="noopener">https://www.luogu.org/blog/the-Despair/solution-p1653</a>)</p></blockquote><p>不过我觉得把这个叫做spfa还是有些欠妥。其实就是一个BFS。</p><pre><code class="lang-cpp">int lson[200005],rson[200005],lfa[200005],rfa[200005],n,m,a,b,c,mn[200005],head[200005],cnt,ans[200005];struct Edge{    int next,to,w;} edge[800005];inline void add(int u,int v,int w){    edge[++cnt].to=v;    edge[cnt].w=w;    edge[cnt].next=head[u];    head[u]=cnt;}inline void bfs(){    queue &lt;int&gt; q;    ans[1]=m;    q.push(1);    while (!q.empty())    {        int x=q.front(); q.pop();        for (int i=head[x];i;i=edge[i].next)        {            int y=edge[i].to,w=min(edge[i].w,ans[x]);            if (w&gt;ans[y])            {                ans[y]=w;                q.push(y);            }        }    }}int main(){    n=read(); m=read();    for (int i=1;i&lt;=n;i++) lson[i]=read(),rson[i]=read(),lfa[i]=rfa[i]=m;    for (int i=0;i&lt;m;i++)    {        a=read(); b=read();        if (b==1) lfa[a]=min(lfa[a],i);        else rfa[a]=min(rfa[a],i);    }    for (int i=1;i&lt;=n;i++)    {        if (lson[i]!=-1) add(i,lson[i],lfa[i]),add(lson[i],i,lfa[i]);        if (rson[i]!=-1) add(i,rson[i],rfa[i]),add(rson[i],i,rfa[i]);    }    bfs();    for (int i=1;i&lt;=n;i++)    {        if (ans[i]==m) printf(&quot;-1\n&quot;);        else printf(&quot;%d\n&quot;,ans[i]);    }    return 0;}</code></pre><h2 id="山-mountain"><a href="#山-mountain" class="headerlink" title="山(mountain)"></a>山(mountain)</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1663" target="_blank" rel="noopener">P1663 山</a></p><p>我一开始就被题目给吓住了，就没去做。后来发现这个着实是一个大水题。</p><p>题目的要求其实就是那个灯要在每一条线上或者上方，得出每条线的解析式后二分答案即可。</p><pre><code class="lang-cpp">struct point{    int x,y;} pt[5005];struct line{    double k,b;} l[5005];int n,m,a,b,c;inline bool check(double x){    double rr=1e9,ll=-1e9;    for (int i=1;i&lt;=n;i++)    {        if (l[i].k==0 &amp;&amp; l[i].b&gt;x) return 0;        if (l[i].k&lt;0) rr=min(rr,(l[i].b-x)/l[i].k);        if (l[i].k&gt;0) ll=max(ll,(l[i].b-x)/l[i].k);    }    return ll&lt;=rr;}int main(){    n=read();    for (int i=1;i&lt;=n;i++) pt[i].x=read(),pt[i].y=read();    for (int i=1;i&lt;n;i++)    {        l[i].k=(double)(pt[i+1].y-pt[i].y)/(double)(pt[i+1].x-pt[i].x);        l[i].b=(double)pt[i].y-l[i].k*pt[i].x;    }    double l=0,r=1000000;    while (r-l&gt;=1e-3)    {        double mid=(l+r)/2.0;        if (check(mid)) r=mid;        else l=mid;    }    printf(&quot;%.2f&quot;,l);    return 0;}</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我今天的得分是80+100+10+0=190.总的来说还是不错，但是我发现读错题这种失误越来越多了。以后还是应该把题认真读完，不要读到一半一激动就开始打，打完了才发现读错题了。这样还特别容易心态爆炸。</p><p>以上。</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="购物-shopping"><a href="#购物-shopping" class="headerlink" title="购物(shopping)"></a>购物(shopping)</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1658" target="_blank" rel="noopener">P1658 购物</a></p><p>贪心水题。如果我们已经可以凑出 $ [1,n] $ 之间所有面值，那么携带 $ \forall x\in [1,n+1] $ 面值的硬币，我们一定可以凑出 $ [1,n+x] $ 之间所有面值。</p><p>要让硬币个数尽可能少，就让携带的每个硬币面值尽可能大，所以我们就在面值 $ \in [1,n+1] $ 的硬币中取最大的即可。</p><p>很容易想到，如果最小面值都 $ &gt;1 $ 就肯定无解，输出 $ -1 $.</p><pre><code class="lang-cpp">int s[15],n,m,x;int main(){    x=read(); n=read();    for (int i=1;i&lt;=n;i++) s[i]=read();    sort(s+1,s+n+1);    if (s[1]&gt;1)    {        printf(&quot;-1&quot;);        return 0;    }    int can=1,ans=1;    while (can&lt;x)    {        int i=n;        while (s[i]&gt;can+1 &amp;&amp; i&gt;=2) i--;        can+=s[i];        ans++;    }    printf(&quot;%d&quot;,ans);    return 0;}</code></pre><h2 id="养猪-pig"><a href="#养猪-pig" class="headerlink" title="养猪(pig)"></a>养猪(pig)</h2><p>Vijos题目：<a href="https://vijos.org/p/1793" target="_blank" rel="noopener">养猪</a></p><p><del>还有个洛谷的双倍经验：<a href="https://www.luogu.org/problemnew/show/P1987" target="_blank" rel="noopener">P1987 摇钱树</a>，只是多组数据</del></p><p>贪心+dp。贪心策略是按<code>P</code>从大到小排序，然后01背包决定杀不杀即可。贪心证明如下：</p><p>假设最初的顺序是 <script type="math/tex">A[1],A[2],...,A[x],A[x+1],...,A[n]</script> 及 <script type="math/tex">P[1],P[2],...,P[x],P[x+1],...,P[n]</script> </p><p>对于第 $ x $ 和第 $x+1$  头猪，杀了它们获得的利益和 $ W1 $ 是 </p><script type="math/tex; mode=display">A[x]-P[x]\times (x-1)+A[x+1]-P[x+1]\times x</script><p>如果我们交换第 $ x $ 和第 $ x+1 $  头猪，利益和 $ W2 $ 就变成了</p><script type="math/tex; mode=display">A[x]-P[x]\times x+A[x+1]-P[x+1]\times (x-1)</script><p>肯定是有更多利益我们才会交换，所以需要满足</p><script type="math/tex; mode=display">W2-W1=P[x+1]-P[x]>0,即 P[x+1]>P[x]</script><p>交换后就是 $ P[x]&gt;P[x+1] $ 了，所以按照<code>p</code>从大到小排序。</p><p>剩下的就是标准01背包，由于数据不大，状不状压都可以。方程式是：</p><script type="math/tex; mode=display">f[i][j]=\max \begin{equation}\begin{cases} f[i-1][j] \\ f[i-1][j-1]+\max(0,A[i]-P[i]*(j-1)) \end{cases}\end{equation}</script><pre><code class="lang-cpp">int n,k,f[1005][1005],ans;struct pig{    int a,p;} s[1005];inline bool cmp(pig x,pig y){    return x.p&gt;y.p;}int main(){    n=read(); k=read();    if (k&gt;n) k=n;    for (int i=1;i&lt;=n;i++) s[i].a=read();    for (int i=1;i&lt;=n;i++) s[i].p=read();    sort(s+1,s+n+1,cmp);    for (int i=1;i&lt;=n;i++)        for (int j=k;j;j--)            f[i][j]=max(f[i-1][j-1]+max(0,s[i].a-s[i].p*(j-1)),f[i-1][j]);    for (int i=1;i&lt;=k;i++) ans=max(ans,f[n][i]);    printf(&quot;%d&quot;,ans);    return 0;}</code></pre><h2 id="数位平方和-count"><a href="#数位平方和-count" class="headerlink" title="数位平方和(count)"></a>数位平方和(count)</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1660" target="_blank" rel="noopener">P1660 数位平方和</a></p><p>按题意记忆化DFS即可，需要记忆的就是h的值。</p><p>需要注意一定会出现环，当某一个值被搜索到<strong>第二次</strong>的时候返回即可。</p><pre><code class="lang-cpp">ll k,a,b;ll hh[4000005],vis[4000005];inline ll _min(ll x,ll y){    if (x&lt;=y) return x;    return y;}inline ll s(ll x){    ll ans=0;    while (x)    {        ll now=x%10,sum=1;        for (ll i=1;i&lt;=k;i++) sum*=now;        ans+=sum;        x/=10;    }    return ans;}inline ll h(ll x){    if (hh[x]!=-1) return hh[x];    if (vis[x]==2) return x;    ll sx=s(x);    vis[x]++;    ll ans=_min(x,_min(sx,h(sx)));    vis[x]--;    return hh[x]=ans;}int main(){    k=read(); a=read(); b=read();    ll ans=0;    for (int i=1;i&lt;=4000000;i++) hh[i]=-1;    for (int i=a;i&lt;=b;i++) ans=(ans+h(i))%ha;    printf(&quot;%lld&quot;,ans);    return 0;}</code></pre><h2 id="扩散-ppg"><a href="#扩散-ppg" class="headerlink" title="扩散(ppg)"></a>扩散(ppg)</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1661" target="_blank" rel="noopener">P1661 扩散</a></p><p>看起来四周扩散很复杂，但扩散的次数实质上就是两个点的曼哈顿距离 $ \div 2 $ (向上取整)。所以只需要将没两个点之间连一条权值为 $ (|x1-x2|+|y1-y2|+1)\div 2 $ 的边跑最小生成树即可，答案就是最小生成树中的最长边。</p><pre><code class="lang-cpp">struct point{    int x,y;} pt[55];struct Edge{    int st,ed,w;} edge[2505];int n,m,a,b,c,fa[55],cnt,ans;inline void add(int u,int v,int w){    edge[++cnt].st=u;    edge[cnt].ed=v;    edge[cnt].w=w;}inline void init(){    for (int i=1;i&lt;=n;i++)        fa[i]=i;}int getfa(int x){    if (x==fa[x]) return fa[x];    fa[x]=getfa(fa[x]);    return fa[x];}inline bool merge(int x,int y){    int gfx=getfa(x),gfy=getfa(y);    if (gfx==gfy) return 0;    fa[gfx]=gfy;    return 1;}inline bool cmp(Edge x,Edge y){    return x.w&lt;y.w;}inline void kruskal(){    for (int i=1;i&lt;=cnt &amp;&amp; n;i++)    {        int x=edge[i].st,y=edge[i].ed;        if (merge(x,y))        {            n--;            ans=max(ans,edge[i].w);        }    }}int main(){    n=read();    init();    for (int i=1;i&lt;=n;i++) pt[i].x=read(),pt[i].y=read();    for (int i=1;i&lt;=n;i++)        for (int j=i+1;j&lt;=n;j++)            add(i,j,(abs(pt[i].x-pt[j].x)+abs(pt[i].y-pt[j].y)+1)&gt;&gt;1);    sort(edge+1,edge+cnt+1,cmp);    kruskal();    printf(&quot;%d&quot;,ans);    return 0;}</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>今天考的非常爆炸，第一题把样例看错了，发现怎么就是多了1，想都没想就把答案-1了(-100s)；第二题按p排了序，方程式也是对的，就是最后没有取最大值(-100s)；第三题知道有环，也写了记搜，但是每个点搜到第一次就返回了，只A了一个点(-90s)；第四题真的没想出来，打了20分暴力(-80s)。然后就把一手320的好牌打成30分。。。</p><p>所以我觉得我还应注意以下两点：</p><ol><li>不管题再简单也要把样例推几遍，更不能一晃而过</li><li>需要非常熟练掌握基础的dp模型</li></ol><p>以上。</p>]]></content>
       
       
       <categories>
@@ -39,6 +39,23 @@
             <tag> 浏览器-Firefox </tag>
             
         </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>ZJ第七套总结</title>
+      <link href="/p/contest-summary-zj7.html"/>
+      <url>/p/contest-summary-zj7.html</url>
+      
+        <content type="html"><![CDATA[<p>我决定，为了去除冗余的文章长度，所有代码删掉头文件和快读。</p><h2 id="塔-tower"><a href="#塔-tower" class="headerlink" title="塔(tower)"></a>塔(tower)</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1651" target="_blank" rel="noopener">P1651 塔</a></p><p>我几乎毫不犹豫就先花5分钟打了一发暴搜，检查没有发现任何问题，最后交上去就有80分：</p><pre><code class="lang-cpp">int h[55],n,m,a,b,c,ans;bool vis[55];bool check(int cnt,int hmax,int sum,int last){    if (sum==hmax &amp;&amp; cnt==2) return 1;    if (sum==hmax &amp;&amp; cnt==1) return check(2,hmax,0,0);    if (sum&gt;hmax) return 0;    for (int i=last+1;i&lt;=n;i++)    {        if (vis[i]) continue;        vis[i]=1;        if (check(cnt,hmax,sum+h[i],i)) return 1;        vis[i]=0;    }    return 0;}inline bool cmp(int x,int y){    return x&gt;y;}int main(){    n=read();    int sum=0;    for (int i=1;i&lt;=n;i++) h[i]=read(),sum+=h[i];    sort(h+1,h+n+1,cmp);    ans=-1;    for (int i=sum&gt;&gt;1;i;i--)    {        if (check(1,i,0,0))        {            ans=i;            break;        }    }    printf(&quot;%d&quot;,ans);    return 0;}</code></pre><p>可以说是十分划算了，<del>要什么正解系列</del>。</p><p>正解就是一个dp，用 $ f[i][j] $ 表示放到了第i个，两个塔的差值是j时高塔的最大高度。决策有三种：</p><ol><li>不要</li><li>放到高塔，差值变大</li><li>放到低塔，差值变小（或者反超）</li></ol><p>对应方程就是：</p><script type="math/tex; mode=display">f\left[ i\right] \left[ j\right] =\max \begin{equation}\begin{cases} f[i-1][j] \\ f[i-1][j+s[i]] \\ f[i-1][j-s[i]]+s[i] (j>s[i]) \\ f[i-1][s[i]-j]+j (j<=s[i]) \end{cases}\end{equation}</script><pre><code class="lang-cpp">int f[55][500005],n,m,a,b,c,s[55],sum;int main(){    n=read();    for (int i=1;i&lt;=n;i++) s[i]=read(),sum+=s[i];    memset(f,-0x3f,sizeof(f));    f[0][0]=0;    for (int i=1;i&lt;=n;i++)    {        for (int j=0;j&lt;=sum;j++)        {            f[i][j]=max(f[i-1][j],f[i-1][j+s[i]]);            if (j&gt;s[i]) f[i][j]=max(f[i][j],f[i-1][j-s[i]]+s[i]);            else f[i][j]=max(f[i][j],f[i-1][s[i]-j]+j);        }    }    if (!f[n][0]) printf(&quot;-1&quot;);    else printf(&quot;%d&quot;,f[n][0]);    return 0;}</code></pre><p>还有实名反对洛谷第一个题解，数组大小开的都是错的，真不知道怎么做出来的。</p><h2 id="圆-circle）"><a href="#圆-circle）" class="headerlink" title="圆(circle）"></a>圆(circle）</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1652" target="_blank" rel="noopener">P1652 圆</a></p><p>大水题。只是注意是曲线，不是直线，我写了半天才发现看错题了。这就意味着对于每个圆只需要判断两个点在圆内还是圆外，如果在异端就把答案++即可。</p><pre><code class="lang-cpp">int sx,sy,ex,ey,n,A,B,C,ans;struct cir{    int x,y,r;} c[55];inline double dis(int x1,int y1,int x2,int y2){    return sqrt((double)(x1-x2)*(x1-x2)+(double)(y1-y2)*(y1-y2));}int main(){    n=read();    for (int i=1;i&lt;=n;i++) c[i].x=read();    for (int i=1;i&lt;=n;i++) c[i].y=read();    for (int i=1;i&lt;=n;i++) c[i].r=read();    sx=read(); sy=read(); ex=read(); ey=read();    for (int i=1;i&lt;=n;i++)    {        double dis1=dis(sx,sy,c[i].x,c[i].y),dis2=dis(ex,ey,c[i].x,c[i].y);        if (dis1&lt;c[i].r &amp;&amp; dis2&gt;c[i].r) ans++;        else if (dis1&gt;c[i].r &amp;&amp; dis2&lt;c[i].r) ans++;    }    printf(&quot;%d&quot;,ans);    return 0;}</code></pre><h2 id="猴子-monkey"><a href="#猴子-monkey" class="headerlink" title="猴子(monkey)"></a>猴子(monkey)</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1653" target="_blank" rel="noopener">P1653 猴子</a></p><p>我一开始以为真的是树，这样放开以后把他的子树中所有结点更新答案即可，跑一遍dfs记录dfs序和子树大小，然后用线段树维护即可。敲完了发现TM竟然还有互相拉这种操作，然后就GG了，水了个暴力的10分。</p><p>看了题解才发现可以把放手的操作建成图。</p><blockquote><p>事实上我们可以把猴子放手的时间当作这条边的边权，而不放手的边权为一个大数，我们需要求得其实就是一条单源路径，让这条路径最小边权最大，直接输出这个值即可，若这个值为那个大数，就输出-1。(<a href="https://www.luogu.org/blog/the-Despair/solution-p1653" target="_blank" rel="noopener">https://www.luogu.org/blog/the-Despair/solution-p1653</a>)</p></blockquote><p>不过我觉得把这个叫做spfa还是有些欠妥。其实就是一个BFS。</p><pre><code class="lang-cpp">int lson[200005],rson[200005],lfa[200005],rfa[200005],n,m,a,b,c,mn[200005],head[200005],cnt,ans[200005];struct Edge{    int next,to,w;} edge[800005];inline void add(int u,int v,int w){    edge[++cnt].to=v;    edge[cnt].w=w;    edge[cnt].next=head[u];    head[u]=cnt;}inline void bfs(){    queue &lt;int&gt; q;    ans[1]=m;    q.push(1);    while (!q.empty())    {        int x=q.front(); q.pop();        for (int i=head[x];i;i=edge[i].next)        {            int y=edge[i].to,w=min(edge[i].w,ans[x]);            if (w&gt;ans[y])            {                ans[y]=w;                q.push(y);            }        }    }}int main(){    n=read(); m=read();    for (int i=1;i&lt;=n;i++) lson[i]=read(),rson[i]=read(),lfa[i]=rfa[i]=m;    for (int i=0;i&lt;m;i++)    {        a=read(); b=read();        if (b==1) lfa[a]=min(lfa[a],i);        else rfa[a]=min(rfa[a],i);    }    for (int i=1;i&lt;=n;i++)    {        if (lson[i]!=-1) add(i,lson[i],lfa[i]),add(lson[i],i,lfa[i]);        if (rson[i]!=-1) add(i,rson[i],rfa[i]),add(rson[i],i,rfa[i]);    }    bfs();    for (int i=1;i&lt;=n;i++)    {        if (ans[i]==m) printf(&quot;-1\n&quot;);        else printf(&quot;%d\n&quot;,ans[i]);    }    return 0;}</code></pre><h2 id="山-mountain"><a href="#山-mountain" class="headerlink" title="山(mountain)"></a>山(mountain)</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1663" target="_blank" rel="noopener">P1663 山</a></p><p>我一开始就被题目给吓住了，就没去做。后来发现这个着实是一个大水题。</p><p>题目的要求其实就是那个灯要在每一条线上或者上方，得出每条线的解析式后二分答案即可。</p><pre><code class="lang-cpp">struct point{    int x,y;} pt[5005];struct line{    double k,b;} l[5005];int n,m,a,b,c;inline bool check(double x){    double rr=1e9,ll=-1e9;    for (int i=1;i&lt;=n;i++)    {        if (l[i].k==0 &amp;&amp; l[i].b&gt;x) return 0;        if (l[i].k&lt;0) rr=min(rr,(l[i].b-x)/l[i].k);        if (l[i].k&gt;0) ll=max(ll,(l[i].b-x)/l[i].k);    }    return ll&lt;=rr;}int main(){    n=read();    for (int i=1;i&lt;=n;i++) pt[i].x=read(),pt[i].y=read();    for (int i=1;i&lt;n;i++)    {        l[i].k=(double)(pt[i+1].y-pt[i].y)/(double)(pt[i+1].x-pt[i].x);        l[i].b=(double)pt[i].y-l[i].k*pt[i].x;    }    double l=0,r=1000000;    while (r-l&gt;=1e-3)    {        double mid=(l+r)/2.0;        if (check(mid)) r=mid;        else l=mid;    }    printf(&quot;%.2f&quot;,l);    return 0;}</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我今天的得分是80+100+10+0=190.总的来说还是不错，但是我发现读错题这种失误越来越多了。以后还是应该把题认真读完，不要读到一半一激动就开始打，打完了才发现读错题了。这样还特别容易心态爆炸。</p><p>以上。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
       
     </entry>
     
@@ -391,13 +408,13 @@
             
             <tag> 数据结构-线段树 </tag>
             
-            <tag> OJ-洛谷 </tag>
-            
-            <tag> OJ-BZOJ </tag>
-            
             <tag> 省选-河北 </tag>
             
             <tag> 省选-天津 </tag>
+            
+            <tag> OJ-洛谷 </tag>
+            
+            <tag> OJ-BZOJ </tag>
             
         </tags>
       
@@ -447,11 +464,11 @@
             
             <tag> 数据结构-线段树 </tag>
             
-            <tag> 省选-山东 </tag>
-            
             <tag> OJ-洛谷 </tag>
             
             <tag> OJ-BZOJ </tag>
+            
+            <tag> 省选-山东 </tag>
             
         </tags>
       
@@ -577,29 +594,6 @@
     </entry>
     
     <entry>
-      <title>拓扑排序</title>
-      <link href="/p/topological-sort.html"/>
-      <url>/p/topological-sort.html</url>
-      
-        <content type="html"><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>拓扑排序是一种可以将有先决条件（即必须将a、b排在前面后再排c，缺一不可）的数据变得有序的一种排序方法。拓扑排序仅可在有向无环图中使用，同时可以判断图中是否有环。因为顺序不同，拓扑排序得到的答案可能不同。</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>因为排序是有先决条件的，所以可以将要有先决条件的个数（在图中即为入度）记录下来，每满足一个就减一，直到个数为0便可以将其放入序列中。</p><h2 id="手动实现"><a href="#手动实现" class="headerlink" title="手动实现"></a>手动实现</h2><p>如果我们有如下的一个有向无环图，我们需要对这个图的顶点进行拓扑排序，过程如下：</p><p><img src="https://cdn.uniqueue.cn/tuopu-1.png" alt="tuopu-1"></p><p>首先，我们发现V6和v1是没有前驱的，所以我们就随机选去一个输出，我们先输出V6，删除和V6有关的边，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-2.png" alt="tuopu-2"></p><p>然后，我们继续寻找没有前驱的顶点，发现V1没有前驱，所以输出V1，删除和V1有关的边，得到下图的结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-3.png" alt="tuopu-3"></p><p>然后，我们又发现V4和V3都是没有前驱的，那么我们就随机选取一个顶点输出（具体看你实现的算法和图存储结构），我们输出V4，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-4.png" alt="tuopu-4"></p><p>然后，我们输出没有前驱的顶点V3，得到如下结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-5.png" alt="tuopu-5"></p><p>然后，我们分别输出V5和V2，最后全部顶点输出完成，该图的一个拓扑序列为：</p><p>v6–&gt;v1—&gt;v4—&gt;v3—&gt;v5—&gt;v2</p><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>1.用邻接表存储数据，同时对终点的结点的入度加一；<br>2.将没有先决条件便可以排序的点（即初始入度为0的点）先加入队列并输出；<br>3.从队首元素开始扩展，将与队首元素相连的结点的入度减一（等同于擦除这条边），如果该结点入度变为0，则将其入队，作为下一次查找的起点；<br>4.将队首元素出队，当队首元素为空时停止排序。</p><h2 id="代码及注解"><a href="#代码及注解" class="headerlink" title="代码及注解"></a>代码及注解</h2><p>有n个点，m条边的有向无环图，输入n，m，然后每一行输入一条边的信息：起点x，终点y</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;int n,m,a,b,c,d,e,re;struct map1{    int stat,end;};map1 tu[100];int rd[100],chong[100];queue &lt;int&gt; q;int main(){    cin&gt;&gt;n&gt;&gt;m;//n点m边    for (a=1;a&lt;=m;a++)    {        cin&gt;&gt;tu[a].stat&gt;&gt;tu[a].end;        rd[tu[a].end]++;    }    for (int i=1;i&lt;=n;i++)    if (rd[i]==0) q.push(i);//将初始入度为0的结点入队    while (!q.empty())    {            cout&lt;&lt;q.front()&lt;&lt;&quot; &quot;;            for (int j=1;j&lt;=m;j++)            {                if (tu[j].stat==q.front())//找以队首元素为起点的边                {                    rd[tu[j].end]--;                    if (rd[tu[j].end]==0)                     {                        q.push(tu[j].end);                    }                }            }        q.pop();    }    return 0;}</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> OI笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 算法-拓扑排序 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
       <title>最小生成树总结</title>
       <link href="/p/minimum-spanning-tree.html"/>
       <url>/p/minimum-spanning-tree.html</url>
@@ -621,6 +615,29 @@
             <tag> 算法-Kruskal </tag>
             
             <tag> 算法-Prim </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>拓扑排序</title>
+      <link href="/p/topological-sort.html"/>
+      <url>/p/topological-sort.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>拓扑排序是一种可以将有先决条件（即必须将a、b排在前面后再排c，缺一不可）的数据变得有序的一种排序方法。拓扑排序仅可在有向无环图中使用，同时可以判断图中是否有环。因为顺序不同，拓扑排序得到的答案可能不同。</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>因为排序是有先决条件的，所以可以将要有先决条件的个数（在图中即为入度）记录下来，每满足一个就减一，直到个数为0便可以将其放入序列中。</p><h2 id="手动实现"><a href="#手动实现" class="headerlink" title="手动实现"></a>手动实现</h2><p>如果我们有如下的一个有向无环图，我们需要对这个图的顶点进行拓扑排序，过程如下：</p><p><img src="https://cdn.uniqueue.cn/tuopu-1.png" alt="tuopu-1"></p><p>首先，我们发现V6和v1是没有前驱的，所以我们就随机选去一个输出，我们先输出V6，删除和V6有关的边，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-2.png" alt="tuopu-2"></p><p>然后，我们继续寻找没有前驱的顶点，发现V1没有前驱，所以输出V1，删除和V1有关的边，得到下图的结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-3.png" alt="tuopu-3"></p><p>然后，我们又发现V4和V3都是没有前驱的，那么我们就随机选取一个顶点输出（具体看你实现的算法和图存储结构），我们输出V4，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-4.png" alt="tuopu-4"></p><p>然后，我们输出没有前驱的顶点V3，得到如下结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-5.png" alt="tuopu-5"></p><p>然后，我们分别输出V5和V2，最后全部顶点输出完成，该图的一个拓扑序列为：</p><p>v6–&gt;v1—&gt;v4—&gt;v3—&gt;v5—&gt;v2</p><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>1.用邻接表存储数据，同时对终点的结点的入度加一；<br>2.将没有先决条件便可以排序的点（即初始入度为0的点）先加入队列并输出；<br>3.从队首元素开始扩展，将与队首元素相连的结点的入度减一（等同于擦除这条边），如果该结点入度变为0，则将其入队，作为下一次查找的起点；<br>4.将队首元素出队，当队首元素为空时停止排序。</p><h2 id="代码及注解"><a href="#代码及注解" class="headerlink" title="代码及注解"></a>代码及注解</h2><p>有n个点，m条边的有向无环图，输入n，m，然后每一行输入一条边的信息：起点x，终点y</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;int n,m,a,b,c,d,e,re;struct map1{    int stat,end;};map1 tu[100];int rd[100],chong[100];queue &lt;int&gt; q;int main(){    cin&gt;&gt;n&gt;&gt;m;//n点m边    for (a=1;a&lt;=m;a++)    {        cin&gt;&gt;tu[a].stat&gt;&gt;tu[a].end;        rd[tu[a].end]++;    }    for (int i=1;i&lt;=n;i++)    if (rd[i]==0) q.push(i);//将初始入度为0的结点入队    while (!q.empty())    {            cout&lt;&lt;q.front()&lt;&lt;&quot; &quot;;            for (int j=1;j&lt;=m;j++)            {                if (tu[j].stat==q.front())//找以队首元素为起点的边                {                    rd[tu[j].end]--;                    if (rd[tu[j].end]==0)                     {                        q.push(tu[j].end);                    }                }            }        q.pop();    }    return 0;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> OI笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法-拓扑排序 </tag>
             
         </tags>
       
@@ -680,18 +697,18 @@
     </entry>
     
     <entry>
-      <title>标签云</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
+      <title>时间轴</title>
+      <link href="/timeline/index.html"/>
+      <url>/timeline/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
     </entry>
     
     <entry>
-      <title>时间轴</title>
-      <link href="/timeline/index.html"/>
-      <url>/timeline/index.html</url>
+      <title>标签云</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       

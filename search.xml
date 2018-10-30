@@ -3,6 +3,23 @@
   
     
     <entry>
+      <title>2018.10.30NOIP膜你赛(©qbxt)题解</title>
+      <link href="/p/contest-summary-3.html"/>
+      <url>/p/contest-summary-3.html</url>
+      
+        <content type="html"><![CDATA[<p>其实我10.9就做了这套题，当时瞎jb搞都有230，可见这套题有多水。不过我今天才把这套题搞完，就来写个总结。</p><h2 id="小G搭积木-box"><a href="#小G搭积木-box" class="headerlink" title="小G搭积木(box)"></a>小G搭积木(box)</h2><p>当时我写的二分答案，下界是1，上界是n，然后贪心看能不能放得下即可。不过只有60分，具体原因尚不明确。</p><pre><code class="lang-cpp">int n,m,x[5005],lef[5005];inline bool cmp(int a,int b){    return a&gt;b;}inline bool can(int num){    for (int i=1;i&lt;=n;i++) lef[i]=x[i];    for (int i=num+1;i&lt;=n;i++)    {        int mx=0,mxleft=0;        for (int j=num;j;j--)        {            if (lef[j]&gt;mxleft)            {                mx=j;                mxleft=lef[j];            }        }        if (mxleft&lt;1) return 0;        else lef[mx]=min(lef[mx]-1,x[i]);    }    return 1;}int main(){    n=read();    for (int i=1;i&lt;=n;i++) x[i]=read();    sort(x+1,x+n+1,cmp);    int l=0,r=n,mid;    while (l&lt;r)    {        mid=(l+r)/2;        if (can(mid)) r=mid-1;        else l=mid+1;    }    printf(&quot;%d&quot;,l);    return 0;}</code></pre><p>看了题解才知道这题就是一个裸的贪心。</p><p>很容易想到，承重量大的肯定要放在下面才会最优。所以我们把积木按照承重量从小到大排序，然后枚举每一列看能否把当前积木放在它的下面。如果有多列都可以放，那么肯定放积木个数最多的那列最优；如果都放不下，就新开一列。</p><pre><code class="lang-cpp">int f[5005],n,m,s[5005];int main(){    n=read();    for (int i=1;i&lt;=n;i++) s[i]=read();    sort(s+1,s+n+1);    m=1;    f[1]=1;    for (int i=2;i&lt;=n;i++)    {        bool putin=0;        int mx=0,mxid=0;        for (int j=1;j&lt;=m;j++)        {            if (f[j]&gt;s[i]) continue;            putin=1;            if (f[j]&gt;mx)            {                mx=f[j];                mxid=j;            }        }        if (!putin) f[++m]=1;        else f[mxid]++;    }    printf(&quot;%d&quot;,m);    return 0;}</code></pre><h2 id="小G的城堡-castle"><a href="#小G的城堡-castle" class="headerlink" title="小G的城堡(castle)"></a>小G的城堡(castle)</h2><p>真·大水题</p><p>把题意翻译成人话就是前k个点必须能到达1号点，后面的点都不能到达1号点。</p><p>我们先考虑后面的点。因为前k个点都能与1号点相连，所以后面的点不能与前k个点相连，那么它们只能互相连，方案数就是 $ \left( n-k\right) ^{n-k} $。</p><p>然后考虑前k个点。我当时不知道用什么公式，但是发现k很小 $ (k&lt;=\min (8,n)) $ ，所以就暴搜枚举每个点连哪个点即可：</p><blockquote><p><code>get_ans1()</code>枚举连哪个点，<code>dfs()</code>验证每个点是否与1相连</p></blockquote><pre><code class="lang-cpp">bool dfs(int x){    if (x==1) return 1;    vis[x]=1;    int y=to[x];    if (can[y]) return 1;    if (vis[y]) return 0;    return can[x]=dfs(y);}void get_ans1(int x){    if (x==k+1)    {        memset(can,0,sizeof(can));        can[1]=1;        for (int i=2;i&lt;=k;i++)        {            if (can[i]) continue;            memset(vis,0,sizeof(vis));            if (!dfs(i)) return;        }        ans2++;        return;    }    for (int i=1;i&lt;=k;i++)    {        if (x==i &amp;&amp; x!=1) continue;        to[x]=i;        get_ans1(x+1);        to[x]=0;    }    return;}</code></pre><p>然后得到一个表：</p><pre><code class="lang-cpp">int ans2_table[10]={0,1,2,9,64,625,7776,117649,2097152};</code></pre><p>不过好像有个结论是方案数为 $ k ^{k-1} $ </p><p>最后把两种方案数乘起来就是答案了。</p><pre><code class="lang-cpp">#define ll long long#define ha 1000000007ll n,k,cnt=1,ans2,to[10],ans2_table[10]={0,1,2,9,64,625,7776,117649,2097152};bool vis[10],can[10];inline ll get_ans(){    ll x=n-k,y=n-k;    ll z=1;    while (y!=0)    {        if (y%2) z=(z*x)%ha;        y/=2;        x=((x%ha)*(x%ha))%ha;    }    return z;}int main(){    n=read(); k=read();    ll ans=get_ans();    ans=(ans*ans2_table[k])%ha;    printf(&quot;%lld&quot;,ans);    return 0;}</code></pre><h2 id="跳跃-jump"><a href="#跳跃-jump" class="headerlink" title="跳跃(jump)"></a>跳跃(jump)</h2><p>我当时一拿到题就直接无脑记忆化搜索。$ f[pos][last] $ 表示当前位置是<code>pos</code>，上一次跳了<code>last</code>距离。</p><pre><code class="lang-cpp">int dfs(int pos,int last){    if (pos&gt;mx) return 0;    if (f[pos][last]!=-1) return f[pos][last];    f[pos][last]=have_gold[pos];    int maxx=max(dfs(pos+last,last),dfs(pos+last+1,last+1));    if (last&gt;1) maxx=max(maxx,dfs(pos+last-1,last-1));    f[pos][last]+=maxx;    return f[pos][last];}</code></pre><p>然后70分就get了。当时还很开心，<del>殊不知改下数组大小就能A了</del></p><p>看了题解才发现即使最开始 $ d=1 $ ，最多到跳350的距离其实就已经超过30000了 $ (\dfrac {350\times \left( 350+1\right) }{2} = 61425 &gt; 30000) $ ，所以把数组 $ f[1005][1005] $ 改成 $ f[30005][705] $ 就A了。</p><pre><code class="lang-cpp">int gd,n,m,d,f[30005][1405],mx,have_gold[30005];int dfs(int pos,int last){    if (pos&gt;mx) return 0;    if (f[pos][last]!=-1) return f[pos][last];    f[pos][last]=have_gold[pos];    int maxx=max(dfs(pos+last,last),dfs(pos+last+1,last+1));    if (last&gt;1) maxx=max(maxx,dfs(pos+last-1,last-1));    f[pos][last]+=maxx;    return f[pos][last];}int main(){    n=read(); d=read();    memset(f,-1,sizeof(f));    for (int i=1;i&lt;=n;i++) gd=read(),have_gold[gd]++,mx=max(mx,gd);    printf(&quot;%d&quot;,dfs(d,d));    return 0;}</code></pre><p>upd:经lsq大佬提醒，如果<code>d</code>很大的话<code>last</code>也会很大，所以其实只维护偏移值才是正解，不过数据很水我那样也就过了。</p><p>这里放一个我后来参照std写的代码，其实原程序改一下应该就行了，但我懒的改。</p><pre><code class="lang-cpp">int gd,n,m,d,f[30005][705],mx,have_gold[30005];int main(){    n=read(); d=read();    for (int i=1;i&lt;=n;i++)    {        gd=read();        have_gold[gd]++;        mx=max(mx,gd);    }    for (int i=mx;i&gt;=d;i--)    {        for (int j=0;j&lt;=700;j++)        {            int k=j-350;            if (d+k&lt;=0) continue;            f[i][j]=have_gold[i];            int nxt=i+d+k;            if (nxt&lt;=mx) f[i][j]+=max(f[nxt][j],max(f[nxt][j-1],f[nxt][j+1]));        }    }    printf(&quot;%d&quot;,max(f[d][350],max(f[d][349],f[d][351])));    return 0;}</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总的来说这套题打的还不错，有60+100+70=230分，不过第三题那30分确实很可惜。还是应该多分析一下题，不要无脑写完就跑，自己认为的暴力没准就是正解。</p><p>以上。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    <entry>
       <title>ZJ第九套总结</title>
       <link href="/p/contest-summary-zj9.html"/>
       <url>/p/contest-summary-zj9.html</url>
@@ -81,7 +98,7 @@
       <link href="/p/bigint.html"/>
       <url>/p/bigint.html</url>
       
-        <content type="html"><![CDATA[<p>只是发个板子。虽说似乎NOIp近几年一般都是取膜而不是高精了，但我还是担心会考，所以就复习了一下。</p><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>用struct储存整个数和位数。整个数全部倒序方便计算。</p><pre><code class="lang-cpp">struct bigint{    int s[5005],len;    bigint(){memset(s,0,sizeof(s));len=0;}};</code></pre><h2 id="加法"><a href="#加法" class="headerlink" title="加法"></a>加法</h2><pre><code class="lang-cpp">inline bigint add(bigint x,bigint y){    bigint z;    int len=max(x.len,y.len),add=0;    for (int i=1;i&lt;=len;i++)    {        z.s[i]=x.s[i]+y.s[i]+add;        add=z.s[i]/10;        z.s[i]%=10;    }    if (add) z.s[++len]=add;    z.len=len;    return z;}</code></pre><h2 id="减法"><a href="#减法" class="headerlink" title="减法"></a>减法</h2><p>和加法原理相同，不过这里保证x&gt;y。所以</p><pre><code class="lang-cpp">inline bigint sub(bigint x,bigint y) //x&gt;y{    bigint z;    int add=0,len=x.len;y    for (int i=1;i&lt;=len;i++)    {        z.s[i]=x.s[i]-y.s[i]-add;        add=0;        if (z.s[i]&lt;0) add=1,z.s[i]+=10;    }     z.len=len;    return z;}</code></pre><h2 id="乘法"><a href="#乘法" class="headerlink" title="乘法"></a>乘法</h2><h3 id="高精乘低精"><a href="#高精乘低精" class="headerlink" title="高精乘低精"></a>高精乘低精</h3><p>原理也差不多，只是注意最后要把进位全部加完。</p><pre><code class="lang-cpp">inline bigint times(bigint x,int y){    bigint z;    int len=x.len,add=0;    for (int i=1;i&lt;=len;i++)    {        z.s[i]=x.s[i]*y+add;        add=z.s[i]/10;        z.s[i]%=10;    }    while (add)     {        z.s[++len]=add%10;        add/=10;    }    z.len=len;    return z;}</code></pre><h3 id="高精乘高精"><a href="#高精乘高精" class="headerlink" title="高精乘高精"></a>高精乘高精</h3><p>写过了，但还没写成模板，暂时先咕咕咕了。</p><h2 id="除法"><a href="#除法" class="headerlink" title="除法"></a>除法</h2><h3 id="高精除低精"><a href="#高精除低精" class="headerlink" title="高精除低精"></a>高精除低精</h3><p>跟竖式一样，需要正着从高位往低位除。最后注意下把前导0去掉。</p><pre><code class="lang-cpp">inline bigint division(bigint x,int y){    bigint z;    int sum=0,len=x.len;    for (int i=len;i;i--)    {        sum=sum*10+x.s[i];        z.s[i]=sum/y;        sum%=y;    }    while (!z.s[len]) len--;    z.len=len;    return z;}</code></pre><h3 id="高精除高精"><a href="#高精除高精" class="headerlink" title="高精除高精"></a>高精除高精</h3><p>写不来，noip估计也不会考。我太菜了。</p><h2 id="比较大小"><a href="#比较大小" class="headerlink" title="比较大小"></a>比较大小</h2><p>返回1表示 $ x&gt;y $ ,-1表示 $ x&lt;y $ ,0表示 $ x=y $。按位比较即可。</p><pre><code class="lang-cpp">inline int cmp(bigint x,bigint y){    if (x.len&gt;y.len) return 1;    if (x.len&lt;y.len) return -1;    for (int i=x.len;i;i--)    {        if (x.s[i]&lt;y.s[i]) return -1;        if (x.s[i]&gt;y.s[i]) return 1;    }    return 0;}</code></pre><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>逆序输出即可。</p><pre><code class="lang-cpp">inline void print(bigint x){    for (int i=x.len;i;i--)        printf(&quot;%d&quot;,x.s[i]);}</code></pre><h2 id="清空"><a href="#清空" class="headerlink" title="清空"></a>清空</h2><p>把数组和长度都赋为0。</p><pre><code class="lang-cpp">inline void clear(bigint &amp;x){    for (int i=1;i&lt;=x.len;i++)        x.s[i]=0;    x.len=0;}</code></pre>]]></content>
+        <content type="html"><![CDATA[<p>只是发个板子。虽说似乎NOIp近几年一般都是取膜而不是高精了，但我还是担心会考，所以就复习了一下。</p><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>用struct储存整个数和位数。整个数全部倒序方便计算。</p><pre><code class="lang-cpp">struct bigint{    int s[5005],len;    bigint(){memset(s,0,sizeof(s));len=0;}};</code></pre><h2 id="加法"><a href="#加法" class="headerlink" title="加法"></a>加法</h2><pre><code class="lang-cpp">inline bigint add(bigint x,bigint y){    bigint z;    int len=max(x.len,y.len),add=0;    for (int i=1;i&lt;=len;i++)    {        z.s[i]=x.s[i]+y.s[i]+add;        add=z.s[i]/10;        z.s[i]%=10;    }    if (add) z.s[++len]=add;    z.len=len;    return z;}</code></pre><h2 id="减法"><a href="#减法" class="headerlink" title="减法"></a>减法</h2><p>和加法原理相同，不过这里保证x&gt;y。所以</p><pre><code class="lang-cpp">inline bigint sub(bigint x,bigint y) //x&gt;y{    bigint z;    int add=0,len=x.len;    for (int i=1;i&lt;=len;i++)    {        z.s[i]=x.s[i]-y.s[i]-add;        add=0;        if (z.s[i]&lt;0) add=1,z.s[i]+=10;    }     z.len=len;    return z;}</code></pre><h2 id="乘法"><a href="#乘法" class="headerlink" title="乘法"></a>乘法</h2><h3 id="高精乘低精"><a href="#高精乘低精" class="headerlink" title="高精乘低精"></a>高精乘低精</h3><p>原理也差不多，只是注意最后要把进位全部加完。</p><pre><code class="lang-cpp">inline bigint times(bigint x,int y){    bigint z;    int len=x.len,add=0;    for (int i=1;i&lt;=len;i++)    {        z.s[i]=x.s[i]*y+add;        add=z.s[i]/10;        z.s[i]%=10;    }    while (add)     {        z.s[++len]=add%10;        add/=10;    }    z.len=len;    return z;}</code></pre><h3 id="高精乘高精"><a href="#高精乘高精" class="headerlink" title="高精乘高精"></a>高精乘高精</h3><p>写过了，但还没写成模板，暂时先咕咕咕了。</p><h2 id="除法"><a href="#除法" class="headerlink" title="除法"></a>除法</h2><h3 id="高精除低精"><a href="#高精除低精" class="headerlink" title="高精除低精"></a>高精除低精</h3><p>跟竖式一样，需要正着从高位往低位除。最后注意下把前导0去掉。</p><pre><code class="lang-cpp">inline bigint division(bigint x,int y){    bigint z;    int sum=0,len=x.len;    for (int i=len;i;i--)    {        sum=sum*10+x.s[i];        z.s[i]=sum/y;        sum%=y;    }    while (!z.s[len]) len--;    z.len=len;    return z;}</code></pre><h3 id="高精除高精"><a href="#高精除高精" class="headerlink" title="高精除高精"></a>高精除高精</h3><p>写不来，noip估计也不会考。我太菜了。</p><h2 id="比较大小"><a href="#比较大小" class="headerlink" title="比较大小"></a>比较大小</h2><p>返回1表示 $ x&gt;y $ ,-1表示 $ x&lt;y $ ,0表示 $ x=y $。按位比较即可。</p><pre><code class="lang-cpp">inline int cmp(bigint x,bigint y){    if (x.len&gt;y.len) return 1;    if (x.len&lt;y.len) return -1;    for (int i=x.len;i;i--)    {        if (x.s[i]&lt;y.s[i]) return -1;        if (x.s[i]&gt;y.s[i]) return 1;    }    return 0;}</code></pre><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>逆序输出即可。</p><pre><code class="lang-cpp">inline void print(bigint x){    for (int i=x.len;i;i--)        printf(&quot;%d&quot;,x.s[i]);}</code></pre><h2 id="清空"><a href="#清空" class="headerlink" title="清空"></a>清空</h2><p>把数组和长度都赋为0。</p><pre><code class="lang-cpp">inline void clear(bigint &amp;x){    for (int i=1;i&lt;=x.len;i++)        x.s[i]=0;    x.len=0;}</code></pre>]]></content>
       
       
       <categories>
@@ -408,13 +425,13 @@
             
             <tag> 数据结构-线段树 </tag>
             
-            <tag> 省选-河北 </tag>
-            
-            <tag> 省选-天津 </tag>
-            
             <tag> OJ-洛谷 </tag>
             
             <tag> OJ-BZOJ </tag>
+            
+            <tag> 省选-河北 </tag>
+            
+            <tag> 省选-天津 </tag>
             
         </tags>
       
@@ -464,11 +481,11 @@
             
             <tag> 数据结构-线段树 </tag>
             
+            <tag> 省选-山东 </tag>
+            
             <tag> OJ-洛谷 </tag>
             
             <tag> OJ-BZOJ </tag>
-            
-            <tag> 省选-山东 </tag>
             
         </tags>
       
@@ -679,24 +696,6 @@
     </entry>
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
-      
-        <content type="html"><![CDATA[<p>我是Llf，最弱的蒟蒻，完了</p><p>本博客部分文章的markdown源文件均可通过将 <code>https://llf0703.com/p/*.html</code>改为 <code>https://md.llf0703.com/p/*.md</code> 查看</p><p>这个东西会不时更新，也许有的最新文章看不了</p><p><a href="https://bzoj.llf0703.com/" target="_blank" rel="noopener">BZOJ离线题库（By ruanxingzhi）</a></p><p>CSDN博客:  <a href="https://blog.csdn.net/Llf_0703" target="_blank" rel="noopener">Llf_0703</a></p><p>luogu:  <a href="https://www.luogu.org/space/show?uid=29696" target="_blank" rel="noopener">Llf0703</a></p><p>BZOJ:  <a href="https://www.lydsy.com/JudgeOnline/userinfo.php?user=Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Bilibili： <a href="https://space.bilibili.com/268840304/" target="_blank" rel="noopener">Llf030703</a></p><p>逼乎:  <a href="https://www.zhihu.com/people/llf-93-87/" target="_blank" rel="noopener">Llf</a></p><p>Coding:  <a href="https://coding.net/u/Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Gayhub:  <a href="https://github.com/Llf0703" target="_blank" rel="noopener">Llf0703</a></p>]]></content>
-      
-    </entry>
-    
-    <entry>
-      <title>友链</title>
-      <link href="/links/index.html"/>
-      <url>/links/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    <entry>
       <title>标签云</title>
       <link href="/tags/index.html"/>
       <url>/tags/index.html</url>
@@ -711,6 +710,24 @@
       <url>/timeline/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    <entry>
+      <title>友链</title>
+      <link href="/links/index.html"/>
+      <url>/links/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    <entry>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
+      
+        <content type="html"><![CDATA[<p>我是Llf，最弱的蒟蒻，完了</p><p>本博客部分文章的markdown源文件均可通过将 <code>https://llf0703.com/p/*.html</code>改为 <code>https://md.llf0703.com/p/*.md</code> 查看</p><p>这个东西会不时更新，也许有的最新文章看不了</p><p><a href="https://bzoj.llf0703.com/" target="_blank" rel="noopener">BZOJ离线题库（By ruanxingzhi）</a></p><p>CSDN博客:  <a href="https://blog.csdn.net/Llf_0703" target="_blank" rel="noopener">Llf_0703</a></p><p>luogu:  <a href="https://www.luogu.org/space/show?uid=29696" target="_blank" rel="noopener">Llf0703</a></p><p>BZOJ:  <a href="https://www.lydsy.com/JudgeOnline/userinfo.php?user=Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Bilibili： <a href="https://space.bilibili.com/268840304/" target="_blank" rel="noopener">Llf030703</a></p><p>逼乎:  <a href="https://www.zhihu.com/people/llf-93-87/" target="_blank" rel="noopener">Llf</a></p><p>Coding:  <a href="https://coding.net/u/Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Gayhub:  <a href="https://github.com/Llf0703" target="_blank" rel="noopener">Llf0703</a></p>]]></content>
       
     </entry>
     

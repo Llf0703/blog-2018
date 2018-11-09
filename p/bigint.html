@@ -252,7 +252,7 @@
 
     
         <meta property="article:published_time" content="Fri Oct 19 2018 00:00:00 GMT+0800">
-        <meta property="article:modified_time" content="Mon Oct 29 2018 20:47:26 GMT+0800">
+        <meta property="article:modified_time" content="Fri Nov 09 2018 11:58:43 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -275,7 +275,7 @@
     "mainEntityOfPage": "https://llf0703.com/p/bigint.html",
     "headline": "高精度算法模板",
     "datePublished": "Fri Oct 19 2018 00:00:00 GMT+0800",
-    "dateModified": "Mon Oct 29 2018 20:47:26 GMT+0800",
+    "dateModified": "Fri Nov 09 2018 11:58:43 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Llf0703",
@@ -583,7 +583,29 @@
     return z;
 }
 </code></pre>
-<h3 id="高精乘高精"><a href="#高精乘高精" class="headerlink" title="高精乘高精"></a>高精乘高精</h3><p>写过了，但还没写成模板，暂时先咕咕咕了。</p>
+<h3 id="高精乘高精"><a href="#高精乘高精" class="headerlink" title="高精乘高精"></a>高精乘高精</h3><p><del>写过了，但还没写成模板，暂时先咕咕咕了。</del></p>
+<p>upd:2018.11.9 (NOIp前一天) 把这个flag拔了</p>
+<pre><code class="lang-cpp">bigint times(bigint x,bigint y)
+{
+    bigint z;
+    int lx=x.len,ly=y.len;
+    for (int i=1;i&lt;=lx;i++)
+    {
+        int add=0;
+        for (int j=1;j&lt;=ly;j++)
+        {
+            int now=x.s[i]*y.s[j]+add;
+            z.s[i+j-1]+=now%10;
+            if (z.s[i+j-1]&gt;=10) z.s[i+j-1]-=10,z.s[i+j]++;
+            add=now/10;
+        }
+        if (add) z.s[i+ly]+=add;
+    }
+    z.len=lx+ly;
+    while (!z.s[z.len]) z.len--;
+    return z;
+}
+</code></pre>
 <h2 id="除法"><a href="#除法" class="headerlink" title="除法"></a>除法</h2><h3 id="高精除低精"><a href="#高精除低精" class="headerlink" title="高精除低精"></a>高精除低精</h3><p>跟竖式一样，需要正着从高位往低位除。最后注意下把前导0去掉。</p>
 <pre><code class="lang-cpp">inline bigint division(bigint x,int y)
 {

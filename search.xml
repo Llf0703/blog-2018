@@ -37,23 +37,6 @@
     </entry>
     
     <entry>
-      <title>ZJ第七套总结</title>
-      <link href="/p/contest-summary-zj7.html"/>
-      <url>/p/contest-summary-zj7.html</url>
-      
-        <content type="html"><![CDATA[<p>我决定，为了去除冗余的文章长度，所有代码删掉头文件和快读。</p><h2 id="塔-tower"><a href="#塔-tower" class="headerlink" title="塔(tower)"></a>塔(tower)</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1651" target="_blank" rel="noopener">P1651 塔</a></p><p>我几乎毫不犹豫就先花5分钟打了一发暴搜，检查没有发现任何问题，最后交上去就有80分：</p><pre><code class="lang-cpp">int h[55],n,m,a,b,c,ans;bool vis[55];bool check(int cnt,int hmax,int sum,int last){    if (sum==hmax &amp;&amp; cnt==2) return 1;    if (sum==hmax &amp;&amp; cnt==1) return check(2,hmax,0,0);    if (sum&gt;hmax) return 0;    for (int i=last+1;i&lt;=n;i++)    {        if (vis[i]) continue;        vis[i]=1;        if (check(cnt,hmax,sum+h[i],i)) return 1;        vis[i]=0;    }    return 0;}inline bool cmp(int x,int y){    return x&gt;y;}int main(){    n=read();    int sum=0;    for (int i=1;i&lt;=n;i++) h[i]=read(),sum+=h[i];    sort(h+1,h+n+1,cmp);    ans=-1;    for (int i=sum&gt;&gt;1;i;i--)    {        if (check(1,i,0,0))        {            ans=i;            break;        }    }    printf(&quot;%d&quot;,ans);    return 0;}</code></pre><p>可以说是十分划算了，<del>要什么正解系列</del>。</p><p>正解就是一个dp，用 $ f[i][j] $ 表示放到了第i个，两个塔的差值是j时高塔的最大高度。决策有三种：</p><ol><li>不要</li><li>放到高塔，差值变大</li><li>放到低塔，差值变小（或者反超）</li></ol><p>对应方程就是：</p><script type="math/tex; mode=display">f\left[ i\right] \left[ j\right] =\max \begin{equation}\begin{cases} f[i-1][j] \\ f[i-1][j+s[i]] \\ f[i-1][j-s[i]]+s[i] (j>s[i]) \\ f[i-1][s[i]-j]+j (j<=s[i]) \end{cases}\end{equation}</script><pre><code class="lang-cpp">int f[55][500005],n,m,a,b,c,s[55],sum;int main(){    n=read();    for (int i=1;i&lt;=n;i++) s[i]=read(),sum+=s[i];    memset(f,-0x3f,sizeof(f));    f[0][0]=0;    for (int i=1;i&lt;=n;i++)    {        for (int j=0;j&lt;=sum;j++)        {            f[i][j]=max(f[i-1][j],f[i-1][j+s[i]]);            if (j&gt;s[i]) f[i][j]=max(f[i][j],f[i-1][j-s[i]]+s[i]);            else f[i][j]=max(f[i][j],f[i-1][s[i]-j]+j);        }    }    if (!f[n][0]) printf(&quot;-1&quot;);    else printf(&quot;%d&quot;,f[n][0]);    return 0;}</code></pre><p>还有实名反对洛谷第一个题解，数组大小开的都是错的，真不知道怎么做出来的。</p><h2 id="圆-circle）"><a href="#圆-circle）" class="headerlink" title="圆(circle）"></a>圆(circle）</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1652" target="_blank" rel="noopener">P1652 圆</a></p><p>大水题。只是注意是曲线，不是直线，我写了半天才发现看错题了。这就意味着对于每个圆只需要判断两个点在圆内还是圆外，如果在异端就把答案++即可。</p><pre><code class="lang-cpp">int sx,sy,ex,ey,n,A,B,C,ans;struct cir{    int x,y,r;} c[55];inline double dis(int x1,int y1,int x2,int y2){    return sqrt((double)(x1-x2)*(x1-x2)+(double)(y1-y2)*(y1-y2));}int main(){    n=read();    for (int i=1;i&lt;=n;i++) c[i].x=read();    for (int i=1;i&lt;=n;i++) c[i].y=read();    for (int i=1;i&lt;=n;i++) c[i].r=read();    sx=read(); sy=read(); ex=read(); ey=read();    for (int i=1;i&lt;=n;i++)    {        double dis1=dis(sx,sy,c[i].x,c[i].y),dis2=dis(ex,ey,c[i].x,c[i].y);        if (dis1&lt;c[i].r &amp;&amp; dis2&gt;c[i].r) ans++;        else if (dis1&gt;c[i].r &amp;&amp; dis2&lt;c[i].r) ans++;    }    printf(&quot;%d&quot;,ans);    return 0;}</code></pre><h2 id="猴子-monkey"><a href="#猴子-monkey" class="headerlink" title="猴子(monkey)"></a>猴子(monkey)</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1653" target="_blank" rel="noopener">P1653 猴子</a></p><p>我一开始以为真的是树，这样放开以后把他的子树中所有结点更新答案即可，跑一遍dfs记录dfs序和子树大小，然后用线段树维护即可。敲完了发现TM竟然还有互相拉这种操作，然后就GG了，水了个暴力的10分。</p><p>看了题解才发现可以把放手的操作建成图。</p><blockquote><p>事实上我们可以把猴子放手的时间当作这条边的边权，而不放手的边权为一个大数，我们需要求得其实就是一条单源路径，让这条路径最小边权最大，直接输出这个值即可，若这个值为那个大数，就输出-1。(<a href="https://www.luogu.org/blog/the-Despair/solution-p1653" target="_blank" rel="noopener">https://www.luogu.org/blog/the-Despair/solution-p1653</a>)</p></blockquote><p>不过我觉得把这个叫做spfa还是有些欠妥。其实就是一个BFS。</p><pre><code class="lang-cpp">int lson[200005],rson[200005],lfa[200005],rfa[200005],n,m,a,b,c,mn[200005],head[200005],cnt,ans[200005];struct Edge{    int next,to,w;} edge[800005];inline void add(int u,int v,int w){    edge[++cnt].to=v;    edge[cnt].w=w;    edge[cnt].next=head[u];    head[u]=cnt;}inline void bfs(){    queue &lt;int&gt; q;    ans[1]=m;    q.push(1);    while (!q.empty())    {        int x=q.front(); q.pop();        for (int i=head[x];i;i=edge[i].next)        {            int y=edge[i].to,w=min(edge[i].w,ans[x]);            if (w&gt;ans[y])            {                ans[y]=w;                q.push(y);            }        }    }}int main(){    n=read(); m=read();    for (int i=1;i&lt;=n;i++) lson[i]=read(),rson[i]=read(),lfa[i]=rfa[i]=m;    for (int i=0;i&lt;m;i++)    {        a=read(); b=read();        if (b==1) lfa[a]=min(lfa[a],i);        else rfa[a]=min(rfa[a],i);    }    for (int i=1;i&lt;=n;i++)    {        if (lson[i]!=-1) add(i,lson[i],lfa[i]),add(lson[i],i,lfa[i]);        if (rson[i]!=-1) add(i,rson[i],rfa[i]),add(rson[i],i,rfa[i]);    }    bfs();    for (int i=1;i&lt;=n;i++)    {        if (ans[i]==m) printf(&quot;-1\n&quot;);        else printf(&quot;%d\n&quot;,ans[i]);    }    return 0;}</code></pre><h2 id="山-mountain"><a href="#山-mountain" class="headerlink" title="山(mountain)"></a>山(mountain)</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1663" target="_blank" rel="noopener">P1663 山</a></p><p>我一开始就被题目给吓住了，就没去做。后来发现这个着实是一个大水题。</p><p>题目的要求其实就是那个灯要在每一条线上或者上方，得出每条线的解析式后二分答案即可。</p><pre><code class="lang-cpp">struct point{    int x,y;} pt[5005];struct line{    double k,b;} l[5005];int n,m,a,b,c;inline bool check(double x){    double rr=1e9,ll=-1e9;    for (int i=1;i&lt;=n;i++)    {        if (l[i].k==0 &amp;&amp; l[i].b&gt;x) return 0;        if (l[i].k&lt;0) rr=min(rr,(l[i].b-x)/l[i].k);        if (l[i].k&gt;0) ll=max(ll,(l[i].b-x)/l[i].k);    }    return ll&lt;=rr;}int main(){    n=read();    for (int i=1;i&lt;=n;i++) pt[i].x=read(),pt[i].y=read();    for (int i=1;i&lt;n;i++)    {        l[i].k=(double)(pt[i+1].y-pt[i].y)/(double)(pt[i+1].x-pt[i].x);        l[i].b=(double)pt[i].y-l[i].k*pt[i].x;    }    double l=0,r=1000000;    while (r-l&gt;=1e-3)    {        double mid=(l+r)/2.0;        if (check(mid)) r=mid;        else l=mid;    }    printf(&quot;%.2f&quot;,l);    return 0;}</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我今天的得分是80+100+10+0=190.总的来说还是不错，但是我发现读错题这种失误越来越多了。以后还是应该把题认真读完，不要读到一半一激动就开始打，打完了才发现读错题了。这样还特别容易心态爆炸。</p><p>以上。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 题解 </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    <entry>
       <title>让firefox拥有chrome外观-MaterialFox</title>
       <link href="/p/materialfox.html"/>
       <url>/p/materialfox.html</url>
@@ -73,6 +56,23 @@
             <tag> 浏览器-Firefox </tag>
             
         </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>ZJ第七套总结</title>
+      <link href="/p/contest-summary-zj7.html"/>
+      <url>/p/contest-summary-zj7.html</url>
+      
+        <content type="html"><![CDATA[<p>我决定，为了去除冗余的文章长度，所有代码删掉头文件和快读。</p><h2 id="塔-tower"><a href="#塔-tower" class="headerlink" title="塔(tower)"></a>塔(tower)</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1651" target="_blank" rel="noopener">P1651 塔</a></p><p>我几乎毫不犹豫就先花5分钟打了一发暴搜，检查没有发现任何问题，最后交上去就有80分：</p><pre><code class="lang-cpp">int h[55],n,m,a,b,c,ans;bool vis[55];bool check(int cnt,int hmax,int sum,int last){    if (sum==hmax &amp;&amp; cnt==2) return 1;    if (sum==hmax &amp;&amp; cnt==1) return check(2,hmax,0,0);    if (sum&gt;hmax) return 0;    for (int i=last+1;i&lt;=n;i++)    {        if (vis[i]) continue;        vis[i]=1;        if (check(cnt,hmax,sum+h[i],i)) return 1;        vis[i]=0;    }    return 0;}inline bool cmp(int x,int y){    return x&gt;y;}int main(){    n=read();    int sum=0;    for (int i=1;i&lt;=n;i++) h[i]=read(),sum+=h[i];    sort(h+1,h+n+1,cmp);    ans=-1;    for (int i=sum&gt;&gt;1;i;i--)    {        if (check(1,i,0,0))        {            ans=i;            break;        }    }    printf(&quot;%d&quot;,ans);    return 0;}</code></pre><p>可以说是十分划算了，<del>要什么正解系列</del>。</p><p>正解就是一个dp，用 $ f[i][j] $ 表示放到了第i个，两个塔的差值是j时高塔的最大高度。决策有三种：</p><ol><li>不要</li><li>放到高塔，差值变大</li><li>放到低塔，差值变小（或者反超）</li></ol><p>对应方程就是：</p><script type="math/tex; mode=display">f\left[ i\right] \left[ j\right] =\max \begin{equation}\begin{cases} f[i-1][j] \\ f[i-1][j+s[i]] \\ f[i-1][j-s[i]]+s[i] (j>s[i]) \\ f[i-1][s[i]-j]+j (j<=s[i]) \end{cases}\end{equation}</script><pre><code class="lang-cpp">int f[55][500005],n,m,a,b,c,s[55],sum;int main(){    n=read();    for (int i=1;i&lt;=n;i++) s[i]=read(),sum+=s[i];    memset(f,-0x3f,sizeof(f));    f[0][0]=0;    for (int i=1;i&lt;=n;i++)    {        for (int j=0;j&lt;=sum;j++)        {            f[i][j]=max(f[i-1][j],f[i-1][j+s[i]]);            if (j&gt;s[i]) f[i][j]=max(f[i][j],f[i-1][j-s[i]]+s[i]);            else f[i][j]=max(f[i][j],f[i-1][s[i]-j]+j);        }    }    if (!f[n][0]) printf(&quot;-1&quot;);    else printf(&quot;%d&quot;,f[n][0]);    return 0;}</code></pre><p>还有实名反对洛谷第一个题解，数组大小开的都是错的，真不知道怎么做出来的。</p><h2 id="圆-circle）"><a href="#圆-circle）" class="headerlink" title="圆(circle）"></a>圆(circle）</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1652" target="_blank" rel="noopener">P1652 圆</a></p><p>大水题。只是注意是曲线，不是直线，我写了半天才发现看错题了。这就意味着对于每个圆只需要判断两个点在圆内还是圆外，如果在异端就把答案++即可。</p><pre><code class="lang-cpp">int sx,sy,ex,ey,n,A,B,C,ans;struct cir{    int x,y,r;} c[55];inline double dis(int x1,int y1,int x2,int y2){    return sqrt((double)(x1-x2)*(x1-x2)+(double)(y1-y2)*(y1-y2));}int main(){    n=read();    for (int i=1;i&lt;=n;i++) c[i].x=read();    for (int i=1;i&lt;=n;i++) c[i].y=read();    for (int i=1;i&lt;=n;i++) c[i].r=read();    sx=read(); sy=read(); ex=read(); ey=read();    for (int i=1;i&lt;=n;i++)    {        double dis1=dis(sx,sy,c[i].x,c[i].y),dis2=dis(ex,ey,c[i].x,c[i].y);        if (dis1&lt;c[i].r &amp;&amp; dis2&gt;c[i].r) ans++;        else if (dis1&gt;c[i].r &amp;&amp; dis2&lt;c[i].r) ans++;    }    printf(&quot;%d&quot;,ans);    return 0;}</code></pre><h2 id="猴子-monkey"><a href="#猴子-monkey" class="headerlink" title="猴子(monkey)"></a>猴子(monkey)</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1653" target="_blank" rel="noopener">P1653 猴子</a></p><p>我一开始以为真的是树，这样放开以后把他的子树中所有结点更新答案即可，跑一遍dfs记录dfs序和子树大小，然后用线段树维护即可。敲完了发现TM竟然还有互相拉这种操作，然后就GG了，水了个暴力的10分。</p><p>看了题解才发现可以把放手的操作建成图。</p><blockquote><p>事实上我们可以把猴子放手的时间当作这条边的边权，而不放手的边权为一个大数，我们需要求得其实就是一条单源路径，让这条路径最小边权最大，直接输出这个值即可，若这个值为那个大数，就输出-1。(<a href="https://www.luogu.org/blog/the-Despair/solution-p1653" target="_blank" rel="noopener">https://www.luogu.org/blog/the-Despair/solution-p1653</a>)</p></blockquote><p>不过我觉得把这个叫做spfa还是有些欠妥。其实就是一个BFS。</p><pre><code class="lang-cpp">int lson[200005],rson[200005],lfa[200005],rfa[200005],n,m,a,b,c,mn[200005],head[200005],cnt,ans[200005];struct Edge{    int next,to,w;} edge[800005];inline void add(int u,int v,int w){    edge[++cnt].to=v;    edge[cnt].w=w;    edge[cnt].next=head[u];    head[u]=cnt;}inline void bfs(){    queue &lt;int&gt; q;    ans[1]=m;    q.push(1);    while (!q.empty())    {        int x=q.front(); q.pop();        for (int i=head[x];i;i=edge[i].next)        {            int y=edge[i].to,w=min(edge[i].w,ans[x]);            if (w&gt;ans[y])            {                ans[y]=w;                q.push(y);            }        }    }}int main(){    n=read(); m=read();    for (int i=1;i&lt;=n;i++) lson[i]=read(),rson[i]=read(),lfa[i]=rfa[i]=m;    for (int i=0;i&lt;m;i++)    {        a=read(); b=read();        if (b==1) lfa[a]=min(lfa[a],i);        else rfa[a]=min(rfa[a],i);    }    for (int i=1;i&lt;=n;i++)    {        if (lson[i]!=-1) add(i,lson[i],lfa[i]),add(lson[i],i,lfa[i]);        if (rson[i]!=-1) add(i,rson[i],rfa[i]),add(rson[i],i,rfa[i]);    }    bfs();    for (int i=1;i&lt;=n;i++)    {        if (ans[i]==m) printf(&quot;-1\n&quot;);        else printf(&quot;%d\n&quot;,ans[i]);    }    return 0;}</code></pre><h2 id="山-mountain"><a href="#山-mountain" class="headerlink" title="山(mountain)"></a>山(mountain)</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1663" target="_blank" rel="noopener">P1663 山</a></p><p>我一开始就被题目给吓住了，就没去做。后来发现这个着实是一个大水题。</p><p>题目的要求其实就是那个灯要在每一条线上或者上方，得出每条线的解析式后二分答案即可。</p><pre><code class="lang-cpp">struct point{    int x,y;} pt[5005];struct line{    double k,b;} l[5005];int n,m,a,b,c;inline bool check(double x){    double rr=1e9,ll=-1e9;    for (int i=1;i&lt;=n;i++)    {        if (l[i].k==0 &amp;&amp; l[i].b&gt;x) return 0;        if (l[i].k&lt;0) rr=min(rr,(l[i].b-x)/l[i].k);        if (l[i].k&gt;0) ll=max(ll,(l[i].b-x)/l[i].k);    }    return ll&lt;=rr;}int main(){    n=read();    for (int i=1;i&lt;=n;i++) pt[i].x=read(),pt[i].y=read();    for (int i=1;i&lt;n;i++)    {        l[i].k=(double)(pt[i+1].y-pt[i].y)/(double)(pt[i+1].x-pt[i].x);        l[i].b=(double)pt[i].y-l[i].k*pt[i].x;    }    double l=0,r=1000000;    while (r-l&gt;=1e-3)    {        double mid=(l+r)/2.0;        if (check(mid)) r=mid;        else l=mid;    }    printf(&quot;%.2f&quot;,l);    return 0;}</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我今天的得分是80+100+10+0=190.总的来说还是不错，但是我发现读错题这种失误越来越多了。以后还是应该把题认真读完，不要读到一半一激动就开始打，打完了才发现读错题了。这样还特别容易心态爆炸。</p><p>以上。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
       
     </entry>
     
@@ -98,7 +98,7 @@
       <link href="/p/bigint.html"/>
       <url>/p/bigint.html</url>
       
-        <content type="html"><![CDATA[<p>只是发个板子。虽说似乎NOIp近几年一般都是取膜而不是高精了，但我还是担心会考，所以就复习了一下。</p><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>用struct储存整个数和位数。整个数全部倒序方便计算。</p><pre><code class="lang-cpp">struct bigint{    int s[5005],len;    bigint(){memset(s,0,sizeof(s));len=0;}};</code></pre><h2 id="加法"><a href="#加法" class="headerlink" title="加法"></a>加法</h2><pre><code class="lang-cpp">inline bigint add(bigint x,bigint y){    bigint z;    int len=max(x.len,y.len),add=0;    for (int i=1;i&lt;=len;i++)    {        z.s[i]=x.s[i]+y.s[i]+add;        add=z.s[i]/10;        z.s[i]%=10;    }    if (add) z.s[++len]=add;    z.len=len;    return z;}</code></pre><h2 id="减法"><a href="#减法" class="headerlink" title="减法"></a>减法</h2><p>和加法原理相同，不过这里保证x&gt;y。所以</p><pre><code class="lang-cpp">inline bigint sub(bigint x,bigint y) //x&gt;y{    bigint z;    int add=0,len=x.len;    for (int i=1;i&lt;=len;i++)    {        z.s[i]=x.s[i]-y.s[i]-add;        add=0;        if (z.s[i]&lt;0) add=1,z.s[i]+=10;    }     z.len=len;    return z;}</code></pre><h2 id="乘法"><a href="#乘法" class="headerlink" title="乘法"></a>乘法</h2><h3 id="高精乘低精"><a href="#高精乘低精" class="headerlink" title="高精乘低精"></a>高精乘低精</h3><p>原理也差不多，只是注意最后要把进位全部加完。</p><pre><code class="lang-cpp">inline bigint times(bigint x,int y){    bigint z;    int len=x.len,add=0;    for (int i=1;i&lt;=len;i++)    {        z.s[i]=x.s[i]*y+add;        add=z.s[i]/10;        z.s[i]%=10;    }    while (add)     {        z.s[++len]=add%10;        add/=10;    }    z.len=len;    return z;}</code></pre><h3 id="高精乘高精"><a href="#高精乘高精" class="headerlink" title="高精乘高精"></a>高精乘高精</h3><p>写过了，但还没写成模板，暂时先咕咕咕了。</p><h2 id="除法"><a href="#除法" class="headerlink" title="除法"></a>除法</h2><h3 id="高精除低精"><a href="#高精除低精" class="headerlink" title="高精除低精"></a>高精除低精</h3><p>跟竖式一样，需要正着从高位往低位除。最后注意下把前导0去掉。</p><pre><code class="lang-cpp">inline bigint division(bigint x,int y){    bigint z;    int sum=0,len=x.len;    for (int i=len;i;i--)    {        sum=sum*10+x.s[i];        z.s[i]=sum/y;        sum%=y;    }    while (!z.s[len]) len--;    z.len=len;    return z;}</code></pre><h3 id="高精除高精"><a href="#高精除高精" class="headerlink" title="高精除高精"></a>高精除高精</h3><p>写不来，noip估计也不会考。我太菜了。</p><h2 id="比较大小"><a href="#比较大小" class="headerlink" title="比较大小"></a>比较大小</h2><p>返回1表示 $ x&gt;y $ ,-1表示 $ x&lt;y $ ,0表示 $ x=y $。按位比较即可。</p><pre><code class="lang-cpp">inline int cmp(bigint x,bigint y){    if (x.len&gt;y.len) return 1;    if (x.len&lt;y.len) return -1;    for (int i=x.len;i;i--)    {        if (x.s[i]&lt;y.s[i]) return -1;        if (x.s[i]&gt;y.s[i]) return 1;    }    return 0;}</code></pre><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>逆序输出即可。</p><pre><code class="lang-cpp">inline void print(bigint x){    for (int i=x.len;i;i--)        printf(&quot;%d&quot;,x.s[i]);}</code></pre><h2 id="清空"><a href="#清空" class="headerlink" title="清空"></a>清空</h2><p>把数组和长度都赋为0。</p><pre><code class="lang-cpp">inline void clear(bigint &amp;x){    for (int i=1;i&lt;=x.len;i++)        x.s[i]=0;    x.len=0;}</code></pre>]]></content>
+        <content type="html"><![CDATA[<p>只是发个板子。虽说似乎NOIp近几年一般都是取膜而不是高精了，但我还是担心会考，所以就复习了一下。</p><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>用struct储存整个数和位数。整个数全部倒序方便计算。</p><pre><code class="lang-cpp">struct bigint{    int s[5005],len;    bigint(){memset(s,0,sizeof(s));len=0;}};</code></pre><h2 id="加法"><a href="#加法" class="headerlink" title="加法"></a>加法</h2><pre><code class="lang-cpp">inline bigint add(bigint x,bigint y){    bigint z;    int len=max(x.len,y.len),add=0;    for (int i=1;i&lt;=len;i++)    {        z.s[i]=x.s[i]+y.s[i]+add;        add=z.s[i]/10;        z.s[i]%=10;    }    if (add) z.s[++len]=add;    z.len=len;    return z;}</code></pre><h2 id="减法"><a href="#减法" class="headerlink" title="减法"></a>减法</h2><p>和加法原理相同，不过这里保证x&gt;y。所以</p><pre><code class="lang-cpp">inline bigint sub(bigint x,bigint y) //x&gt;y{    bigint z;    int add=0,len=x.len;    for (int i=1;i&lt;=len;i++)    {        z.s[i]=x.s[i]-y.s[i]-add;        add=0;        if (z.s[i]&lt;0) add=1,z.s[i]+=10;    }     z.len=len;    return z;}</code></pre><h2 id="乘法"><a href="#乘法" class="headerlink" title="乘法"></a>乘法</h2><h3 id="高精乘低精"><a href="#高精乘低精" class="headerlink" title="高精乘低精"></a>高精乘低精</h3><p>原理也差不多，只是注意最后要把进位全部加完。</p><pre><code class="lang-cpp">inline bigint times(bigint x,int y){    bigint z;    int len=x.len,add=0;    for (int i=1;i&lt;=len;i++)    {        z.s[i]=x.s[i]*y+add;        add=z.s[i]/10;        z.s[i]%=10;    }    while (add)     {        z.s[++len]=add%10;        add/=10;    }    z.len=len;    return z;}</code></pre><h3 id="高精乘高精"><a href="#高精乘高精" class="headerlink" title="高精乘高精"></a>高精乘高精</h3><p><del>写过了，但还没写成模板，暂时先咕咕咕了。</del></p><p>upd:2018.11.9 (NOIp前一天) 把这个flag拔了</p><pre><code class="lang-cpp">bigint times(bigint x,bigint y){    bigint z;    int lx=x.len,ly=y.len;    for (int i=1;i&lt;=lx;i++)    {        int add=0;        for (int j=1;j&lt;=ly;j++)        {            int now=x.s[i]*y.s[j]+add;            z.s[i+j-1]+=now%10;            if (z.s[i+j-1]&gt;=10) z.s[i+j-1]-=10,z.s[i+j]++;            add=now/10;        }        if (add) z.s[i+ly]+=add;    }    z.len=lx+ly;    while (!z.s[z.len]) z.len--;    return z;}</code></pre><h2 id="除法"><a href="#除法" class="headerlink" title="除法"></a>除法</h2><h3 id="高精除低精"><a href="#高精除低精" class="headerlink" title="高精除低精"></a>高精除低精</h3><p>跟竖式一样，需要正着从高位往低位除。最后注意下把前导0去掉。</p><pre><code class="lang-cpp">inline bigint division(bigint x,int y){    bigint z;    int sum=0,len=x.len;    for (int i=len;i;i--)    {        sum=sum*10+x.s[i];        z.s[i]=sum/y;        sum%=y;    }    while (!z.s[len]) len--;    z.len=len;    return z;}</code></pre><h3 id="高精除高精"><a href="#高精除高精" class="headerlink" title="高精除高精"></a>高精除高精</h3><p>写不来，noip估计也不会考。我太菜了。</p><h2 id="比较大小"><a href="#比较大小" class="headerlink" title="比较大小"></a>比较大小</h2><p>返回1表示 $ x&gt;y $ ,-1表示 $ x&lt;y $ ,0表示 $ x=y $。按位比较即可。</p><pre><code class="lang-cpp">inline int cmp(bigint x,bigint y){    if (x.len&gt;y.len) return 1;    if (x.len&lt;y.len) return -1;    for (int i=x.len;i;i--)    {        if (x.s[i]&lt;y.s[i]) return -1;        if (x.s[i]&gt;y.s[i]) return 1;    }    return 0;}</code></pre><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>逆序输出即可。</p><pre><code class="lang-cpp">inline void print(bigint x){    for (int i=x.len;i;i--)        printf(&quot;%d&quot;,x.s[i]);}</code></pre><h2 id="清空"><a href="#清空" class="headerlink" title="清空"></a>清空</h2><p>把数组和长度都赋为0。</p><pre><code class="lang-cpp">inline void clear(bigint &amp;x){    for (int i=1;i&lt;=x.len;i++)        x.s[i]=0;    x.len=0;}</code></pre>]]></content>
       
       
       <categories>
@@ -425,13 +425,13 @@
             
             <tag> 数据结构-线段树 </tag>
             
-            <tag> OJ-洛谷 </tag>
-            
-            <tag> OJ-BZOJ </tag>
-            
             <tag> 省选-河北 </tag>
             
             <tag> 省选-天津 </tag>
+            
+            <tag> OJ-洛谷 </tag>
+            
+            <tag> OJ-BZOJ </tag>
             
         </tags>
       
@@ -481,11 +481,11 @@
             
             <tag> 数据结构-线段树 </tag>
             
-            <tag> 省选-山东 </tag>
-            
             <tag> OJ-洛谷 </tag>
             
             <tag> OJ-BZOJ </tag>
+            
+            <tag> 省选-山东 </tag>
             
         </tags>
       
@@ -696,15 +696,6 @@
     </entry>
     
     <entry>
-      <title>标签云</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    <entry>
       <title>时间轴</title>
       <link href="/timeline/index.html"/>
       <url>/timeline/index.html</url>
@@ -717,6 +708,15 @@
       <title>友链</title>
       <link href="/links/index.html"/>
       <url>/links/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    <entry>
+      <title>标签云</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       

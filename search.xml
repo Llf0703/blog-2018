@@ -3,6 +3,29 @@
   
     
     <entry>
+      <title>NOIp2018游记(置顶)</title>
+      <link href="/p/noip2018-summary.html"/>
+      <url>/p/noip2018-summary.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h2><p>一大早起来就很不爽，加上前几天肠胃又出了点问题，早饭几乎没吃什么东西就跑去考试了。</p><p>去的太早了，我校那些住酒店的都没到，遇上了dyl大佬并且吸收了些rp，然后又遇到了cyc大佬并膜了一会。过了很久才遇到我校大佬们，结果是他们从另一边过来了，我在那干等了10分钟。然后背了背字符串的板子（kmp、Manacher）就上504去考试了。</p><p>T1一眼线段树+分治，不过最初的想法是还要修改，打着打着才想起直接记录下现在修了多少就行了，20min敲完过大样例走人，时间复杂度应该是 $O(logn \times logn)$ 。然后死磕T2也没搞出来，还以为是数论，心态崩了，还好脑子比较清醒就打了40分暴力走人。T3搞各种特殊情况搞了大概20就滚粗了。</p><p>估分100+40+20.下来一对怎么大佬们都A了第二题，剩下的再不济也有80，而且都会T1的 $O(n)$ 做法，就感觉自己凉了。真不知道为什么考场上就是没想到T2的甚至是65分的做法。</p><p>然后我去知乎回答了<a href="https://www.zhihu.com/question/293059610/answer/528703419" target="_blank" rel="noopener">如何评价NOIP2018？</a>，发现看来不止我一个人，心态好了一点。但下午看洛谷群发现人均280又感到凉了，感到十分悲桑，午饭也没吃。直到晚上心情终于好了些吃了点东西，然后就颓废到睡觉。</p><h2 id="Day2"><a href="#Day2" class="headerlink" title="Day2"></a>Day2</h2><p>凌晨还醒了很久才睡着，所以感觉也不太好。拖到7点半才出发，8点到了就直接进去了。<del>（dyl大佬还在7点43微信问我到了没）</del></p><p>T1就感觉不太会啊，先把60分搞定了，然后用并查集缩点搞了下环，大概70分钟才过大样例。但我总觉得我出环的时候处理有些锅，不过有12分是</p><blockquote><p>每个城市最多与两个城市相连</p></blockquote><p>而且边又有n条，所以肯定整张图都是环，所以就不涉及出环。那么就估个72吧。听说正解是基环树，不会，不后悔。</p><p>T2搞dp搞了半天没搞出来，手推把3和2的情况推错了，当有一个1的时候我写快速幂又直接用的小写的<code>pow</code>，关键是我还带了<code>bits</code>!刚发现的时候心态又崩了，不过没CE就已经是万幸了，转念一想没准不会给1的点呢。反正就差不多15了，基本确定了。</p><p>T3搞了下A3的6个点，用的 $O(n \times m)$ 的dp，24分；然后又搞了下A2，那就意味着要么-1要么不变，12分；最后搞了下3、4点的8分。但后面的不太确定，就估个24吧。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总的估分：100+40+20+72+15+24=271。因为估的比较保守，不出意外的话应该会高一点，我个人感觉很失望，特别是D1T2的60分没拿到着实可惜。希望能拿个1=吧。感觉好多大佬都300以上1=稳了。</p><p>更多的总结之后再写，照片也有时间再发。滚回去搞文化课了，12月月考和期末怕是要垫底。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 游记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 游记-NOIp </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>NOIp_2018.rp++!(置顶)</title>
       <link href="/p/noip2018-rp++.html"/>
       <url>/p/noip2018-rp++.html</url>
@@ -48,23 +71,6 @@
     </entry>
     
     <entry>
-      <title>ZJ第七套总结</title>
-      <link href="/p/contest-summary-zj7.html"/>
-      <url>/p/contest-summary-zj7.html</url>
-      
-        <content type="html"><![CDATA[<p>我决定，为了去除冗余的文章长度，所有代码删掉头文件和快读。</p><h2 id="塔-tower"><a href="#塔-tower" class="headerlink" title="塔(tower)"></a>塔(tower)</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1651" target="_blank" rel="noopener">P1651 塔</a></p><p>我几乎毫不犹豫就先花5分钟打了一发暴搜，检查没有发现任何问题，最后交上去就有80分：</p><pre><code class="lang-cpp">int h[55],n,m,a,b,c,ans;bool vis[55];bool check(int cnt,int hmax,int sum,int last){    if (sum==hmax &amp;&amp; cnt==2) return 1;    if (sum==hmax &amp;&amp; cnt==1) return check(2,hmax,0,0);    if (sum&gt;hmax) return 0;    for (int i=last+1;i&lt;=n;i++)    {        if (vis[i]) continue;        vis[i]=1;        if (check(cnt,hmax,sum+h[i],i)) return 1;        vis[i]=0;    }    return 0;}inline bool cmp(int x,int y){    return x&gt;y;}int main(){    n=read();    int sum=0;    for (int i=1;i&lt;=n;i++) h[i]=read(),sum+=h[i];    sort(h+1,h+n+1,cmp);    ans=-1;    for (int i=sum&gt;&gt;1;i;i--)    {        if (check(1,i,0,0))        {            ans=i;            break;        }    }    printf(&quot;%d&quot;,ans);    return 0;}</code></pre><p>可以说是十分划算了，<del>要什么正解系列</del>。</p><p>正解就是一个dp，用 $ f[i][j] $ 表示放到了第i个，两个塔的差值是j时高塔的最大高度。决策有三种：</p><ol><li>不要</li><li>放到高塔，差值变大</li><li>放到低塔，差值变小（或者反超）</li></ol><p>对应方程就是：</p><script type="math/tex; mode=display">f\left[ i\right] \left[ j\right] =\max \begin{equation}\begin{cases} f[i-1][j] \\ f[i-1][j+s[i]] \\ f[i-1][j-s[i]]+s[i] (j>s[i]) \\ f[i-1][s[i]-j]+j (j<=s[i]) \end{cases}\end{equation}</script><pre><code class="lang-cpp">int f[55][500005],n,m,a,b,c,s[55],sum;int main(){    n=read();    for (int i=1;i&lt;=n;i++) s[i]=read(),sum+=s[i];    memset(f,-0x3f,sizeof(f));    f[0][0]=0;    for (int i=1;i&lt;=n;i++)    {        for (int j=0;j&lt;=sum;j++)        {            f[i][j]=max(f[i-1][j],f[i-1][j+s[i]]);            if (j&gt;s[i]) f[i][j]=max(f[i][j],f[i-1][j-s[i]]+s[i]);            else f[i][j]=max(f[i][j],f[i-1][s[i]-j]+j);        }    }    if (!f[n][0]) printf(&quot;-1&quot;);    else printf(&quot;%d&quot;,f[n][0]);    return 0;}</code></pre><p>还有实名反对洛谷第一个题解，数组大小开的都是错的，真不知道怎么做出来的。</p><h2 id="圆-circle）"><a href="#圆-circle）" class="headerlink" title="圆(circle）"></a>圆(circle）</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1652" target="_blank" rel="noopener">P1652 圆</a></p><p>大水题。只是注意是曲线，不是直线，我写了半天才发现看错题了。这就意味着对于每个圆只需要判断两个点在圆内还是圆外，如果在异端就把答案++即可。</p><pre><code class="lang-cpp">int sx,sy,ex,ey,n,A,B,C,ans;struct cir{    int x,y,r;} c[55];inline double dis(int x1,int y1,int x2,int y2){    return sqrt((double)(x1-x2)*(x1-x2)+(double)(y1-y2)*(y1-y2));}int main(){    n=read();    for (int i=1;i&lt;=n;i++) c[i].x=read();    for (int i=1;i&lt;=n;i++) c[i].y=read();    for (int i=1;i&lt;=n;i++) c[i].r=read();    sx=read(); sy=read(); ex=read(); ey=read();    for (int i=1;i&lt;=n;i++)    {        double dis1=dis(sx,sy,c[i].x,c[i].y),dis2=dis(ex,ey,c[i].x,c[i].y);        if (dis1&lt;c[i].r &amp;&amp; dis2&gt;c[i].r) ans++;        else if (dis1&gt;c[i].r &amp;&amp; dis2&lt;c[i].r) ans++;    }    printf(&quot;%d&quot;,ans);    return 0;}</code></pre><h2 id="猴子-monkey"><a href="#猴子-monkey" class="headerlink" title="猴子(monkey)"></a>猴子(monkey)</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1653" target="_blank" rel="noopener">P1653 猴子</a></p><p>我一开始以为真的是树，这样放开以后把他的子树中所有结点更新答案即可，跑一遍dfs记录dfs序和子树大小，然后用线段树维护即可。敲完了发现TM竟然还有互相拉这种操作，然后就GG了，水了个暴力的10分。</p><p>看了题解才发现可以把放手的操作建成图。</p><blockquote><p>事实上我们可以把猴子放手的时间当作这条边的边权，而不放手的边权为一个大数，我们需要求得其实就是一条单源路径，让这条路径最小边权最大，直接输出这个值即可，若这个值为那个大数，就输出-1。(<a href="https://www.luogu.org/blog/the-Despair/solution-p1653" target="_blank" rel="noopener">https://www.luogu.org/blog/the-Despair/solution-p1653</a>)</p></blockquote><p>不过我觉得把这个叫做spfa还是有些欠妥。其实就是一个BFS。</p><pre><code class="lang-cpp">int lson[200005],rson[200005],lfa[200005],rfa[200005],n,m,a,b,c,mn[200005],head[200005],cnt,ans[200005];struct Edge{    int next,to,w;} edge[800005];inline void add(int u,int v,int w){    edge[++cnt].to=v;    edge[cnt].w=w;    edge[cnt].next=head[u];    head[u]=cnt;}inline void bfs(){    queue &lt;int&gt; q;    ans[1]=m;    q.push(1);    while (!q.empty())    {        int x=q.front(); q.pop();        for (int i=head[x];i;i=edge[i].next)        {            int y=edge[i].to,w=min(edge[i].w,ans[x]);            if (w&gt;ans[y])            {                ans[y]=w;                q.push(y);            }        }    }}int main(){    n=read(); m=read();    for (int i=1;i&lt;=n;i++) lson[i]=read(),rson[i]=read(),lfa[i]=rfa[i]=m;    for (int i=0;i&lt;m;i++)    {        a=read(); b=read();        if (b==1) lfa[a]=min(lfa[a],i);        else rfa[a]=min(rfa[a],i);    }    for (int i=1;i&lt;=n;i++)    {        if (lson[i]!=-1) add(i,lson[i],lfa[i]),add(lson[i],i,lfa[i]);        if (rson[i]!=-1) add(i,rson[i],rfa[i]),add(rson[i],i,rfa[i]);    }    bfs();    for (int i=1;i&lt;=n;i++)    {        if (ans[i]==m) printf(&quot;-1\n&quot;);        else printf(&quot;%d\n&quot;,ans[i]);    }    return 0;}</code></pre><h2 id="山-mountain"><a href="#山-mountain" class="headerlink" title="山(mountain)"></a>山(mountain)</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1663" target="_blank" rel="noopener">P1663 山</a></p><p>我一开始就被题目给吓住了，就没去做。后来发现这个着实是一个大水题。</p><p>题目的要求其实就是那个灯要在每一条线上或者上方，得出每条线的解析式后二分答案即可。</p><pre><code class="lang-cpp">struct point{    int x,y;} pt[5005];struct line{    double k,b;} l[5005];int n,m,a,b,c;inline bool check(double x){    double rr=1e9,ll=-1e9;    for (int i=1;i&lt;=n;i++)    {        if (l[i].k==0 &amp;&amp; l[i].b&gt;x) return 0;        if (l[i].k&lt;0) rr=min(rr,(l[i].b-x)/l[i].k);        if (l[i].k&gt;0) ll=max(ll,(l[i].b-x)/l[i].k);    }    return ll&lt;=rr;}int main(){    n=read();    for (int i=1;i&lt;=n;i++) pt[i].x=read(),pt[i].y=read();    for (int i=1;i&lt;n;i++)    {        l[i].k=(double)(pt[i+1].y-pt[i].y)/(double)(pt[i+1].x-pt[i].x);        l[i].b=(double)pt[i].y-l[i].k*pt[i].x;    }    double l=0,r=1000000;    while (r-l&gt;=1e-3)    {        double mid=(l+r)/2.0;        if (check(mid)) r=mid;        else l=mid;    }    printf(&quot;%.2f&quot;,l);    return 0;}</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我今天的得分是80+100+10+0=190.总的来说还是不错，但是我发现读错题这种失误越来越多了。以后还是应该把题认真读完，不要读到一半一激动就开始打，打完了才发现读错题了。这样还特别容易心态爆炸。</p><p>以上。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 题解 </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    <entry>
       <title>让firefox拥有chrome外观-MaterialFox</title>
       <link href="/p/materialfox.html"/>
       <url>/p/materialfox.html</url>
@@ -84,6 +90,23 @@
             <tag> 浏览器-Firefox </tag>
             
         </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>ZJ第七套总结</title>
+      <link href="/p/contest-summary-zj7.html"/>
+      <url>/p/contest-summary-zj7.html</url>
+      
+        <content type="html"><![CDATA[<p>我决定，为了去除冗余的文章长度，所有代码删掉头文件和快读。</p><h2 id="塔-tower"><a href="#塔-tower" class="headerlink" title="塔(tower)"></a>塔(tower)</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1651" target="_blank" rel="noopener">P1651 塔</a></p><p>我几乎毫不犹豫就先花5分钟打了一发暴搜，检查没有发现任何问题，最后交上去就有80分：</p><pre><code class="lang-cpp">int h[55],n,m,a,b,c,ans;bool vis[55];bool check(int cnt,int hmax,int sum,int last){    if (sum==hmax &amp;&amp; cnt==2) return 1;    if (sum==hmax &amp;&amp; cnt==1) return check(2,hmax,0,0);    if (sum&gt;hmax) return 0;    for (int i=last+1;i&lt;=n;i++)    {        if (vis[i]) continue;        vis[i]=1;        if (check(cnt,hmax,sum+h[i],i)) return 1;        vis[i]=0;    }    return 0;}inline bool cmp(int x,int y){    return x&gt;y;}int main(){    n=read();    int sum=0;    for (int i=1;i&lt;=n;i++) h[i]=read(),sum+=h[i];    sort(h+1,h+n+1,cmp);    ans=-1;    for (int i=sum&gt;&gt;1;i;i--)    {        if (check(1,i,0,0))        {            ans=i;            break;        }    }    printf(&quot;%d&quot;,ans);    return 0;}</code></pre><p>可以说是十分划算了，<del>要什么正解系列</del>。</p><p>正解就是一个dp，用 $ f[i][j] $ 表示放到了第i个，两个塔的差值是j时高塔的最大高度。决策有三种：</p><ol><li>不要</li><li>放到高塔，差值变大</li><li>放到低塔，差值变小（或者反超）</li></ol><p>对应方程就是：</p><script type="math/tex; mode=display">f\left[ i\right] \left[ j\right] =\max \begin{equation}\begin{cases} f[i-1][j] \\ f[i-1][j+s[i]] \\ f[i-1][j-s[i]]+s[i] (j>s[i]) \\ f[i-1][s[i]-j]+j (j<=s[i]) \end{cases}\end{equation}</script><pre><code class="lang-cpp">int f[55][500005],n,m,a,b,c,s[55],sum;int main(){    n=read();    for (int i=1;i&lt;=n;i++) s[i]=read(),sum+=s[i];    memset(f,-0x3f,sizeof(f));    f[0][0]=0;    for (int i=1;i&lt;=n;i++)    {        for (int j=0;j&lt;=sum;j++)        {            f[i][j]=max(f[i-1][j],f[i-1][j+s[i]]);            if (j&gt;s[i]) f[i][j]=max(f[i][j],f[i-1][j-s[i]]+s[i]);            else f[i][j]=max(f[i][j],f[i-1][s[i]-j]+j);        }    }    if (!f[n][0]) printf(&quot;-1&quot;);    else printf(&quot;%d&quot;,f[n][0]);    return 0;}</code></pre><p>还有实名反对洛谷第一个题解，数组大小开的都是错的，真不知道怎么做出来的。</p><h2 id="圆-circle）"><a href="#圆-circle）" class="headerlink" title="圆(circle）"></a>圆(circle）</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1652" target="_blank" rel="noopener">P1652 圆</a></p><p>大水题。只是注意是曲线，不是直线，我写了半天才发现看错题了。这就意味着对于每个圆只需要判断两个点在圆内还是圆外，如果在异端就把答案++即可。</p><pre><code class="lang-cpp">int sx,sy,ex,ey,n,A,B,C,ans;struct cir{    int x,y,r;} c[55];inline double dis(int x1,int y1,int x2,int y2){    return sqrt((double)(x1-x2)*(x1-x2)+(double)(y1-y2)*(y1-y2));}int main(){    n=read();    for (int i=1;i&lt;=n;i++) c[i].x=read();    for (int i=1;i&lt;=n;i++) c[i].y=read();    for (int i=1;i&lt;=n;i++) c[i].r=read();    sx=read(); sy=read(); ex=read(); ey=read();    for (int i=1;i&lt;=n;i++)    {        double dis1=dis(sx,sy,c[i].x,c[i].y),dis2=dis(ex,ey,c[i].x,c[i].y);        if (dis1&lt;c[i].r &amp;&amp; dis2&gt;c[i].r) ans++;        else if (dis1&gt;c[i].r &amp;&amp; dis2&lt;c[i].r) ans++;    }    printf(&quot;%d&quot;,ans);    return 0;}</code></pre><h2 id="猴子-monkey"><a href="#猴子-monkey" class="headerlink" title="猴子(monkey)"></a>猴子(monkey)</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1653" target="_blank" rel="noopener">P1653 猴子</a></p><p>我一开始以为真的是树，这样放开以后把他的子树中所有结点更新答案即可，跑一遍dfs记录dfs序和子树大小，然后用线段树维护即可。敲完了发现TM竟然还有互相拉这种操作，然后就GG了，水了个暴力的10分。</p><p>看了题解才发现可以把放手的操作建成图。</p><blockquote><p>事实上我们可以把猴子放手的时间当作这条边的边权，而不放手的边权为一个大数，我们需要求得其实就是一条单源路径，让这条路径最小边权最大，直接输出这个值即可，若这个值为那个大数，就输出-1。(<a href="https://www.luogu.org/blog/the-Despair/solution-p1653" target="_blank" rel="noopener">https://www.luogu.org/blog/the-Despair/solution-p1653</a>)</p></blockquote><p>不过我觉得把这个叫做spfa还是有些欠妥。其实就是一个BFS。</p><pre><code class="lang-cpp">int lson[200005],rson[200005],lfa[200005],rfa[200005],n,m,a,b,c,mn[200005],head[200005],cnt,ans[200005];struct Edge{    int next,to,w;} edge[800005];inline void add(int u,int v,int w){    edge[++cnt].to=v;    edge[cnt].w=w;    edge[cnt].next=head[u];    head[u]=cnt;}inline void bfs(){    queue &lt;int&gt; q;    ans[1]=m;    q.push(1);    while (!q.empty())    {        int x=q.front(); q.pop();        for (int i=head[x];i;i=edge[i].next)        {            int y=edge[i].to,w=min(edge[i].w,ans[x]);            if (w&gt;ans[y])            {                ans[y]=w;                q.push(y);            }        }    }}int main(){    n=read(); m=read();    for (int i=1;i&lt;=n;i++) lson[i]=read(),rson[i]=read(),lfa[i]=rfa[i]=m;    for (int i=0;i&lt;m;i++)    {        a=read(); b=read();        if (b==1) lfa[a]=min(lfa[a],i);        else rfa[a]=min(rfa[a],i);    }    for (int i=1;i&lt;=n;i++)    {        if (lson[i]!=-1) add(i,lson[i],lfa[i]),add(lson[i],i,lfa[i]);        if (rson[i]!=-1) add(i,rson[i],rfa[i]),add(rson[i],i,rfa[i]);    }    bfs();    for (int i=1;i&lt;=n;i++)    {        if (ans[i]==m) printf(&quot;-1\n&quot;);        else printf(&quot;%d\n&quot;,ans[i]);    }    return 0;}</code></pre><h2 id="山-mountain"><a href="#山-mountain" class="headerlink" title="山(mountain)"></a>山(mountain)</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1663" target="_blank" rel="noopener">P1663 山</a></p><p>我一开始就被题目给吓住了，就没去做。后来发现这个着实是一个大水题。</p><p>题目的要求其实就是那个灯要在每一条线上或者上方，得出每条线的解析式后二分答案即可。</p><pre><code class="lang-cpp">struct point{    int x,y;} pt[5005];struct line{    double k,b;} l[5005];int n,m,a,b,c;inline bool check(double x){    double rr=1e9,ll=-1e9;    for (int i=1;i&lt;=n;i++)    {        if (l[i].k==0 &amp;&amp; l[i].b&gt;x) return 0;        if (l[i].k&lt;0) rr=min(rr,(l[i].b-x)/l[i].k);        if (l[i].k&gt;0) ll=max(ll,(l[i].b-x)/l[i].k);    }    return ll&lt;=rr;}int main(){    n=read();    for (int i=1;i&lt;=n;i++) pt[i].x=read(),pt[i].y=read();    for (int i=1;i&lt;n;i++)    {        l[i].k=(double)(pt[i+1].y-pt[i].y)/(double)(pt[i+1].x-pt[i].x);        l[i].b=(double)pt[i].y-l[i].k*pt[i].x;    }    double l=0,r=1000000;    while (r-l&gt;=1e-3)    {        double mid=(l+r)/2.0;        if (check(mid)) r=mid;        else l=mid;    }    printf(&quot;%.2f&quot;,l);    return 0;}</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我今天的得分是80+100+10+0=190.总的来说还是不错，但是我发现读错题这种失误越来越多了。以后还是应该把题认真读完，不要读到一半一激动就开始打，打完了才发现读错题了。这样还特别容易心态爆炸。</p><p>以上。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
       
     </entry>
     
@@ -196,7 +219,7 @@
     </entry>
     
     <entry>
-      <title>NOIp前复习杂记(置顶)</title>
+      <title>NOIp前复习杂记</title>
       <link href="/p/review-before-noip.html"/>
       <url>/p/review-before-noip.html</url>
       
@@ -622,29 +645,6 @@
     </entry>
     
     <entry>
-      <title>拓扑排序</title>
-      <link href="/p/topological-sort.html"/>
-      <url>/p/topological-sort.html</url>
-      
-        <content type="html"><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>拓扑排序是一种可以将有先决条件（即必须将a、b排在前面后再排c，缺一不可）的数据变得有序的一种排序方法。拓扑排序仅可在有向无环图中使用，同时可以判断图中是否有环。因为顺序不同，拓扑排序得到的答案可能不同。</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>因为排序是有先决条件的，所以可以将要有先决条件的个数（在图中即为入度）记录下来，每满足一个就减一，直到个数为0便可以将其放入序列中。</p><h2 id="手动实现"><a href="#手动实现" class="headerlink" title="手动实现"></a>手动实现</h2><p>如果我们有如下的一个有向无环图，我们需要对这个图的顶点进行拓扑排序，过程如下：</p><p><img src="https://cdn.uniqueue.cn/tuopu-1.png" alt="tuopu-1"></p><p>首先，我们发现V6和v1是没有前驱的，所以我们就随机选去一个输出，我们先输出V6，删除和V6有关的边，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-2.png" alt="tuopu-2"></p><p>然后，我们继续寻找没有前驱的顶点，发现V1没有前驱，所以输出V1，删除和V1有关的边，得到下图的结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-3.png" alt="tuopu-3"></p><p>然后，我们又发现V4和V3都是没有前驱的，那么我们就随机选取一个顶点输出（具体看你实现的算法和图存储结构），我们输出V4，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-4.png" alt="tuopu-4"></p><p>然后，我们输出没有前驱的顶点V3，得到如下结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-5.png" alt="tuopu-5"></p><p>然后，我们分别输出V5和V2，最后全部顶点输出完成，该图的一个拓扑序列为：</p><p>v6–&gt;v1—&gt;v4—&gt;v3—&gt;v5—&gt;v2</p><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>1.用邻接表存储数据，同时对终点的结点的入度加一；<br>2.将没有先决条件便可以排序的点（即初始入度为0的点）先加入队列并输出；<br>3.从队首元素开始扩展，将与队首元素相连的结点的入度减一（等同于擦除这条边），如果该结点入度变为0，则将其入队，作为下一次查找的起点；<br>4.将队首元素出队，当队首元素为空时停止排序。</p><h2 id="代码及注解"><a href="#代码及注解" class="headerlink" title="代码及注解"></a>代码及注解</h2><p>有n个点，m条边的有向无环图，输入n，m，然后每一行输入一条边的信息：起点x，终点y</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;int n,m,a,b,c,d,e,re;struct map1{    int stat,end;};map1 tu[100];int rd[100],chong[100];queue &lt;int&gt; q;int main(){    cin&gt;&gt;n&gt;&gt;m;//n点m边    for (a=1;a&lt;=m;a++)    {        cin&gt;&gt;tu[a].stat&gt;&gt;tu[a].end;        rd[tu[a].end]++;    }    for (int i=1;i&lt;=n;i++)    if (rd[i]==0) q.push(i);//将初始入度为0的结点入队    while (!q.empty())    {            cout&lt;&lt;q.front()&lt;&lt;&quot; &quot;;            for (int j=1;j&lt;=m;j++)            {                if (tu[j].stat==q.front())//找以队首元素为起点的边                {                    rd[tu[j].end]--;                    if (rd[tu[j].end]==0)                     {                        q.push(tu[j].end);                    }                }            }        q.pop();    }    return 0;}</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> OI笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 算法-拓扑排序 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
       <title>最小生成树总结</title>
       <link href="/p/minimum-spanning-tree.html"/>
       <url>/p/minimum-spanning-tree.html</url>
@@ -666,6 +666,29 @@
             <tag> 算法-Kruskal </tag>
             
             <tag> 算法-Prim </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>拓扑排序</title>
+      <link href="/p/topological-sort.html"/>
+      <url>/p/topological-sort.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>拓扑排序是一种可以将有先决条件（即必须将a、b排在前面后再排c，缺一不可）的数据变得有序的一种排序方法。拓扑排序仅可在有向无环图中使用，同时可以判断图中是否有环。因为顺序不同，拓扑排序得到的答案可能不同。</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>因为排序是有先决条件的，所以可以将要有先决条件的个数（在图中即为入度）记录下来，每满足一个就减一，直到个数为0便可以将其放入序列中。</p><h2 id="手动实现"><a href="#手动实现" class="headerlink" title="手动实现"></a>手动实现</h2><p>如果我们有如下的一个有向无环图，我们需要对这个图的顶点进行拓扑排序，过程如下：</p><p><img src="https://cdn.uniqueue.cn/tuopu-1.png" alt="tuopu-1"></p><p>首先，我们发现V6和v1是没有前驱的，所以我们就随机选去一个输出，我们先输出V6，删除和V6有关的边，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-2.png" alt="tuopu-2"></p><p>然后，我们继续寻找没有前驱的顶点，发现V1没有前驱，所以输出V1，删除和V1有关的边，得到下图的结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-3.png" alt="tuopu-3"></p><p>然后，我们又发现V4和V3都是没有前驱的，那么我们就随机选取一个顶点输出（具体看你实现的算法和图存储结构），我们输出V4，得到如下图结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-4.png" alt="tuopu-4"></p><p>然后，我们输出没有前驱的顶点V3，得到如下结果：</p><p><img src="https://cdn.uniqueue.cn/tuopu-5.png" alt="tuopu-5"></p><p>然后，我们分别输出V5和V2，最后全部顶点输出完成，该图的一个拓扑序列为：</p><p>v6–&gt;v1—&gt;v4—&gt;v3—&gt;v5—&gt;v2</p><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>1.用邻接表存储数据，同时对终点的结点的入度加一；<br>2.将没有先决条件便可以排序的点（即初始入度为0的点）先加入队列并输出；<br>3.从队首元素开始扩展，将与队首元素相连的结点的入度减一（等同于擦除这条边），如果该结点入度变为0，则将其入队，作为下一次查找的起点；<br>4.将队首元素出队，当队首元素为空时停止排序。</p><h2 id="代码及注解"><a href="#代码及注解" class="headerlink" title="代码及注解"></a>代码及注解</h2><p>有n个点，m条边的有向无环图，输入n，m，然后每一行输入一条边的信息：起点x，终点y</p><pre><code class="lang-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;int n,m,a,b,c,d,e,re;struct map1{    int stat,end;};map1 tu[100];int rd[100],chong[100];queue &lt;int&gt; q;int main(){    cin&gt;&gt;n&gt;&gt;m;//n点m边    for (a=1;a&lt;=m;a++)    {        cin&gt;&gt;tu[a].stat&gt;&gt;tu[a].end;        rd[tu[a].end]++;    }    for (int i=1;i&lt;=n;i++)    if (rd[i]==0) q.push(i);//将初始入度为0的结点入队    while (!q.empty())    {            cout&lt;&lt;q.front()&lt;&lt;&quot; &quot;;            for (int j=1;j&lt;=m;j++)            {                if (tu[j].stat==q.front())//找以队首元素为起点的边                {                    rd[tu[j].end]--;                    if (rd[tu[j].end]==0)                     {                        q.push(tu[j].end);                    }                }            }        q.pop();    }    return 0;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> OI笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法-拓扑排序 </tag>
             
         </tags>
       
@@ -698,11 +721,11 @@
   
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
+      <title>友链</title>
+      <link href="/links/index.html"/>
+      <url>/links/index.html</url>
       
-        <content type="html"><![CDATA[<p>我是Llf，最弱的蒟蒻，完了</p><p>本博客部分文章的markdown源文件均可通过将 <code>https://llf0703.com/p/*.html</code>改为 <code>https://md.llf0703.com/p/*.md</code> 查看</p><p>这个东西会不时更新，也许有的最新文章看不了</p><p><a href="https://bzoj.llf0703.com/" target="_blank" rel="noopener">BZOJ离线题库（By ruanxingzhi）</a></p><p>CSDN博客:  <a href="https://blog.csdn.net/Llf_0703" target="_blank" rel="noopener">Llf_0703</a></p><p>luogu:  <a href="https://www.luogu.org/space/show?uid=29696" target="_blank" rel="noopener">Llf0703</a></p><p>BZOJ:  <a href="https://www.lydsy.com/JudgeOnline/userinfo.php?user=Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Bilibili： <a href="https://space.bilibili.com/268840304/" target="_blank" rel="noopener">Llf030703</a></p><p>逼乎:  <a href="https://www.zhihu.com/people/llf-93-87/" target="_blank" rel="noopener">Llf</a></p><p>Coding:  <a href="https://coding.net/u/Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Gayhub:  <a href="https://github.com/Llf0703" target="_blank" rel="noopener">Llf0703</a></p>]]></content>
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
@@ -712,15 +735,6 @@
       <url>/gugugu/index.html</url>
       
         <content type="html"><![CDATA[<h1>    <center> 蒟蒻Llf0703鸽了这篇文章 </center></h1><p>这不是404，只是用作占坑文章的临时页面，请返回上一页。</p>]]></content>
-      
-    </entry>
-    
-    <entry>
-      <title>友链</title>
-      <link href="/links/index.html"/>
-      <url>/links/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
@@ -739,6 +753,15 @@
       <url>/timeline/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    <entry>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
+      
+        <content type="html"><![CDATA[<p>我是Llf，最弱的蒟蒻，完了</p><p>本博客部分文章的markdown源文件均可通过将 <code>https://llf0703.com/p/*.html</code>改为 <code>https://md.llf0703.com/p/*.md</code> 查看</p><p>这个东西会不时更新，也许有的最新文章看不了</p><p><a href="https://bzoj.llf0703.com/" target="_blank" rel="noopener">BZOJ离线题库（By ruanxingzhi）</a></p><p>CSDN博客:  <a href="https://blog.csdn.net/Llf_0703" target="_blank" rel="noopener">Llf_0703</a></p><p>luogu:  <a href="https://www.luogu.org/space/show?uid=29696" target="_blank" rel="noopener">Llf0703</a></p><p>BZOJ:  <a href="https://www.lydsy.com/JudgeOnline/userinfo.php?user=Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Bilibili： <a href="https://space.bilibili.com/268840304/" target="_blank" rel="noopener">Llf030703</a></p><p>逼乎:  <a href="https://www.zhihu.com/people/llf-93-87/" target="_blank" rel="noopener">Llf</a></p><p>Coding:  <a href="https://coding.net/u/Llf0703" target="_blank" rel="noopener">Llf0703</a></p><p>Gayhub:  <a href="https://github.com/Llf0703" target="_blank" rel="noopener">Llf0703</a></p>]]></content>
       
     </entry>
     

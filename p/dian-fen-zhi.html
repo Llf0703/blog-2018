@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="display: none; filter: grayscale(1);" lang="zh">
+<html style="display: none;" lang="zh">
     <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <!--
@@ -252,7 +252,7 @@
 
     
         <meta property="article:published_time" content="Thu Apr 26 2018 19:28:00 GMT+0800">
-        <meta property="article:modified_time" content="Mon Jun 11 2018 20:30:46 GMT+0800">
+        <meta property="article:modified_time" content="Mon Nov 19 2018 13:47:00 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -275,7 +275,7 @@
     "mainEntityOfPage": "https://llf0703.com/p/dian-fen-zhi.html",
     "headline": "点分治总结",
     "datePublished": "Thu Apr 26 2018 19:28:00 GMT+0800",
-    "dateModified": "Mon Jun 11 2018 20:30:46 GMT+0800",
+    "dateModified": "Mon Nov 19 2018 13:47:00 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Llf0703",
@@ -591,7 +591,7 @@
 <p>以下内容来自<a href="https://blog.csdn.net/qq_39553725/article/details/77542223" target="_blank" rel="noopener">https://blog.csdn.net/qq_39553725/article/details/77542223</a></p>
 </blockquote>
 <hr>
-<p>对于以下这棵树：<br><img src="https://cdn.uniqueue.cn/dian-fen-zhi.png" alt="点分治"><br>显然A点是它的重心。<br>我们假设现在分治到了A点（当前点为A）<br>我们一开始求解贡献时，会有以下路径被处理出来：<br>A—&gt;A<br>A—&gt;B<br>A—&gt;B—&gt;C<br>A—&gt;B—&gt;D<br>A—&gt;E<br>A—&gt;E—&gt;F (按照先序遍历顺序罗列)<br>那么我们在合并答案是会将上述6条路径两两进行合并。<br>这是注意到：<br>合并A—&gt;B—&gt;C 和 A—&gt;B—&gt;D 肯定是不合法的！！<br>因为这并不是一条树上(简单)路径，出现了重边，我们要想办法把这种情况处理掉。<br>处理方法很简单，减去每个子树的单独贡献。<br>例如对于以B为根的子树，就会减去：<br>B—&gt;B<br>B—&gt;C<br>B—&gt;D<br>这三条路径组合的贡献<br>读者可能会有疑问，这与上面的6条路径并不一样啊。<br>我们再回过头来看一看这两句代码：<br>ans = ans + solve(tr,0);<br>ans = ans - solve(v,t[i].len);<br>注意到了吧，solve函数的第二个初始值并不相同。<br>我们在处理子树时，将初始长度设为连接边长，这样做就相当于个子树的每个组合都加上了A—&gt;的路径，从而变得与上面一样。<br>个人认为这是点分治一个极其重要的地方，读者们一定要理解清楚。</p>
+<p>对于以下这棵树：<br><img src="https://img.llf0703.com/dian-fen-zhi.png" alt="点分治"><br>显然A点是它的重心。<br>我们假设现在分治到了A点（当前点为A）<br>我们一开始求解贡献时，会有以下路径被处理出来：<br>A—&gt;A<br>A—&gt;B<br>A—&gt;B—&gt;C<br>A—&gt;B—&gt;D<br>A—&gt;E<br>A—&gt;E—&gt;F (按照先序遍历顺序罗列)<br>那么我们在合并答案是会将上述6条路径两两进行合并。<br>这是注意到：<br>合并A—&gt;B—&gt;C 和 A—&gt;B—&gt;D 肯定是不合法的！！<br>因为这并不是一条树上(简单)路径，出现了重边，我们要想办法把这种情况处理掉。<br>处理方法很简单，减去每个子树的单独贡献。<br>例如对于以B为根的子树，就会减去：<br>B—&gt;B<br>B—&gt;C<br>B—&gt;D<br>这三条路径组合的贡献<br>读者可能会有疑问，这与上面的6条路径并不一样啊。<br>我们再回过头来看一看这两句代码：<br>ans = ans + solve(tr,0);<br>ans = ans - solve(v,t[i].len);<br>注意到了吧，solve函数的第二个初始值并不相同。<br>我们在处理子树时，将初始长度设为连接边长，这样做就相当于个子树的每个组合都加上了A—&gt;的路径，从而变得与上面一样。<br>个人认为这是点分治一个极其重要的地方，读者们一定要理解清楚。</p>
 <hr>
 <p>好了，分治就完了。不过和树剖一样，只是剖分完是并没有什么卵用的，还需要具体问题具体分析。</p>
 <h2 id="具体例题"><a href="#具体例题" class="headerlink" title="具体例题"></a>具体例题</h2><h3 id="1-洛谷P3806-【模板】点分治1"><a href="#1-洛谷P3806-【模板】点分治1" class="headerlink" title="1.洛谷P3806 【模板】点分治1"></a>1.洛谷P3806 【模板】点分治1</h3><p>题目链接：<a href="https://www.luogu.org/problemnew/show/P3806" target="_blank" rel="noopener">https://www.luogu.org/problemnew/show/P3806</a></p>

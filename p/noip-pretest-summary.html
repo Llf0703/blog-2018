@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="display: none; filter: grayscale(1);" lang="zh">
+<html style="display: none;" lang="zh">
     <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <!--
@@ -252,7 +252,7 @@
 
     
         <meta property="article:published_time" content="Thu Oct 11 2018 00:00:00 GMT+0800">
-        <meta property="article:modified_time" content="Sun Oct 14 2018 21:53:34 GMT+0800">
+        <meta property="article:modified_time" content="Mon Nov 19 2018 13:46:59 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -275,7 +275,7 @@
     "mainEntityOfPage": "https://llf0703.com/p/noip-pretest-summary.html",
     "headline": "初赛知识点复习(乱序)",
     "datePublished": "Thu Oct 11 2018 00:00:00 GMT+0800",
-    "dateModified": "Sun Oct 14 2018 21:53:34 GMT+0800",
+    "dateModified": "Mon Nov 19 2018 13:46:59 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Llf0703",
@@ -541,7 +541,7 @@
 </blockquote>
 <p>我们来看下希尔排序的基本步骤，在此我们选择增量gap=length/2，缩小增量继续以gap = gap/2的方式，这种增量选择我们可以用一个序列来表示，<code>n/2,(n/2)/2,...,1</code>，称为增量序列。</p>
 <p>希尔排序的增量序列的选择与证明是个数学难题，我们选择的这个增量序列是比较常用的，也是希尔建议的增量，称为希尔增量，但其实这个增量序列不是最优的。此处我们做示例使用希尔增量。</p>
-<p><img src="https://cdn.uniqueue.cn/xier-sort.png" alt="希尔排序"></p>
+<p><img src="https://img.llf0703.com/xier-sort.png" alt="希尔排序"></p>
 <p>例题：设一组初始记录关键字序列为(50，40，95，20，15，70，60，45)，则以增量d=4的一趟希尔排序结束后前4条记录关键字为（）。</p>
 <ul>
 <li>A、40，50，20，95         </li>
@@ -573,7 +573,7 @@
 </ul>
 <h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><h3 id="哈夫曼树"><a href="#哈夫曼树" class="headerlink" title="哈夫曼树"></a>哈夫曼树</h3><p>哈夫曼树是最优二叉树，即每个点的权值 $\times$ 它到根节点的路径和最小。</p>
 <p>哈夫曼树的构建方法是先将每个点单独构建成一颗只有自己的树，然后每次选取路径和最小的两棵树合并到一起，所有树合并完即构建成功。</p>
-<p><img src="https://cdn.uniqueue.cn/huffman.jpg" alt="哈夫曼"></p>
+<p><img src="https://img.llf0703.com/huffman.jpg" alt="哈夫曼"></p>
 <p>例题：设某哈夫曼树中有199个结点，则该哈夫曼树中有（）个叶子结点。</p>
 <ul>
 <li>A、 99    </li>

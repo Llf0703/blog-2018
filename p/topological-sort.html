@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="display: none; filter: grayscale(1);" lang="zh">
+<html style="display: none;" lang="zh">
     <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <!--
@@ -252,7 +252,7 @@
 
     
         <meta property="article:published_time" content="Tue Feb 06 2018 20:21:00 GMT+0800">
-        <meta property="article:modified_time" content="Mon Jun 11 2018 21:26:10 GMT+0800">
+        <meta property="article:modified_time" content="Mon Nov 19 2018 13:46:59 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -275,7 +275,7 @@
     "mainEntityOfPage": "https://llf0703.com/p/topological-sort.html",
     "headline": "拓扑排序",
     "datePublished": "Tue Feb 06 2018 20:21:00 GMT+0800",
-    "dateModified": "Mon Jun 11 2018 21:26:10 GMT+0800",
+    "dateModified": "Mon Nov 19 2018 13:46:59 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Llf0703",
@@ -529,15 +529,15 @@
         <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>拓扑排序是一种可以将有先决条件（即必须将a、b排在前面后再排c，缺一不可）的数据变得有序的一种排序方法。拓扑排序仅可在有向无环图中使用，同时可以判断图中是否有环。因为顺序不同，拓扑排序得到的答案可能不同。</p>
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>因为排序是有先决条件的，所以可以将要有先决条件的个数（在图中即为入度）记录下来，每满足一个就减一，直到个数为0便可以将其放入序列中。</p>
 <h2 id="手动实现"><a href="#手动实现" class="headerlink" title="手动实现"></a>手动实现</h2><p>如果我们有如下的一个有向无环图，我们需要对这个图的顶点进行拓扑排序，过程如下：</p>
-<p><img src="https://cdn.uniqueue.cn/tuopu-1.png" alt="tuopu-1"></p>
+<p><img src="https://img.llf0703.com/tuopu-1.png" alt="tuopu-1"></p>
 <p>首先，我们发现V6和v1是没有前驱的，所以我们就随机选去一个输出，我们先输出V6，删除和V6有关的边，得到如下图结果：</p>
-<p><img src="https://cdn.uniqueue.cn/tuopu-2.png" alt="tuopu-2"></p>
+<p><img src="https://img.llf0703.com/tuopu-2.png" alt="tuopu-2"></p>
 <p>然后，我们继续寻找没有前驱的顶点，发现V1没有前驱，所以输出V1，删除和V1有关的边，得到下图的结果：</p>
-<p><img src="https://cdn.uniqueue.cn/tuopu-3.png" alt="tuopu-3"></p>
+<p><img src="https://img.llf0703.com/tuopu-3.png" alt="tuopu-3"></p>
 <p>然后，我们又发现V4和V3都是没有前驱的，那么我们就随机选取一个顶点输出（具体看你实现的算法和图存储结构），我们输出V4，得到如下图结果：</p>
-<p><img src="https://cdn.uniqueue.cn/tuopu-4.png" alt="tuopu-4"></p>
+<p><img src="https://img.llf0703.com/tuopu-4.png" alt="tuopu-4"></p>
 <p>然后，我们输出没有前驱的顶点V3，得到如下结果：</p>
-<p><img src="https://cdn.uniqueue.cn/tuopu-5.png" alt="tuopu-5"></p>
+<p><img src="https://img.llf0703.com/tuopu-5.png" alt="tuopu-5"></p>
 <p>然后，我们分别输出V5和V2，最后全部顶点输出完成，该图的一个拓扑序列为：</p>
 <p>v6–&gt;v1—&gt;v4—&gt;v3—&gt;v5—&gt;v2</p>
 <h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>1.用邻接表存储数据，同时对终点的结点的入度加一；<br>2.将没有先决条件便可以排序的点（即初始入度为0的点）先加入队列并输出；<br>3.从队首元素开始扩展，将与队首元素相连的结点的入度减一（等同于擦除这条边），如果该结点入度变为0，则将其入队，作为下一次查找的起点；<br>4.将队首元素出队，当队首元素为空时停止排序。</p>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="display: none; filter: grayscale(1);" lang="zh">
+<html style="display: none;" lang="zh">
     <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <!--
@@ -252,7 +252,7 @@
 
     
         <meta property="article:published_time" content="Mon Apr 16 2018 20:41:00 GMT+0800">
-        <meta property="article:modified_time" content="Mon Jun 11 2018 21:17:09 GMT+0800">
+        <meta property="article:modified_time" content="Mon Nov 19 2018 13:46:59 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -275,7 +275,7 @@
     "mainEntityOfPage": "https://llf0703.com/p/shu-lian-pou-fen.html",
     "headline": "树链剖分总结",
     "datePublished": "Mon Apr 16 2018 20:41:00 GMT+0800",
-    "dateModified": "Mon Jun 11 2018 21:17:09 GMT+0800",
+    "dateModified": "Mon Nov 19 2018 13:46:59 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Llf0703",
@@ -538,7 +538,7 @@
 <p>所谓树链剖分就是将一棵树给剖分成若干条链，再分别处理。</p>
 <p>当然，一个节点也是可以算一条链的，不过如果这样分还不如不分。树剖这个算法的目的，便是将一棵树中每一个非叶节点分到链中，并且每一个节点都只属于一条链，这样查询起来又可以快很多。</p>
 <p>在这里给出一棵树（图源百度百科）：</p>
-<p><img src="https://cdn.uniqueue.cn/shupou.jpg" alt="树剖"></p>
+<p><img src="https://img.llf0703.com/shupou.jpg" alt="树剖"></p>
 <p>在这张图中，粗线即为分成的链。要让每一个非叶节点在链上，我们就需要让一条链尽可能覆盖更多节点。所以在每一个节点的子节点中，我们选<strong>以它为根的子树节点个数最多</strong>的子节点来连成链。</p>
 <p>比如在4号节点的子节点{8,9,10}中，以8和以10为根的子树的节点总个数为1，而以9为根的子树节点个数为3，所以我们就将9作为链上的一个节点继续向下连接。9就被称为是4号节点的<strong>重节点</strong>，其他的两个节点就被称作<strong>轻节点</strong></p>
 <p>继续扩展，父节点和重节点间的连线被称作<strong>重边</strong>，就是粗线；父节点和轻结点的连线被称作<strong>轻边</strong>，就是图中的细线；多条重边连接起来的路径叫<strong>重链</strong>，如路径1-&gt;4-&gt;9-&gt;13-&gt;14；多条轻边连接起来的路径叫<strong>轻链</strong>，如路径1-&gt;2-&gt;5。</p>

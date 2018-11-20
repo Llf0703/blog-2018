@@ -3,7 +3,24 @@
   
     
     <entry>
-      <title>NOIp2018游记(置顶)</title>
+      <title>NOIp2018后总结(置顶)</title>
+      <link href="/p/after-noip2018.html"/>
+      <url>/p/after-noip2018.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="NOIp2018情况"><a href="#NOIp2018情况" class="headerlink" title="NOIp2018情况"></a>NOIp2018情况</h2><script type="math/tex; mode=display">100+40+10+64+15+4=233</script><p>感觉分数就像个玩笑一样，不过今年NOIp确实给我开了一个玩笑，D1T2人人都会的傻逼题我只有40，D2T2推出了部分规律又把快速幂打爆了（开了bits而且函数名用的小写<code>pow</code>），D2T1也写爆了。</p><p>我个人感觉D1T2的爆炸是主要原因，导致D2整个心态都是崩的 <del>（心态崩了我要妹子）</del>。而D1T2我觉得可能有点心态的原因，考前就十分紧张，而且D1T1用20min写完后很久T2一点思路都没有的心理落差确实有点大。</p><p>不过归根到底还是实力的原因，如果有500分的实力，就算爆炸100来分拿1=也没问题。</p><p>感觉身边的大佬们也都考的不是很好，本来1=稳了的dyl大佬因为一点小失误爆0了，cyc大佬也只有300左右1=也很悬。</p><p>总之，考的非常差，不过我在D1的下午就已经做好了这种结局的心理准备。虽然口上说着退役了，但我内心其实还是感觉不服气，不甘心OI生涯就这样结束了。</p><p>没想到，又重蹈了NOIp2017的覆辙了呢。我不知道下面那句话所说的我还能坚持多久，但只要还有希望，我就会把这条路坚持走下去：</p><blockquote><p>自己选择的路，跪着也要走完。</p></blockquote><h2 id="NOIp2018总结"><a href="#NOIp2018总结" class="headerlink" title="NOIp2018总结"></a>NOIp2018总结</h2><ul><li>D1T1 20min线段树分治写完，没什么说的。</li><li>D1T2 想了很久没想出正解，还好头脑清醒打了40分暴力。</li><li><p>D1T3 心态已经崩了，打了20分的暴力只得到10分。</p></li><li><p>D2T1 先打了60分，并不会基环树，也没有想到 $O(n\times m)$ 算法然后用并查集缩点搞了下后40分，不过搞爆了。</p></li><li>D2T2 推dp推了很久，最后手算20分+部分规律走人，不过2和3的情况算错了只有15分。然后快速幂写爆了也就没有后面的分。</li><li>D2T3 心态彻底崩塌，暴力完全写爆，只有4分。</li></ul><h2 id="对前一年OI生涯的大致回忆"><a href="#对前一年OI生涯的大致回忆" class="headerlink" title="对前一年OI生涯的大致回忆"></a>对前一年OI生涯的大致回忆</h2><p>在今年3月之前，我的OI几乎都处于入门水平，码力极差，连最短路都写不来，线性筛之类也没学过，数据结构更是闻所未闻。做的题也就只有洛谷上70题不到，最开始用的codevs也只有80题左右，而且都是水题。去机房要么打游戏，要么颓知乎。直到寒假最后一天才立誓认真学OI。</p><p>3月到5月因为不用中考，我自闭了三个月，洛谷上直接刷到了200多题，所谓的难题也多了很多。不过这么多题很多都是数据结构和一些毒瘤玩意，我自以为突飞猛进，实际上学了些几乎没什么卵用的东西，而基础还是特别差。甚至像学的很多毒瘤东西比如FFT、莫队、点分治、Splay之类的其实也没有真正掌握，现在也忘的差不多了。不过码力还是提升了很多，其实那些毒瘤东西和数据结构也并非完全无用，而且基础的算法和数据结构也提升很大。</p><p>6月就开始颓废了，几乎什么都没干，题也没做多少道。不过暑假期间去qbxt培训的还是有些效果的，而且8月做了很多水题，巩固了很多基础。但还是很菜。</p><p>9月开学了，每天拼死拼活写作业只为了在晚自习后半段去机房。晚上也还是很认真的在刷试炼场，提升也挺大的。特别是搜索这种暴力能力提升了很多。</p><p>10月考初赛考了84，估计是初赛考太好了把我复赛RP都用完了。然后就停课了，只上数学。停课了主要是做膜你题，提升也挺大的。不过后来颓的也挺多的，浪费了很多时间。考前两天不知道怎么的肠胃出了问题，拉肚子，吃不下东西，星期四晚上就被接回家了。D1早上和中午我也什么东西都没吃，不知道会不会有点影响。</p><p>然后NOIp之后担惊受怕的颓废了一周，从不去机房，晚自习写完作业了就看一个多小时的小说，后来程序下了，测了，爆了，哭了。虽然很早就料到多半是这种结局，但是真正来临的时候还是感觉很难接受。星期五（好吧是星期四晚上11点）dyl大佬给我发微信给我说了他的噩耗，感觉好了些（对dyl大佬感到很抱歉但是这是实话），毕竟还有人与我同在。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol><li>并没有特备认真，颓了很多。</li><li>被数据结构带来的巨大成就感冲昏了头脑，走了很多弯路。</li><li>并没有弄清楚每一道题，像今年的D1T1我还在一年前做过但还是没有想起来，很多题也是是是而非就过了。</li><li>感觉学习没有体系，想到哪学哪。</li></ol><h2 id="明年的规划"><a href="#明年的规划" class="headerlink" title="明年的规划"></a>明年的规划</h2><ol><li>从下周开始回到正轨，多做题，少颓废，弄清楚每一道题。</li><li>适时适当提升难度，不要畏惧难题。</li><li>每一道有价值的题都应该写题解，帮助自己理解和日后复习，而hexo显然不容易满足我这个想法，所以我计划买一台云主机，继续用typecho或者wordpress这些可以在线编辑博客的框架写博客。初步想法是懒得迁移了，重新开始写，把现在这个留下来，用其他子域名来访问。</li></ol><h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><ol><li>NOIp2019 500+！</li><li>SCOI2020</li></ol><h2 id="其他随感"><a href="#其他随感" class="headerlink" title="其他随感"></a>其他随感</h2><p>最终成绩下来了，如果说我之前还带着一些侥幸心理，那么今天就是真正的最终的审判了。</p><p>虽然早已接受这个事实，但今天中午还是十分郁闷，然后花了一中午写了这么多废话。</p><p>2019，rp++！</p><p>以上。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 随感 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    <entry>
+      <title>NOIp2018游记</title>
       <link href="/p/noip2018-summary.html"/>
       <url>/p/noip2018-summary.html</url>
       
@@ -71,23 +88,6 @@
     </entry>
     
     <entry>
-      <title>ZJ第七套总结</title>
-      <link href="/p/contest-summary-zj7.html"/>
-      <url>/p/contest-summary-zj7.html</url>
-      
-        <content type="html"><![CDATA[<p>我决定，为了去除冗余的文章长度，所有代码删掉头文件和快读。</p><h2 id="塔-tower"><a href="#塔-tower" class="headerlink" title="塔(tower)"></a>塔(tower)</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1651" target="_blank" rel="noopener">P1651 塔</a></p><p>我几乎毫不犹豫就先花5分钟打了一发暴搜，检查没有发现任何问题，最后交上去就有80分：</p><pre><code class="lang-cpp">int h[55],n,m,a,b,c,ans;bool vis[55];bool check(int cnt,int hmax,int sum,int last){    if (sum==hmax &amp;&amp; cnt==2) return 1;    if (sum==hmax &amp;&amp; cnt==1) return check(2,hmax,0,0);    if (sum&gt;hmax) return 0;    for (int i=last+1;i&lt;=n;i++)    {        if (vis[i]) continue;        vis[i]=1;        if (check(cnt,hmax,sum+h[i],i)) return 1;        vis[i]=0;    }    return 0;}inline bool cmp(int x,int y){    return x&gt;y;}int main(){    n=read();    int sum=0;    for (int i=1;i&lt;=n;i++) h[i]=read(),sum+=h[i];    sort(h+1,h+n+1,cmp);    ans=-1;    for (int i=sum&gt;&gt;1;i;i--)    {        if (check(1,i,0,0))        {            ans=i;            break;        }    }    printf(&quot;%d&quot;,ans);    return 0;}</code></pre><p>可以说是十分划算了，<del>要什么正解系列</del>。</p><p>正解就是一个dp，用 $ f[i][j] $ 表示放到了第i个，两个塔的差值是j时高塔的最大高度。决策有三种：</p><ol><li>不要</li><li>放到高塔，差值变大</li><li>放到低塔，差值变小（或者反超）</li></ol><p>对应方程就是：</p><script type="math/tex; mode=display">f\left[ i\right] \left[ j\right] =\max \begin{equation}\begin{cases} f[i-1][j] \\ f[i-1][j+s[i]] \\ f[i-1][j-s[i]]+s[i] (j>s[i]) \\ f[i-1][s[i]-j]+j (j<=s[i]) \end{cases}\end{equation}</script><pre><code class="lang-cpp">int f[55][500005],n,m,a,b,c,s[55],sum;int main(){    n=read();    for (int i=1;i&lt;=n;i++) s[i]=read(),sum+=s[i];    memset(f,-0x3f,sizeof(f));    f[0][0]=0;    for (int i=1;i&lt;=n;i++)    {        for (int j=0;j&lt;=sum;j++)        {            f[i][j]=max(f[i-1][j],f[i-1][j+s[i]]);            if (j&gt;s[i]) f[i][j]=max(f[i][j],f[i-1][j-s[i]]+s[i]);            else f[i][j]=max(f[i][j],f[i-1][s[i]-j]+j);        }    }    if (!f[n][0]) printf(&quot;-1&quot;);    else printf(&quot;%d&quot;,f[n][0]);    return 0;}</code></pre><p>还有实名反对洛谷第一个题解，数组大小开的都是错的，真不知道怎么做出来的。</p><h2 id="圆-circle）"><a href="#圆-circle）" class="headerlink" title="圆(circle）"></a>圆(circle）</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1652" target="_blank" rel="noopener">P1652 圆</a></p><p>大水题。只是注意是曲线，不是直线，我写了半天才发现看错题了。这就意味着对于每个圆只需要判断两个点在圆内还是圆外，如果在异端就把答案++即可。</p><pre><code class="lang-cpp">int sx,sy,ex,ey,n,A,B,C,ans;struct cir{    int x,y,r;} c[55];inline double dis(int x1,int y1,int x2,int y2){    return sqrt((double)(x1-x2)*(x1-x2)+(double)(y1-y2)*(y1-y2));}int main(){    n=read();    for (int i=1;i&lt;=n;i++) c[i].x=read();    for (int i=1;i&lt;=n;i++) c[i].y=read();    for (int i=1;i&lt;=n;i++) c[i].r=read();    sx=read(); sy=read(); ex=read(); ey=read();    for (int i=1;i&lt;=n;i++)    {        double dis1=dis(sx,sy,c[i].x,c[i].y),dis2=dis(ex,ey,c[i].x,c[i].y);        if (dis1&lt;c[i].r &amp;&amp; dis2&gt;c[i].r) ans++;        else if (dis1&gt;c[i].r &amp;&amp; dis2&lt;c[i].r) ans++;    }    printf(&quot;%d&quot;,ans);    return 0;}</code></pre><h2 id="猴子-monkey"><a href="#猴子-monkey" class="headerlink" title="猴子(monkey)"></a>猴子(monkey)</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1653" target="_blank" rel="noopener">P1653 猴子</a></p><p>我一开始以为真的是树，这样放开以后把他的子树中所有结点更新答案即可，跑一遍dfs记录dfs序和子树大小，然后用线段树维护即可。敲完了发现TM竟然还有互相拉这种操作，然后就GG了，水了个暴力的10分。</p><p>看了题解才发现可以把放手的操作建成图。</p><blockquote><p>事实上我们可以把猴子放手的时间当作这条边的边权，而不放手的边权为一个大数，我们需要求得其实就是一条单源路径，让这条路径最小边权最大，直接输出这个值即可，若这个值为那个大数，就输出-1。(<a href="https://www.luogu.org/blog/the-Despair/solution-p1653" target="_blank" rel="noopener">https://www.luogu.org/blog/the-Despair/solution-p1653</a>)</p></blockquote><p>不过我觉得把这个叫做spfa还是有些欠妥。其实就是一个BFS。</p><pre><code class="lang-cpp">int lson[200005],rson[200005],lfa[200005],rfa[200005],n,m,a,b,c,mn[200005],head[200005],cnt,ans[200005];struct Edge{    int next,to,w;} edge[800005];inline void add(int u,int v,int w){    edge[++cnt].to=v;    edge[cnt].w=w;    edge[cnt].next=head[u];    head[u]=cnt;}inline void bfs(){    queue &lt;int&gt; q;    ans[1]=m;    q.push(1);    while (!q.empty())    {        int x=q.front(); q.pop();        for (int i=head[x];i;i=edge[i].next)        {            int y=edge[i].to,w=min(edge[i].w,ans[x]);            if (w&gt;ans[y])            {                ans[y]=w;                q.push(y);            }        }    }}int main(){    n=read(); m=read();    for (int i=1;i&lt;=n;i++) lson[i]=read(),rson[i]=read(),lfa[i]=rfa[i]=m;    for (int i=0;i&lt;m;i++)    {        a=read(); b=read();        if (b==1) lfa[a]=min(lfa[a],i);        else rfa[a]=min(rfa[a],i);    }    for (int i=1;i&lt;=n;i++)    {        if (lson[i]!=-1) add(i,lson[i],lfa[i]),add(lson[i],i,lfa[i]);        if (rson[i]!=-1) add(i,rson[i],rfa[i]),add(rson[i],i,rfa[i]);    }    bfs();    for (int i=1;i&lt;=n;i++)    {        if (ans[i]==m) printf(&quot;-1\n&quot;);        else printf(&quot;%d\n&quot;,ans[i]);    }    return 0;}</code></pre><h2 id="山-mountain"><a href="#山-mountain" class="headerlink" title="山(mountain)"></a>山(mountain)</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1663" target="_blank" rel="noopener">P1663 山</a></p><p>我一开始就被题目给吓住了，就没去做。后来发现这个着实是一个大水题。</p><p>题目的要求其实就是那个灯要在每一条线上或者上方，得出每条线的解析式后二分答案即可。</p><pre><code class="lang-cpp">struct point{    int x,y;} pt[5005];struct line{    double k,b;} l[5005];int n,m,a,b,c;inline bool check(double x){    double rr=1e9,ll=-1e9;    for (int i=1;i&lt;=n;i++)    {        if (l[i].k==0 &amp;&amp; l[i].b&gt;x) return 0;        if (l[i].k&lt;0) rr=min(rr,(l[i].b-x)/l[i].k);        if (l[i].k&gt;0) ll=max(ll,(l[i].b-x)/l[i].k);    }    return ll&lt;=rr;}int main(){    n=read();    for (int i=1;i&lt;=n;i++) pt[i].x=read(),pt[i].y=read();    for (int i=1;i&lt;n;i++)    {        l[i].k=(double)(pt[i+1].y-pt[i].y)/(double)(pt[i+1].x-pt[i].x);        l[i].b=(double)pt[i].y-l[i].k*pt[i].x;    }    double l=0,r=1000000;    while (r-l&gt;=1e-3)    {        double mid=(l+r)/2.0;        if (check(mid)) r=mid;        else l=mid;    }    printf(&quot;%.2f&quot;,l);    return 0;}</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我今天的得分是80+100+10+0=190.总的来说还是不错，但是我发现读错题这种失误越来越多了。以后还是应该把题认真读完，不要读到一半一激动就开始打，打完了才发现读错题了。这样还特别容易心态爆炸。</p><p>以上。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 题解 </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    <entry>
       <title>让firefox拥有chrome外观-MaterialFox</title>
       <link href="/p/materialfox.html"/>
       <url>/p/materialfox.html</url>
@@ -107,6 +107,23 @@
             <tag> 浏览器-Firefox </tag>
             
         </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>ZJ第七套总结</title>
+      <link href="/p/contest-summary-zj7.html"/>
+      <url>/p/contest-summary-zj7.html</url>
+      
+        <content type="html"><![CDATA[<p>我决定，为了去除冗余的文章长度，所有代码删掉头文件和快读。</p><h2 id="塔-tower"><a href="#塔-tower" class="headerlink" title="塔(tower)"></a>塔(tower)</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1651" target="_blank" rel="noopener">P1651 塔</a></p><p>我几乎毫不犹豫就先花5分钟打了一发暴搜，检查没有发现任何问题，最后交上去就有80分：</p><pre><code class="lang-cpp">int h[55],n,m,a,b,c,ans;bool vis[55];bool check(int cnt,int hmax,int sum,int last){    if (sum==hmax &amp;&amp; cnt==2) return 1;    if (sum==hmax &amp;&amp; cnt==1) return check(2,hmax,0,0);    if (sum&gt;hmax) return 0;    for (int i=last+1;i&lt;=n;i++)    {        if (vis[i]) continue;        vis[i]=1;        if (check(cnt,hmax,sum+h[i],i)) return 1;        vis[i]=0;    }    return 0;}inline bool cmp(int x,int y){    return x&gt;y;}int main(){    n=read();    int sum=0;    for (int i=1;i&lt;=n;i++) h[i]=read(),sum+=h[i];    sort(h+1,h+n+1,cmp);    ans=-1;    for (int i=sum&gt;&gt;1;i;i--)    {        if (check(1,i,0,0))        {            ans=i;            break;        }    }    printf(&quot;%d&quot;,ans);    return 0;}</code></pre><p>可以说是十分划算了，<del>要什么正解系列</del>。</p><p>正解就是一个dp，用 $ f[i][j] $ 表示放到了第i个，两个塔的差值是j时高塔的最大高度。决策有三种：</p><ol><li>不要</li><li>放到高塔，差值变大</li><li>放到低塔，差值变小（或者反超）</li></ol><p>对应方程就是：</p><script type="math/tex; mode=display">f\left[ i\right] \left[ j\right] =\max \begin{equation}\begin{cases} f[i-1][j] \\ f[i-1][j+s[i]] \\ f[i-1][j-s[i]]+s[i] (j>s[i]) \\ f[i-1][s[i]-j]+j (j<=s[i]) \end{cases}\end{equation}</script><pre><code class="lang-cpp">int f[55][500005],n,m,a,b,c,s[55],sum;int main(){    n=read();    for (int i=1;i&lt;=n;i++) s[i]=read(),sum+=s[i];    memset(f,-0x3f,sizeof(f));    f[0][0]=0;    for (int i=1;i&lt;=n;i++)    {        for (int j=0;j&lt;=sum;j++)        {            f[i][j]=max(f[i-1][j],f[i-1][j+s[i]]);            if (j&gt;s[i]) f[i][j]=max(f[i][j],f[i-1][j-s[i]]+s[i]);            else f[i][j]=max(f[i][j],f[i-1][s[i]-j]+j);        }    }    if (!f[n][0]) printf(&quot;-1&quot;);    else printf(&quot;%d&quot;,f[n][0]);    return 0;}</code></pre><p>还有实名反对洛谷第一个题解，数组大小开的都是错的，真不知道怎么做出来的。</p><h2 id="圆-circle）"><a href="#圆-circle）" class="headerlink" title="圆(circle）"></a>圆(circle）</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1652" target="_blank" rel="noopener">P1652 圆</a></p><p>大水题。只是注意是曲线，不是直线，我写了半天才发现看错题了。这就意味着对于每个圆只需要判断两个点在圆内还是圆外，如果在异端就把答案++即可。</p><pre><code class="lang-cpp">int sx,sy,ex,ey,n,A,B,C,ans;struct cir{    int x,y,r;} c[55];inline double dis(int x1,int y1,int x2,int y2){    return sqrt((double)(x1-x2)*(x1-x2)+(double)(y1-y2)*(y1-y2));}int main(){    n=read();    for (int i=1;i&lt;=n;i++) c[i].x=read();    for (int i=1;i&lt;=n;i++) c[i].y=read();    for (int i=1;i&lt;=n;i++) c[i].r=read();    sx=read(); sy=read(); ex=read(); ey=read();    for (int i=1;i&lt;=n;i++)    {        double dis1=dis(sx,sy,c[i].x,c[i].y),dis2=dis(ex,ey,c[i].x,c[i].y);        if (dis1&lt;c[i].r &amp;&amp; dis2&gt;c[i].r) ans++;        else if (dis1&gt;c[i].r &amp;&amp; dis2&lt;c[i].r) ans++;    }    printf(&quot;%d&quot;,ans);    return 0;}</code></pre><h2 id="猴子-monkey"><a href="#猴子-monkey" class="headerlink" title="猴子(monkey)"></a>猴子(monkey)</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1653" target="_blank" rel="noopener">P1653 猴子</a></p><p>我一开始以为真的是树，这样放开以后把他的子树中所有结点更新答案即可，跑一遍dfs记录dfs序和子树大小，然后用线段树维护即可。敲完了发现TM竟然还有互相拉这种操作，然后就GG了，水了个暴力的10分。</p><p>看了题解才发现可以把放手的操作建成图。</p><blockquote><p>事实上我们可以把猴子放手的时间当作这条边的边权，而不放手的边权为一个大数，我们需要求得其实就是一条单源路径，让这条路径最小边权最大，直接输出这个值即可，若这个值为那个大数，就输出-1。(<a href="https://www.luogu.org/blog/the-Despair/solution-p1653" target="_blank" rel="noopener">https://www.luogu.org/blog/the-Despair/solution-p1653</a>)</p></blockquote><p>不过我觉得把这个叫做spfa还是有些欠妥。其实就是一个BFS。</p><pre><code class="lang-cpp">int lson[200005],rson[200005],lfa[200005],rfa[200005],n,m,a,b,c,mn[200005],head[200005],cnt,ans[200005];struct Edge{    int next,to,w;} edge[800005];inline void add(int u,int v,int w){    edge[++cnt].to=v;    edge[cnt].w=w;    edge[cnt].next=head[u];    head[u]=cnt;}inline void bfs(){    queue &lt;int&gt; q;    ans[1]=m;    q.push(1);    while (!q.empty())    {        int x=q.front(); q.pop();        for (int i=head[x];i;i=edge[i].next)        {            int y=edge[i].to,w=min(edge[i].w,ans[x]);            if (w&gt;ans[y])            {                ans[y]=w;                q.push(y);            }        }    }}int main(){    n=read(); m=read();    for (int i=1;i&lt;=n;i++) lson[i]=read(),rson[i]=read(),lfa[i]=rfa[i]=m;    for (int i=0;i&lt;m;i++)    {        a=read(); b=read();        if (b==1) lfa[a]=min(lfa[a],i);        else rfa[a]=min(rfa[a],i);    }    for (int i=1;i&lt;=n;i++)    {        if (lson[i]!=-1) add(i,lson[i],lfa[i]),add(lson[i],i,lfa[i]);        if (rson[i]!=-1) add(i,rson[i],rfa[i]),add(rson[i],i,rfa[i]);    }    bfs();    for (int i=1;i&lt;=n;i++)    {        if (ans[i]==m) printf(&quot;-1\n&quot;);        else printf(&quot;%d\n&quot;,ans[i]);    }    return 0;}</code></pre><h2 id="山-mountain"><a href="#山-mountain" class="headerlink" title="山(mountain)"></a>山(mountain)</h2><p>洛谷题目：<a href="https://www.luogu.org/problemnew/show/P1663" target="_blank" rel="noopener">P1663 山</a></p><p>我一开始就被题目给吓住了，就没去做。后来发现这个着实是一个大水题。</p><p>题目的要求其实就是那个灯要在每一条线上或者上方，得出每条线的解析式后二分答案即可。</p><pre><code class="lang-cpp">struct point{    int x,y;} pt[5005];struct line{    double k,b;} l[5005];int n,m,a,b,c;inline bool check(double x){    double rr=1e9,ll=-1e9;    for (int i=1;i&lt;=n;i++)    {        if (l[i].k==0 &amp;&amp; l[i].b&gt;x) return 0;        if (l[i].k&lt;0) rr=min(rr,(l[i].b-x)/l[i].k);        if (l[i].k&gt;0) ll=max(ll,(l[i].b-x)/l[i].k);    }    return ll&lt;=rr;}int main(){    n=read();    for (int i=1;i&lt;=n;i++) pt[i].x=read(),pt[i].y=read();    for (int i=1;i&lt;n;i++)    {        l[i].k=(double)(pt[i+1].y-pt[i].y)/(double)(pt[i+1].x-pt[i].x);        l[i].b=(double)pt[i].y-l[i].k*pt[i].x;    }    double l=0,r=1000000;    while (r-l&gt;=1e-3)    {        double mid=(l+r)/2.0;        if (check(mid)) r=mid;        else l=mid;    }    printf(&quot;%.2f&quot;,l);    return 0;}</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我今天的得分是80+100+10+0=190.总的来说还是不错，但是我发现读错题这种失误越来越多了。以后还是应该把题认真读完，不要读到一半一激动就开始打，打完了才发现读错题了。这样还特别容易心态爆炸。</p><p>以上。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
       
     </entry>
     
@@ -721,15 +738,6 @@
   
     
     <entry>
-      <title>友链</title>
-      <link href="/links/index.html"/>
-      <url>/links/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    <entry>
       <title>咕咕咕</title>
       <link href="/gugugu/index.html"/>
       <url>/gugugu/index.html</url>
@@ -739,9 +747,9 @@
     </entry>
     
     <entry>
-      <title>时间轴</title>
-      <link href="/timeline/index.html"/>
-      <url>/timeline/index.html</url>
+      <title>友链</title>
+      <link href="/links/index.html"/>
+      <url>/links/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -751,6 +759,15 @@
       <title>标签云</title>
       <link href="/tags/index.html"/>
       <url>/tags/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    <entry>
+      <title>时间轴</title>
+      <link href="/timeline/index.html"/>
+      <url>/timeline/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
